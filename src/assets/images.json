@@ -1,0 +1,39 @@
+{
+  "sliders": [
+  {
+    "label": "2.8 Gpc box, showing a 20 Mpc thick slice through the full box and various quantities: gas (combined temperature and surface density), CDM (dark matter surface density), stars (stellar surface density) and neutrinos (neutrino surface density). All quantities are shown using a logarithmic colour scale to visualise faint structures.",
+    "images": {
+      "Gas": "slider_images/L2800_full_map_gas_logo.png",
+      "CDM": "slider_images/L2800_full_map_dm_logo.png",
+      "Stars": "slider_images/L2800_full_map_stars_desat_logo.png",
+      "Neutrinos": "slider_images/L2800_full_map_neutrinos_logo.png"
+    },
+    "linkname": "Neutrinos-stars-CDM-gas"
+  },
+  {
+    "label": "2.8 Gpc box, showing a 20 Mpc thick slice through the full box and various quantities: gas (combined temperature and surface density), CDM (dark matter surface density), stars (stellar surface density) and neutrinos (neutrino surface density). All quantities are shown using a logarithmic colour scale to visualise faint structures.",
+    "images": {
+      "CDM": "slider_images/L2800_full_map_dm_logo.png",
+      "Neutrinos": "slider_images/L2800_full_map_neutrinos_logo.png"
+    },
+    "linkname": "Neutrinos-CDM"
+  },
+  {
+    "label": "2.8 Gpc box, showing a 20 Mpc thick slice through a 250 Mpc wide region of the box and various quantities: gas (combined temperature and surface density), CDM (dark matter surface density), stars (stellar surface density) and Xrays (ROSAT band luminosity). All quantities are shown using a logarithmic colour scale to visualise faint structures.",
+    "images": {
+      "Gas": "slider_images/gas_0400_logo.png",
+      "CDM": "slider_images/dm_0400_logo.png",
+      "Stars": "slider_images/stars_0400_desat_logo.png",
+      "Xrays": "slider_images/xrays_0400_logo.png"
+    },
+    "linkname": "Xrays-stars-CDM-gas"
+  },
+  {
+    "label": "2.8 Gpc box, showing a 20 Mpc thick slice through a 250 Mpc wide region of the box and various quantities: gas (combined temperature and surface density), CDM (dark matter surface density), stars (stellar surface density) and Xrays (ROSAT band luminosity). All quantities are shown using a logarithmic colour scale to visualise faint structures.",
+    "images": {
+      "Gas": "slider_images/gas_0400_logo.png",
+      "CDM": "slider_images/dm_0400_logo.png"
+    },
+    "linkname": "CDM-Gas"
+  }]
+}

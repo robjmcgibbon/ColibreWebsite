@@ -1,0 +1,30 @@
+#zslider {
+  margin: 10px;
+  max-width: 980px;
+  background-color: #000000;
+}
+
+#zrange {
+  border: 0;
+  font-weight: bold;
+}
+
+#qslider {
+  margin: 10px;
+  max-width: 980px;
+  background-color: #000000;
+}
+
+#qrange {
+  border: 0;
+  font-weight: bold;
+}
+
+.ui-slider-handle {
+  border-radius: 50%;
+}
+
+.ui-widget-header {
+  background-color: #986196;
+  background-image: None;
+}

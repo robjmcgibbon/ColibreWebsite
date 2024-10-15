@@ -1,0 +1,28 @@
+<h1>Video gallery</h1>
+All quantities are presented on a logarithmic colour scale.
+<div class="modal fade" id="imageModal" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+%IMG_SECTIONS%
+
+<script type="text/javascript">
+$('#imageModal').on('show.bs.modal', function (event) {
+  var link = $(event.relatedTarget);
+  var type = link.data('type');
+  var src = link.data('src');
+  var caption = link.data('caption');
+  var modal = $(this);
+  modal.find('.modal-title').text(caption);
+  modal.find('.modal-body').html("<video width=\"100%\" height=\"auto\" controls><source src=\"" + src + "\" type=\"video/mp4\">Your browser does not support the video tag.</video>");
+});
+</script>

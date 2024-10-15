@@ -1,0 +1,8 @@
+build/*
+*.png
+*.dat
+*.svg
+*.pdf
+*.mp4
+src/pages/papers.html
+token

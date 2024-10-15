@@ -1,0 +1,652 @@
+<h1>Simulations</h1>
+<p>The FLAMINGO simulations and their properties are listed below.</p>
+<h2>Hydrodynamical simulations</h2>
+<p>The first table below contain the hydrodynamical simulations in the set. The first four lines 
+    list the simulations that use the fiducial galaxy formation model and assume the fiducial cosmology, 
+    but use different volumes and resolutions. The remaining lines list the model variations, which all 
+    use a 1 Gpc box and intermediate resolution. The link after each simulation name gives the
+    paper where the simulation was introducted. The columns list the simulation identifier (where m8, 
+    m9 and m10 indicate log<sub>10</sub> of the mean baryonic particle mass and correspond to high, 
+    intermediate, and low resolution, respectively; absence of this part implies m9 resolution); the 
+    number of standard deviations by which the observed stellar masses are shifted before calibration, 
+    &Delta;m<sub>*</sub>; the number of standard deviations by which the observed cluster gas fractions 
+    are shifted before calibration, &Delta;f<sub>gas</sub>; the AGN feedback implementation (thermal 
+    or jets); the comoving box side length, L; the number of baryonic particles, N<sub>b</sub> (which 
+    equals the number of CDM particles, N<sub>CDM</sub>; the number of neutrino particles, 
+    N<sub>&nu;</sub>; the initial mean baryonic particle mass, m<sub>g</sub>; the mean CDM particle 
+    mass, m<sub>CDM</sub>; the Plummer-equivalent comoving gravitational softening length, 
+    &epsilon;<sub>com</sub>; the maximum proper gravitational softening length, &epsilon;<sub>prop</sub>; 
+    and the assumed cosmology which is specified table at the bottom of this page.</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Identifier<br></th>
+        <th>&Delta;m<sub>*</sub><br>(&sigma;)</th>
+        <th>&Delta;f<sub>gas</sub><br>(&sigma;)</th>
+        <th>AGN<br></th>
+        <th>L<br>(cGpc)</th>
+        <th>N<sub>b</sub><br></th>
+        <th>N<sub>&nu;</sub><br></th>
+        <th>m<sub>g</sub><br>(M<sub>&#9737;</sub>)</th>
+        <th>m<sub>CDM</sub><br>(M<sub>&#9737;</sub>)</th>
+        <th>&epsilon;<sub>com</sub><br>(ckpc)</th>
+        <th>&epsilon;<sub>prop</sub><br>(pkpc)</th>
+        <th>Cosmology<br></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">L1_m8<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>3600<sup>3</sup></td>
+        <td>2000<sup>3</sup></td>
+        <td>1.34 x 10<sup>8</sup></td>
+        <td>7.06 x 10<sup>8</sup></td>
+        <td>11.2</td>
+        <td>2.85</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">L1_m9<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">L1_m10<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>900<sup>3</sup></td>
+        <td>500<sup>3</sup></td>
+        <td>8.56 x 10<sup>9</sup></td>
+        <td>4.52 x 10<sup>10</sup></td>
+        <td>44.6</td>
+        <td>11.40</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">L2p8_m9<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>2.8</td>
+        <td>5040<sup>3</sup></td>
+        <td>2800<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">fgas+2&sigma;<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>+2</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">fgas-2&sigma;<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>-2</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">fgas-4&sigma;<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>-4</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">fgas-8&sigma;<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>-8</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">M*-1&sigma;<sup><a href="#1"> [1]</a></sup></th>
+        <td>-1</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">M*-1&sigma;_fgas-4&sigma;<sup><a href="#1"> [1]</a></sup></th>
+        <td>-1</td>
+        <td>-4</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">Jet<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>jets</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">Jet_fgas-4&sigma;<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>-4</td>
+        <td>jets</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">Planck<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.72 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>Planck</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p24Var<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.06 x 10<sup>9</sup></td>
+        <td>5.67 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckNu0p24Var</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p24Fix<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.62 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckNu0p24Fix</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p48Fix<sup><a href="#2"> [2]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.62 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckNu0p48Fix</td>
+    </tr>
+    <tr>
+        <th scope="row">LS8<sup><a href="#1"> [1]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>LS8</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckDCDM12<sup><a href="#2"> [2]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckDCDM12</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckDCDM24<sup><a href="#2"> [2]</a></sup></th>
+        <td>0</td>
+        <td>0</td>
+        <td>thermal</td>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>1.07 x 10<sup>9</sup></td>
+        <td>5.65 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckDCDM24</td>
+    </tr>
+    </tbody>
+</table>
+<h2>Dark matter only simulations</h2>
+<p>The second table contains the gravity-only FLAMINGO simulations. Simulation L1_m9_ip_DMO is identical 
+    to L1_m9_DMO except that the phases in the initial conditions were inverted. Note that there are no 
+    hydrodynamical counterparts for L5p6_m10_DMO, PlanckNu0p12Var_DMO, L1_m9_ip_DMO, L11p2_m11_DMO, and
+    FLAMINGO-10K.</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Identifier<br></th>
+        <th>L<br>(cGpc)</th>
+        <th>N<sub>CDM</sub><br></th>
+        <th>N<sub>&nu;</sub><br></th>
+        <th>m<sub>CDM</sub><br>(M<sub>&#9737;</sub>)</th>
+        <th>&epsilon;<sub>com</sub><br>(ckpc)</th>
+        <th>&epsilon;<sub>prop</sub><br>(pkpc)</th>
+        <th>Cosmology<br></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">L1_m8_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>3600<sup>3</sup></td>
+        <td>2000<sup>3</sup></td>
+        <td>8.40 x 10<sup>8</sup></td>
+        <td>11.2</td>
+        <td>2.85</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">L1_m9_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.72 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">L1_m10_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>900<sup>3</sup></td>
+        <td>500<sup>3</sup></td>
+        <td>5.38 x 10<sup>10</sup></td>
+        <td>44.6</td>
+        <td>11.40</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">L2p8_m9_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>2.8</td>
+        <td>5040<sup>3</sup></td>
+        <td>2800<sup>3</sup></td>
+        <td>6.72 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">L5p6_m10_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>5.6</td>
+        <td>5040<sup>3</sup></td>
+        <td>2800<sup>3</sup></td>
+        <td>5.38 x 10<sup>10</sup></td>
+        <td>44.6</td>
+        <td>11.40</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">Planck_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.78  x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>Planck</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p12Var_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.74 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckNu0p12Var</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p24Var_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.73 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckNu0p24Var</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p24Fix_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.68 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckNu0p24Fix</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p48Fix_DMO<sup><a href="#2"> [2]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.68 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckNu0p48Fix</td>
+    </tr>
+    <tr>
+        <th scope="row">LS8_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.72 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>LS8</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckDCDM12_DMO<sup><a href="#2"> [2]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.72 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckDCDM12</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckDCDM24_DMO<sup><a href="#2"> [2]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.72 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>PlanckDCDM24</td>
+    </tr>
+    <tr>
+        <th scope="row">L1_m9_ip_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>1</td>
+        <td>1800<sup>3</sup></td>
+        <td>1000<sup>3</sup></td>
+        <td>6.72 x 10<sup>9</sup></td>
+        <td>22.3</td>
+        <td>5.70</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">L11p2_m11_DMO<sup><a href="#1"> [1]</a></sup></th>
+        <td>11.2</td>
+        <td>5040<sup>3</sup></td>
+        <td>2800<sup>3</sup></td>
+        <td>4.30 x 10<sup>11</sup></td>
+        <td>89.2</td>
+        <td>22.80</td>
+        <td>D3A</td>
+    </tr>
+    <tr>
+        <th scope="row">FLAMINGO-10K<sup><a href="#3"> [3]</a></sup></th>
+        <td>2.8</td>
+        <td>10080<sup>3</sup></td>
+        <td>5600<sup>3</sup></td>
+        <td>8.40 x 10<sup>8</sup></td>
+        <td>11.2</td>
+        <td>2.85</td>
+        <td>D3A</td>
+    </tr>
+    </tbody>
+</table>
+<h2>Cosmologies</h2>
+<p>Finally, the table below lists the values of the cosmological parameters used in different 
+    simulations (Table 4 from <a href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.526.4978S/abstract" class="active text-decoration-none">Schaye et al. 2023</a>, Table 1 from <a href="https://ui.adsabs.harvard.edu/abs/2024arXiv240312967E/abstract" class="active text-decoration-none">Elbers et al. 2024</a>). The columns list the prefix used to indicate the cosmology in the simulation name 
+    (note that for brevity the prefix 'D3A' that indicates the fiducial cosmology is omitted from the 
+    simulation identifiers); the dimensionless Hubble constant, h; the total matter density parameter, 
+    &Omega;<sub>m</sub>; the dark energy density parameter, &Omega;<sub>&Lambda;</sub>; the baryonic 
+    matter density parameter, &Omega;<sub>b</sub>; the sum of the particle masses of the neutrino 
+    species, &sum; m<sub>&nu;</sub>c<sup>2</sup>; the amplitude of the primordial matter power spectrum, 
+    A<sub>s</sub>; the power-law index of the primordial matter power spectrum, n<sub>s</sub>; the 
+    amplitude of the initial power spectrum parametrized as the r.m.s. mass density fluctuation in 
+    spheres of radius 8 h<sup>-1</sup> Mpc extrapolated to z=0 using linear theory, &sigma;<sub>8</sub>; 
+    the amplitude of the initial power spectrum parametrized as S<sub>8</sub> &equiv;
+    &sigma;<sub>8</sub>(&Omega;<sub>m</sub>/0.3)<sup>1/2</sup>; the neutrino matter density parameter, 
+    &Omega;<sub>&nu;</sub> &cong; &sum; m<sub>&nu;</sub>c<sup>2</sup>/(93.14 h<sup>2</sup> eV); the dark 
+    matter decay rate, &Gamma;. Note 
+    that the values of the Hubble and density parameters are given at z=0.</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>h</th>
+        <th>&Omega;<sub>m</sub></th>
+        <th>&Omega;<sub>&Lambda;</sub></th>
+        <th>&Omega;<sub>b</sub></th>
+        <th>&sum; m<sub>&nu;</sub>c<sup>2</sup></th>
+        <th>A<sub>s</sub></th>
+        <th>n<sub>s</sub></th>
+        <th>&sigma;<sub>8</sub></th>
+        <th>S<sub>8</sub></th>
+        <th>&Omega;<sub>&nu;</sub></th>
+        <th>&Gamma; (h/H<sub>0</sub>)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">D3A</th>
+        <td>0.681</td>
+        <td>0.306</td>
+        <td>0.694</td>
+        <td>0.0486</td>
+        <td>0.06 eV</td>
+        <td>2.099 x 10<sup>-9</sup></td>
+        <td>0.967</td>
+        <td>0.807</td>
+        <td>0.815</td>
+        <td>1.39 x 10<sup>-3</sup></td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <th scope="row">Planck</th>
+        <td>0.673</td>
+        <td>0.316</td>
+        <td>0.684</td>
+        <td>0.0494</td>
+        <td>0.06 eV</td>
+        <td>2.101 x 10<sup>-9</sup></td>
+        <td>0.966</td>
+        <td>0.812</td>
+        <td>0.833</td>
+        <td>1.42 x 10<sup>-3</sup></td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p12Var</th>
+        <td>0.673</td>
+        <td>0.316</td>
+        <td>0.684</td>
+        <td>0.0496</td>
+        <td>0.12 eV</td>
+        <td>2.113 x 10<sup>-9</sup></td>
+        <td>0.967</td>
+        <td>0.800</td>
+        <td>0.821</td>
+        <td>2.85 x 10<sup>-3</sup></td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p24Var</th>
+        <td>0.662</td>
+        <td>0.328</td>
+        <td>0.672</td>
+        <td>0.0510</td>
+        <td>0.24 eV</td>
+        <td>2.109 x 10<sup>-9</sup></td>
+        <td>0.968</td>
+        <td>0.772</td>
+        <td>0.807</td>
+        <td>5.87 x 10<sup>-3</sup></td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p24Fix</th>
+        <td>0.673</td>
+        <td>0.316</td>
+        <td>0.684</td>
+        <td>0.0494</td>
+        <td>0.24 eV</td>
+        <td>2.101 x 10<sup>-9</sup></td>
+        <td>0.966</td>
+        <td>0.769</td>
+        <td>0.789</td>
+        <td>5.69 x 10<sup>-3</sup></td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckNu0p48Fix</th>
+        <td>0.673</td>
+        <td>0.316</td>
+        <td>0.684</td>
+        <td>0.0494</td>
+        <td>0.48 eV</td>
+        <td>2.101 x 10<sup>-9</sup></td>
+        <td>0.966</td>
+        <td>0.709</td>
+        <td>0.728</td>
+        <td>11.4 x 10<sup>-3</sup></td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <th scope="row">LS8</th>
+        <td>0.682</td>
+        <td>0.305</td>
+        <td>0.695</td>
+        <td>0.0473</td>
+        <td>0.06 eV</td>
+        <td>1.836  x 10<sup>-9</sup></td>
+        <td>0.965</td>
+        <td>0.760</td>
+        <td>0.766</td>
+        <td>1.39 x 10<sup>-3</sup></td>
+        <td>-</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckDCDM12</th>
+        <td>0.673</td>
+        <td>0.274</td>
+        <td>0.726</td>
+        <td>0.0494</td>
+        <td>0.06 eV</td>
+        <td>2.101  x 10<sup>-9</sup></td>
+        <td>0.966</td>
+        <td>0.794</td>
+        <td>0.759</td>
+        <td>1.42 x 10<sup>-3</sup></td>
+        <td>0.12</td>
+    </tr>
+    <tr>
+        <th scope="row">PlanckDCDM24</th>
+        <td>0.673</td>
+        <td>0.239</td>
+        <td>0.726</td>
+        <td>0.0494</td>
+        <td>0.06 eV</td>
+        <td>2.101  x 10<sup>-9</sup></td>
+        <td>0.966</td>
+        <td>0.777</td>
+        <td>0.694</td>
+        <td>1.42 x 10<sup>-3</sup></td>
+        <td>0.24</td>
+    </tr>
+    </tbody>
+</table>
+<h2>References</h2>
+<p><a id="1">[1]</a> <a href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.526.4978S/abstract" class="active text-decoration-none">The FLAMINGO project: cosmological hydrodynamical simulations for large-scale structure and galaxy cluster surveys (Schaye et al. 2023)</a></p>
+<p><a id="2">[2]</a> <a href="https://ui.adsabs.harvard.edu/abs/2024arXiv240312967E/abstract" class="active text-decoration-none">The FLAMINGO project: the coupling between baryonic feedback and cosmology in light of the S8 tension (Elbers et al. 2024)</a></p>
+<p><a id="3">[3]</a> <a href="https://ui.adsabs.harvard.edu/abs/2024arXiv240312140P/abstract" class="active text-decoration-none">A unified model for the clustering of quasars and galaxies at z&asymp;6 (Pizzati et al. 2024)</a></p>

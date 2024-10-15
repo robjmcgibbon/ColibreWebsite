@@ -1,0 +1,19 @@
+2.8 Gpc intermediate resolution:
+  L2800_zoom_dm.mp4: Dark matter surface density, zooming in on a massive cluster in the centre. The video uses a logarithmic colour scale to better bring out faint objects.
+  L2800_zoom_gas.mp4: Combined gas surface density and temperature, zooming in on a massive cluster in the centre. Both the surface density and the temperature use a logarithmic colour scale. The temperature varies from blue to red, while the surface density determines the brightness.
+  L2800_zoom_stars.mp4: Stellar surface density, zooming in on a massive cluster in the centre. The brightness scales logarithmically with the stellar surface density.
+  L2800_zoom_xrays.mp4: X-ray luminosity in the ROSAT band, zooming in on a massive cluster in the centre. The colour map scales logarithmically with the X-ray luminosity.
+  L2800_evolution_dm.mp4: Dark matter surface density evolution of a 20Mpc slice through the entire box. The video uses a fixed logarithmic colour scale to better bring out faint objects.
+  L2800_evolution_gas.mp4: Combined gas surface density and temperature evolution of a 20Mpc slice through the entire box. Both quantities use a logarithmic colour scale. Temperature varies from blue to red, while the surface density determines the brightness.
+  L2800_evolution_stars.mp4: Stellar surface density evolution of a 20Mpc slice through the entire box. The video uses a fixed logarithmic colour scale to better bring out faint objects.
+  L2800_evolution_xrays.mp4: Evolution of the X-ray luminosity in the ROSAT band in a 20Mpc slice through the entire box. The video uses a fixed logarithmic colour scale to better bring out faint objects.
+
+1 Gpc high resolution:
+  L1000_zoom_dm.mp4: Dark matter surface density, zooming in on a massive cluster in the centre. The video uses a logarithmic colour scale to better bring out faint objects.
+  L1000_zoom_gas.mp4: Combined gas surface density and temperature, zooming in on a massive cluster in the centre. Both the surface density and the temperature use a logarithmic colour scale. The temperature varies from blue to red, while the surface density determines the brightness.
+  L1000_zoom_stars.mp4: Stellar surface density, zooming in on a massive cluster in the centre. The brightness scales logarithmically with the stellar surface density.
+  L1000_zoom_xrays.mp4: X-ray luminosity in the ROSAT band, zooming in on a massive cluster in the centre. The colour map scales logarithmically with the X-ray luminosity.
+  L1000_evolution_dm.mp4: Dark matter surface density evolution of a 20Mpc slice through the entire box. The video uses a fixed logarithmic colour scale to better bring out faint objects.
+  L1000_evolution_gas.mp4: Combined gas surface density and temperature evolution of a 20Mpc slice through the entire box. Both quantities use a logarithmic colour scale. Temperature varies from blue to red, while the surface density determines the brightness.
+  L1000_evolution_stars.mp4: Stellar surface density evolution of a 20Mpc slice through the entire box. The video uses a fixed logarithmic colour scale to better bring out faint objects.
+  L1000_evolution_xrays.mp4: Evolution of the X-ray luminosity in the ROSAT band in a 20Mpc slice through the entire box. The video uses a fixed logarithmic colour scale to better bring out faint objects.

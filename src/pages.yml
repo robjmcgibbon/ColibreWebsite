@@ -1,0 +1,222 @@
+index.html:
+  title: ""
+
+lightcone_slider_CY.html:
+  title: Lightcone viewer
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_CY.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_kSZ.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_kSZ.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_DM.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_DM.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_CDM.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_CDM.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_Nu.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_Nu.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_Star.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_Star.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_SFR.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_SFR.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_XrayHEE.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_XrayHEE.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_XrayHEP.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_XrayHEP.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_XrayLEE.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_XrayLEE.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_XrayLEP.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_XrayLEP.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_XrayROSATE.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_XrayROSATE.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+   - css/style.css
+  sidebar: lightcones
+
+lightcone_slider_XrayROSATP.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+   - https://code.jquery.com/ui/1.12.1/jquery-ui.js
+   - js/colormap.js
+   - js/globals_XrayROSATP.js
+  postscripts:
+   - js/engine.js
+  style:
+   - https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css
+   - css/style.css
+   - css/style.css
+  sidebar: lightcones
+
+map_slider.html:
+  title: Image slider
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  postscripts:
+   - js/map_slider.js
+  style:
+   - css/map_slider.css
+  sidebar: images
+
+video_gallery.html:
+  title: Video gallery
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos
+
+image_gallery.html:
+  title: Image gallery
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+
+papers.html:
+  title: Publications
+
+team.html:
+  title: Team
+
+simulations.html:
+  title: Simulations

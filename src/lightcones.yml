@@ -1,0 +1,77 @@
+lightcone_slider_CY.html:
+  shortname: Compton y (tSZ)
+  fullname: Compton y parameter (tSZ)
+  rangetext: Log<sub>10</sub> Compton y parameter
+  linktitle: Compton y (tSZ)
+
+lightcone_slider_kSZ.html:
+  shortname: Doppler b (kSZ)
+  fullname: Doppler b paramater (kSZ)
+  rangetext: Log<sub>10</sub> Doppler b parameter
+  linktitle: Doppler b (kSZ)
+
+lightcone_slider_DM.html:
+  shortname: Dispersion measure
+  fullname: Dispersion measure
+  rangetext: Log<sub>10</sub> Dispersion measure/[pc/cm<sup>3</sup>]
+  linktitle: Dispersion measure
+
+lightcone_slider_CDM.html:
+  shortname: CDM mass
+  fullname: Dark matter mass
+  rangetext: Log<sub>10</sub> Dark matter mass/[Msun]
+  linktitle: Dark matter mass
+
+lightcone_slider_Nu.html:
+  shortname: Neutrino mass
+  fullname: Neutrino mass
+  rangetext: Log<sub>10</sub> Neutrino mass/[Msun]
+  linktitle: Neutrino mass
+
+lightcone_slider_Star.html:
+  shortname: Stellar mass
+  fullname: Stellar mass
+  rangetext: Log<sub>10</sub> Stellar mass/[Msun]
+  linktitle: Stellar mass
+
+lightcone_slider_SFR.html:
+  shortname: SFR
+  fullname: Star formation rate
+  rangetext: Log<sub>10</sub> SFR/[Msun/yr]
+  linktitle: Star formation rate
+
+lightcone_slider_XrayLEE.html:
+  shortname: Low-energy X-rays (E)
+  fullname: eRosita 0.2-2.3 keV energy
+  rangetext: Log<sub>10</sub> Low-energy X-rays/[eV/cm<sup>2</sup>/s]
+  linktitle: eRosita 0.2-2.3 keV (E)
+
+lightcone_slider_XrayLEP.html:
+  shortname: Low-energy X-rays (&gamma;)
+  fullname: eRosita 0.2-2.3 keV photon flux
+  rangetext: Log<sub>10</sub> Low-energy X-rays/[counts/cm<sup>2</sup>/s]
+  linktitle: eRosita 0.2-2.3 keV (&gamma;)
+
+lightcone_slider_XrayHEE.html:
+  shortname: High-energy X-rays (E)
+  fullname: eRosita 2.3-8.0 keV energy
+  rangetext: Log<sub>10</sub> High-energy X-rays/[eV/cm<sup>2</sup>/s]
+  linktitle: eRosita 2.3-8.0 keV (E)
+
+lightcone_slider_XrayHEP.html:
+  shortname: High-energy X-rays (&gamma;)
+  fullname: eRosita 2.3-8.0 keV photon flux
+  rangetext: Log<sub>10</sub> High-energy X-rays/[counts/cm<sup>2</sup>/s]
+  linktitle: eRosita 2.3-8.0 keV (&gamma;)
+
+lightcone_slider_XrayROSATE.html:
+  shortname: ROSAT X-rays (E)
+  fullname: ROSAT 0.5-2.0 keV energy
+  rangetext: Log<sub>10</sub> ROSAT X-rays/[eV/cm<sup>2</sup>/s]
+  linktitle: ROSAT 0.5-2.0 keV (E)
+
+lightcone_slider_XrayROSATP.html:
+  shortname: ROSAT X-rays (&gamma;)
+  fullname: ROSAT 0.5-2.0 keV photon flux
+  rangetext: Log<sub>10</sub> ROSAT X-rays/[counts/cm<sup>2</sup>/s]
+  linktitle: ROSAT 0.5-2.0 keV (&gamma;)

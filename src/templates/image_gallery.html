@@ -1,0 +1,30 @@
+<h1>Image gallery</h1>
+<div class="modal fade" id="imageModal" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="helptext mt-1 mb-0">Click the image for a full-resolution version</div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+%IMG_SECTIONS%
+
+<script type="text/javascript">
+$('#imageModal').on('show.bs.modal', function (event) {
+  var link = $(event.relatedTarget);
+  var type = link.data('type');
+  var src = link.data('src');
+  var caption = link.data('caption');
+  var modal = $(this);
+  modal.find('.modal-title').text(caption);
+  var fullsrc = src.substring(0, src.length - 7) + 'full' + src.substring(src.length - 4);
+  modal.find('.modal-body').html("<a href=\"" + fullsrc + "\" target=\"_blank\" \
+    rel=\"noopener noreferrer\"><img src=\"" + src + "\" /></a>");
+});
+</script>

@@ -1,0 +1,27 @@
+2.8 Gpc intermediate resolution zoom:
+  L2800_zoom_dm.mp4: Dark matter surface density, zooming in on a massive cluster in the centre.
+  L2800_zoom_gas.mp4: Combined gas surface density and temperature, zooming in on a massive cluster in the centre. The temperature varies from blue to red, while the surface density determines the brightness.
+  L2800_zoom_stars.mp4: Stellar surface density, zooming in on a massive cluster in the centre.
+  L2800_zoom_xrays.mp4: X-ray luminosity in the ROSAT band, zooming in on a massive cluster in the centre.
+
+2.8 Gpc intermediate resolution evolution:
+  L2800_evolution_dm.mp4: Dark matter surface density evolution of a 20Mpc slice through the entire box.
+  L2800_evolution_stars.mp4: Stellar surface density evolution of a 20Mpc slice through the entire box.
+  L2800_evolution_xrays.mp4: Evolution of the X-ray luminosity in the ROSAT band in a 20Mpc slice through the entire box.
+
+2.8 Gpc intermediate resolution zoomed evolution:
+  ID14_composite_varscale.mp4: "Evolution of two neighbouring massive galaxy clusters (4.3 and 4.8 x 10^15 M_Sun at z = 0) from the L2800 simulation. The main frame shows the gas density (brightness) and temperature (hue), with white indicating the hottest and densest gas in the intra-cluster medium. The zoom inset shows the evolution of dark matter density in the centre of one cluster. Note the very different formation histories of the two clusters despite their similar final mass: the cluster on the right is assembled already at z ~ 2, whereas the one on the left gradually coalesces over cosmic time."
+
+1 Gpc high resolution zoom:
+  L1000_zoom_dm.mp4: Dark matter surface density, zooming in on a massive cluster in the centre.
+  L1000_zoom_gas.mp4: Combined gas surface density and temperature, zooming in on a massive cluster in the centre. The temperature varies from blue to red, while the surface density determines the brightness.
+  L1000_zoom_stars.mp4: Stellar surface density, zooming in on a massive cluster in the centre.
+  L1000_zoom_xrays.mp4: X-ray luminosity in the ROSAT band, zooming in on a massive cluster in the centre.
+
+1 Gpc high resolution evolution:
+  L1000_evolution_dm.mp4: Dark matter surface density evolution of a 20Mpc slice through the entire box.
+  L1000_evolution_stars.mp4: Stellar surface density evolution of a 20Mpc slice through the entire box.
+  L1000_evolution_xrays.mp4: Evolution of the X-ray luminosity in the ROSAT band in a 20Mpc slice through the entire box.
+
+1 Gpc high resolution zoomed evolution:
+  ID15_composite_varscale.mp4: "Evolution of the most massive galaxy cluster (2.4 x 10^15 M_Sun at z = 0) from the L1000 simulation. The main frame shows the gas density (brightness) and temperature (hue), with white indicating the hottest and densest gas in the intra-cluster medium. The zoom inset shows the evolution of dark matter density in the centre of one cluster. The cluster grows both through continuous accretion of matter along filaments, and occasional dramatic mergers that shock-heat the gas."

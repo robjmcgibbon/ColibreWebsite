@@ -1,0 +1,20 @@
+<h1>Lightcone viewer - ROSAT X-rays (E)</h1>
+<p>ROSAT 0.5-2.0 keV energy map from the 2.8 Gpc FLAMINGO box, smoothed on a 0.5 degree scale.</p>
+<p>Move the slider to adjust the integrated redshift range.</p>
+<div class="lightconemap">
+    <canvas id="lightcone_img" width="1200" height="500" style="width: 100%; aspect-ratio: 1200 / 500;">
+    Your browser does not support the HTML canvas tag.
+    </canvas>
+    <p>Adjust the redshift range and limits for the colour range below.</p>
+    <div id="zslider"></div>
+    <p>
+    <label for="zrange">Redshift range:</label>
+    <input type="text" id="zrange" readonly />
+    </p>
+    <div id="qslider"></div>
+    <p>
+    <label for="qrange">Log<sub>10</sub> ROSAT X-rays/[eV/cm<sup>2</sup>/s]:</label>
+    <input type="text" id="qrange" readonly />
+    </p>
+</div>
+<div class="loader spinner-border spinnerflamingo"></div>

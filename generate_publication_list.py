@@ -11,6 +11,7 @@ library = 'PU1J-aufRMujuhkIIRyxzA'
 
 # Query list of papers
 print('Querying ADS library for paper list')
+# TODO Proper pagination https://ui.adsabs.harvard.edu/help/api/api-docs.html#get-/biblib/libraries/-library_id-
 results = requests.get(f"https://api.adsabs.harvard.edu/v1/biblib/libraries/{library}",
                        headers={'Authorization': 'Bearer ' + token})
 bibcodes = results.json()['documents']

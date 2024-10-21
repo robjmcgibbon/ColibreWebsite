@@ -2,6 +2,8 @@ import requests
 import html
 from urllib.parse import urlencode
 
+# TODO: Move this within make_webpage
+
 # Place your ADS API token in a file with suitable permissions
 with open('token', 'r') as file:
     token = file.read().rstrip()

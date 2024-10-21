@@ -6,7 +6,6 @@ import shutil
 import subprocess
 import yaml
 import jsmin
-import htmlmin
 import rcssmin
 import json
 
@@ -92,7 +91,7 @@ def make_sidebar(content, templates, page, obj_type):
     return template_replace(sidebar, {"LINK_LIST": links})
 
 
-def make_page(page, pages, templates, lightcones):
+def make_page(page, pages, templates):
     """
     Create the page with the given name.
 
@@ -131,9 +130,7 @@ def make_page(page, pages, templates, lightcones):
 
     sidebar = ""
     if "sidebar" in pages[page]:
-        if pages[page]["sidebar"] == "lightcones":
-            sidebar = make_sidebar(lightcones, templates, page, "lightcones")
-        elif pages[page]["sidebar"] == "images":
+        if pages[page]["sidebar"] == "images":
             with open("src/assets/images.json",'r') as f:
                 imagedata=json.load(f)
             sidebar = make_sidebar(imagedata, templates, page, "images")
@@ -154,7 +151,8 @@ def make_page(page, pages, templates, lightcones):
     )
 
     # make slimmer
-    page_out = htmlmin.minify(page_out, remove_comments=True, remove_empty_space=True)
+    # TODO: htmlmin is broken
+    # page_out = htmlmin.minify(page_out, remove_comments=True, remove_empty_space=True)
 
     # create the page
     with open(f"build/{os.path.basename(page)}", "w") as ofile:
@@ -225,6 +223,7 @@ def clean_build():
     """
     cmd = f"rm -rf build/*"
     run_process(cmd)
+    # TODO Which of these do we need?
     cmd = f"mkdir -p build/assets build/css build/images build/js build/lightconedata build/slider_images build/videos"
     run_process(cmd)
 
@@ -248,10 +247,10 @@ def create_image(img_id, img_src):
 #        cmd = f"magick -density 600 src/images/{img_src} -quality 100 -flatten src/images/{file_name}.png"
 #        run_process(cmd)
 #        img_src = file_name + ".png"
-    cmd = f"cp src/images/{img_src} build/images/{img_id}_full.png"
-    run_process(cmd)
-    cmd = f"magick src/images/{img_src} -resize 768x800\> build/images/{img_id}_800.png"
-    run_process(cmd)
+    # cmd = f"cp src/images/{img_src} build/images/{img_id}_full.png"
+    # run_process(cmd)
+    # cmd = f"magick src/images/{img_src} -resize 768x800\> build/images/{img_id}_800.png"
+    # run_process(cmd)
     return f"images/{img_id}_800.png"
 
 
@@ -376,33 +375,39 @@ if __name__ == "__main__":
     Main script body. Takes no input arguments (for now).
     """
 
+    # Clean up any existing build, create new build directories
+    clean_build()
+
+    # Load the html templates
+    templates = load_templates()
+
+    # Generate the galleries
+    # TODO
+    # with open("src/images.yml", "r") as handle:
+        # images = yaml.safe_load(handle)
+    # make_gallery(templates, images, "image")
+
+    # TODO
+    # with open("src/videos.yml", "r") as handle:
+        # videos = yaml.safe_load(handle)
+    # make_gallery(templates, videos, "video")
+
+    # Now prepare the light cones.
+    # TODO
+    # with open("src/lightcones.yml", "r") as handle:
+        # lightcones = yaml.safe_load(handle)
+    # for lightcone in lightcones:
+        # make_lightcone_slider(lightcones, lightcone, templates)
+
+    # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:
         pages = yaml.safe_load(handle)
-
-    with open("src/images.yml", "r") as handle:
-        images = yaml.safe_load(handle)
-
-    with open("src/videos.yml", "r") as handle:
-        videos = yaml.safe_load(handle)
-
-    with open("src/lightcones.yml", "r") as handle:
-        lightcones = yaml.safe_load(handle)
-
-    # Clean up a previous build, if it exists.
-    clean_build()
-    # Load the templates.
-    templates = load_templates()
-    # First, generate the galleries.
-    make_gallery(templates, videos, "video")
-    make_gallery(templates, images, "image")
-    # Now prepare the light cones.
-    for lightcone in lightcones:
-        make_lightcone_slider(lightcones, lightcone, templates)
-    # Now generate all the pages.
     for page in pages:
-        make_page(page, pages, templates, lightcones)
+        make_page(page, pages, templates)
+
     # Copy the assets.
     copy_assets()
     copy_styles()
     copy_scripts()
+    # TODO Move this?
     copy_slider_images()

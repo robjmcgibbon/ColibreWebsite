@@ -9,6 +9,8 @@ import jsmin
 import rcssmin
 import json
 
+import generate_publication_list
+
 
 def load_templates():
     """
@@ -398,6 +400,9 @@ if __name__ == "__main__":
         # lightcones = yaml.safe_load(handle)
     # for lightcone in lightcones:
         # make_lightcone_slider(lightcones, lightcone, templates)
+
+    # Generate a list of publications
+    generate_publication_list.generate_publication_list()
 
     # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:

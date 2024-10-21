@@ -14,9 +14,8 @@ index.html:
   #prescripts:
    #- https://code.jquery.com/jquery-3.6.0.min.js
 
-# TODO
-#papers.html:
-  #title: Publications
+papers.html:
+  title: Publications
 
 team.html:
   title: Team

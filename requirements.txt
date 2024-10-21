@@ -1,0 +1,4 @@
+jsmin 
+pyyaml
+rcssmin
+requests

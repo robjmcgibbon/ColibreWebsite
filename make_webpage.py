@@ -65,17 +65,7 @@ def make_sidebar(content, templates, page, obj_type):
     sidebar = templates["sidebar.html"]
 
     links = ""
-    if obj_type == "lightcones":
-        for c in content:
-            if c == page:
-                links += template_replace(
-                    sidebarlink, {"HREF": c, "ACTIVE": "active", "NAME": content[c]["linktitle"]}
-                )
-            else:
-                links += template_replace(
-                    sidebarlink, {"HREF": c, "ACTIVE": "", "NAME": content[c]["linktitle"]}
-                )
-    elif obj_type == "images":
+    if obj_type == "images":
         for i,c in enumerate(content["sliders"]):
             prop = "\" id=\"link" + str(i)
             if i == 0:
@@ -126,7 +116,7 @@ def make_page(page, pages, templates):
             extra_footer += template_replace(script_template, {"SCRIPT_SRC": script})
     page_out = template_replace(page_out, {"EXTRA_FOOTER": extra_footer})
 
-    title = "The FLAMINGO project"
+    title = "The COLIBRE project"
     if not pages[page]["title"] == "":
         title += " - " + pages[page]["title"]
 
@@ -161,6 +151,7 @@ def make_page(page, pages, templates):
         ofile.write(page_out)
 
 
+# TODO Should we copy everything?
 def copy_assets():
     """
     Copy all contents of src/assets/ into build/, regardless of the file type
@@ -234,7 +225,7 @@ def create_thumbnail(img_id, img_src):
     """
     Create a thumbnail for the given image file.
     """
-    cmd = f"magick src/images/{img_src} -resize 200x200 build/images/{img_id}_200.png"
+    cmd = f"convert src/images/{img_src} -resize 200x200 build/images/{img_id}_200.png"
     run_process(cmd)
     return f"images/{img_id}_200.png"
 
@@ -244,15 +235,11 @@ def create_image(img_id, img_src):
     Copy the given image from src/images/ to build/, and resize if it is larger
     than 800x800 pixels.
     """
-#    file_name, file_extension = os.path.splitext(f"{img_src}")
-#    if file_extension == ".pdf":
-#        cmd = f"magick -density 600 src/images/{img_src} -quality 100 -flatten src/images/{file_name}.png"
-#        run_process(cmd)
-#        img_src = file_name + ".png"
-    # cmd = f"cp src/images/{img_src} build/images/{img_id}_full.png"
-    # run_process(cmd)
-    # cmd = f"magick src/images/{img_src} -resize 768x800\> build/images/{img_id}_800.png"
-    # run_process(cmd)
+    cmd = f"cp src/images/{img_src} build/images/{img_id}_full.png"
+    run_process(cmd)
+    # TODO Do we want to resize?
+    cmd = f"convert src/images/{img_src} -resize 768x800\\> build/images/{img_id}_800.png"
+    run_process(cmd)
     return f"images/{img_id}_800.png"
 
 
@@ -354,27 +341,9 @@ def make_gallery(templates, input_sections, obj_type):
         ofile.write(template_replace(gallery_template, {"IMG_SECTIONS": sections}))
 
 
-def make_lightcone_slider(lightcones, lightcone, templates):
-    """
-    Create a lightcone slider from the given lightcone dictionary.
-    """
-
-    # load the template
-    template = templates["lightcone_slider.html"]
-
-    # generate the new src/pages/lightcone_XX.html
-    with open(f"src/pages/{lightcone}", "w") as ofile:
-        ofile.write(template_replace(template, {
-            "QUANTITYSHORT": lightcones[lightcone]["shortname"],
-            "QUANTITYFULL": lightcones[lightcone]["fullname"],
-            "RANGE_TEXT": lightcones[lightcone]["rangetext"],
-        },
-        ))
-
-
 if __name__ == "__main__":
     """
-    Main script body. Takes no input arguments (for now).
+    Main script body. Takes no input arguments.
     """
 
     # Clean up any existing build, create new build directories
@@ -385,21 +354,14 @@ if __name__ == "__main__":
 
     # Generate the galleries
     # TODO
-    # with open("src/images.yml", "r") as handle:
-        # images = yaml.safe_load(handle)
-    # make_gallery(templates, images, "image")
+    with open("src/images.yml", "r") as handle:
+        images = yaml.safe_load(handle)
+    make_gallery(templates, images, "image")
 
     # TODO
     # with open("src/videos.yml", "r") as handle:
         # videos = yaml.safe_load(handle)
     # make_gallery(templates, videos, "video")
-
-    # Now prepare the light cones.
-    # TODO
-    # with open("src/lightcones.yml", "r") as handle:
-        # lightcones = yaml.safe_load(handle)
-    # for lightcone in lightcones:
-        # make_lightcone_slider(lightcones, lightcone, templates)
 
     # Generate a list of publications
     generate_publication_list.generate_publication_list()

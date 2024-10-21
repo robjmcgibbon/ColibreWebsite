@@ -8,11 +8,11 @@ index.html:
    #- https://code.jquery.com/jquery-3.6.0.min.js
   #sidebar: videos
 
-# TODO
-#image_gallery.html:
-  #title: Image gallery
-  #prescripts:
-   #- https://code.jquery.com/jquery-3.6.0.min.js
+image_gallery.html:
+  title: Image gallery
+  # TODO: What is this doing?
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
 
 papers.html:
   title: Publications

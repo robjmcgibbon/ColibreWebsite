@@ -21,6 +21,7 @@ Run `grep -r TODO *`
 - Image sliders
 - Video gallery
 - Check if website generates from clone, share with Evgenii
+- Delete all the `old` directories
 
 ### Nice-to-have
 - Mobile support

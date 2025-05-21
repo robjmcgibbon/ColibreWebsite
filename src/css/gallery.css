@@ -1,0 +1,15 @@
+.card-text.fixed-text {
+  height: 4.5em; /* adjust as needed (e.g., for 3 lines of text) */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* align top */
+}
+

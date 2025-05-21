@@ -1,44 +1,53 @@
-<h1><img src="assets/FLAMINGO_thumbnailer_stroke.png" />The FLAMINGO project</h1>
-<p>FLAMINGO is a project of the <a href="https://virgo.dur.ac.uk/" class="active text-decoration-none">
-    Virgo consortium</a> for cosmological supercomputer simulations. The acronym stands for Full-hydro 
-    Large-scale structure simulations with All-sky Mapping for the Interpretation of Next Generation 
-    Observations.</p>
-<h2>Motivation</h2>
+<h1>
+    <img src="assets/Logo_colibre.png" />
+    The COLIBRE Project
+</h1>
+
+<p>
+    COLIBRE is a project of the <a href="https://virgo.dur.ac.uk/" class="active text-decoration-none">
+    Virgo consortium</a> for cosmological supercomputer simulations. The acronym stands for 
+    <b>COL</b>d <b>I</b>sm and <b>B</b>etter <b>RE</b>solution, where the ‘better resolution’ refers to 
+    the larger ratio of DM to baryonic particles compared with most previous simulations, which increases 
+    the effective resolution for a fixed baryonic particle mass and gravitational softening length.
+</p>
+
+<h2>Key Features</h2>
 <figure class="figure w-auto float-end ms-sm-3">
-    <img src=assets/FLAMINGO_massweighted_500.png class="figure-img img-fluid rounded" alt="Starry flamingo">
+    <img src=assets/index/zoom.png class="figure-img img-fluid rounded" alt="Starry flamingo">
 </figure>
-<p>Observational cosmology based on measurements of the growth of large-scale structure is increasingly 
-    limited by the accuracy of theoretical predictions. The models that are compared with the data are 
-    nearly always based on dark matter only (DMO) simulations, though some allow for marginalization 
-    over expected baryonic effects associated with galaxy formation. However, baryonic effects become 
-    increasingly important as observations move to smaller scales, and may be considerably more complex 
-    than is assumed in the corrections applied to DMO simulations. Hydrodynamical simulations can in 
-    principle help resolve this issue, but they tend to use volumes that are too small to study 
-    large-scale structure, they often do not reproduce the relevant observables, and/or they do not 
-    include model variations that cover the relevant parameter space. The FLAMINGO project aims to 
-    address these shortcomings.</p>
-<p>Key features:<ul>
-    <li>Three resolutions: high/m8 (baryonic particle mass m<sub>g</sub> = 1.3 x 10<sup>8</sup> M<sub>&#9737;</sub>), intermediate/m9 (m<sub>g</sub> = 1.1 x 10<sup>9</sup> M<sub>&#9737;</sub>), and low/m10 (m<sub>g</sub> = 8.6 x 10<sup>9</sup> M<sub>&#9737;</sub>)</li>
-    <li>Flagship simulations: 2.8 Gpc box size at m9 resolution (L2p8_m9) and 1 Gpc at m8 resolution (L1_m8)</li>
-    <li>Up to 3 x 10<sup>11</sup> particles (2 x 5040<sup>3</sup> + 2800<sup>3</sup>)</li>
-    <li>Subgrid feedback is calibrated to the z=0 galaxy stellar mass function and low-z cluster gas fractions using Gaussian process emulation</li>
-    <li>Massive neutrinos are modeled using particles with the <a href="https://ui.adsabs.harvard.edu/abs/2021MNRAS.507.2614E/abstract" class="active text-decoration-none">'&delta;f' method</a> that was designed to reduce shot noise</li>
-    <li>Twelve L1_m9 variations: eight simulations varying the calibration data and four varying the cosmology</li>
-    <li>Full-sky lightcone particle data and HEALPix maps for up to 8 different observer locations</li>
-    <li>Run with the <a href="https://arxiv.org/abs/2305.13380" class="active text-decoration-none">Swift</a> code and <a href="https://ui.adsabs.harvard.edu/abs/2022MNRAS.511.2367B/abstract" class="active text-decoration-none">SPHENIX</a> smoothed particle hydrodynamics implementation</li>
-    <li>3-fluid initial conditions with separate transfer functions for CDM, baryons and neutrinos, perturbing particle masses rather than positions to suppress discreteness noise</li>
-</ul></p>
-<p>A list of the simulations in the suite <a href="simulations.html" class="active text-decoration-none">can be found here.</a></p>
+<ul>
+    <li>Cold (T &lt;&lt; 10<sup>4</sup> K) interstellar gas</li>
+    <li>New cooling (non-equil. H, He, e-; self-shielding, UVB and interstellar radiation)</li>
+    <li>Dust (3 grain species, 2 grain sizes; coupled to cooling)</li>
+    <li>New ‘chemistry’ (new yields, diffusion, new SNIa, s- and r-process elements)</li>
+    <li>New stellar feedback (HII regions, winds, turbulence, improved stochastic SN feedback)</li>
+    <li>Improved BH and AGN physics (also runs with BH spin and jet feedback)</li>
+    <li>New star formation (Schmidt law with instability criterion)</li>
+    <li>Model for globular clusters (m5 only)</li>
+</ul>
+
+<p>
+    As was the case for EAGLE, the subgrid feedback is calibrated to reproduce the observed z=0 galaxy stellar mass 
+    function and galaxy half-mass radii, and the AGN feedback efficiency is calibrated to the 
+    BH masses of massive z=0 galaxies. While this calibration was done by hand for EAGLE, COLIBRE uses 
+    machine learning to perform the calibration to the mass function and sizes at our lowest resolution. 
+    We then make small adjustments by hand when we increase the resolution or switch from thermal to hybrid AGN feedback. 
+</p>
+
+<p>
+    A list of the simulations in the suite <a href="simulations.html" class="active text-decoration-none">can be found here.</a>
+</p>
+
 <h2>Project references</h2>
 <p><a href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.526.4978S/abstract" class="active text-decoration-none">The FLAMINGO project: cosmological hydrodynamical simulations for
     large-scale structure and galaxy cluster surveys (Schaye et al. 2023, MNRAS, 526, 4978)</a></p>
 <p><a href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.526.6103K/abstract" class="active text-decoration-none">FLAMINGO: Calibrating large cosmological hydrodynamical simulations
     with machine learning (Kugel et al. 2023, MNRAS, 526, 6103)</a></p>
 <h2>Acknowledgements</h2>
-<p>The FLAMINGO simulations were run on the <a href="https://dirac.ac.uk/resources/#MemoryIntensive" class="active text-decoration-none">
+<p>The COLIBRE simulations were run on the <a href="https://dirac.ac.uk/resources/#MemoryIntensive" class="active text-decoration-none">
     Memory Intensive DiRAC facility</a> managed by the <a href="https://www.icc.dur.ac.uk/" class="active text-decoration-none">
     Institute for Computational Cosmology, Durham University</a>.</p>
 <div class="footer">
-    <img src="assets/Logo_LU.svg"><img src="assets/Logo_Durham.png"><img src="assets/Logo_LJMU.png"><img src="assets/Logo_DiRAC.png"><br>
-    <div class="footertext">Website design by Bert Vandenbroucke, Marcel van Daalen, and Rob McGibbon</div>
+    <img src="assets/index/Logo_LU.svg"><img src="assets/index/Logo_Durham.png"><img src="assets/index/Logo_LJMU.png"><img src="assets/index/Logo_DiRAC.png"><br>
+    <div class="footertext">Website design by Rob McGibbon</div>
 </div>

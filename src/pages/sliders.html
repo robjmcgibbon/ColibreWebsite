@@ -1,0 +1,323 @@
+<html>
+<head>
+<script>
+function compare() {
+  var x, i;
+  x = document.getElementsByClassName("img-comp-overlay");
+  for (i = 0; i < x.length; i++) {
+    compareImages(x[i]);
+  }
+  function compareImages(img) {
+    var slider, img, clicked = 0, w, h;
+    w = img.offsetWidth;
+    h = img.offsetHeight;
+    img.style.width = (w / 2) + "px";
+
+    slider = document.createElement("DIV");
+    slider.setAttribute("class", "img-comp-slider");
+    img.parentElement.insertBefore(slider, img);
+
+    // Create the white bar
+    var whiteBar = document.createElement("DIV");
+    whiteBar.setAttribute("class", "img-comp-white-bar");
+    img.parentElement.insertBefore(whiteBar, img); // Insert white bar before the image
+
+    // Position the slider circle down the image
+    slider.style.top = (h * 0.9 - slider.offsetHeight / 2) + "px";
+    slider.style.left = (w / 2 - slider.offsetWidth / 2) + "px";
+
+    // Position the white bar at the same horizontal position as the slider
+    whiteBar.style.left = (w / 2 - 1) + "px"; // Center the bar (2px width)
+
+    slider.addEventListener("mousedown", slideReadyDesktop);
+    slider.addEventListener("touchstart", slideReadyMobile, { passive: false }); // Mobile
+
+    function slideReadyDesktop(e) {
+      e.preventDefault();
+      clicked = 1;
+      window.addEventListener("mousemove", slideMove);
+      window.addEventListener("mouseup", slideFinish);
+    }
+
+    function slideReadyMobile(e) {
+      e.preventDefault(); // Prevent page scroll on touch
+      clicked = 1;
+      window.addEventListener("touchmove", slideMove, { passive: false }); // Prevent scrolling while sliding
+      window.addEventListener("touchend", slideFinish);
+    }
+
+    function slideFinish() {
+      clicked = 0;
+      window.removeEventListener("mousemove", slideMove);
+      window.removeEventListener("mouseup", slideFinish);
+      window.removeEventListener("touchmove", slideMove);
+      window.removeEventListener("touchend", slideFinish);
+    }
+
+    function slideMove(e) {
+      if (clicked === 0) return;
+      let pos = getCursorPos(e);
+      if (pos < 0) pos = 0;
+      if (pos > w) pos = w;
+      slide(pos);
+    }
+
+    function getCursorPos(e) {
+      let x = 0;
+      e = e.changedTouches ? e.changedTouches[0] : e; // Handle touch & mouse
+      let a = img.getBoundingClientRect();
+      x = e.pageX - a.left - window.pageXOffset;
+      return x;
+    }
+
+    function slide(x) {
+      img.style.width = x + "px";
+      slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+      whiteBar.style.left = x + "px"; // Move the white bar with the slider
+    }
+  }
+}
+
+let orientation = 'faceon';
+function setOrientation(selectElement) {
+    orientation = selectElement.value;
+    changeLeftImage();
+    changeRightImage();
+}
+
+let leftType = 'gri';
+function setLeftImage(selectElement) {
+    leftType = selectElement.value;
+    changeLeftImage();
+}
+
+function changeLeftImage() {
+  var leftImage = document.querySelector('.img-comp-container .img-comp-overlay img');
+  leftImage.src = `galaxy_2083215_map_${leftType}_${orientation}.png`;
+}
+
+let rightType = 'H2';
+function setRightImage(selectElement) {
+    rightType = selectElement.value;
+    changeRightImage();
+}
+
+function changeRightImage() {
+  var rightImage = document.querySelector('.img-comp-container .img-comp-img:first-child img');
+  rightImage.src = `galaxy_2083215_map_${rightType}_${orientation}.png`;
+}
+
+
+</script>
+<style>
+* {box-sizing: border-box;}
+
+/* New styles for layout */
+.main-container {
+  display: flex; /* Makes it a flex container */
+  align-items: flex-start; /* Aligns items to the start (top) of the cross axis */
+  gap: 40px; /* Adds space between the image viewer and the controls */
+  padding: 20px; /* Some padding around the whole section */
+  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  justify-content: center; /* Center horizontally if space allows */
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column; /* Stack dropdowns vertically */
+  gap: 20px; /* Space between each dropdown section */
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.button-container { /* Renamed this from "button-container" for clarity, but keeping original for now */
+  /* This still styles each individual dropdown section */
+  margin-bottom: 0; /* Remove default margin from the previous layout */
+  text-align: left; /* Align text within each dropdown section */
+}
+
+.button-container h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.button-container select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+/* Existing styles */
+.img-comp-container {
+  position: relative;
+  height: 800px; /*should be the same height as the images*/
+  /* Ensure this has a defined width, or it will collapse */
+  width: 800px; /* Set a fixed width for the image viewer */
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  display:block;
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index: 9;
+  cursor: ew-resize;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black; /* Black outline */
+  font-size: 20px; /* Size for arrows */
+  font-weight: bold;
+  color: black; /* Color of arrows */
+  user-select: none; /* Prevent selection */
+}
+
+.img-comp-slider::before {
+  content: "< >"; /* Arrows inside */
+  font-family: Arial, sans-serif;
+}
+
+.img-comp-white-bar {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: white;
+  top: 0;
+  z-index: 8; /* Ensure the bar is behind the slider circle */
+}
+
+/* .button-container is now inside controls-container */
+/* The buttons within the button-container are gone, so this rule is mostly obsolete unless you style dropdowns */
+/* .button-container button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+} */
+</style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Individual Galaxies</h1>
+
+<div class="main-container">
+    <div class="img-comp-container">
+        <div class="img-comp-img">
+            <img src="galaxy_2083215_map_gri_faceon.png" width="800" height="800">
+        </div>
+        <div class="img-comp-img img-comp-overlay">
+            <img src="galaxy_2083215_map_HI_faceon.png" width="800" height="800">
+        </div>
+    </div>
+
+    <div class="controls-container">
+        <div class="button-container">
+            <h3>Left Image</h3>
+            <select onchange="setLeftImage(this)">
+                <option value="gri">Show Stars</option>
+                <option value="HI" selected>Show HI</option>
+                <option value="H2">Show H2</option>
+                <option value="dust">Show dust</option>
+                <option value="metal">Show metals</option>
+                <option value="sfr">Show SFR</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <h3>Right Image</h3>
+            <select onchange="setRightImage(this)">
+                <option value="gri" selected>Show Stars</option>
+                <option value="HI">Show HI</option>
+                <option value="H2">Show H2</option>
+                <option value="dust">Show dust</option>
+                <option value="metal">Show metals</option>
+                <option value="sfr">Show SFR</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <h3>Select orientation</h3>
+            <select onchange="setOrientation(this)">
+                <option value="faceon" selected>Face on</option>
+                <option value="edgeon">Edge on</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<h1 style="text-align: center;">Box Slices</h1>
+
+
+<div class="main-container">
+    <div class="img-comp-container">
+        <div class="img-comp-img">
+            <img src="galaxy_2083215_map_gri_faceon.png" width="800" height="800">
+        </div>
+        <div class="img-comp-img img-comp-overlay">
+            <img src="galaxy_2083215_map_HI_faceon.png" width="800" height="800">
+        </div>
+    </div>
+
+    <div class="controls-container">
+        <div class="button-container">
+            <h3>Left Image</h3>
+            <select onchange="setLeftImage(this)">
+                <option value="gri">Show Stars</option>
+                <option value="HI" selected>Show HI</option>
+                <option value="H2">Show H2</option>
+                <option value="dust">Show dust</option>
+                <option value="metal">Show metals</option>
+                <option value="sfr">Show SFR</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <h3>Right Image</h3>
+            <select onchange="setRightImage(this)">
+                <option value="gri" selected>Show Stars</option>
+                <option value="HI">Show HI</option>
+                <option value="H2">Show H2</option>
+                <option value="dust">Show dust</option>
+                <option value="metal">Show metals</option>
+                <option value="sfr">Show SFR</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <h3>Select orientation</h3>
+            <select onchange="setOrientation(this)">
+                <option value="faceon" selected>Face on</option>
+                <option value="edgeon">Edge on</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+compare();
+</script>
+
+</body>
+</html>

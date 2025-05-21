@@ -15,8 +15,8 @@ h2 {
   color: #645656;
 }
 
-.bg-flamingo {
-  background-color: #986196; /* #99a7ff; */
+.bg-colibre {
+  background-color: #1482b5;
 }
 
 body::before { /* delete all except the color line if we don't want the image */

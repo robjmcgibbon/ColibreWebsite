@@ -1,6 +1,15 @@
 index.html:
   title: ""
 
+project_description.html:
+  title: "Project Description"
+
+image_gallery.html:
+  title: Image Gallery
+  # TODO: What is this doing?
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+
 # TODO
 #video_gallery.html:
   #title: Video gallery
@@ -8,11 +17,8 @@ index.html:
    #- https://code.jquery.com/jquery-3.6.0.min.js
   #sidebar: videos
 
-image_gallery.html:
-  title: Image gallery
-  # TODO: What is this doing?
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
+sliders.html:
+  title: Image Sliders
 
 papers.html:
   title: Publications
@@ -22,3 +28,4 @@ team.html:
 
 simulations.html:
   title: Simulations
+

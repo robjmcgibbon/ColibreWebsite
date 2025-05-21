@@ -224,7 +224,7 @@ def clean_build():
     # TODO Which of these do we need?
     cmd = f"mkdir -p build/assets build/assets/team build/assets/index build/assets/project_description"
     run_process(cmd)
-    cmd = f"mkdir -p build/css build/images build/js build/lightconedata build/slider_images build/videos"
+    cmd = f"mkdir -p build/css build/images build/slider_images build/videos"
     run_process(cmd)
 
 

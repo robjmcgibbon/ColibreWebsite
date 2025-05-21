@@ -1,12 +1,23 @@
+<link rel="stylesheet" href="css/simulations.css">
+
 <h1>Simulations</h1>
 <p>The COLIBRE simulations and their properties are listed below.</p>
+
 <h2>Hydrodynamical simulations</h2>
 <p>
 The columns list the simulation identifier (where L is followed by the side length of the cubic simulation volume in comoving Mpc; m is followed by the rounded log<sub>10</sub> of the mean particle mass in solar masses (for both baryons and DM); h indicates hybrid AGN feedback); the type of AGN feedback; the comoving box side length, L; the number of baryonic particles, N<sub>b</sub>; the number of CDM particles, N<sub>CDM</sub>; the initial mean baryonic particle mass, m<sub>g</sub>; the mean CDM particle mass, m<sub>CDM</sub>; the Plummer-equivalent comoving gravitational softening length, &epsilon;<sub>com</sub>; the maximum proper gravitational softening length, &epsilon;<sub>com</sub>.
 </p>
 
+<!--Sort by softening, then boxsize, then AGN-->
+<button class="sort-button" id="sortByResolution" onclick="setSort(7, 2, 1, this)">Sort by particle mass</button>
+<!--Sort by boxsize, then Npart, then AGN-->
+<button class="sort-button" onclick="setSort(2, 3, 1, this)">Sort by box size</button>
+<!--Sort by Npart, then boxsize, then AGN-->
+<button class="sort-button" onclick="setSort(3, 2, 1, this)">Sort by number of particles</button>
+
+
 <!--TODO: Check these values are correct-->
-<table class="table table-striped">
+<table class="table table-striped" id="simulationTable">
     <thead>
     <tr>
         <th>Identifier</th>
@@ -232,9 +243,89 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
     </tbody>
 </table>
+
+
 <h2>Dark matter only simulations</h2>
 <p>
   For each hydrodynamic simulation, there is a corresponding DMO simulation that uses the same initial phases and the same total number of particles. 
   To create the initial conditions for the DMO simulation, we converted the baryonic particles from the corresponding hydrodyamic run into CDM particles.
 </p>
+
+
+
+<script>
+  function setSort(primaryIndex, secondaryIndex, tertiaryIndex, clickedButton) {
+    // Set clicked button to active
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(btn => btn.classList.remove("active"));
+    clickedButton.classList.add("active");
+
+    // Sort table by indices provided
+    sortTable(primaryIndex, secondaryIndex, tertiaryIndex);
+  }
+
+  function extractBaseNumber(cell, index) {
+    const raw = cell.textContent.trim();
+
+    // Sort by Thermal runs first, then Hybrid
+    if (index === 1) {
+      if (raw === "Thermal") return 0;
+      if (raw === "Hybrid") return 0;
+      return -1; // fallback for unexpected names
+    }
+
+    // Extract number of particles (ignoring the ^3 part)
+    if (index === 3) {
+      const match = raw.match(/^(\d+)/);
+      return match ? parseInt(match[1]) : NaN;
+    }
+
+    return isNaN(raw) ? raw : parseFloat(raw);
+  }
+
+  function sortTable(primaryIndex, secondaryIndex, tertiaryIndex) {
+    // AI generated sort function
+    const table = document.getElementById("simulationTable");
+    const rows = Array.from(table.tBodies[0].rows);
+
+    rows.sort((a, b) => {
+      const keys = [primaryIndex, secondaryIndex, tertiaryIndex];
+
+      for (const key of keys) {
+        const aVal = extractBaseNumber(a.cells[key], key);
+        const bVal = extractBaseNumber(b.cells[key], key);
+
+        const comparison = typeof aVal === "number"
+          ? aVal - bVal
+          : String(aVal).localeCompare(String(bVal));
+
+        if (comparison !== 0) return comparison;
+      }
+
+      return 0;
+    });
+
+    const tbody = table.tBodies[0];
+    tbody.innerHTML = '';
+    rows.forEach(row => {
+      row.classList.remove('group-end');
+      tbody.appendChild(row);
+    });
+
+    // Add group lines based on first key
+    for (let i = 0; i < rows.length; i++) {
+      const current = extractBaseNumber(rows[i].cells[primaryIndex], primaryIndex);
+      const next = extractBaseNumber(rows[i + 1]?.cells[primaryIndex], primaryIndex);
+      if (current !== next) {
+        rows[i].classList.add('group-end');
+      }
+    }
+  }
+
+  // Default sort on load
+  window.onload = function () {
+    const defaultButton = document.getElementById("sortByResolution");
+    defaultButton.click()
+  };
+</script>
 

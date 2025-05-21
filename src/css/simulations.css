@@ -1,0 +1,23 @@
+.sort-button {
+  font-size: 1rem;         /* Match body text size */
+  padding: 4px 8px;        /* Reduced vertical and horizontal padding */
+  margin: 4px 4px 0 0;     /* Tight margins */
+  background-color: #f0f0f0;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.sort-button:hover {
+  background-color: #e0e0e0;
+}
+.sort-button.active {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #388e3c;
+}
+
+
+.group-end {
+  border-bottom: 3px solid black;
+}   

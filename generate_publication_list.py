@@ -18,7 +18,7 @@ def generate_publication_list():
     bibcodes = results.json()['documents']
 
     # Loop through and process each paper
-    papers = []
+    analysis_papers = []
     for i_bibcode, bibcode in enumerate(bibcodes):
         # Query paper data
         print(f'Querying paper: {i_bibcode+1}/{len(bibcodes)}')
@@ -66,26 +66,33 @@ def generate_publication_list():
             journal,
             result['year'],
         )
-        papers.append(data)
+        analysis_papers.append(data)
 
     # Sort based on arxiv identifier
-    papers = sorted(papers, key=lambda d: d[3])
+    analysis_papers = sorted(analysis_papers, key=lambda d: d[3])
 
     # Write basic html file, which will be formatter with make_webpage.py
     with open('src/pages/papers.html', 'w') as file:
-        file.write('<h1>COLIBRE publications</h1>\n')
+        file.write('<h1>COLIBRE Publications</h1>\n')
         file.write('This page contains a list of publications submitted to arXiv which make use of the COLIBRE simulations. The papers are listed in chronological order based on when they were uploaded to arXiv. Please let us know if we have missed your paper!\n\n')
 
-        file.write('<ol>\n')
+        # TODO: Different categories of papers
+        for section_header, papers in [
+                ('Introduction Papers', analysis_papers),
+                ('Method Papers', analysis_papers),
+                ('Analysis Papers', analysis_papers),
+            ]:
+            file.write(f'<h2>{section_header}</h2>\n')
+            file.write('<ol>\n')
 
-        for paper in papers:
-            file.write(f'<li><p><h5>{paper[0]}</h5>\n')
-            file.write(f'<i>{paper[1]}</i><br>\n')
-            file.write(f'{paper[4]} ({paper[5]}), ')
-            file.write(f'<a href="{paper[2]}" class="active text-decoration-none">ADS</a>, ')
-            file.write(f'<a href="{paper[3]}" class="active text-decoration-none">arXiv</a></p></li>\n')
+            for paper in papers:
+                file.write(f'<li><p><h5>{paper[0]}</h5>\n')
+                file.write(f'<i>{paper[1]}</i><br>\n')
+                file.write(f'{paper[4]} ({paper[5]}), ')
+                file.write(f'<a href="{paper[2]}" class="active text-decoration-none">ADS</a>, ')
+                file.write(f'<a href="{paper[3]}" class="active text-decoration-none">arXiv</a></p></li>\n')
 
-        file.write('</ol>\n')
+            file.write('</ol>\n')
 
 if __name__ == '__main__':
     generate_publications_list()

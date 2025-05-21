@@ -151,16 +151,21 @@ def make_page(page, pages, templates):
         ofile.write(page_out)
 
 
-# TODO Should we copy everything?
 def copy_assets():
     """
     Copy all contents of src/assets/ into build/, regardless of the file type
     or name.
     """
     for asset in sorted(glob.glob("src/assets/*")):
+        if os.path.isdir(asset):
+            continue
         shutil.copyfile(asset, f"build/assets/{os.path.basename(asset)}")
-    for asset in sorted(glob.glob("src/lightconedata/*")):
-        shutil.copyfile(asset, f"build/lightconedata/{os.path.basename(asset)}")
+    for asset in sorted(glob.glob("src/assets/team/*")):
+        shutil.copyfile(asset, f"build/assets/team/{os.path.basename(asset)}")
+    for asset in sorted(glob.glob("src/assets/index/*")):
+        shutil.copyfile(asset, f"build/assets/index/{os.path.basename(asset)}")
+    for asset in sorted(glob.glob("src/assets/project_description/*")):
+        shutil.copyfile(asset, f"build/assets/project_description/{os.path.basename(asset)}")
 
 
 def copy_slider_images():
@@ -217,7 +222,9 @@ def clean_build():
     cmd = f"rm -rf build/*"
     run_process(cmd)
     # TODO Which of these do we need?
-    cmd = f"mkdir -p build/assets build/css build/images build/js build/lightconedata build/slider_images build/videos"
+    cmd = f"mkdir -p build/assets build/assets/team build/assets/index build/assets/project_description"
+    run_process(cmd)
+    cmd = f"mkdir -p build/css build/images build/js build/lightconedata build/slider_images build/videos"
     run_process(cmd)
 
 
@@ -225,7 +232,9 @@ def create_thumbnail(img_id, img_src):
     """
     Create a thumbnail for the given image file.
     """
-    cmd = f"convert src/images/{img_src} -resize 200x200 build/images/{img_id}_200.png"
+    # cmd = f"convert src/images/{img_src} -resize 200x200 build/images/{img_id}_200.png"
+    cmd = f'convert src/images/{img_src} -resize 200x200 -gravity center -background none -extent 200x200 build/images/{img_id}_200.png'
+
     run_process(cmd)
     return f"images/{img_id}_200.png"
 
@@ -353,7 +362,6 @@ if __name__ == "__main__":
     templates = load_templates()
 
     # Generate the galleries
-    # TODO
     with open("src/images.yml", "r") as handle:
         images = yaml.safe_load(handle)
     make_gallery(templates, images, "image")
@@ -364,7 +372,7 @@ if __name__ == "__main__":
     # make_gallery(templates, videos, "video")
 
     # Generate a list of publications
-    generate_publication_list.generate_publication_list()
+    # generate_publication_list.generate_publication_list()
 
     # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:

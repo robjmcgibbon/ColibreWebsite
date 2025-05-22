@@ -1,114 +1,5 @@
 <html>
 <head>
-<script>
-function compare() {
-  var x, i;
-  x = document.getElementsByClassName("img-comp-overlay");
-  for (i = 0; i < x.length; i++) {
-    compareImages(x[i]);
-  }
-  function compareImages(img) {
-    var slider, img, clicked = 0, w, h;
-    w = img.offsetWidth;
-    h = img.offsetHeight;
-    img.style.width = (w / 2) + "px";
-
-    slider = document.createElement("DIV");
-    slider.setAttribute("class", "img-comp-slider");
-    img.parentElement.insertBefore(slider, img);
-
-    // Create the white bar
-    var whiteBar = document.createElement("DIV");
-    whiteBar.setAttribute("class", "img-comp-white-bar");
-    img.parentElement.insertBefore(whiteBar, img); // Insert white bar before the image
-
-    // Position the slider circle down the image
-    slider.style.top = (h * 0.9 - slider.offsetHeight / 2) + "px";
-    slider.style.left = (w / 2 - slider.offsetWidth / 2) + "px";
-
-    // Position the white bar at the same horizontal position as the slider
-    whiteBar.style.left = (w / 2 - 1) + "px"; // Center the bar (2px width)
-
-    slider.addEventListener("mousedown", slideReadyDesktop);
-    slider.addEventListener("touchstart", slideReadyMobile, { passive: false }); // Mobile
-
-    function slideReadyDesktop(e) {
-      e.preventDefault();
-      clicked = 1;
-      window.addEventListener("mousemove", slideMove);
-      window.addEventListener("mouseup", slideFinish);
-    }
-
-    function slideReadyMobile(e) {
-      e.preventDefault(); // Prevent page scroll on touch
-      clicked = 1;
-      window.addEventListener("touchmove", slideMove, { passive: false }); // Prevent scrolling while sliding
-      window.addEventListener("touchend", slideFinish);
-    }
-
-    function slideFinish() {
-      clicked = 0;
-      window.removeEventListener("mousemove", slideMove);
-      window.removeEventListener("mouseup", slideFinish);
-      window.removeEventListener("touchmove", slideMove);
-      window.removeEventListener("touchend", slideFinish);
-    }
-
-    function slideMove(e) {
-      if (clicked === 0) return;
-      let pos = getCursorPos(e);
-      if (pos < 0) pos = 0;
-      if (pos > w) pos = w;
-      slide(pos);
-    }
-
-    function getCursorPos(e) {
-      let x = 0;
-      e = e.changedTouches ? e.changedTouches[0] : e; // Handle touch & mouse
-      let a = img.getBoundingClientRect();
-      x = e.pageX - a.left - window.pageXOffset;
-      return x;
-    }
-
-    function slide(x) {
-      img.style.width = x + "px";
-      slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
-      whiteBar.style.left = x + "px"; // Move the white bar with the slider
-    }
-  }
-}
-
-let orientation = 'faceon';
-function setOrientation(selectElement) {
-    orientation = selectElement.value;
-    changeLeftImage();
-    changeRightImage();
-}
-
-let leftType = 'gri';
-function setLeftImage(selectElement) {
-    leftType = selectElement.value;
-    changeLeftImage();
-}
-
-function changeLeftImage() {
-  var leftImage = document.querySelector('.img-comp-container .img-comp-overlay img');
-  leftImage.src = `galaxy_2083215_map_${leftType}_${orientation}.png`;
-}
-
-let rightType = 'H2';
-function setRightImage(selectElement) {
-    rightType = selectElement.value;
-    changeRightImage();
-}
-
-function changeRightImage() {
-  var rightImage = document.querySelector('.img-comp-container .img-comp-img:first-child img');
-  rightImage.src = `galaxy_2083215_map_${rightType}_${orientation}.png`;
-}
-
-
-</script>
 <style>
 * {box-sizing: border-box;}
 
@@ -206,15 +97,118 @@ function changeRightImage() {
   z-index: 8; /* Ensure the bar is behind the slider circle */
 }
 
-/* .button-container is now inside controls-container */
-/* The buttons within the button-container are gone, so this rule is mostly obsolete unless you style dropdowns */
-/* .button-container button {
-  margin: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-} */
 </style>
+
+<script>
+function compare() {
+  var x, i;
+  x = document.getElementsByClassName("img-comp-overlay");
+  for (i = 0; i < x.length; i++) {
+    compareImages(x[i]);
+  }
+  function compareImages(img) {
+    var slider, img, clicked = 0, w, h;
+    w = img.offsetWidth;
+    h = img.offsetHeight;
+    img.style.width = (w / 2) + "px";
+
+    slider = document.createElement("DIV");
+    slider.setAttribute("class", "img-comp-slider");
+    img.parentElement.insertBefore(slider, img);
+
+    // Create the white bar
+    var whiteBar = document.createElement("DIV");
+    whiteBar.setAttribute("class", "img-comp-white-bar");
+    img.parentElement.insertBefore(whiteBar, img); // Insert white bar before the image
+
+    // Position the slider circle down the image
+    slider.style.top = (h * 0.9 - slider.offsetHeight / 2) + "px";
+    slider.style.left = (w / 2 - slider.offsetWidth / 2) + "px";
+
+    // Position the white bar at the same horizontal position as the slider
+    whiteBar.style.left = (w / 2 - 1) + "px"; // Center the bar (2px width)
+
+    slider.addEventListener("mousedown", slideReadyDesktop);
+    slider.addEventListener("touchstart", slideReadyMobile, { passive: false }); // Mobile
+
+    function slideReadyDesktop(e) {
+      e.preventDefault();
+      clicked = 1;
+      window.addEventListener("mousemove", slideMove);
+      window.addEventListener("mouseup", slideFinish);
+    }
+
+    function slideReadyMobile(e) {
+      e.preventDefault(); // Prevent page scroll on touch
+      clicked = 1;
+      window.addEventListener("touchmove", slideMove, { passive: false }); // Prevent scrolling while sliding
+      window.addEventListener("touchend", slideFinish);
+    }
+
+    function slideFinish() {
+      clicked = 0;
+      window.removeEventListener("mousemove", slideMove);
+      window.removeEventListener("mouseup", slideFinish);
+      window.removeEventListener("touchmove", slideMove);
+      window.removeEventListener("touchend", slideFinish);
+    }
+
+    function slideMove(e) {
+      if (clicked === 0) return;
+      let pos = getCursorPos(e);
+      if (pos < 0) pos = 0;
+      if (pos > w) pos = w;
+      slide(pos);
+    }
+
+    function getCursorPos(e) {
+      let x = 0;
+      e = e.changedTouches ? e.changedTouches[0] : e; // Handle touch & mouse
+      let a = img.getBoundingClientRect();
+      x = e.pageX - a.left - window.pageXOffset;
+      return x;
+    }
+
+    function slide(x) {
+      img.style.width = x + "px";
+      slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+      whiteBar.style.left = x + "px"; // Move the white bar with the slider
+    }
+  }
+}
+
+let orientation = 'faceon';
+function setOrientation(selectElement) {
+    orientation = selectElement.value;
+    changeLeftImage();
+    changeRightImage();
+}
+
+let leftType = 'gri';
+function setLeftImage(selectElement) {
+    leftType = selectElement.value;
+    changeLeftImage();
+}
+
+function changeLeftImage() {
+  var leftImage = document.querySelector('.img-comp-container .img-comp-overlay img');
+  leftImage.src = `slider_images/galaxy_2083215_map_${leftType}_${orientation}.png`;
+}
+
+let rightType = 'H2';
+function setRightImage(selectElement) {
+    rightType = selectElement.value;
+    changeRightImage();
+}
+
+function changeRightImage() {
+  var rightImage = document.querySelector('.img-comp-container .img-comp-img:first-child img');
+  rightImage.src = `slider_images/galaxy_2083215_map_${rightType}_${orientation}.png`;
+}
+
+
+</script>
+
 </head>
 <body>
 
@@ -223,10 +217,10 @@ function changeRightImage() {
 <div class="main-container">
     <div class="img-comp-container">
         <div class="img-comp-img">
-            <img src="galaxy_2083215_map_gri_faceon.png" width="800" height="800">
+            <img src="slider_images/galaxy_2083215_map_gri_faceon.png" width="800" height="800">
         </div>
         <div class="img-comp-img img-comp-overlay">
-            <img src="galaxy_2083215_map_HI_faceon.png" width="800" height="800">
+            <img src="slider_images/galaxy_2083215_map_HI_faceon.png" width="800" height="800">
         </div>
     </div>
 

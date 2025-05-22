@@ -173,6 +173,7 @@ def copy_slider_images():
     Copy all contents of src/slider_images/ into build/, regardless of the file type
     or name.
     """
+    # TODO: Copy folders, then we can have boxsize and galaxy splits
     for asset in sorted(glob.glob("src/slider_images/*")):
         shutil.copyfile(asset, f"build/slider_images/{os.path.basename(asset)}")
 

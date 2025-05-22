@@ -99,123 +99,13 @@
 
 </style>
 
-<script>
-function compare() {
-  var x, i;
-  x = document.getElementsByClassName("img-comp-overlay");
-  for (i = 0; i < x.length; i++) {
-    compareImages(x[i]);
-  }
-  function compareImages(img) {
-    var slider, img, clicked = 0, w, h;
-    w = img.offsetWidth;
-    h = img.offsetHeight;
-    img.style.width = (w / 2) + "px";
-
-    slider = document.createElement("DIV");
-    slider.setAttribute("class", "img-comp-slider");
-    img.parentElement.insertBefore(slider, img);
-
-    // Create the white bar
-    var whiteBar = document.createElement("DIV");
-    whiteBar.setAttribute("class", "img-comp-white-bar");
-    img.parentElement.insertBefore(whiteBar, img); // Insert white bar before the image
-
-    // Position the slider circle down the image
-    slider.style.top = (h * 0.9 - slider.offsetHeight / 2) + "px";
-    slider.style.left = (w / 2 - slider.offsetWidth / 2) + "px";
-
-    // Position the white bar at the same horizontal position as the slider
-    whiteBar.style.left = (w / 2 - 1) + "px"; // Center the bar (2px width)
-
-    slider.addEventListener("mousedown", slideReadyDesktop);
-    slider.addEventListener("touchstart", slideReadyMobile, { passive: false }); // Mobile
-
-    function slideReadyDesktop(e) {
-      e.preventDefault();
-      clicked = 1;
-      window.addEventListener("mousemove", slideMove);
-      window.addEventListener("mouseup", slideFinish);
-    }
-
-    function slideReadyMobile(e) {
-      e.preventDefault(); // Prevent page scroll on touch
-      clicked = 1;
-      window.addEventListener("touchmove", slideMove, { passive: false }); // Prevent scrolling while sliding
-      window.addEventListener("touchend", slideFinish);
-    }
-
-    function slideFinish() {
-      clicked = 0;
-      window.removeEventListener("mousemove", slideMove);
-      window.removeEventListener("mouseup", slideFinish);
-      window.removeEventListener("touchmove", slideMove);
-      window.removeEventListener("touchend", slideFinish);
-    }
-
-    function slideMove(e) {
-      if (clicked === 0) return;
-      let pos = getCursorPos(e);
-      if (pos < 0) pos = 0;
-      if (pos > w) pos = w;
-      slide(pos);
-    }
-
-    function getCursorPos(e) {
-      let x = 0;
-      e = e.changedTouches ? e.changedTouches[0] : e; // Handle touch & mouse
-      let a = img.getBoundingClientRect();
-      x = e.pageX - a.left - window.pageXOffset;
-      return x;
-    }
-
-    function slide(x) {
-      img.style.width = x + "px";
-      slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
-      whiteBar.style.left = x + "px"; // Move the white bar with the slider
-    }
-  }
-}
-
-let orientation = 'faceon';
-function setOrientation(selectElement) {
-    orientation = selectElement.value;
-    changeLeftImage();
-    changeRightImage();
-}
-
-let leftType = 'gri';
-function setLeftImage(selectElement) {
-    leftType = selectElement.value;
-    changeLeftImage();
-}
-
-function changeLeftImage() {
-  var leftImage = document.querySelector('.img-comp-container .img-comp-overlay img');
-  leftImage.src = `slider_images/galaxy_2083215_map_${leftType}_${orientation}.png`;
-}
-
-let rightType = 'H2';
-function setRightImage(selectElement) {
-    rightType = selectElement.value;
-    changeRightImage();
-}
-
-function changeRightImage() {
-  var rightImage = document.querySelector('.img-comp-container .img-comp-img:first-child img');
-  rightImage.src = `slider_images/galaxy_2083215_map_${rightType}_${orientation}.png`;
-}
-
-
-</script>
-
-</head>
 <body>
 
 <h1 style="text-align: center;">Individual Galaxies</h1>
 
+<!-- FIRST SLIDER SECTION -->
 <div class="main-container">
-    <div class="img-comp-container">
+    <div class="img-comp-container" id="slider1">
         <div class="img-comp-img">
             <img src="slider_images/galaxy_2083215_map_gri_faceon.png" width="800" height="800">
         </div>
@@ -224,10 +114,20 @@ function changeRightImage() {
         </div>
     </div>
 
+
     <div class="controls-container">
         <div class="button-container">
+            <h3>Galaxy ID</h3>
+            <select onchange="setGalaxyId('slider1', this)">
+                <option value="2083215" selected>Galaxy 2083215</option>
+                <option value="1234567">Galaxy 1234567</option>
+                <option value="7654321">Galaxy 7654321</option>
+            </select>
+        </div>
+
+        <div class="button-container">
             <h3>Left Image</h3>
-            <select onchange="setLeftImage(this)">
+            <select onchange="setLeftImage('slider1', this)">
                 <option value="gri">Show Stars</option>
                 <option value="HI" selected>Show HI</option>
                 <option value="H2">Show H2</option>
@@ -239,7 +139,7 @@ function changeRightImage() {
 
         <div class="button-container">
             <h3>Right Image</h3>
-            <select onchange="setRightImage(this)">
+            <select onchange="setRightImage('slider1', this)">
                 <option value="gri" selected>Show Stars</option>
                 <option value="HI">Show HI</option>
                 <option value="H2">Show H2</option>
@@ -251,7 +151,7 @@ function changeRightImage() {
 
         <div class="button-container">
             <h3>Select orientation</h3>
-            <select onchange="setOrientation(this)">
+            <select onchange="setOrientation('slider1', this)">
                 <option value="faceon" selected>Face on</option>
                 <option value="edgeon">Edge on</option>
             </select>
@@ -259,23 +159,32 @@ function changeRightImage() {
     </div>
 </div>
 
-<h1 style="text-align: center;">Box Slices</h1>
+<h1 style="text-align: center;">Box slices</h1>
 
-
+<!-- SECOND SLIDER SECTION -->
 <div class="main-container">
-    <div class="img-comp-container">
+    <div class="img-comp-container" id="slider2">
         <div class="img-comp-img">
-            <img src="galaxy_2083215_map_gri_faceon.png" width="800" height="800">
+            <img src="slider_images/L25m6_dm_mass.png" width="800" height="800">
         </div>
         <div class="img-comp-img img-comp-overlay">
-            <img src="galaxy_2083215_map_HI_faceon.png" width="800" height="800">
+            <img src="slider_images/L25m6_gas_mass.png" width="800" height="800">
         </div>
     </div>
 
     <div class="controls-container">
         <div class="button-container">
+            <h3>Galaxy ID</h3>
+            <select onchange="setGalaxyId('slider2', this)">
+                <option value="2083215" selected>Galaxy 2083215</option>
+                <option value="1234567">Galaxy 1234567</option>
+                <option value="7654321">Galaxy 7654321</option>
+            </select>
+        </div>
+
+        <div class="button-container">
             <h3>Left Image</h3>
-            <select onchange="setLeftImage(this)">
+            <select onchange="setLeftImage('slider2', this)">
                 <option value="gri">Show Stars</option>
                 <option value="HI" selected>Show HI</option>
                 <option value="H2">Show H2</option>
@@ -287,7 +196,7 @@ function changeRightImage() {
 
         <div class="button-container">
             <h3>Right Image</h3>
-            <select onchange="setRightImage(this)">
+            <select onchange="setRightImage('slider2', this)">
                 <option value="gri" selected>Show Stars</option>
                 <option value="HI">Show HI</option>
                 <option value="H2">Show H2</option>
@@ -299,7 +208,7 @@ function changeRightImage() {
 
         <div class="button-container">
             <h3>Select orientation</h3>
-            <select onchange="setOrientation(this)">
+            <select onchange="setOrientation('slider2', this)">
                 <option value="faceon" selected>Face on</option>
                 <option value="edgeon">Edge on</option>
             </select>
@@ -307,11 +216,117 @@ function changeRightImage() {
     </div>
 </div>
 
-
-
 <script>
+const state = {
+    slider1: { galaxyId: '2083215', leftType: 'HI', rightType: 'gri', orientation: 'faceon' },
+    slider2: { galaxyId: '2083215', leftType: 'HI', rightType: 'gri', orientation: 'faceon' }
+};
+
+function setGalaxyId(sliderId, selectElement) {
+    state[sliderId].galaxyId = selectElement.value;
+    updateImage(sliderId);
+}
+
+function setLeftImage(sliderId, selectElement) {
+    state[sliderId].leftType = selectElement.value;
+    updateImage(sliderId);
+}
+
+function setRightImage(sliderId, selectElement) {
+    state[sliderId].rightType = selectElement.value;
+    updateImage(sliderId);
+}
+
+function setOrientation(sliderId, selectElement) {
+    state[sliderId].orientation = selectElement.value;
+    updateImage(sliderId);
+}
+
+function updateImage(sliderId) {
+    const container = document.getElementById(sliderId);
+    const leftImg = container.querySelector('.img-comp-overlay img');
+    const rightImg = container.querySelector('.img-comp-img:first-child img');
+
+    const { galaxyId, leftType, rightType, orientation } = state[sliderId];
+    leftImg.src = `slider_images/galaxy_${galaxyId}_map_${leftType}_${orientation}.png`;
+    rightImg.src = `slider_images/galaxy_${galaxyId}_map_${rightType}_${orientation}.png`;
+}
+
+function compare() {
+    const overlays = document.getElementsByClassName("img-comp-overlay");
+    for (let i = 0; i < overlays.length; i++) {
+        compareImages(overlays[i]);
+    }
+
+    function compareImages(img) {
+        let slider, clicked = 0, w = img.offsetWidth, h = img.offsetHeight;
+        img.style.width = (w / 2) + "px";
+
+        slider = document.createElement("DIV");
+        slider.setAttribute("class", "img-comp-slider");
+        img.parentElement.insertBefore(slider, img);
+
+        const whiteBar = document.createElement("DIV");
+        whiteBar.setAttribute("class", "img-comp-white-bar");
+        img.parentElement.insertBefore(whiteBar, img);
+
+        slider.style.top = (h * 0.9 - slider.offsetHeight / 2) + "px";
+        slider.style.left = (w / 2 - slider.offsetWidth / 2) + "px";
+        whiteBar.style.left = (w / 2 - 1) + "px";
+
+        slider.addEventListener("mousedown", slideReadyDesktop);
+        slider.addEventListener("touchstart", slideReadyMobile, { passive: false });
+
+        function slideReadyDesktop(e) {
+            e.preventDefault();
+            clicked = 1;
+            window.addEventListener("mousemove", slideMove);
+            window.addEventListener("mouseup", slideFinish);
+        }
+
+        function slideReadyMobile(e) {
+            e.preventDefault();
+            clicked = 1;
+            window.addEventListener("touchmove", slideMove, { passive: false });
+            window.addEventListener("touchend", slideFinish);
+        }
+
+        function slideFinish() {
+            clicked = 0;
+            window.removeEventListener("mousemove", slideMove);
+            window.removeEventListener("mouseup", slideFinish);
+            window.removeEventListener("touchmove", slideMove);
+            window.removeEventListener("touchend", slideFinish);
+        }
+
+        function slideMove(e) {
+            if (clicked === 0) return;
+            let pos = getCursorPos(e);
+            if (pos < 0) pos = 0;
+            if (pos > w) pos = w;
+            slide(pos);
+        }
+
+        function getCursorPos(e) {
+            let x = 0;
+            e = e.changedTouches ? e.changedTouches[0] : e;
+            const rect = img.getBoundingClientRect();
+            x = e.pageX - rect.left - window.pageXOffset;
+            return x;
+        }
+
+        function slide(x) {
+            img.style.width = x + "px";
+            slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+            whiteBar.style.left = x + "px";
+        }
+    }
+}
+
 compare();
 </script>
 
 </body>
+
+
 </html>

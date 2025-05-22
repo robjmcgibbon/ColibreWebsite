@@ -103,14 +103,13 @@
 
 <h1 style="text-align: center;">Individual Galaxies</h1>
 
-<!-- FIRST SLIDER SECTION -->
 <div class="main-container">
     <div class="img-comp-container" id="slider1">
         <div class="img-comp-img">
-            <img src="slider_images/galaxy_2083215_map_gri_faceon.png" width="800" height="800">
+            <img src="slider_images/2083215/gri_faceon.png" width="800" height="800">
         </div>
         <div class="img-comp-img img-comp-overlay">
-            <img src="slider_images/galaxy_2083215_map_HI_faceon.png" width="800" height="800">
+            <img src="slider_images/2083215/HI_faceon.png" width="800" height="800">
         </div>
     </div>
 
@@ -118,7 +117,7 @@
     <div class="controls-container">
         <div class="button-container">
             <h3>Galaxy ID</h3>
-            <select onchange="setGalaxyId('slider1', this)">
+            <select onchange="setImageDirectory('slider1', this)">
                 <option value="2083215" selected>Galaxy 2083215</option>
                 <option value="1234567">Galaxy 1234567</option>
                 <option value="7654321">Galaxy 7654321</option>
@@ -128,32 +127,32 @@
         <div class="button-container">
             <h3>Left Image</h3>
             <select onchange="setLeftImage('slider1', this)">
-                <option value="gri">Show Stars</option>
-                <option value="HI" selected>Show HI</option>
-                <option value="H2">Show H2</option>
-                <option value="dust">Show dust</option>
-                <option value="metal">Show metals</option>
-                <option value="sfr">Show SFR</option>
+                <option value="gri">Stars</option>
+                <option value="HI" selected>HI</option>
+                <option value="H2">H2</option>
+                <option value="dust">Dust</option>
+                <option value="metal">Metals</option>
+                <option value="sfr">SFR</option>
             </select>
         </div>
 
         <div class="button-container">
             <h3>Right Image</h3>
             <select onchange="setRightImage('slider1', this)">
-                <option value="gri" selected>Show Stars</option>
-                <option value="HI">Show HI</option>
-                <option value="H2">Show H2</option>
-                <option value="dust">Show dust</option>
-                <option value="metal">Show metals</option>
-                <option value="sfr">Show SFR</option>
+                <option value="gri" selected>Stars</option>
+                <option value="HI">HI</option>
+                <option value="H2">H2</option>
+                <option value="dust">Dust</option>
+                <option value="metal">Metals</option>
+                <option value="sfr">SFR</option>
             </select>
         </div>
 
         <div class="button-container">
             <h3>Select orientation</h3>
             <select onchange="setOrientation('slider1', this)">
-                <option value="faceon" selected>Face on</option>
-                <option value="edgeon">Edge on</option>
+                <option value="_faceon" selected>Face on</option>
+                <option value="_edgeon">Edge on</option>
             </select>
         </div>
     </div>
@@ -161,69 +160,54 @@
 
 <h1 style="text-align: center;">Box slices</h1>
 
-<!-- SECOND SLIDER SECTION -->
 <div class="main-container">
     <div class="img-comp-container" id="slider2">
         <div class="img-comp-img">
-            <img src="slider_images/L25m6_dm_mass.png" width="800" height="800">
+            <img src="slider_images/L25m6/dm_mass.png" width="800" height="800">
         </div>
         <div class="img-comp-img img-comp-overlay">
-            <img src="slider_images/L25m6_gas_mass.png" width="800" height="800">
+            <img src="slider_images/L25m6/gas_mass.png" width="800" height="800">
         </div>
     </div>
 
     <div class="controls-container">
         <div class="button-container">
-            <h3>Galaxy ID</h3>
-            <select onchange="setGalaxyId('slider2', this)">
-                <option value="2083215" selected>Galaxy 2083215</option>
-                <option value="1234567">Galaxy 1234567</option>
-                <option value="7654321">Galaxy 7654321</option>
+            <h3>Simulation</h3>
+            <select onchange="setImageDirectory('slider2', this)">
+                <option value="L25m6" selected>L25m6</option>
+                <option value="L50m7">L50m7</option>
             </select>
         </div>
 
         <div class="button-container">
             <h3>Left Image</h3>
             <select onchange="setLeftImage('slider2', this)">
-                <option value="gri">Show Stars</option>
-                <option value="HI" selected>Show HI</option>
-                <option value="H2">Show H2</option>
-                <option value="dust">Show dust</option>
-                <option value="metal">Show metals</option>
-                <option value="sfr">Show SFR</option>
+                <option value="dm_mass">Dark Matter</option>
+                <option value="gas_mass" selected>Gas</option>
+                <option value="temperature">Temperature</option>
             </select>
         </div>
 
         <div class="button-container">
             <h3>Right Image</h3>
             <select onchange="setRightImage('slider2', this)">
-                <option value="gri" selected>Show Stars</option>
-                <option value="HI">Show HI</option>
-                <option value="H2">Show H2</option>
-                <option value="dust">Show dust</option>
-                <option value="metal">Show metals</option>
-                <option value="sfr">Show SFR</option>
+                <option value="dm_mass" selected>Dark Matter</option>
+                <option value="gas_mass">Gas</option>
+                <option value="temperature">Temperature</option>
             </select>
         </div>
 
-        <div class="button-container">
-            <h3>Select orientation</h3>
-            <select onchange="setOrientation('slider2', this)">
-                <option value="faceon" selected>Face on</option>
-                <option value="edgeon">Edge on</option>
-            </select>
-        </div>
     </div>
 </div>
 
 <script>
 const state = {
-    slider1: { galaxyId: '2083215', leftType: 'HI', rightType: 'gri', orientation: 'faceon' },
-    slider2: { galaxyId: '2083215', leftType: 'HI', rightType: 'gri', orientation: 'faceon' }
+    slider1: { imageDirectory: '2083215', leftType: 'HI', rightType: 'gri', orientation: '_faceon' },
+    slider2: { imageDirectory: 'L25m6', leftType: 'gas_mass', rightType: 'temperature', orientation: '' }
 };
 
-function setGalaxyId(sliderId, selectElement) {
-    state[sliderId].galaxyId = selectElement.value;
+function setImageDirectory(sliderId, selectElement) {
+    state[sliderId].imageDirectory = selectElement.value;
     updateImage(sliderId);
 }
 
@@ -247,9 +231,9 @@ function updateImage(sliderId) {
     const leftImg = container.querySelector('.img-comp-overlay img');
     const rightImg = container.querySelector('.img-comp-img:first-child img');
 
-    const { galaxyId, leftType, rightType, orientation } = state[sliderId];
-    leftImg.src = `slider_images/galaxy_${galaxyId}_map_${leftType}_${orientation}.png`;
-    rightImg.src = `slider_images/galaxy_${galaxyId}_map_${rightType}_${orientation}.png`;
+    const { imageDirectory, leftType, rightType, orientation } = state[sliderId];
+    leftImg.src = `slider_images/${imageDirectory}/${leftType}${orientation}.png`;
+    rightImg.src = `slider_images/${imageDirectory}/${rightType}${orientation}.png`;
 }
 
 function compare() {

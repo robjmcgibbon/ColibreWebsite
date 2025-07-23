@@ -57,28 +57,15 @@ def make_navbar(pages, templates):
     return template_replace(navbar, {"LINK_LIST": links})
 
 
-def make_sidebar(content, templates, page, obj_type):
+def make_sidebar(sections):
     """
-    Create the sidebar with the given lightcones/slider images.
+    Create the sidebar with the given sections.
     """
-    sidebarlink = templates["sidebarlink.html"]
     sidebar = templates["sidebar.html"]
 
     links = ""
-    if obj_type == "images":
-        for i,c in enumerate(content["sliders"]):
-            prop = "\" id=\"link" + str(i)
-            if i == 0:
-                prop = "active" + prop
-            links += template_replace(
-                sidebarlink, {"HREF": "#\" onClick=\"selectSlider(" + str(i) + ")\"", 
-                              "ACTIVE": prop, "NAME": c["linkname"]}
-            )
-    elif obj_type == "videos":
-        for i,c in enumerate(content):
-            links += template_replace(
-                sidebarlink, {"HREF": "#sec" + str(i), "ACTIVE": "", "NAME" : c}
-            )
+    for i, section in enumerate(sections):
+        links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section}</a></li>\n'
 
     return template_replace(sidebar, {"LINK_LIST": links})
 
@@ -120,16 +107,13 @@ def make_page(page, pages, templates):
     if not pages[page]["title"] == "":
         title += " - " + pages[page]["title"]
 
+    # The value of side bar in page.yml should be the yml file
+    # to load to get the sections of the page
     sidebar = ""
     if "sidebar" in pages[page]:
-        if pages[page]["sidebar"] == "images":
-            with open("src/assets/images.json",'r') as f:
-                imagedata=json.load(f)
-            sidebar = make_sidebar(imagedata, templates, page, "images")
-        elif pages[page]["sidebar"] == "videos":
-            with open("src/videos.yml", "r") as f:
-                videos = yaml.safe_load(f)
-            sidebar = make_sidebar(videos, templates, page, "videos")
+        with open(f'src/{pages[page]["sidebar"]}.yml') as f:
+            sections = yaml.safe_load(f)
+        sidebar = make_sidebar(list(sections.keys()))
 
     # now add the actual page contents
     page_out = template_replace(

@@ -9,6 +9,7 @@ image_gallery.html:
   # TODO: What is this doing?
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: images
 
 # TODO
 #video_gallery.html:

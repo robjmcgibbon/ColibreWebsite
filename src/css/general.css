@@ -13,6 +13,7 @@ h2 {
   padding-bottom: 10px;
   font-weight: normal;
   color: #645656;
+  scroll-margin-top: 80px;
 }
 
 .bg-colibre {
@@ -39,28 +40,6 @@ body::before { /* delete all except the color line if we don't want the image */
 .modal-title {
   font-weight: normal;
   color: #645656;
-}
-
-.buttonflamingo {
-  --bs-btn-color: #986196;
-  color: #986196;
-  --bs-btn-font-size: 2rem;
-  font-size: var(--bs-btn-font-size);
-}
-
-.spinnerflamingo {
-  color: #986196;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  --bs-spinner-width: 4rem;
-  --bs-spinner-height: 4rem;
-  --bs-spinner-border-width: 0.75em;
-  --bs-spinner-animation-speed: 1.5s;
-  --bs-spinner-animation-name: spinner-border;
-  width: var(--bs-spinner-width);
-  height: var(--bs-spinner-height);
-  animation: var(--bs-spinner-animation-speed) linear infinite var(--bs-spinner-animation-name);
 }
 
 .overlaycontainer {
@@ -112,4 +91,30 @@ body::before { /* delete all except the color line if we don't want the image */
   font-size: 0.75em;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+/* Make sure the sidebar  doesn't overlap with the header*/
+#sidebar.sticky-top {
+  top: 100px; /*This should be slightly larger than scroll-margin-top in h2*/
+}
+
+/* Style the siderbar*/
+#sidebar {
+  background-color: #f8f9fa; /* Light gray background */
+  border: 1px solid #ccc;    /* Border around the sidebar */
+  border-radius: 5px;       /* Rounded corners */
+  padding: 0.75rem;
+}
+
+/* Style the links inside the sidebar */
+#sidebar .nav-link {
+  color: #6c757d;            /* Gray text (Bootstrap's text-secondary) */
+  font-weight: 500;
+  padding: 0.25rem 0;
+  transition: color 0.2s;
+}
+
+#sidebar .nav-link:hover {
+  color: #495057;            /* Darker gray on hover */
+  text-decoration: underline;
 }

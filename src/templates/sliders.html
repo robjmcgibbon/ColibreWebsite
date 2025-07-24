@@ -1,0 +1,230 @@
+<html>
+<head>
+<style>
+* {box-sizing: border-box;}
+
+/* New styles for layout */
+.main-container {
+  display: flex; /* Makes it a flex container */
+  align-items: flex-start; /* Aligns items to the start (top) of the cross axis */
+  gap: 40px; /* Adds space between the image viewer and the controls */
+  padding: 20px; /* Some padding around the whole section */
+  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+  justify-content: center; /* Center horizontally if space allows */
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column; /* Stack dropdowns vertically */
+  gap: 20px; /* Space between each dropdown section */
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.button-container { /* Renamed this from "button-container" for clarity, but keeping original for now */
+  /* This still styles each individual dropdown section */
+  margin-bottom: 0; /* Remove default margin from the previous layout */
+  text-align: left; /* Align text within each dropdown section */
+}
+
+.button-container h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.button-container select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+/* Existing styles */
+.img-comp-container {
+  position: relative;
+  height: 800px; /*should be the same height as the images*/
+  /* Ensure this has a defined width, or it will collapse */
+  width: 800px; /* Set a fixed width for the image viewer */
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  display:block;
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index: 9;
+  cursor: ew-resize;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black; /* Black outline */
+  font-size: 20px; /* Size for arrows */
+  font-weight: bold;
+  color: black; /* Color of arrows */
+  user-select: none; /* Prevent selection */
+}
+
+.img-comp-slider::before {
+  content: "< >"; /* Arrows inside */
+  font-family: Arial, sans-serif;
+}
+
+.img-comp-white-bar {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: white;
+  top: 0;
+  z-index: 8; /* Ensure the bar is behind the slider circle */
+}
+
+</style>
+
+<body>
+
+%SECTIONS%
+
+<script>
+
+%STATE%
+
+function setImageDirectory(sliderId, selectElement) {
+    state[sliderId].imageDirectory = selectElement.value;
+    updateImage(sliderId);
+}
+function setLeftImage(sliderId, selectElement) {
+    state[sliderId].leftType = selectElement.value;
+    updateImage(sliderId);
+}
+function setRightImage(sliderId, selectElement) {
+    state[sliderId].rightType = selectElement.value;
+    updateImage(sliderId);
+}
+function setType0(sliderId, selectElement) {
+    state[sliderId].type0 = selectElement.value;
+    updateImage(sliderId);
+}
+function setType1(sliderId, selectElement) {
+    state[sliderId].type1 = selectElement.value;
+    updateImage(sliderId);
+}
+function setType2(sliderId, selectElement) {
+    state[sliderId].type2 = selectElement.value;
+    updateImage(sliderId);
+}
+function setType3(sliderId, selectElement) {
+    state[sliderId].type3 = selectElement.value;
+    updateImage(sliderId);
+}
+function setType4(sliderId, selectElement) {
+    state[sliderId].type4 = selectElement.value;
+    updateImage(sliderId);
+}
+
+function updateImage(sliderId) {
+    const container = document.getElementById(sliderId);
+    const leftImg = container.querySelector('.img-comp-overlay img');
+    const rightImg = container.querySelector('.img-comp-img:first-child img');
+
+    const { imageDirectory, leftType, rightType, type0, type1, type2, type3, type4 } = state[sliderId];
+    leftImg.src = `slider_images/${imageDirectory}/${leftType}${type0}${type1}${type2}${type3}${type4}.png`;
+    rightImg.src = `slider_images/${imageDirectory}/${rightType}${type0}${type1}${type2}${type3}${type4}.png`;
+}
+
+function compare() {
+    const overlays = document.getElementsByClassName("img-comp-overlay");
+    for (let i = 0; i < overlays.length; i++) {
+        compareImages(overlays[i]);
+    }
+
+    function compareImages(img) {
+        let slider, clicked = 0, w = img.offsetWidth, h = img.offsetHeight;
+        img.style.width = (w / 2) + "px";
+
+        slider = document.createElement("DIV");
+        slider.setAttribute("class", "img-comp-slider");
+        img.parentElement.insertBefore(slider, img);
+
+        const whiteBar = document.createElement("DIV");
+        whiteBar.setAttribute("class", "img-comp-white-bar");
+        img.parentElement.insertBefore(whiteBar, img);
+
+        slider.style.top = (h * 0.9 - slider.offsetHeight / 2) + "px";
+        slider.style.left = (w / 2 - slider.offsetWidth / 2) + "px";
+        whiteBar.style.left = (w / 2 - 1) + "px";
+
+        slider.addEventListener("mousedown", slideReadyDesktop);
+        slider.addEventListener("touchstart", slideReadyMobile, { passive: false });
+
+        function slideReadyDesktop(e) {
+            e.preventDefault();
+            clicked = 1;
+            window.addEventListener("mousemove", slideMove);
+            window.addEventListener("mouseup", slideFinish);
+        }
+
+        function slideReadyMobile(e) {
+            e.preventDefault();
+            clicked = 1;
+            window.addEventListener("touchmove", slideMove, { passive: false });
+            window.addEventListener("touchend", slideFinish);
+        }
+
+        function slideFinish() {
+            clicked = 0;
+            window.removeEventListener("mousemove", slideMove);
+            window.removeEventListener("mouseup", slideFinish);
+            window.removeEventListener("touchmove", slideMove);
+            window.removeEventListener("touchend", slideFinish);
+        }
+
+        function slideMove(e) {
+            if (clicked === 0) return;
+            let pos = getCursorPos(e);
+            if (pos < 0) pos = 0;
+            if (pos > w) pos = w;
+            slide(pos);
+        }
+
+        function getCursorPos(e) {
+            let x = 0;
+            e = e.changedTouches ? e.changedTouches[0] : e;
+            const rect = img.getBoundingClientRect();
+            x = e.pageX - rect.left - window.pageXOffset;
+            return x;
+        }
+
+        function slide(x) {
+            img.style.width = x + "px";
+            slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+            whiteBar.style.left = x + "px";
+        }
+    }
+}
+
+compare();
+</script>
+
+</body>
+
+
+</html>

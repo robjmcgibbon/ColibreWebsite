@@ -1,0 +1,47 @@
+Individual galaxies:
+  dirname: galaxies
+  show_Left_Right: Property
+  buttons:
+    - GalaxyID
+    - Orientation
+  Property:
+    - Stars
+    - HI
+    - H2
+    - Dust
+    - Metals
+    - SFR
+  GalaxyID:
+    - "2083215"
+  Orientation:
+    - Face on
+    - Edge on
+
+Box slices:
+  dirname: slices
+  show_Left_Right: Property
+  buttons:
+    - Simulation
+  Property:
+    - Gas
+    - Dark Matter
+    - Temperature
+  Simulation:
+    - L25m6
+    - L50m7
+
+Thermal vs Hybrid:
+  dirname: thermal_hybrid
+  show_Left_Right: false
+  buttons:
+    - Property
+    - Simulation
+  Property:
+    - Gas
+    - Dark Matter
+    - Temperature
+  Simulation:
+    - L25m6
+    - L50m7
+
+

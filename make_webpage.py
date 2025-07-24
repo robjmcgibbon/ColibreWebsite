@@ -334,6 +334,139 @@ def make_gallery(templates, input_sections, obj_type):
         ofile.write(template_replace(gallery_template, {"IMG_SECTIONS": sections}))
 
 
+def make_sliders(templates, input_sections):
+    """
+    Create the gallery from the given image sections dictionary.
+
+    The dictionary should have the following structure:
+      {"SECTION HEADING": {"img.png": "Caption", "video.mp4": "Caption},
+       "SECTION HEADING": {"img.png": "Caption"}}
+    Only ".png" and ".mp4" are supported, for respectively images and videos.
+    All ".png/mp4" files listed should be present in src/images/.
+    """
+
+    # load all templates
+    sliders_template = templates[f"sliders.html"]
+    section_template = templates["slider_section.html"]
+    button_template = templates["slider_button.html"]
+
+    def button_option(img_type, selected=False, underscore=False):
+        internal_img_type = img_type.replace(" ", "_")
+        if underscore:
+            internal_img_type = '_' + internal_img_type
+        option = f'        <option value="{internal_img_type}"'
+        if selected:
+            option += ' selected'
+        option += f'>{img_type}</option>\n'
+        return option
+
+    sections = ""
+    state = "const state = {\n"
+    for i_section, (section_title, section_info) in enumerate(input_sections.items()):
+        buttons = ""
+        left_img_path = f"slider_images/{section_info['dirname']}/"
+        right_img_path = f"slider_images/{section_info['dirname']}/"
+        # "show_left_right" detemines which values will show on left/right
+        if section_info["show_Left_Right"]:
+            # Adding button for left image
+            button_values = ""
+            img_type = section_info[section_info["show_Left_Right"]][0]
+            button_values += button_option(img_type, selected=True)
+            left_type = img_type.replace(" ", "_")
+            for img_type in section_info[section_info["show_Left_Right"]][1:]:
+                button_values += button_option(img_type)
+            buttons += template_replace(
+                button_template,
+                {
+                    "BUTTON_TITLE": "Left image",
+                    "BUTTON_VALUES": button_values,
+                    "SLIDER_ID": str(i_section),
+                    "JS_FUNCTION": "setLeftImage",
+                },
+            )
+            left_img_path += left_type
+            # Adding button for right image
+            button_values = ""
+            img_type = section_info[section_info["show_Left_Right"]][0]
+            button_values += button_option(img_type)
+            img_type = section_info[section_info["show_Left_Right"]][1]
+            button_values += button_option(img_type, selected=True)
+            right_type = img_type.replace(" ", "_")
+            for img_type in section_info[section_info["show_Left_Right"]][2:]:
+                button_values += button_option(img_type)
+            buttons += template_replace(
+                button_template,
+                {
+                    "BUTTON_TITLE": "Right image",
+                    "BUTTON_VALUES": button_values,
+                    "SLIDER_ID": str(i_section),
+                    "JS_FUNCTION": "setRightImage",
+                },
+            )
+            right_img_path += right_type
+        else:
+            left_type = ''
+            right_type = ''
+        # Adding other buttons
+        other_types = []
+        for i_button, button_title in enumerate(section_info['buttons']):
+            button_values = ""
+            img_type = section_info[button_title][0]
+            left_img_path += '_' + img_type.replace(" ", "_")
+            right_img_path += '_' + img_type.replace(" ", "_")
+            button_values += button_option(img_type, selected=True, underscore=True)
+            for img_type in section_info[button_title][1:]:
+                button_values += button_option(img_type, underscore=True)
+            buttons += template_replace(
+                button_template,
+                {
+                    "BUTTON_TITLE": button_title,
+                    "BUTTON_VALUES": button_values,
+                    "SLIDER_ID": str(i_section),
+                    "JS_FUNCTION": f"setType{i_button}",
+                },
+            )
+            other_types.append(img_type.replace(" ", "_"))
+
+        # Add this section
+        sections += template_replace(
+            section_template,
+            {
+                "SECTION_TITLE": section_title,
+                "SLIDER_ID": str(i_section),
+                "BUTTONS": buttons,
+                "INITIAL_LEFT_IMG": left_img_path+'.png',
+                "INITIAL_RIGHT_IMG": right_img_path+'.png',
+            },
+        )
+
+        # Add the initial state of the image
+
+        state += f"slider{i_section}: {{ "
+        state += f"imageDirectory: '{section_info['dirname']}', "
+        state += f"leftType: '{left_type}', "
+        state += f"rightType: '{right_type}'"
+        for i_type in range(5):
+            img_type = "_" + other_types[i_type] if i_type < len(other_types) else ""
+            state += f", type{i_type}: '{img_type}'"
+        state += " },\n"
+
+    state += "};"
+
+    sliders = template_replace(
+        sliders_template,
+        {
+            "SECTIONS": sections,
+            "STATE": state,
+        },
+    )
+
+    # generate the new src/pages/gallery.html
+    with open(f"src/pages/sliders.html", "w") as ofile:
+        ofile.write(sliders)
+
+
+
 if __name__ == "__main__":
     """
     Main script body. Takes no input arguments.
@@ -355,9 +488,15 @@ if __name__ == "__main__":
         # videos = yaml.safe_load(handle)
     # make_gallery(templates, videos, "video")
 
+    # Create the sliders
+    with open("src/sliders.yml", "r") as handle:
+        sliders = yaml.safe_load(handle)
+    make_sliders(templates, sliders)
+    # TODO: Add sidebar
+
     # Generate a list of publications
     # generate_publication_list.generate_publication_list()
-
+    # TODO: edit simulations
     # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:
         pages = yaml.safe_load(handle)

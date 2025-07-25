@@ -28,5 +28,6 @@ Run `grep -r TODO *`
 ### Nice-to-have
 - Mobile support
 - Buy domain (colibre-simulation.org)
+- Buttons on slider page don't reset when page is refreshed, but images do
 
 

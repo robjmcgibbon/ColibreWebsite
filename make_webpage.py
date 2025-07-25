@@ -414,6 +414,7 @@ def make_sliders(templates, input_sections):
             img_type = section_info[button_title][0]
             left_img_path += '_' + img_type.replace(" ", "_")
             right_img_path += '_' + img_type.replace(" ", "_")
+            other_types.append(img_type.replace(" ", "_"))
             button_values += button_option(img_type, selected=True, underscore=True)
             for img_type in section_info[button_title][1:]:
                 button_values += button_option(img_type, underscore=True)
@@ -426,7 +427,6 @@ def make_sliders(templates, input_sections):
                     "JS_FUNCTION": f"setType{i_button}",
                 },
             )
-            other_types.append(img_type.replace(" ", "_"))
 
         # Add this section
         sections += template_replace(

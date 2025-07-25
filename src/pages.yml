@@ -25,8 +25,9 @@ sliders.html:
 papers.html:
   title: Publications
 
-team.html:
-  title: Team
+# TODO: Re-enable
+#team.html:
+  #title: Team
 
 simulations.html:
   title: Simulations

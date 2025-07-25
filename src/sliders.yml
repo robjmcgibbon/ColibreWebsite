@@ -24,24 +24,26 @@ Box slices:
     - Simulation
   Property:
     - Gas
-    - Dark Matter
     - Temperature
+    - Metallicity
   Simulation:
-    - L25m6
-    - L50m7
+    - L400m7
+    - L200m6
 
 Thermal vs Hybrid:
   dirname: thermal_hybrid
-  show_Left_Right: false
+  show_Left_Right: BH Feedback
   buttons:
     - Property
     - Simulation
+  BH Feedback:
+    - Thermal
+    - Hybrid
   Property:
     - Gas
-    - Dark Matter
     - Temperature
+    - Metallicity
   Simulation:
-    - L25m6
-    - L50m7
+    - L200m7
 
 

@@ -93,28 +93,37 @@ body::before { /* delete all except the color line if we don't want the image */
   margin-bottom: 1rem;
 }
 
-/* Make sure the sidebar  doesn't overlap with the header*/
+
+/* Make sure the sidebar doesn't overlap with the header */
 #sidebar.sticky-top {
-  top: 100px; /*This should be slightly larger than scroll-margin-top in h2*/
+  top: 100px;
 }
 
-/* Style the siderbar*/
+/* Style the sidebar */
 #sidebar {
-  background-color: #f8f9fa; /* Light gray background */
-  border: 1px solid #ccc;    /* Border around the sidebar */
-  border-radius: 5px;       /* Rounded corners */
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 0.75rem;
 }
 
 /* Style the links inside the sidebar */
 #sidebar .nav-link {
-  color: #6c757d;            /* Gray text (Bootstrap's text-secondary) */
+  color: #6c757d;
   font-weight: 500;
-  padding: 0.25rem 0;
+  padding: 0.5rem 0;
+  text-align: center;            /* Center text */
+  display: block;                /* Ensure full width */
   transition: color 0.2s;
 }
 
+/* Remove the bottom border for the last item */
+#sidebar .nav-link:last-child {
+  border-bottom: none;
+}
+
 #sidebar .nav-link:hover {
-  color: #495057;            /* Darker gray on hover */
+  color: #495057;
   text-decoration: underline;
 }
+

@@ -65,7 +65,7 @@ def make_sidebar(sections):
 
     links = ""
     for i, section in enumerate(sections):
-        links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section}</a></li>\n'
+        links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section.replace(" ", "<br>")}</a></li>\n'
 
     return template_replace(sidebar, {"LINK_LIST": links})
 
@@ -364,8 +364,8 @@ def make_sliders(templates, input_sections):
     state = "const state = {\n"
     for i_section, (section_title, section_info) in enumerate(input_sections.items()):
         buttons = ""
-        left_img_path = f"slider_images/{section_info['dirname']}/"
-        right_img_path = f"slider_images/{section_info['dirname']}/"
+        left_img_path = f"slider_images/{section_info['dirname']}/L"
+        right_img_path = f"slider_images/{section_info['dirname']}/R"
         # "show_left_right" detemines which values will show on left/right
         if section_info["show_Left_Right"]:
             # Adding button for left image

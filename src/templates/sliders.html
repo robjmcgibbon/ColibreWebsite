@@ -1,103 +1,6 @@
-<html>
-<head>
-<style>
-* {box-sizing: border-box;}
 
-/* New styles for layout */
-.main-container {
-  display: flex; /* Makes it a flex container */
-  align-items: flex-start; /* Aligns items to the start (top) of the cross axis */
-  gap: 40px; /* Adds space between the image viewer and the controls */
-  padding: 20px; /* Some padding around the whole section */
-  flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
-  justify-content: center; /* Center horizontally if space allows */
-}
+<link rel="stylesheet" href="css/sliders.css">
 
-.controls-container {
-  display: flex;
-  flex-direction: column; /* Stack dropdowns vertically */
-  gap: 20px; /* Space between each dropdown section */
-  padding: 15px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #fdfdfd;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.button-container { /* Renamed this from "button-container" for clarity, but keeping original for now */
-  /* This still styles each individual dropdown section */
-  margin-bottom: 0; /* Remove default margin from the previous layout */
-  text-align: left; /* Align text within each dropdown section */
-}
-
-.button-container h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.button-container select {
-    padding: 8px 12px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #fff;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
-}
-
-/* Existing styles */
-.img-comp-container {
-  position: relative;
-  height: 800px; /*should be the same height as the images*/
-  /* Ensure this has a defined width, or it will collapse */
-  width: 800px; /* Set a fixed width for the image viewer */
-}
-
-.img-comp-img {
-  position: absolute;
-  width: auto;
-  height: auto;
-  overflow:hidden;
-}
-
-.img-comp-img img {
-  display:block;
-}
-
-.img-comp-slider {
-  position: absolute;
-  z-index: 9;
-  cursor: ew-resize;
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid black; /* Black outline */
-  font-size: 20px; /* Size for arrows */
-  font-weight: bold;
-  color: black; /* Color of arrows */
-  user-select: none; /* Prevent selection */
-}
-
-.img-comp-slider::before {
-  content: "< >"; /* Arrows inside */
-  font-family: Arial, sans-serif;
-}
-
-.img-comp-white-bar {
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background-color: white;
-  top: 0;
-  z-index: 8; /* Ensure the bar is behind the slider circle */
-}
-
-</style>
 
 <body>
 
@@ -148,8 +51,8 @@ function updateImage(sliderId) {
     const rightImg = container.querySelector('.img-comp-img:first-child img');
 
     const { imageDirectory, leftType, rightType, type0, type1, type2, type3, type4 } = state[sliderId];
-    leftImg.src = `slider_images/${imageDirectory}/${leftType}${type0}${type1}${type2}${type3}${type4}.png`;
-    rightImg.src = `slider_images/${imageDirectory}/${rightType}${type0}${type1}${type2}${type3}${type4}.png`;
+    leftImg.src = `slider_images/${imageDirectory}/L${leftType}${type0}${type1}${type2}${type3}${type4}.png`;
+    rightImg.src = `slider_images/${imageDirectory}/R${rightType}${type0}${type1}${type2}${type3}${type4}.png`;
 }
 
 function compare() {
@@ -229,4 +132,3 @@ compare();
 </body>
 
 
-</html>

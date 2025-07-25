@@ -30,15 +30,12 @@ Box slices:
     - L400m7
     - L200m6
 
-Thermal vs Hybrid:
+AGN Feedback Model:
   dirname: thermal_hybrid
-  show_Left_Right: BH Feedback
+  show_Left_Right: false
   buttons:
     - Property
     - Simulation
-  BH Feedback:
-    - Thermal
-    - Hybrid
   Property:
     - Gas
     - Temperature

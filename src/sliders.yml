@@ -22,6 +22,7 @@ Box slices:
   show_Left_Right: Property
   buttons:
     - Simulation
+    - Redshift
   Property:
     - Gas
     - Temperature
@@ -29,6 +30,9 @@ Box slices:
   Simulation:
     - L400m7
     - L200m6
+  Redshift:
+    - "0"
+    - "1"
 
 AGN Feedback Model:
   dirname: thermal_hybrid
@@ -36,11 +40,15 @@ AGN Feedback Model:
   buttons:
     - Property
     - Simulation
+    - Redshift
   Property:
     - Gas
     - Temperature
     - Metallicity
   Simulation:
     - L200m7
+  Redshift:
+    - "0"
+    - "1"
 
 

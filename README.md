@@ -27,13 +27,10 @@ Run `grep -r TODO *`
 - Delete all the `old` files
 - Create clean version of these repo once all images/videos have been placed elsewhere
 - Interative zoom images
-- Update logo, add logo to all images (as part of script?)
-- Add text descriptions to sliders
 
 ### Nice-to-have
 - Mobile support
 - Buy domain (colibre-simulation.org)
-- Buttons on slider page don't reset when page is refreshed, but images do
 - Map of people who have submitted colibre papers
 
 

@@ -75,11 +75,11 @@ function updateImage(sliderId) {
     rightImg.src = rightPath;
 
     // Update download links
-    const leftLink = document.getElementById(`full_left${sliderId.replace("slider", "")}`);
-    const rightLink = document.getElementById(`full_right${sliderId.replace("slider", "")}`);
+    const leftLink = document.getElementById(`hires_left${sliderId.replace("slider", "")}`);
+    const rightLink = document.getElementById(`hires_right${sliderId.replace("slider", "")}`);
 
-    leftLink.href = leftPath;
-    rightLink.href = rightPath;
+    leftLink.href = `hires_${leftPath}`;
+    rightLink.href = `hires_${rightPath}`;
 }
 
 

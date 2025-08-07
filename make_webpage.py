@@ -154,11 +154,24 @@ def copy_assets():
 
 def copy_slider_images():
     """
-    Copy all contents of src/slider_images/ into build/, regardless of the file type
-    or name.
+    Copy the src/slider_images/ into build/. We create compressed versions (for the
+    sliders themselves, so they can load quickly), but we also copy across the full
+    versions (as we have a download link for them).
     """
+    # Compress slider images
+    for dirname in os.listdir("src/slider_images"):
+        os.makedirs(f"build/slider_images/{dirname}", exist_ok=True)
+    for input_image in sorted(glob.glob("src/slider_images/*/*")):
+        output_image = input_image.replace('src', 'build', 1)
+        cmd = f'convert {input_image} -resize 800x800 -gravity center -background none -extent 800x800 {output_image}'
+        run_process(cmd)
+    # TODO: Uncomment when creating webpage (quicker not to compress)
+    # for asset in sorted(glob.glob("src/slider_images/*")):
+        # shutil.copytree(asset, f"build/slider_images/{os.path.basename(asset)}")
+
+    # Copy the full size images
     for asset in sorted(glob.glob("src/slider_images/*")):
-        shutil.copytree(asset, f"build/slider_images/{os.path.basename(asset)}")
+        shutil.copytree(asset, f"build/hires_slider_images/{os.path.basename(asset)}")
 
 
 def copy_styles():

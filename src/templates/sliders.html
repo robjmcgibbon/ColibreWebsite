@@ -48,38 +48,26 @@ function setType4(sliderId, selectElement) {
 }
 
 function updateImage(sliderId) {
-    const container = document.getElementById(sliderId);
-    const leftImg = container.querySelector('.img-comp-overlay img');
-    const rightImg = container.querySelector('.img-comp-img:first-child img');
-
-    const { imageDirectory, leftType, rightType, type0, type1, type2, type3, type4 } = state[sliderId];
-    leftImg.src = `slider_images/${imageDirectory}/L${leftType}${type0}${type1}${type2}${type3}${type4}.png`;
-    rightImg.src = `slider_images/${imageDirectory}/R${rightType}${type0}${type1}${type2}${type3}${type4}.png`;
-
-
-}
-
-function updateImage(sliderId) {
     // Construct paths
     const { imageDirectory, leftType, rightType, type0, type1, type2, type3, type4 } = state[sliderId];
 
-    const leftPath = `slider_images/${imageDirectory}/L${leftType}${type0}${type1}${type2}${type3}${type4}.png`;
-    const rightPath = `slider_images/${imageDirectory}/R${rightType}${type0}${type1}${type2}${type3}${type4}.png`;
+    const leftPath = `slider_images/${imageDirectory}/L${leftType}${type0}${type1}${type2}${type3}${type4}`;
+    const rightPath = `slider_images/${imageDirectory}/R${rightType}${type0}${type1}${type2}${type3}${type4}`;
 
     // Update images
     const container = document.getElementById(sliderId);
     const leftImg = container.querySelector('.img-comp-overlay img');
     const rightImg = container.querySelector('.img-comp-img:first-child img');
 
-    leftImg.src = leftPath;
-    rightImg.src = rightPath;
+    leftImg.src = `${leftPath}.jpg`;
+    rightImg.src = `${rightPath}.jpg`;
 
     // Update download links
     const leftLink = document.getElementById(`hires_left${sliderId.replace("slider", "")}`);
     const rightLink = document.getElementById(`hires_right${sliderId.replace("slider", "")}`);
 
-    leftLink.href = `hires_${leftPath}`;
-    rightLink.href = `hires_${rightPath}`;
+    leftLink.href = `hires_${leftPath}.png`;
+    rightLink.href = `hires_${rightPath}.png`;
 }
 
 

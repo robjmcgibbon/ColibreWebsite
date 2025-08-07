@@ -162,12 +162,10 @@ def copy_slider_images():
     for dirname in os.listdir("src/slider_images"):
         os.makedirs(f"build/slider_images/{dirname}", exist_ok=True)
     for input_image in sorted(glob.glob("src/slider_images/*/*")):
-        output_image = input_image.replace('src', 'build', 1)
-        cmd = f'convert {input_image} -resize 800x800 -gravity center -background none -extent 800x800 {output_image}'
+        output_image = input_image.replace('src', 'build', 1).replace('.png', '.jpg')
+        cmd = f'convert {input_image} -resize 800x800 -gravity center -background white -extent 800x800 -quality 80 {output_image}'
+        print(f'Compressing {output_image}')
         run_process(cmd)
-    # TODO: Uncomment when creating webpage (quicker not to compress)
-    # for asset in sorted(glob.glob("src/slider_images/*")):
-        # shutil.copytree(asset, f"build/slider_images/{os.path.basename(asset)}")
 
     # Copy the full size images
     for asset in sorted(glob.glob("src/slider_images/*")):
@@ -212,10 +210,16 @@ def run_process(command, return_output=False):
         raise RuntimeError(f'Error running command "{command}"!')
 
 
-def clean_build():
+def clean_build(keep_sliders=False):
     """
     Clean up a previous build.
     """
+    if keep_sliders and os.path.exists('build/slider_images'):
+        cmd = f"mv build/slider_images tmp_slider_images"
+        run_process(cmd)
+    else:
+        keep_sliders = False
+
     cmd = f"rm -rf build/*"
     run_process(cmd)
     # TODO Which of these do we need?
@@ -223,6 +227,13 @@ def clean_build():
     run_process(cmd)
     cmd = f"mkdir -p build/css build/images build/slider_images build/videos"
     run_process(cmd)
+
+    if keep_sliders:
+        cmd = f"rm -r build/slider_images; mv tmp_slider_images build/slider_images"
+        run_process(cmd)
+
+    return keep_sliders
+
 
 
 def create_thumbnail(img_id, img_src):
@@ -351,11 +362,6 @@ def make_sliders(templates, input_sections):
     """
     Create the gallery from the given image sections dictionary.
 
-    The dictionary should have the following structure:
-      {"SECTION HEADING": {"img.png": "Caption", "video.mp4": "Caption},
-       "SECTION HEADING": {"img.png": "Caption"}}
-    Only ".png" and ".mp4" are supported, for respectively images and videos.
-    All ".png/mp4" files listed should be present in src/images/.
     """
 
     # load all templates
@@ -449,8 +455,8 @@ def make_sliders(templates, input_sections):
                 "DESCRIPTION": section_info['description'],
                 "SLIDER_ID": str(i_section),
                 "BUTTONS": buttons,
-                "INITIAL_LEFT_IMG": left_img_path+'.png',
-                "INITIAL_RIGHT_IMG": right_img_path+'.png',
+                "INITIAL_LEFT_IMG": left_img_path,
+                "INITIAL_RIGHT_IMG": right_img_path,
             },
         )
 
@@ -486,8 +492,11 @@ if __name__ == "__main__":
     Main script body. Takes no input arguments.
     """
 
+    # Whether to regenerate slider_images if they already exist
+    keep_sliders = True
+
     # Clean up any existing build, create new build directories
-    clean_build()
+    keep_sliders = clean_build(keep_sliders=keep_sliders)
 
     # Load the html templates
     templates = load_templates()
@@ -521,5 +530,5 @@ if __name__ == "__main__":
     copy_assets()
     copy_styles()
     copy_scripts()
-    # TODO Move this?
-    copy_slider_images()
+    if not keep_sliders:
+        copy_slider_images()

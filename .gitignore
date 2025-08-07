@@ -9,3 +9,6 @@ src/pages/sliders.html
 
 # Token for querying ADS
 ADS_token
+
+# Image files
+src/slider_images/*

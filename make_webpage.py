@@ -433,6 +433,7 @@ def make_sliders(templates, input_sections):
             section_template,
             {
                 "SECTION_TITLE": section_title,
+                "DESCRIPTION": section_info['description'],
                 "SLIDER_ID": str(i_section),
                 "BUTTONS": buttons,
                 "INITIAL_LEFT_IMG": left_img_path+'.png',

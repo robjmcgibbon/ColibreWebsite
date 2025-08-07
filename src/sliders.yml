@@ -1,6 +1,6 @@
 Individual galaxies:
   dirname: galaxies
-  description: "Simulated galaxies from the L25m5 as viewed by different telescopes"
+  description: "z=0 simulated galaxies from the L25m5 as viewed by different telescopes"
   show_Left_Right: Property
   buttons:
     - GalaxyID
@@ -9,6 +9,12 @@ Individual galaxies:
     - HST
     - Euclid
     - SDSS
+    - Gas
+    - Dust
+    - HI
+    - H2
+    - Stars
+    - SFR
   GalaxyID:
     - "104"
     - "979"
@@ -64,8 +70,8 @@ AGN Feedback Model:
     - Simulation
     - Redshift
   Property:
-    - Gas
     - Temperature
+    - Gas
     - Metallicity
     - Xray
     - ComptonY

@@ -6,7 +6,7 @@
 
 <h1>Image sliders</h1>
 
-<p style="text-align: center;">Right click the images to save a full size version!</p>
+<p style="text-align: center;">Use the download links to save a full size version!</p>
 
 %SECTIONS%
 
@@ -55,7 +55,33 @@ function updateImage(sliderId) {
     const { imageDirectory, leftType, rightType, type0, type1, type2, type3, type4 } = state[sliderId];
     leftImg.src = `slider_images/${imageDirectory}/L${leftType}${type0}${type1}${type2}${type3}${type4}.png`;
     rightImg.src = `slider_images/${imageDirectory}/R${rightType}${type0}${type1}${type2}${type3}${type4}.png`;
+
+
 }
+
+function updateImage(sliderId) {
+    // Construct paths
+    const { imageDirectory, leftType, rightType, type0, type1, type2, type3, type4 } = state[sliderId];
+
+    const leftPath = `slider_images/${imageDirectory}/L${leftType}${type0}${type1}${type2}${type3}${type4}.png`;
+    const rightPath = `slider_images/${imageDirectory}/R${rightType}${type0}${type1}${type2}${type3}${type4}.png`;
+
+    // Update images
+    const container = document.getElementById(sliderId);
+    const leftImg = container.querySelector('.img-comp-overlay img');
+    const rightImg = container.querySelector('.img-comp-img:first-child img');
+
+    leftImg.src = leftPath;
+    rightImg.src = rightPath;
+
+    // Update download links
+    const leftLink = document.getElementById(`full_left${sliderId.replace("slider", "")}`);
+    const rightLink = document.getElementById(`full_right${sliderId.replace("slider", "")}`);
+
+    leftLink.href = leftPath;
+    rightLink.href = rightPath;
+}
+
 
 function compare() {
     const overlays = document.getElementsByClassName("img-comp-overlay");

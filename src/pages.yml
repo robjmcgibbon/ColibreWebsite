@@ -6,7 +6,7 @@ project_description.html:
 
 gallery.html:
   title: Image/Video gallery
-  # TODO: Is this needed (it's in the template)
+  # TODO: Move this to the template?
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
   sidebar: gallery

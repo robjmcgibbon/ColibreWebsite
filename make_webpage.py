@@ -96,19 +96,12 @@ def make_page(page, pages, templates):
             extra_header += template_replace(script_template, {"SCRIPT_SRC": script})
     page_out = template_replace(page_out, {"EXTRA_HEADER": extra_header})
 
-    # check if we have a page-specific footer
-    extra_footer = ""
-    if "postscripts" in pages[page]:
-        for script in pages[page]["postscripts"]:
-            extra_footer += template_replace(script_template, {"SCRIPT_SRC": script})
-    page_out = template_replace(page_out, {"EXTRA_FOOTER": extra_footer})
-
     title = "The COLIBRE project"
     if not pages[page]["title"] == "":
         title += " - " + pages[page]["title"]
 
-    # The value of side bar in page.yml should be the yml file
-    # to load to get the sections of the page
+    # The value of "sidebar" in page.yml should be the yaml file
+    # to load to determine the different sections contained in the page
     sidebar = ""
     if "sidebar" in pages[page]:
         with open(f'src/{pages[page]["sidebar"]}.yml') as f:
@@ -181,19 +174,6 @@ def copy_styles():
             f"build/css/{os.path.basename(css)}", "w"
         ) as ofile:
             ofile.write(rcssmin.cssmin(ifile.read()))
-
-
-def copy_scripts():
-    """
-    Copy all contents of src/javascript/ into build/, and minify it along the
-    way.
-    """
-    for script in sorted(glob.glob("src/javascript/*.js")):
-        with open(script, "r") as ifile, open(
-            f"build/js/{os.path.basename(script)}", "w"
-        ) as ofile:
-            ofile.write(jsmin.jsmin(ifile.read()))
-
 
 def run_process(command, return_output=False):
     """
@@ -524,6 +504,5 @@ if __name__ == "__main__":
     # Copy the assets.
     copy_assets()
     copy_styles()
-    copy_scripts()
     if not keep_sliders:
         copy_slider_images()

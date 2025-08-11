@@ -3,49 +3,32 @@
 <h1>Simulations</h1>
 <p>The COLIBRE simulations and their properties are listed below.</p>
 
-<h2>Hydrodynamical simulations</h2>
+<h2>Thermal AGN Feedback</h2>
 <p>
-The columns list the simulation identifier (where L is followed by the side length of the cubic simulation volume in comoving Mpc; m is followed by the rounded log<sub>10</sub> of the mean particle mass in solar masses (for both baryons and DM); h indicates hybrid AGN feedback); the type of AGN feedback; the comoving box side length, L; the number of baryonic particles, N<sub>b</sub>; the number of CDM particles, N<sub>CDM</sub>; the initial mean baryonic particle mass, m<sub>g</sub>; the mean CDM particle mass, m<sub>CDM</sub>; the Plummer-equivalent comoving gravitational softening length, &epsilon;<sub>com</sub>; the maximum proper gravitational softening length, &epsilon;<sub>com</sub>.
+The table below shows all the COLIBRE cosmological simulations run with thermal AGN feedback. The columns list the simulation identifier (where L is followed by the side length of the cubic simulation volume in comoving Mpc; m is followed by the rounded log<sub>10</sub> of the mean particle mass in solar masses (for both baryons and DM); h indicates hybrid AGN feedback); the comoving box side length, L; the number of baryonic particles, N<sub>b</sub>; the number of CDM particles, N<sub>CDM</sub>; the initial mean baryonic particle mass, m<sub>g</sub>; the mean CDM particle mass, m<sub>CDM</sub>; the Plummer-equivalent comoving gravitational softening length, &epsilon;<sub>com</sub>; the maximum proper gravitational softening length, &epsilon;<sub>com</sub>.
 </p>
 
-<!--Sort by softening, then boxsize, then AGN-->
-<button class="sort-button" id="sortByResolution" onclick="setSort(7, 2, 1, this)">Sort by particle mass</button>
-<!--Sort by boxsize, then softening, then AGN-->
-<button class="sort-button" onclick="setSort(2, 7, 1, this)">Sort by box size</button>
-<!--Sort by Npart, then boxsize, then AGN-->
-<button class="sort-button" onclick="setSort(3, 2, 1, this)">Sort by number of particles</button>
-
-
-<!--TODO: Check these values are correct-->
-<table class="table table-striped" id="simulationTable">
+<div>
+    <button class="sort-button" id="sortByResolutionThermal" onclick="setSort('thermalTable', 6, 1, 0, this)">Sort by particle mass</button>
+    <button class="sort-button" onclick="setSort('thermalTable', 1, 6, 0, this)">Sort by box size</button>
+    <button class="sort-button" onclick="setSort('thermalTable', 2, 6, 0, this)">Sort by number of particles</button>
+</div>
+<table class="table table-striped" id="thermalTable">
     <thead>
-    <tr>
-        <th>Identifier</th>
-        <th>AGN</th>
-        <th>L<br>(cMpc)</th>
-        <th>N<sub>b</sub><br></th>
-        <th>N<sub>CDM</sub></th>
-        <th>m<sub>g</sub><br>(M<sub>&#9737;</sub>)</th>
-        <th>m<sub>CDM</sub><br>(M<sub>&#9737;</sub>)</th>
-        <th>&epsilon;<sub>com</sub><br>(ckpc)</th>
-        <th>&epsilon;<sub>prop</sub><br>(pkpc)</th>
-    </tr>
+        <tr>
+            <th>Identifier</th>
+            <th>L<br>(cMpc)</th>
+            <th>N<sub>b</sub><br></th>
+            <th>N<sub>CDM</sub></th>
+            <th>m<sub>g</sub><br>(M<sub>&#9737;</sub>)</th>
+            <th>m<sub>CDM</sub><br>(M<sub>&#9737;</sub>)</th>
+            <th>&epsilon;<sub>com</sub><br>(ckpc)</th>
+            <th>&epsilon;<sub>prop</sub><br>(pkpc)</th>
+        </tr>
     </thead>
     <tbody>
         <tr>
             <td>L025m5</td>
-            <td>Thermal</td>
-            <td>25</td>
-            <td>752<sup>3</sup></td>
-            <td>4×752<sup>3</sup></td>
-            <td>2.30×10<sup>5</sup></td>
-            <td>3.03×10<sup>5</sup></td>
-            <td>0.9</td>
-            <td>0.35</td>
-        </tr>
-        <tr>
-            <td>L025m5h</td>
-            <td>Hybrid</td>
             <td>25</td>
             <td>752<sup>3</sup></td>
             <td>4×752<sup>3</sup></td>
@@ -56,7 +39,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L050m5</td>
-            <td>Thermal</td>
             <td>50</td>
             <td>1504<sup>3</sup></td>
             <td>4×1504<sup>3</sup></td>
@@ -67,18 +49,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L025m6</td>
-            <td>Thermal</td>
-            <td>25</td>
-            <td>376<sup>3</sup></td>
-            <td>4×376<sup>3</sup></td>
-            <td>1.84×10<sup>6</sup></td>
-            <td>2.42×10<sup>6</sup></td>
-            <td>1.8</td>
-            <td>0.7</td>
-        </tr>
-        <tr>
-            <td>L025m6h</td>
-            <td>Hybrid</td>
             <td>25</td>
             <td>376<sup>3</sup></td>
             <td>4×376<sup>3</sup></td>
@@ -89,18 +59,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L050m6</td>
-            <td>Thermal</td>
-            <td>50</td>
-            <td>752<sup>3</sup></td>
-            <td>4×752<sup>3</sup></td>
-            <td>1.84×10<sup>6</sup></td>
-            <td>2.42×10<sup>6</sup></td>
-            <td>1.8</td>
-            <td>0.7</td>
-        </tr>
-        <tr>
-            <td>L050m6h</td>
-            <td>Hybrid</td>
             <td>50</td>
             <td>752<sup>3</sup></td>
             <td>4×752<sup>3</sup></td>
@@ -111,18 +69,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L100m6</td>
-            <td>Thermal</td>
-            <td>100</td>
-            <td>1504<sup>3</sup></td>
-            <td>4×1504<sup>3</sup></td>
-            <td>1.84×10<sup>6</sup></td>
-            <td>2.42×10<sup>6</sup></td>
-            <td>1.8</td>
-            <td>0.7</td>
-        </tr>
-        <tr>
-            <td>L100m6h</td>
-            <td>Hybrid</td>
             <td>100</td>
             <td>1504<sup>3</sup></td>
             <td>4×1504<sup>3</sup></td>
@@ -133,7 +79,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L200m6</td>
-            <td>Thermal</td>
             <td>200</td>
             <td>3008<sup>3</sup></td>
             <td>4×3008<sup>3</sup></td>
@@ -144,18 +89,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L025m7</td>
-            <td>Thermal</td>
-            <td>25</td>
-            <td>188<sup>3</sup></td>
-            <td>4×188<sup>3</sup></td>
-            <td>1.47×10<sup>7</sup></td>
-            <td>1.94×10<sup>7</sup></td>
-            <td>3.6</td>
-            <td>1.4</td>
-        </tr>
-        <tr>
-            <td>L025m7h</td>
-            <td>Hybrid</td>
             <td>25</td>
             <td>188<sup>3</sup></td>
             <td>4×188<sup>3</sup></td>
@@ -166,18 +99,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L050m7</td>
-            <td>Thermal</td>
-            <td>50</td>
-            <td>376<sup>3</sup></td>
-            <td>4×376<sup>3</sup></td>
-            <td>1.47×10<sup>7</sup></td>
-            <td>1.94×10<sup>7</sup></td>
-            <td>3.6</td>
-            <td>1.4</td>
-        </tr>
-        <tr>
-            <td>L050m7h</td>
-            <td>Hybrid</td>
             <td>50</td>
             <td>376<sup>3</sup></td>
             <td>4×376<sup>3</sup></td>
@@ -188,18 +109,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L100m7</td>
-            <td>Thermal</td>
-            <td>100</td>
-            <td>752<sup>3</sup></td>
-            <td>4×752<sup>3</sup></td>
-            <td>1.47×10<sup>7</sup></td>
-            <td>1.94×10<sup>7</sup></td>
-            <td>3.6</td>
-            <td>1.4</td>
-        </tr>
-        <tr>
-            <td>L100m7h</td>
-            <td>Hybrid</td>
             <td>100</td>
             <td>752<sup>3</sup></td>
             <td>4×752<sup>3</sup></td>
@@ -210,18 +119,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L200m7</td>
-            <td>Thermal</td>
-            <td>200</td>
-            <td>1504<sup>3</sup></td>
-            <td>4×1504<sup>3</sup></td>
-            <td>1.47×10<sup>7</sup></td>
-            <td>1.94×10<sup>7</sup></td>
-            <td>3.6</td>
-            <td>1.4</td>
-        </tr>
-        <tr>
-            <td>L200m7h</td>
-            <td>Hybrid</td>
             <td>200</td>
             <td>1504<sup>3</sup></td>
             <td>4×1504<sup>3</sup></td>
@@ -232,7 +129,6 @@ The columns list the simulation identifier (where L is followed by the side leng
         </tr>
         <tr>
             <td>L400m7</td>
-            <td>Thermal</td>
             <td>400</td>
             <td>3008<sup>3</sup></td>
             <td>4×3008<sup>3</sup></td>
@@ -244,88 +140,210 @@ The columns list the simulation identifier (where L is followed by the side leng
     </tbody>
 </table>
 
+<h2>Hybrid AGN Feedback</h2>
+<p>
+The table below shows all the COLIBRE cosmological simulations run with hybrid AGN feedback. The format of the table is the same as above.
+</p>
+<div>
+    <button class="sort-button" id="sortByResolutionHybrid" onclick="setSort('hybridTable', 6, 1, 0, this)">Sort by particle mass</button>
+    <button class="sort-button" onclick="setSort('hybridTable', 1, 6, 0, this)">Sort by box size</button>
+    <button class="sort-button" onclick="setSort('hybridTable', 2, 6, 0, this)">Sort by number of particles</button>
+</div>
+<table class="table table-striped" id="hybridTable">
+    <thead>
+        <tr>
+            <th>Identifier</th>
+            <th>L<br>(cMpc)</th>
+            <th>N<sub>b</sub><br></th>
+            <th>N<sub>CDM</sub></th>
+            <th>m<sub>g</sub><br>(M<sub>&#9737;</sub>)</th>
+            <th>m<sub>CDM</sub><br>(M<sub>&#9737;</sub>)</th>
+            <th>&epsilon;<sub>com</sub><br>(ckpc)</th>
+            <th>&epsilon;<sub>prop</sub><br>(pkpc)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>L025m5h</td>
+            <td>25</td>
+            <td>752<sup>3</sup></td>
+            <td>4×752<sup>3</sup></td>
+            <td>2.30×10<sup>5</sup></td>
+            <td>3.03×10<sup>5</sup></td>
+            <td>0.9</td>
+            <td>0.35</td>
+        </tr>
+        <tr>
+            <td>L025m6h</td>
+            <td>25</td>
+            <td>376<sup>3</sup></td>
+            <td>4×376<sup>3</sup></td>
+            <td>1.84×10<sup>6</sup></td>
+            <td>2.42×10<sup>6</sup></td>
+            <td>1.8</td>
+            <td>0.7</td>
+        </tr>
+        <tr>
+            <td>L050m6h</td>
+            <td>50</td>
+            <td>752<sup>3</sup></td>
+            <td>4×752<sup>3</sup></td>
+            <td>1.84×10<sup>6</sup></td>
+            <td>2.42×10<sup>6</sup></td>
+            <td>1.8</td>
+            <td>0.7</td>
+        </tr>
+        <tr>
+            <td>L100m6h</td>
+            <td>100</td>
+            <td>1504<sup>3</sup></td>
+            <td>4×1504<sup>3</sup></td>
+            <td>1.84×10<sup>6</sup></td>
+            <td>2.42×10<sup>6</sup></td>
+            <td>1.8</td>
+            <td>0.7</td>
+        </tr>
+        <tr>
+            <td>L025m7h</td>
+            <td>25</td>
+            <td>188<sup>3</sup></td>
+            <td>4×188<sup>3</sup></td>
+            <td>1.47×10<sup>7</sup></td>
+            <td>1.94×10<sup>7</sup></td>
+            <td>3.6</td>
+            <td>1.4</td>
+        </tr>
+        <tr>
+            <td>L050m7h</td>
+            <td>50</td>
+            <td>376<sup>3</sup></td>
+            <td>4×376<sup>3</sup></td>
+            <td>1.47×10<sup>7</sup></td>
+            <td>1.94×10<sup>7</sup></td>
+            <td>3.6</td>
+            <td>1.4</td>
+        </tr>
+        <tr>
+            <td>L100m7h</td>
+            <td>100</td>
+            <td>752<sup>3</sup></td>
+            <td>4×752<sup>3</sup></td>
+            <td>1.47×10<sup>7</sup></td>
+            <td>1.94×10<sup>7</sup></td>
+            <td>3.6</td>
+            <td>1.4</td>
+        </tr>
+        <tr>
+            <td>L200m7h</td>
+            <td>200</td>
+            <td>1504<sup>3</sup></td>
+            <td>4×1504<sup>3</sup></td>
+            <td>1.47×10<sup>7</sup></td>
+            <td>1.94×10<sup>7</sup></td>
+            <td>3.6</td>
+            <td>1.4</td>
+        </tr>
+    </tbody>
+</table>
+
 
 <h2>Dark matter only simulations</h2>
 <p>
-  For each hydrodynamic simulation, there is a corresponding DMO simulation that uses the same initial phases and the same total number of particles. 
-  To create the initial conditions for the DMO simulation, we converted the baryonic particles from the corresponding hydrodyamic run into CDM particles.
+    For each hydrodynamic simulation, there is a corresponding DMO simulation that uses the same initial phases and the same total number of particles.
+    To create the initial conditions for the DMO simulation, we converted the baryonic particles from the corresponding hydrodyamic run into CDM particles.
 </p>
 
-
-
 <script>
-  function setSort(primaryIndex, secondaryIndex, tertiaryIndex, clickedButton) {
-    // Set clicked button to active
-    const buttons = document.querySelectorAll("button");
-    buttons.forEach(btn => btn.classList.remove("active"));
-    clickedButton.classList.add("active");
+    // Function to set the active button and trigger the sort.
+    // It now accepts a tableId to know which table's button set and data to manage.
+    function setSort(tableId, primaryIndex, secondaryIndex, tertiaryIndex, clickedButton) {
+        // Get all buttons belonging to the same group as the one clicked and remove 'active' class
+        const buttons = clickedButton.parentElement.querySelectorAll(".sort-button");
+        buttons.forEach(btn => btn.classList.remove("active"));
+        
+        // Set the clicked button to active
+        clickedButton.classList.add("active");
 
-    // Sort table by indices provided
-    sortTable(primaryIndex, secondaryIndex, tertiaryIndex);
-  }
-
-  function extractBaseNumber(cell, index) {
-    const raw = cell.textContent.trim();
-
-    // Sort by Thermal runs first, then Hybrid
-    if (index === 1) {
-      if (raw === "Thermal") return 0;
-      if (raw === "Hybrid") return 0;
-      return -1; // fallback for unexpected names
+        // Sort the specified table by the provided column indices
+        sortTable(tableId, primaryIndex, secondaryIndex, tertiaryIndex);
     }
 
-    // Extract number of particles (ignoring the ^3 part)
-    if (index === 3) {
-      const match = raw.match(/^(\d+)/);
-      return match ? parseInt(match[1]) : NaN;
+    // Extracts the sortable value from a table cell.
+    function extractBaseNumber(cell, index) {
+        const raw = cell.textContent.trim();
+
+        // Reverse sort order for boxsize
+        if (index === 1) {
+            return -parseFloat(raw);
+        }
+
+        <!--# TODO: Do I want this?-->
+        // Extract number of particles (ignoring the ^3 part)
+        if (index === 2) {
+            const match = raw.match(/^(\d+)/);
+            return match ? -parseInt(match[1]) : NaN;
+        }
+
+        // For other columns, parse as a float if it's a number.
+        return isNaN(raw) ? raw : parseFloat(raw);
     }
 
-    return isNaN(raw) ? raw : parseFloat(raw);
-  }
+    // Main sorting function, now takes a tableId to target a specific table.
+    function sortTable(tableId, primaryIndex, secondaryIndex, tertiaryIndex) {
+        const table = document.getElementById(tableId);
+        if (!table) {
+            console.error("Table with ID '" + tableId + "' not found.");
+            return;
+        }
+        const rows = Array.from(table.tBodies[0].rows);
 
-  function sortTable(primaryIndex, secondaryIndex, tertiaryIndex) {
-    // AI generated sort function
-    const table = document.getElementById("simulationTable");
-    const rows = Array.from(table.tBodies[0].rows);
+        rows.sort((a, b) => {
+            const keys = [primaryIndex, secondaryIndex, tertiaryIndex];
 
-    rows.sort((a, b) => {
-      const keys = [primaryIndex, secondaryIndex, tertiaryIndex];
+            for (const key of keys) {
+                const aVal = extractBaseNumber(a.cells[key], key);
+                const bVal = extractBaseNumber(b.cells[key], key);
 
-      for (const key of keys) {
-        const aVal = extractBaseNumber(a.cells[key], key);
-        const bVal = extractBaseNumber(b.cells[key], key);
+                const comparison = typeof aVal === "number" ?
+                    aVal - bVal :
+                    String(aVal).localeCompare(String(bVal));
 
-        const comparison = typeof aVal === "number"
-          ? aVal - bVal
-          : String(aVal).localeCompare(String(bVal));
+                if (comparison !== 0) return comparison;
+            }
 
-        if (comparison !== 0) return comparison;
-      }
+            return 0;
+        });
 
-      return 0;
-    });
+        const tbody = table.tBodies[0];
+        tbody.innerHTML = '';
+        rows.forEach(row => {
+            row.classList.remove('group-end');
+            tbody.appendChild(row);
+        });
 
-    const tbody = table.tBodies[0];
-    tbody.innerHTML = '';
-    rows.forEach(row => {
-      row.classList.remove('group-end');
-      tbody.appendChild(row);
-    });
-
-    // Add group lines based on first key
-    for (let i = 0; i < rows.length; i++) {
-      const current = extractBaseNumber(rows[i].cells[primaryIndex], primaryIndex);
-      const next = extractBaseNumber(rows[i + 1]?.cells[primaryIndex], primaryIndex);
-      if (current !== next) {
-        rows[i].classList.add('group-end');
-      }
+        // Add group lines based on the primary sort key to visually group sorted items.
+        for (let i = 0; i < rows.length -1; i++) { // a -1 to avoid checking beyond the last row
+            const current = extractBaseNumber(rows[i].cells[primaryIndex], primaryIndex);
+            const next = extractBaseNumber(rows[i + 1].cells[primaryIndex], primaryIndex);
+            if (current !== next) {
+                rows[i].classList.add('group-end');
+            }
+        }
     }
-  }
 
-  // Default sort on load
-  window.onload = function () {
-    const defaultButton = document.getElementById("sortByResolution");
-    defaultButton.click()
-  };
+    // On window load, apply the default sort to BOTH tables.
+    window.onload = function() {
+        // Trigger the default sort for the Thermal table
+        const defaultButtonThermal = document.getElementById("sortByResolutionThermal");
+        if (defaultButtonThermal) {
+            defaultButtonThermal.click();
+        }
+        
+        // Trigger the default sort for the Hybrid table
+        const defaultButtonHybrid = document.getElementById("sortByResolutionHybrid");
+        if (defaultButtonHybrid) {
+            defaultButtonHybrid.click();
+        }
+    };
 </script>
 

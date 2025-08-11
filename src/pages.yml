@@ -24,6 +24,7 @@ sliders.html:
 
 papers.html:
   title: Publications
+  sidebar: publications
 
 # TODO: Re-enable
 #team.html:

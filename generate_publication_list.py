@@ -76,13 +76,12 @@ def generate_publication_list():
         file.write('<h1>COLIBRE Publications</h1>\n')
         file.write('This page contains a list of publications submitted to arXiv which make use of the COLIBRE simulations. The papers are listed in chronological order based on when they were uploaded to arXiv. Please let us know if we have missed your paper!\n\n')
 
-        # TODO: Different categories of papers
-        for section_header, papers in [
+        for i_section, (section_header, papers) in enumerate([
                 ('Introduction Papers', analysis_papers),
                 ('Method Papers', analysis_papers),
                 ('Analysis Papers', analysis_papers),
-            ]:
-            file.write(f'<h2>{section_header}</h2>\n')
+            ]):
+            file.write(f'<h2 id="sec{i_section}">{section_header}</h2>\n')
             file.write('<ol>\n')
 
             for paper in papers:

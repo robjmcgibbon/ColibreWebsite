@@ -1,6 +1,6 @@
 Individual galaxies:
   dirname: galaxies
-  description: "z=0 simulated galaxies from the L25m5 as viewed by different telescopes"
+  description: "z=0 simulated galaxies from the L025m5"
   show_Left_Right: Property
   buttons:
     - GalaxyID
@@ -32,7 +32,7 @@ Individual galaxies:
     - Face on
     - Edge on
 
-Box slices:
+Box slice property comparision:
   dirname: slices
   description: "10cMpc slices through different simulation boxes"
   show_Left_Right: Property
@@ -61,7 +61,7 @@ Box slices:
     - "8"
     - "10"
 
-AGN Feedback Model:
+AGN feedback model comparision:
   dirname: thermal_hybrid
   description: "Comparison of runs with thermal (left) vs hybrid (right) AGN feedback"
   show_Left_Right: false

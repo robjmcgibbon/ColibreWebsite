@@ -105,6 +105,7 @@ body::before { /* delete all except the color line if we don't want the image */
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 0.75rem;
+  max-width: 150px;
 }
 
 /* Style the links inside the sidebar */
@@ -112,15 +113,31 @@ body::before { /* delete all except the color line if we don't want the image */
   color: #6c757d;
   font-weight: 500;
   padding: 0.5rem 0;
-  text-align: center;            /* Center text */
+  text-align: left;            /* Center text */
   display: block;                /* Ensure full width */
   transition: color 0.2s;
 }
 
-/* Remove the bottom border for the last item */
-#sidebar .nav-link:last-child {
+/*Add bullet points*/
+#sidebar ul.nav {
+  list-style-type: disc;  /* bullets instead of none */
+  padding-left: 1.25rem;  /* space so bullets don't overlap text */
+}
+
+/*Add a line after each item (but not for the final item)*/
+#sidebar ul.nav > li.nav-item {
+  border-bottom: 1px solid #ccc;
+}
+#sidebar ul.nav > li.nav-item:last-child {
   border-bottom: none;
 }
+
+/*Text wrapping*/
+#sidebar .nav-link {
+  white-space: normal;    /* Allow wrapping */
+  word-break: normal;     /* Only break at spaces or hyphens */
+}
+
 
 #sidebar .nav-link:hover {
   color: #495057;

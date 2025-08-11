@@ -65,7 +65,7 @@ def make_sidebar(sections):
 
     links = ""
     for i, section in enumerate(sections):
-        links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section.replace(" ", "<br>")}</a></li>\n'
+        links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section}</a></li>\n'
 
     return template_replace(sidebar, {"LINK_LIST": links})
 

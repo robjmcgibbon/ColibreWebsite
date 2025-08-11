@@ -163,7 +163,7 @@ def copy_slider_images():
         os.makedirs(f"build/slider_images/{dirname}", exist_ok=True)
     for input_image in sorted(glob.glob("src/slider_images/*/*")):
         output_image = input_image.replace('src', 'build', 1).replace('.png', '.jpg')
-        cmd = f'convert {input_image} -resize 800x800 -gravity center -background white -extent 800x800 -quality 80 {output_image}'
+        cmd = f'convert "{input_image}" -resize 800x800 -gravity center -background white -extent 800x800 -quality 90 "{output_image}"'
         print(f'Compressing {output_image}')
         run_process(cmd)
 
@@ -222,7 +222,6 @@ def clean_build(keep_sliders=False):
 
     cmd = f"rm -rf build/*"
     run_process(cmd)
-    # TODO Which of these do we need?
     cmd = f"mkdir -p build/assets build/assets/team build/assets/index build/assets/project_description"
     run_process(cmd)
     cmd = f"mkdir -p build/css build/images build/slider_images build/videos"
@@ -240,8 +239,7 @@ def create_thumbnail(img_id, img_src):
     """
     Create a thumbnail for the given image file.
     """
-    # cmd = f"convert src/images/{img_src} -resize 200x200 build/images/{img_id}_200.png"
-    cmd = f'convert src/images/{img_src} -resize 200x200 -gravity center -background none -extent 200x200 build/images/{img_id}_200.png'
+    cmd = f'convert src/gallery/{img_src} -resize 200x200 -gravity center -background none -extent 200x200 build/images/{img_id}_200.png'
 
     run_process(cmd)
     return f"images/{img_id}_200.png"
@@ -252,10 +250,9 @@ def create_image(img_id, img_src):
     Copy the given image from src/images/ to build/, and resize if it is larger
     than 800x800 pixels.
     """
-    cmd = f"cp src/images/{img_src} build/images/{img_id}_full.png"
+    cmd = f"cp src/gallery/{img_src} build/images/{img_id}_full.png"
     run_process(cmd)
-    # TODO Do we want to resize?
-    cmd = f"convert src/images/{img_src} -resize 768x800\\> build/images/{img_id}_800.png"
+    cmd = f"convert src/gallery/{img_src} -resize 768x800\\> build/images/{img_id}_800.png"
     run_process(cmd)
     return f"images/{img_id}_800.png"
 
@@ -267,7 +264,7 @@ def create_video_thumbnail(img_id, img_src):
     ## first, extract the first frame from the video
     #cmd = f"ffmpeg -hide_banner -loglevel error -i src/videos/{img_src} -vframes 1 -r 1 -vf scale=200:-1 -f image2 build/videos/{img_id}_200.png"
     # now the last frame is used instead, as it's generally more interesting
-    cmd = f"ffmpeg -hide_banner -loglevel error -sseof -1 -i src/videos/{img_src} -vsync 0 -q:v 1 -update true -vf scale=200:-1 -f image2 build/videos/{img_id}_200.png"
+    cmd = f"ffmpeg -hide_banner -loglevel error -sseof -1 -i src/gallery/{img_src} -vsync 0 -q:v 1 -update true -vf scale=200:-1 -f image2 build/videos/{img_id}_200.png"
     run_process(cmd)
     # get the dimensions of the first frame (width is fixed, but height is variable)
     cmd = f"identify build/videos/{img_id}_200.png"
@@ -292,23 +289,21 @@ def create_video(img_id, img_src):
     We could maybe do some conversions if necessary, but that is too complex for
     now.
     """
-    shutil.copyfile(f"src/videos/{img_src}", f"build/videos/{img_id}.mp4")
+    shutil.copyfile(f"src/gallery/{img_src}", f"build/videos/{img_id}.mp4")
     return f"videos/{img_id}.mp4"
 
 
-def make_gallery(templates, input_sections, obj_type):
+def make_gallery(templates, input_sections):
     """
     Create the gallery from the given image sections dictionary.
 
     The dictionary should have the following structure:
       {"SECTION HEADING": {"img.png": "Caption", "video.mp4": "Caption},
        "SECTION HEADING": {"img.png": "Caption"}}
-    Only ".png" and ".mp4" are supported, for respectively images and videos.
-    All ".png/mp4" files listed should be present in src/images/.
     """
 
     # load all templates
-    gallery_template = templates[f"{obj_type}_gallery.html"]
+    gallery_template = templates[f"gallery.html"]
     section_template = templates["gallery_section.html"]
     card_template = templates["image_card.html"]
 
@@ -325,7 +320,13 @@ def make_gallery(templates, input_sections, obj_type):
             # it will also be used to identify the corresponding modal and
             # should therefore be unique
             obj_id = f"SEC{sid}IMG{id}"
-            # distinguish between images (.png) and videos (anything else)
+            # distinguish between images and videos
+            if obj_src.endswith('.mp4'):
+                obj_type = 'video'
+            elif obj_src.endswith('.png') or obj_src.endswith('.jpg'):
+                obj_type = 'image'
+            else:
+                raise NotImplementedError(f'Unable to determine obj_type of {obj_src}')
             if obj_type == "image":
                 obj_src_orig = create_image(obj_id, obj_src)
                 obj_src_thumb = create_thumbnail(obj_id, obj_src)
@@ -354,7 +355,7 @@ def make_gallery(templates, input_sections, obj_type):
         )
 
     # generate the new src/pages/gallery.html
-    with open(f"src/pages/{obj_type}_gallery.html", "w") as ofile:
+    with open(f"src/pages/gallery.html", "w") as ofile:
         ofile.write(template_replace(gallery_template, {"IMG_SECTIONS": sections}))
 
 
@@ -501,21 +502,15 @@ if __name__ == "__main__":
     # Load the html templates
     templates = load_templates()
 
-    # Generate the galleries
-    with open("src/images.yml", "r") as handle:
-        images = yaml.safe_load(handle)
-    make_gallery(templates, images, "image")
-
-    # TODO
-    # with open("src/videos.yml", "r") as handle:
-        # videos = yaml.safe_load(handle)
-    # make_gallery(templates, videos, "video")
+    # Generate the gallery
+    with open("src/gallery.yml", "r") as handle:
+        gallery = yaml.safe_load(handle)
+    make_gallery(templates, gallery)
 
     # Create the sliders
     with open("src/sliders.yml", "r") as handle:
         sliders = yaml.safe_load(handle)
     make_sliders(templates, sliders)
-    # TODO: Add sidebar
 
     # Generate a list of publications
     # generate_publication_list.generate_publication_list()

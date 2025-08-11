@@ -4,19 +4,12 @@ index.html:
 project_description.html:
   title: "Project Description"
 
-image_gallery.html:
-  title: Image Gallery
-  # TODO: What is this doing?
+gallery.html:
+  title: Image/Video gallery
+  # TODO: Is this needed (it's in the template)
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: images
-
-# TODO
-#video_gallery.html:
-  #title: Video gallery
-  #prescripts:
-   #- https://code.jquery.com/jquery-3.6.0.min.js
-  #sidebar: videos
+  sidebar: gallery
 
 sliders.html:
   title: Image Sliders

@@ -197,6 +197,8 @@ def clean_build(keep_sliders=False):
     if keep_sliders and os.path.exists('build/slider_images'):
         cmd = f"mv build/slider_images tmp_slider_images"
         run_process(cmd)
+        cmd = f"mv build/hires_slider_images tmp_hires_slider_images"
+        run_process(cmd)
     else:
         keep_sliders = False
 
@@ -209,6 +211,8 @@ def clean_build(keep_sliders=False):
 
     if keep_sliders:
         cmd = f"rm -r build/slider_images; mv tmp_slider_images build/slider_images"
+        run_process(cmd)
+        cmd = f"mv tmp_hires_slider_images build/hires_slider_images"
         run_process(cmd)
 
     return keep_sliders

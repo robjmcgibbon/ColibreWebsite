@@ -27,6 +27,7 @@ Run `grep -r TODO *`
 - Create clean version of these repo once all images/videos have been placed elsewhere
 - Interative zoom images
 - Add colibre logos to images from gallery
+- Add (Thermal < > Hybrid) slider icon to indicate which is which
 
 ### Nice-to-have
 - Mobile support

@@ -1,18 +1,20 @@
 Box slices:
-  cluster.png: This text is far too long so it should get cut off. A slice displaying gas density of the L400m7 simulation, with a zoomed GRI image of a massive cluster. 
-  zoom.png: A zoom on a large halo in the L200m6 simulation
-  jets.png: A slice from the L50m6h simulation showing jets due to AGN feedback
+  cubes.png: The five cubic COLIBRE boxes, which have side lengths ranging from 25 to 400 comoving Mpc. Colour shows total surface density (in 5 Mpc thick faces) at z = 0. The volumes available at high (m5), intermediate (m6), and low (m7) resolution are indicated.
+  cluster.png: A slice displaying the gas density of the L400m7 simulation, with a zoomed GRI image of a massive cluster. 
+  jets.png: A slice from the L50m6h simulation showing jets produced by AGN feedback.
 
 Galaxies:
-  sombrero.png: A galaxy from the m5 simulation
-  spiral.png: A galaxy from the m5 simulation
-  hubble_tuning_fork.png: The Hubble Tuning fork
-
-Misc:
-  colibri_aurora.jpg: https://apod.nasa.gov/apod/ap250210.html
+  sombrero.png: A spiral galaxy from the z=0 snapshot of the L25m5 simulation, generated using an approximate radiative transfer method.
+  spiral.png: A spiral galaxy from the z=0 snapshot of the L25m5 simulation, generated using an approximate radiative transfer method.
+  hubble_tuning_fork.png: The Hubble tuning fork of galaxies from the z=0 snapshot of the L25m5 simulation, generated using an approximate radiative transfer method.
+  galaxy_resolution.png: A comparison of how galaxies of different masses appear at different resolutions. The images were generated using an approximate radiative transfer method.
 
 Galaxy videos:
-  filip.mp4: Evolution of MW-mass galaxies in HST's gri filters
+  filip.mp4: Evolution of a Milky Way mass galaxy in HST's gri filters. The images were generated using an approximate radiative transfer method.
 
 Sonified videos:
-  james.mp4: Sonified spiral sequence
+  james.mp4: Sonified spiral sequence, where sounds are mapped to different processes within that galaxy. Star formation rate is represented by a harmonic sound that changes in timbre, a windy sound that increases in intensity indicates the energy outflow rate, and a ticking sound marks constant mass increments accreted by the black hole.
+
+Misc:
+  colibri_aurora.jpg: "A colibri-shaped aurora which appeared in the sky above Norway. Image credit & Copyright: Mickael Coulon."
+# TODO: Do we need permission for this? https://apod.nasa.gov/apod/ap250210.html

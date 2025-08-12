@@ -12,3 +12,4 @@ ADS_token
 
 # Image files
 src/slider_images/*
+src/gallery/*

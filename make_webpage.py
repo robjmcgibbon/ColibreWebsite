@@ -493,8 +493,8 @@ if __name__ == "__main__":
     make_sliders(templates, sliders)
 
     # Generate a list of publications
-    # generate_publication_list.generate_publication_list()
-    # TODO: edit simulations
+    generate_publication_list.generate_publication_list()
+
     # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:
         pages = yaml.safe_load(handle)

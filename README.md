@@ -26,6 +26,7 @@ Run `grep -r TODO *`
 - Delete all the `old` files
 - Create clean version of these repo once all images/videos have been placed elsewhere
 - Interative zoom images
+- Add colibre logos to images from gallery
 
 ### Nice-to-have
 - Mobile support

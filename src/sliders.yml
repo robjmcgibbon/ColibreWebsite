@@ -6,21 +6,25 @@ Individual galaxies:
     - GalaxyID
     - Orientation
   Property:
-    - HST
-    - Euclid
-    - SDSS
-    - Gas
-    - Dust
-    - HI
-    - H2
-    - Stars
-    - SFR
+    - Euclid bands
+    - Gas density
+    - SDSS bands
+    - HST bands
+    - Dust density
+    - HI density
+    - H2 density
+    - SFR density
+    - Gas metallicity
+    - Temperature
+    - Stellar density
+    - Stellar age
+    - Stellar metallicity
   GalaxyID:
+    - "4645"
     - "104"
     - "979"
     - "1744"
     - "4506"
-    - "4645"
     - "9634"
     - "19674"
     - "20195"
@@ -28,6 +32,9 @@ Individual galaxies:
     - "48133"
     - "53114"
     - "126314"
+    - "424"
+    - "5080"
+    - "601"
   Orientation:
     - Face on
     - Edge on
@@ -40,12 +47,13 @@ Box slice property comparision:
     - Simulation
     - Redshift
   Property:
-    - Gas
+    - Gas density
     - Temperature
+    - DM density
     - Metallicity
-    - Stars
-    - Xray
-    - ComptonY
+    - Stellar density
+    - Xray (ROSAT)
+    - Compton y
   Simulation:
     - L400m7
     - L200m6
@@ -71,13 +79,15 @@ AGN feedback model comparision:
     - Redshift
   Property:
     - Temperature
-    - Gas
+    - Gas density
+    - DM density
     - Metallicity
+    - Stellar density
     - Xray
-    - ComptonY
+    - Compton y
   Simulation:
-    - L200m7
     - L100m6
+    - L200m7
   Redshift:
     - "0"
     - "0.5"

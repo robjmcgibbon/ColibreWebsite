@@ -32,5 +32,6 @@ Run `grep -r TODO *`
 - Mobile support
 - Buy domain (colibre-simulation.org)
 - Map of people who have submitted colibre papers
+- Don't reload the header each time we click to a different page
 
 

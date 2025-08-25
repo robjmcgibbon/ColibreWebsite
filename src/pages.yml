@@ -1,9 +1,6 @@
 index.html:
   title: ""
 
-project_description.html:
-  title: "Project Description"
-
 gallery.html:
   title: Image/Video gallery
   # TODO: Move this to the template?

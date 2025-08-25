@@ -4,50 +4,88 @@
 </h1>
 
 <p>
-    COLIBRE is a project of the <a href="https://virgo.dur.ac.uk/" class="active text-decoration-none">
-    Virgo consortium</a> for cosmological supercomputer simulations. The acronym stands for 
-    <b>COL</b>d <b>I</b>sm and <b>B</b>etter <b>RE</b>solution, where the ‘better resolution’ refers to 
-    the larger ratio of DM to baryonic particles compared with most previous simulations, which increases 
-    the effective resolution for a fixed baryonic particle mass and gravitational softening length.
+    The COLIBRE suite of hydrodynamical simulations model the formation and evolution of galaxies in representative volumes starting from cosmological initial conditions.
 </p>
 
-<h2>Key Features</h2>
 <figure class="figure w-50 float-end ms-sm-3">
-    <img src=assets/index/L25m5.png class="figure-img img-fluid rounded">
+    <img src=assets/index/cubes.jpg class="figure-img img-fluid rounded">
 </figure>
+
+<br>
+<p>
+    COLIBRE includes models for radiative cooling, dust grains, star formation, stellar mass loss, turbulent diffusion, pre-supernova stellar feedback, supernova feedback, supermassive black holes and active galactic nucleus (AGN) feedback. The multiphase interstellar medium is explicitly modelled without a pressure floor. Hydrogen and helium are tracked in non-equilibrium, with their contributions to the free electron density included in metal-line cooling calculations. The chemical network is coupled to a dust model that tracks three grain species and two grain sizes. In addition to the fiducial thermally-driven AGN feedback, a subset of simulations uses black hole spin-dependent hybrid jet/thermal AGN feedback. The subgrid feedback model is calibrated to match the observed redshift z ≈ 0 galaxy stellar mass function, galaxy sizes, and black hole masses in massive galaxies.
+</p>
+
+<br>
+<p>
+    To suppress spurious transfer of energy from dark matter to stars, dark matter is supersampled by a factor 4, yielding similar dark matter and baryonic particle masses.
+</p>
+
+<br>
+<p>
+    The COLIBRE suite includes three resolutions, with particle masses
+    (for both baryons and dark matter) of ~ 10<sup>5</sup> (m5), 10<sup>6</sup> (m6), and
+    10<sup>7</sup> M<sub>&#9737;</sub> (m7) in cubic volumes of up to 50, 200, and 400
+    comoving Mpc on a side, respectively. The two largest runs use 136
+    billion (5 x 3008<sup>3</sup>) particles. A list of the simulations
+    in the suite can be found <a href="simulations.html" class="active
+    text-decoration-none">here.</a>
+</p>
+
+<br>
+<p>
+    Compared to previous cosmological simulations of representative volumes run to z = 0 using similar or even higher resolution, COLIBRE breaks new ground in several ways, including:
+<br>
 <ul>
-    <li>Cold (T &lt;&lt; 10<sup>4</sup> K) interstellar gas</li>
-    <li>New cooling (non-equil. H, He, e-; self-shielding, UVB and interstellar radiation)</li>
-    <li>Dust (3 grain species, 2 grain sizes; coupled to cooling)</li>
-    <li>New ‘chemistry’ (new yields, diffusion, new SNIa, s- and r-process elements)</li>
-    <li>New stellar feedback (HII regions, winds, turbulence, improved stochastic SN feedback)</li>
-    <li>Improved BH and AGN physics (also runs with BH spin and jet feedback)</li>
-    <li>New star formation (Schmidt law with instability criterion)</li>
-    <li>Model for globular clusters (m5 only)</li>
+    <li>The direct simulation of the multiphase interstellar medium (rather than imposing a temperature or pressure floor).</li>
+    <li>The direct simulation of the evolution of dust grains and their coupling to the chemistry and cooling.</li>
+    <li>The use of four times more dark matter than baryonic particles in order to suppress spurious transfer of energy from dark matter to stars.</li>
+    <li>The availability of simulations using different models for black holes and AGN feedback that have been calibrated to the same observational data.</li>
+    <li>The availability of simulations spanning two orders of magnitude in mass resolution that have been calibrated to the same observational data.</li>
+    <li> The sheer size of the runs (e.g. 20 times more than used in <a href="https://eagle.strw.leidenuniv.nl/" class="active text-decoration-none">the Eagle simulation</a>).</li>
 </ul>
-
-<p>
-    As was the case for EAGLE, the subgrid feedback is calibrated to reproduce the observed z=0 galaxy stellar mass 
-    function and galaxy half-mass radii, and the AGN feedback efficiency is calibrated to the 
-    BH masses of massive z=0 galaxies. While this calibration was done by hand for EAGLE, COLIBRE uses 
-    machine learning to perform the calibration to the mass function and sizes at our lowest resolution. 
-    We then make small adjustments by hand when we increase the resolution or switch from thermal to hybrid AGN feedback. 
 </p>
 
+<br>
 <p>
-    A list of the simulations in the suite <a href="simulations.html" class="active text-decoration-none">can be found here.</a>
+    The acronym stands for <b>COL</b>d <b>I</b>sm and <b>B</b>etter <b>RE</b>solution. Here `cold ISM' refers to the absence of a temperature/pressure floor for the interstellar medium, and ‘better resolution’ refers to the larger ratio of cold dark matter to baryonic particles compared with most previous simulations, which increases the effective resolution (as does the absence of a temperature floor).
 </p>
 
-<h2>Project references</h2>
-<p><a href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.526.4978S/abstract" class="active text-decoration-none">The FLAMINGO project: cosmological hydrodynamical simulations for
-    large-scale structure and galaxy cluster surveys (Schaye et al. 2023, MNRAS, 526, 4978)</a></p>
-<p><a href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.526.6103K/abstract" class="active text-decoration-none">FLAMINGO: Calibrating large cosmological hydrodynamical simulations
-    with machine learning (Kugel et al. 2023, MNRAS, 526, 6103)</a></p>
-<h2>Acknowledgements</h2>
-<p>The COLIBRE simulations were run on the <a href="https://dirac.ac.uk/resources/#MemoryIntensive" class="active text-decoration-none">
-    Memory Intensive DiRAC facility</a> managed by the <a href="https://www.icc.dur.ac.uk/" class="active text-decoration-none">
-    Institute for Computational Cosmology, Durham University</a>.</p>
+<br>
+<br>
+
+<div class="row align-items-start mb-4">
+  <div class="col-md-6">
+    <figure class="figure">
+      <img src="assets/index/L25m5.png" class="figure-img img-fluid rounded" alt="L25m5 image">
+    </figure>
+  </div>
+  <div class="col-md-6">
+    <h2>Project references</h2>
+    <ul>
+      <li>
+        The COLIBRE project: cosmological hydrodynamical simulations of galaxy formation and evolution
+      </li>
+      <li>
+        COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase
+      </li>
+    </ul>
+
+    <h2>Acknowledgements</h2>
+    <p>   
+        COLIBRE is a project of the <a href="https://virgo.dur.ac.uk/" class="active text-decoration-none">
+        Virgo consortium</a> for cosmological supercomputer simulations. The COLIBRE simulations were run with the
+        <a href="https://swift.strw.leidenuniv.nl/" class="active text-decoration-none">SWIFT code</a> using the
+        SPHENIX implementation of smoothed particle hydrodynamics (SPH) on the <a href="https://dirac.ac.uk/resources/#MemoryIntensive" class="active text-decoration-none">
+        Memory Intensive DiRAC facility</a> managed by the <a href="https://www.icc.dur.ac.uk/" class="active text-decoration-none">
+        Institute for Computational Cosmology, Durham University</a>.
+    </p>   
+    </div>
+
+</div>
+
 <div class="footer">
     <img src="assets/index/Logo_LU.svg"><img src="assets/index/Logo_Durham.png"><img src="assets/index/Logo_LJMU.png"><img src="assets/index/Logo_DiRAC.png"><br>
     <div class="footertext">Website design by Rob McGibbon</div>
 </div>
+

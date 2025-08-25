@@ -2,6 +2,7 @@ Box slices:
   cubes.png: The five cubic COLIBRE boxes, which have side lengths ranging from 25 to 400 comoving Mpc. Colour shows total surface density (in 5 Mpc thick faces) at z = 0. The volumes available at high (m5), intermediate (m6), and low (m7) resolution are indicated.
   cluster.png: A slice displaying the gas density of the L400m7 simulation, with a zoomed GRI image of a massive cluster. 
   jets.png: A slice from the L50m6h simulation showing jets produced by AGN feedback.
+  L200m6_hi.png: Visual impression of the dynamic range in the L200m6 simulation at z=0.1. The top left panel shows a 25cMpc thick slice of the temperature of the gas. The three other main panels show consecutive zooms into the outskirts of a galaxy cluster, keeping the same 25cMpc depth. The two smaller images in the bottom left panel show the stellar light in Euclid colours and account for attenuation by dust.
 
 Galaxies:
   sombrero.png: A spiral galaxy from the z=0 snapshot of the L25m5 simulation, generated using an approximate radiative transfer method.

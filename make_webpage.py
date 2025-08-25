@@ -299,6 +299,8 @@ def make_gallery(templates, input_sections):
         cards = ""
         # loop over this section's images/videos
         for id, (obj_src, obj_cap) in enumerate(objects.items()):
+            err_msg = f'Gallery object {obj_src} does not exist'
+            assert os.path.exists(f'src/gallery/{obj_src}'), err_msg
             # generate a unique name for this image/video
             # this name will be used for thumbnail and image/video file names
             # it will also be used to identify the corresponding modal and
@@ -349,11 +351,12 @@ def make_sliders(templates, input_sections):
 
     """
 
-    # load all templates
+    # Load all templates
     sliders_template = templates[f"sliders.html"]
     section_template = templates["slider_section.html"]
     button_template = templates["slider_button.html"]
 
+    # Helper function for creating html buttons
     def button_option(img_type, selected=False, underscore=False):
         internal_img_type = img_type.replace(" ", "_")
         if underscore:
@@ -364,12 +367,18 @@ def make_sliders(templates, input_sections):
         option += f'>{img_type}</option>\n'
         return option
 
+    # Loop through each slider section
     sections = ""
     state = "const state = {\n"
     for i_section, (section_title, section_info) in enumerate(input_sections.items()):
+
+        # Initialise a list of all images that the sliders require
+        all_images = []
+
         buttons = ""
         left_img_path = f"slider_images/{section_info['dirname']}/L"
         right_img_path = f"slider_images/{section_info['dirname']}/R"
+
         # "show_left_right" detemines which values will show on left/right
         if section_info["show_Left_Right"]:
             # Adding button for left image
@@ -379,6 +388,7 @@ def make_sliders(templates, input_sections):
             left_type = img_type.replace(" ", "_")
             for img_type in section_info[section_info["show_Left_Right"]][1:]:
                 button_values += button_option(img_type)
+                all_images.append(f'L{img_type.replace(" ", "_")}')
             buttons += template_replace(
                 button_template,
                 {
@@ -398,6 +408,7 @@ def make_sliders(templates, input_sections):
             right_type = img_type.replace(" ", "_")
             for img_type in section_info[section_info["show_Left_Right"]][2:]:
                 button_values += button_option(img_type)
+                all_images.append(f'R{img_type.replace(" ", "_")}')
             buttons += template_replace(
                 button_template,
                 {
@@ -411,9 +422,14 @@ def make_sliders(templates, input_sections):
         else:
             left_type = ''
             right_type = ''
+            all_images.append('L')
+            all_images.append('R')
+
         # Adding other buttons
         other_types = []
         for i_button, button_title in enumerate(section_info['buttons']):
+            prev_all_images = all_images.copy()
+            all_images = []
             button_values = ""
             img_type = section_info[button_title][0]
             left_img_path += '_' + img_type.replace(" ", "_")
@@ -422,6 +438,8 @@ def make_sliders(templates, input_sections):
             button_values += button_option(img_type, selected=True, underscore=True)
             for img_type in section_info[button_title][1:]:
                 button_values += button_option(img_type, underscore=True)
+                for image_name in prev_all_images:
+                    all_images.append(f'{image_name}_{img_type.replace(" ", "_")}')
             buttons += template_replace(
                 button_template,
                 {
@@ -446,7 +464,6 @@ def make_sliders(templates, input_sections):
         )
 
         # Add the initial state of the image
-
         state += f"slider{i_section}: {{ "
         state += f"imageDirectory: '{section_info['dirname']}', "
         state += f"leftType: '{left_type}', "
@@ -455,6 +472,11 @@ def make_sliders(templates, input_sections):
             img_type = "_" + other_types[i_type] if i_type < len(other_types) else ""
             state += f", type{i_type}: '{img_type}'"
         state += " },\n"
+
+        # Loop through all possible images and assert that they exist
+        for image_name in all_images:
+            image_path = f'src/slider_images/{section_info["dirname"]}/{image_name}.png'
+            assert os.path.exists(image_path), f'{image_path} is used by sliders, but does not exist'
 
     state += "};"
 

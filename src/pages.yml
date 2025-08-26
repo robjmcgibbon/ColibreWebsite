@@ -1,12 +1,19 @@
 index.html:
   title: ""
 
-gallery.html:
-  title: Image/Video gallery
+images.html:
+  title: Images
   # TODO: Move this to the template?
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: gallery
+  sidebar: images
+
+videos.html:
+  title: Videos
+  # TODO: Move this to the template?
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos
 
 sliders.html:
   title: Image Sliders
@@ -17,8 +24,8 @@ papers.html:
   sidebar: publications
 
 # TODO: Re-enable
-#team.html:
-  #title: Team
+team.html:
+  title: Team
 
 simulations.html:
   title: Simulations

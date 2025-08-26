@@ -223,7 +223,7 @@ def create_thumbnail(img_id, img_src):
     """
     Create a thumbnail for the given image file.
     """
-    cmd = f'convert src/gallery/{img_src} -resize 200x200 -gravity center -background none -extent 200x200 build/images/{img_id}_200.png'
+    cmd = f'convert src/images/{img_src} -resize 200x200 -gravity center -background none -extent 200x200 build/images/{img_id}_200.png'
 
     run_process(cmd)
     return f"images/{img_id}_200.png"
@@ -234,9 +234,9 @@ def create_image(img_id, img_src):
     Copy the given image from src/images/ to build/, and resize if it is larger
     than 800x800 pixels.
     """
-    cmd = f"cp src/gallery/{img_src} build/images/{img_id}_full.png"
+    cmd = f"cp src/images/{img_src} build/images/{img_id}_full.png"
     run_process(cmd)
-    cmd = f"convert src/gallery/{img_src} -resize 768x800\\> build/images/{img_id}_800.png"
+    cmd = f"convert src/images/{img_src} -resize 768x800\\> build/images/{img_id}_800.png"
     run_process(cmd)
     return f"images/{img_id}_800.png"
 
@@ -248,7 +248,7 @@ def create_video_thumbnail(img_id, img_src):
     ## first, extract the first frame from the video
     #cmd = f"ffmpeg -hide_banner -loglevel error -i src/videos/{img_src} -vframes 1 -r 1 -vf scale=200:-1 -f image2 build/videos/{img_id}_200.png"
     # now the last frame is used instead, as it's generally more interesting
-    cmd = f"ffmpeg -hide_banner -loglevel error -sseof -1 -i src/gallery/{img_src} -vsync 0 -q:v 1 -update true -vf scale=200:-1 -f image2 build/videos/{img_id}_200.png"
+    cmd = f"ffmpeg -hide_banner -loglevel error -sseof -1 -i src/videos/{img_src} -vsync 0 -q:v 1 -update true -vf scale=200:-1 -f image2 build/videos/{img_id}_200.png"
     run_process(cmd)
     # get the dimensions of the first frame (width is fixed, but height is variable)
     cmd = f"identify build/videos/{img_id}_200.png"
@@ -273,11 +273,11 @@ def create_video(img_id, img_src):
     We could maybe do some conversions if necessary, but that is too complex for
     now.
     """
-    shutil.copyfile(f"src/gallery/{img_src}", f"build/videos/{img_id}.mp4")
+    shutil.copyfile(f"src/videos/{img_src}", f"build/videos/{img_id}.mp4")
     return f"videos/{img_id}.mp4"
 
 
-def make_gallery(templates, input_sections):
+def make_gallery(templates, input_sections, gallery_name):
     """
     Create the gallery from the given image sections dictionary.
 
@@ -300,7 +300,7 @@ def make_gallery(templates, input_sections):
         # loop over this section's images/videos
         for id, (obj_src, obj_cap) in enumerate(objects.items()):
             err_msg = f'Gallery object {obj_src} does not exist'
-            assert os.path.exists(f'src/gallery/{obj_src}'), err_msg
+            assert os.path.exists(f'src/{gallery_name}/{obj_src}'), err_msg
             # generate a unique name for this image/video
             # this name will be used for thumbnail and image/video file names
             # it will also be used to identify the corresponding modal and
@@ -340,8 +340,8 @@ def make_gallery(templates, input_sections):
                                     "IMG_CARDS": cards}
         )
 
-    # generate the new src/pages/gallery.html
-    with open(f"src/pages/gallery.html", "w") as ofile:
+    # save the html
+    with open(f"src/pages/{gallery_name}.html", "w") as ofile:
         ofile.write(template_replace(gallery_template, {"IMG_SECTIONS": sections}))
 
 
@@ -508,10 +508,15 @@ if __name__ == "__main__":
     # Load the html templates
     templates = load_templates()
 
-    # Generate the gallery
-    with open("src/gallery.yml", "r") as handle:
-        gallery = yaml.safe_load(handle)
-    make_gallery(templates, gallery)
+    # Generate the images gallery
+    with open("src/images.yml", "r") as handle:
+        images = yaml.safe_load(handle)
+    make_gallery(templates, images, 'images')
+
+    # Generate the video gallery
+    with open("src/videos.yml", "r") as handle:
+        videos = yaml.safe_load(handle)
+    make_gallery(templates, videos, 'videos')
 
     # Create the sliders
     with open("src/sliders.yml", "r") as handle:

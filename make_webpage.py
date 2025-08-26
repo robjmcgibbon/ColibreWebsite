@@ -342,7 +342,8 @@ def make_gallery(templates, input_sections, gallery_name):
 
     # save the html
     with open(f"src/pages/{gallery_name}.html", "w") as ofile:
-        ofile.write(template_replace(gallery_template, {"IMG_SECTIONS": sections}))
+        nice_name = {'images': 'Image', 'videos': 'Video'}[gallery_name]
+        ofile.write(template_replace(gallery_template, {"IMG_SECTIONS": sections, "GALLERY_NAME": nice_name}))
 
 
 def make_sliders(templates, input_sections):

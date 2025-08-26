@@ -2,7 +2,8 @@ import requests
 import html
 from urllib.parse import urlencode
 
-def generate_publication_list():
+def query_ads_library():
+
     # Place your ADS API token in a file with suitable permissions
     with open('ADS_token', 'r') as file:
         token = file.read().rstrip()
@@ -69,7 +70,93 @@ def generate_publication_list():
         analysis_papers.append(data)
 
     # Sort based on arxiv identifier
-    analysis_papers = sorted(analysis_papers, key=lambda d: d[3])
+    return sorted(analysis_papers, key=lambda d: d[3])
+
+
+def generate_publication_list():
+
+    intro_papers = [
+        (
+            'The COLIBRE project: cosmological hydrodynamical simulations of galaxy formation and evolution',
+            'Joop Schaye et al.',
+            None,
+            None,
+            'In prep',
+            2025,
+        ),
+        (
+            'COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase',
+            'Evgenii Chaikin et al.',
+            None,
+            None,
+            'In prep',
+            2025,
+        ),
+    ]
+
+    # TODO: Full author lists, update when papers are published
+    method_papers = [
+        (
+            'A thermal-kinetic subgrid model for supernova feedback in simulations of galaxy formation',
+            'Evgenii Chaikin et al.',
+            f'https://ui.adsabs.harvard.edu/abs/2023MNRAS.523.3709C',
+            f'https://arxiv.org/abs/2211.04619',
+            'MNRAS',
+            2023,
+        ),
+        (
+            'Tests of subgrid models for star formation using simulations of isolated disc galaxies',
+            'Folkert Nobels et al.',
+            f'https://ui.adsabs.harvard.edu/abs/2024MNRAS.532.3299N',
+            f'https://arxiv.org/abs/2309.13750',
+            'MNRAS',
+            2024,
+        ),
+        (
+            'Modelling the evolution and influence of dust in cosmological simulations that include the cold phase of the interstellar medium',
+            'James Trayford et al.',
+            f'https://ui.adsabs.harvard.edu/abs/2025arXiv250513056T',
+            f'https://arxiv.org/abs/2505.13056',
+            'arxiv',
+            2025,
+        ),
+        (
+            'Hybrid-chimes: A model for radiative cooling and the abundances of ions and molecules in simulations of galaxy formation',
+            'Sylvia Ploeckinger et al.',
+            f'https://ui.adsabs.harvard.edu/abs/2025arXiv250615773P',
+            f'https://arxiv.org/abs/2506.15773',
+            'arxiv',
+            2025,
+        ),
+        (
+            'COLIBRE: ????',
+            'Camila Correa et al.',
+            None,
+            None,
+            'In prep',
+            2025,
+        ),
+        (
+            'COLIBRE: ????',
+            'Alejandro Benitez-Llambay et al.',
+            None,
+            None,
+            'In prep',
+            2025,
+        ),
+        (
+            'COLIBRE: ????',
+            'Filip Huško et al.',
+            None,
+            None,
+            'In prep',
+            2025,
+        ),
+    ]
+
+    # TODO: Enable querying of analysis papers
+    # analysis_papers = query_ads_library()
+    analysis_papers = intro_papers
 
     # Write basic html file, which will be formatter with make_webpage.py
     with open('src/pages/papers.html', 'w') as file:
@@ -77,8 +164,8 @@ def generate_publication_list():
         file.write('This page contains a list of publications submitted to arXiv which make use of the COLIBRE simulations. The papers are listed in chronological order based on when they were uploaded to arXiv. Please let us know if we have missed your paper!\n\n')
 
         for i_section, (section_header, papers) in enumerate([
-                ('Introduction Papers', analysis_papers),
-                ('Method Papers', analysis_papers),
+                ('Reference Papers', intro_papers),
+                ('Papers introducing methods developed for COLIBRE', method_papers),
                 ('Analysis Papers', analysis_papers),
             ]):
             file.write(f'<h2 id="sec{i_section}">{section_header}</h2>\n')
@@ -87,11 +174,13 @@ def generate_publication_list():
             for paper in papers:
                 file.write(f'<li><p><h5>{paper[0]}</h5>\n')
                 file.write(f'<i>{paper[1]}</i><br>\n')
-                file.write(f'{paper[4]} ({paper[5]}), ')
-                file.write(f'<a href="{paper[2]}" class="active text-decoration-none">ADS</a>, ')
-                file.write(f'<a href="{paper[3]}" class="active text-decoration-none">arXiv</a></p></li>\n')
+                file.write(f'{paper[4]} ({paper[5]})')
+                if paper[2] is not None:
+                    file.write(f', <a href="{paper[2]}" class="active text-decoration-none">ADS</a>')
+                if paper[3] is not None:
+                    file.write(f', <a href="{paper[3]}" class="active text-decoration-none">arXiv</a></p></li>\n')
 
             file.write('</ol>\n')
 
 if __name__ == '__main__':
-    generate_publications_list()
+    generate_publication_list()

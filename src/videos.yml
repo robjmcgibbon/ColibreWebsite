@@ -1,5 +1,19 @@
-Galaxy videos:
-  filip.mp4: Evolution of a Milky Way mass galaxy in HST's gri filters. The images were generated using an approximate radiative transfer method.
+Galaxy 1:
+  barred_gallery_radius.mp4: "TODO: Add desc"
+  barred_gas_radius.mp4: "TODO: Add desc"
+  barred_multirow_radius.mp4: "TODO: Add desc"
+  barred_T_radius.mp4: "TODO: Add desc"
+  barred_twoprop_large_radius.mp4: "TODO: Add desc"
+  barred_twoprop_radius.mp4: "TODO: Add desc"
+  barred_Z2_radius.mp4: "TODO: Add desc"
+  barred_zoomcomp_radius.mp4: "TODO: Add desc"
 
-Sonified videos:
-  james.mp4: Sonified spiral sequence, where sounds are mapped to different processes within that galaxy. Star formation rate is represented by a harmonic sound that changes in timbre, a windy sound that increases in intensity indicates the energy outflow rate, and a ticking sound marks constant mass increments accreted by the black hole.
+Galaxy 2:
+  merger_gallery_radius.mp4: "TODO: Add desc"
+  merger_gas_radius.mp4: "TODO: Add desc"
+  merger_multirow_radius.mp4: "TODO: Add desc"
+  merger_T_radius.mp4: "TODO: Add desc"
+  merger_twoprop_radius.mp4: "TODO: Add desc"
+  merger_Z2_radius.mp4: "TODO: Add desc"
+  merger_zoomcomp_radius.mp4: "TODO: Add desc"
+  merger_twoprop_large_radius.mp4: "TODO: Add desc"

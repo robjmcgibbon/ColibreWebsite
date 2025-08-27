@@ -245,10 +245,8 @@ def create_video_thumbnail(img_id, img_src):
     """
     Create a thumbnail for the given video file.
     """
-    ## first, extract the first frame from the video
-    #cmd = f"ffmpeg -hide_banner -loglevel error -i src/videos/{img_src} -vframes 1 -r 1 -vf scale=200:-1 -f image2 build/videos/{img_id}_200.png"
-    # now the last frame is used instead, as it's generally more interesting
-    cmd = f"ffmpeg -hide_banner -loglevel error -sseof -1 -i src/videos/{img_src} -vsync 0 -q:v 1 -update true -vf scale=200:-1 -f image2 build/videos/{img_id}_200.png"
+    # Extract the frame 10 seconds from the end of the video
+    cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{img_src} -vf scale=200:-1 -frames:v 1 build/videos/{img_id}_200.png"
     run_process(cmd)
     # get the dimensions of the first frame (width is fixed, but height is variable)
     cmd = f"identify build/videos/{img_id}_200.png"

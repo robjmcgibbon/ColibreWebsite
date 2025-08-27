@@ -3,6 +3,7 @@ Box slices:
   cluster.png: A slice displaying the gas density of the L400m7 simulation, with a zoomed GRI image of a massive cluster. 
   jets.png: A slice from the L50m6h simulation showing jets produced by AGN feedback.
   L200m6.png: Visual impression of the dynamic range in the L200m6 simulation at z=0.1. The top left panel shows a 25cMpc thick slice of the temperature of the gas. The three other main panels show consecutive zooms into the outskirts of a galaxy cluster, keeping the same 25cMpc depth. The two smaller images in the bottom left panel show the stellar light in Euclid colours and account for attenuation by dust.
+  L25m5_main.png: Visual impression of the dynamic range in the high-resolution COLIBRE simulation L025m5 at z = 0.1. The top left panel shows a projection of the entire simulation with the colour encoding baryon surface density. The other panels zoom into different regions and show the stellar light in HST colours accounting for attenuation by dust.
 
 Galaxies:
   hubble_tuning_fork.png: The Hubble tuning fork of galaxies from the z=0 snapshot of the L25m5 simulation, generated using an approximate radiative transfer method.

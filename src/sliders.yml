@@ -6,10 +6,10 @@ Individual galaxies:
     - GalaxyID
     - Orientation
   Property:
+    - HST bands
+    - SDSS bands
     - Euclid bands
     - Gas density
-    - SDSS bands
-    - HST bands
     - Dust density
     - HI density
     - H2 density
@@ -21,20 +21,20 @@ Individual galaxies:
     - Stellar metallicity
   GalaxyID:
     - "4645"
+    - "48133"
     - "104"
-    - "979"
+    #- "979"  Misorientated
     - "1744"
     - "4506"
     - "9634"
     - "19674"
     - "20195"
     - "28757"
-    - "48133"
     - "53114"
     - "126314"
     - "424"
-    - "5080"
     - "601"
+    - "5080"
   Orientation:
     - Face on
     - Edge on

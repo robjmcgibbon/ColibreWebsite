@@ -139,10 +139,10 @@ def copy_assets():
         shutil.copyfile(asset, f"build/assets/{os.path.basename(asset)}")
     for asset in sorted(glob.glob("src/assets/team/*")):
         shutil.copyfile(asset, f"build/assets/team/{os.path.basename(asset)}")
+    for asset in sorted(glob.glob("src/assets/favicons/*")):
+        shutil.copyfile(asset, f"build/assets/favicons/{os.path.basename(asset)}")
     for asset in sorted(glob.glob("src/assets/index/*")):
         shutil.copyfile(asset, f"build/assets/index/{os.path.basename(asset)}")
-    for asset in sorted(glob.glob("src/assets/project_description/*")):
-        shutil.copyfile(asset, f"build/assets/project_description/{os.path.basename(asset)}")
 
 
 def copy_slider_images():
@@ -204,7 +204,7 @@ def clean_build(keep_sliders=False):
 
     cmd = f"rm -rf build/*"
     run_process(cmd)
-    cmd = f"mkdir -p build/assets build/assets/team build/assets/index build/assets/project_description"
+    cmd = f"mkdir -p build/assets build/assets/team build/assets/index build/assets/favicons"
     run_process(cmd)
     cmd = f"mkdir -p build/css build/images build/slider_images build/videos"
     run_process(cmd)

@@ -1,0 +1,37 @@
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;   
+  margin: 0 auto;   
+}
+
+.title-text {
+  display: flex;
+  font-size: 3rem;
+  font-weight: bold;
+  flex-direction: column; 
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.logo {
+  height: 225px;
+}
+
+@media (max-width: 800px) {
+  .page-title {
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+  }
+
+  .title-text {
+    align-items: center;
+  }
+}

@@ -123,7 +123,6 @@ def generate_publication_list():
         ),
         (
             'Hybrid-chimes: A model for radiative cooling and the abundances of ions and molecules in simulations of galaxy formation',
-            'Sylvia Ploeckinger et al.',
             'Sylvia Ploeckinger, Alexander Richings, Joop Schaye, James Trayford, Matthieu Schaller, Evgenii Chaikin',
             f'https://ui.adsabs.harvard.edu/abs/2025arXiv250615773P',
             f'https://arxiv.org/abs/2506.15773',
@@ -147,7 +146,7 @@ def generate_publication_list():
             2025,
         ),
         (
-            'A hybrid active galactic nucleus feedback model with spinning black holes, winds, and jets',
+            'A hybrid active galactic nucleus feedback model with spinning black holes, winds and jets',
             'Filip Huško et al.',
             None,
             None,

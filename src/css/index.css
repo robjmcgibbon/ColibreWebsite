@@ -23,15 +23,37 @@
   height: 225px;
 }
 
-@media (max-width: 800px) {
+.title-text {
+  display: flex;
+  font-size: 3rem;
+  font-weight: bold;
+  flex-direction: column;
+}
+
+.figure-cubes {
+  width: 50%;
+  float: right;
+  margin-left: 1rem;
+}
+
+@media (max-width: 770px) {
   .page-title {
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     text-align: center;
   }
 
   .title-text {
     align-items: center;
+  }
+
+  .figure-cubes {
+    width: 100%;
+    float: center;
+    margin-left: 0rem;
+    margin-right: 0rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 }

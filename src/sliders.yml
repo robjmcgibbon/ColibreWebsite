@@ -1,6 +1,6 @@
 Individual galaxies:
   dirname: galaxies
-  description: "z=0 simulated galaxies from the L025m5"
+  description: "z = 0 galaxies from the L025m5 simulation"
   show_Left_Right: Property
   buttons:
     - GalaxyID
@@ -39,9 +39,9 @@ Individual galaxies:
     - Face on
     - Edge on
 
-Box slice property comparision:
+Box slice property comparison:
   dirname: slices
-  description: "10cMpc slices through different simulation boxes"
+  description: "10 cMpc thick slices through different simulations"
   show_Left_Right: Property
   buttons:
     - Simulation
@@ -50,9 +50,9 @@ Box slice property comparision:
     - Gas density
     - Temperature
     - DM density
-    - Metallicity
+    - Gas metallicity
     - Stellar density
-    - Xray (ROSAT)
+    - X-ray (ROSAT)
     - Compton y
   Simulation:
     - L400m7
@@ -69,7 +69,7 @@ Box slice property comparision:
     - "8"
     - "10"
 
-AGN feedback model comparision:
+AGN feedback model comparison:
   dirname: thermal_hybrid
   description: "Comparison of runs with thermal (left) vs hybrid (right) AGN feedback"
   show_Left_Right: false
@@ -81,9 +81,9 @@ AGN feedback model comparision:
     - Temperature
     - Gas density
     - DM density
-    - Metallicity
+    - Gas metallicity
     - Stellar density
-    - Xray (ROSAT)
+    - X-ray (ROSAT)
     - Compton y
   Simulation:
     - L100m6

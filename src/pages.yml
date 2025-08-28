@@ -19,14 +19,13 @@ sliders.html:
   title: Image Sliders
   sidebar: sliders
 
+simulations.html:
+  title: Simulations
+
 papers.html:
   title: Publications
   sidebar: publications
 
-# TODO: Re-enable
 team.html:
   title: Team
-
-simulations.html:
-  title: Simulations
 

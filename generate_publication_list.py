@@ -14,6 +14,7 @@ def query_ads_library():
     # Query list of papers
     print('Querying ADS library for paper list')
     # TODO Proper pagination https://ui.adsabs.harvard.edu/help/api/api-docs.html#get-/biblib/libraries/-library_id-
+    # TODO: Copy from flamingo website generation
     results = requests.get(f"https://api.adsabs.harvard.edu/v1/biblib/libraries/{library}",
                            headers={'Authorization': 'Bearer ' + token})
     bibcodes = results.json()['documents']
@@ -78,7 +79,7 @@ def generate_publication_list():
     intro_papers = [
         (
             'The COLIBRE project: cosmological hydrodynamical simulations of galaxy formation and evolution',
-            'Joop Schaye et al.',
+            'Joop Schaye, Evgenii Chaikin, Matthieu Schaller, Sylvia Ploeckinger, Filip Huško, Rob McGibbon, James Trayford, Alejandro Benítez-Llambay, Camila Correa, Carlos Frenk, Alexander Richings, Victor Forouhar Moreno, Yannick Bahé,Josh Borrow, Anna Durrant, Andrea Gebek, John Helly, Adrian Jenkins, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
             None,
             None,
             'In prep',
@@ -86,7 +87,7 @@ def generate_publication_list():
         ),
         (
             'COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase',
-            'Evgenii Chaikin et al.',
+            'Evgenii Chaikin, Joop Schaye, Matthieu Schaller, Sylvia Ploeckinger, Yannick Bahé, Alejandro Benítez-Llambay, Camila Correa, Victor Forouhar Moreno, Carlos Frenk, Filip Huško, Roi Kugel, Rob McGibbon, Alexander Richings, James Trayford, Josh Borrow, Rob Crain, John Helly, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
             None,
             None,
             'In prep',
@@ -98,7 +99,7 @@ def generate_publication_list():
     method_papers = [
         (
             'A thermal-kinetic subgrid model for supernova feedback in simulations of galaxy formation',
-            'Evgenii Chaikin et al.',
+            'Evgenii Chaikin, Joop Schaye, Matthieu Schaller, Alejandro Benítez-Llambay, Folkert Nobels, Sylvia Ploeckinger',
             f'https://ui.adsabs.harvard.edu/abs/2023MNRAS.523.3709C',
             f'https://arxiv.org/abs/2211.04619',
             'MNRAS',
@@ -106,7 +107,7 @@ def generate_publication_list():
         ),
         (
             'Tests of subgrid models for star formation using simulations of isolated disc galaxies',
-            'Folkert Nobels et al.',
+            'Folkert Nobels, Joop Schaye, Matthieu Schaller, Sylvia Ploeckinger, Evgenii Chaikin, and Alexander Richings', 
             f'https://ui.adsabs.harvard.edu/abs/2024MNRAS.532.3299N',
             f'https://arxiv.org/abs/2309.13750',
             'MNRAS',
@@ -114,7 +115,7 @@ def generate_publication_list():
         ),
         (
             'Modelling the evolution and influence of dust in cosmological simulations that include the cold phase of the interstellar medium',
-            'James Trayford et al.',
+            'James Trayford, Joop Schaye, Camila Correa, Sylvia Ploeckinger, Alexander Richings, Evgenii Chaikin, Matthieu Schaller, Alejandro Benítez-Llambay, Carlos Frenk, Filip Huško',
             f'https://ui.adsabs.harvard.edu/abs/2025arXiv250513056T',
             f'https://arxiv.org/abs/2505.13056',
             'arxiv',
@@ -123,13 +124,14 @@ def generate_publication_list():
         (
             'Hybrid-chimes: A model for radiative cooling and the abundances of ions and molecules in simulations of galaxy formation',
             'Sylvia Ploeckinger et al.',
+            'Sylvia Ploeckinger, Alexander Richings, Joop Schaye, James Trayford, Matthieu Schaller, Evgenii Chaikin',
             f'https://ui.adsabs.harvard.edu/abs/2025arXiv250615773P',
             f'https://arxiv.org/abs/2506.15773',
             'arxiv',
             2025,
         ),
         (
-            'COLIBRE: ????',
+            'A subgrid model for chemical enrichment in cosmological simulations',
             'Camila Correa et al.',
             None,
             None,
@@ -137,7 +139,7 @@ def generate_publication_list():
             2025,
         ),
         (
-            'COLIBRE: ????',
+            'Non-explosive pre-supernova feedback in the COLIBRE model of galaxy formation',
             'Alejandro Benitez-Llambay et al.',
             None,
             None,
@@ -145,7 +147,7 @@ def generate_publication_list():
             2025,
         ),
         (
-            'COLIBRE: ????',
+            'A hybrid active galactic nucleus feedback model with spinning black holes, winds, and jets',
             'Filip Huško et al.',
             None,
             None,
@@ -164,9 +166,9 @@ def generate_publication_list():
         file.write('This page contains a list of publications submitted to arXiv which make use of the COLIBRE simulations. The papers are listed in chronological order based on when they were uploaded to arXiv. Please let us know if we have missed your paper!\n\n')
 
         for i_section, (section_header, papers) in enumerate([
-                ('Reference Papers', intro_papers),
+                ('Reference papers', intro_papers),
                 ('Papers introducing methods developed for COLIBRE', method_papers),
-                ('Analysis Papers', analysis_papers),
+                ('Analysis papers', analysis_papers),
             ]):
             file.write(f'<h2 id="sec{i_section}">{section_header}</h2>\n')
             file.write('<ol>\n')

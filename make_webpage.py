@@ -272,7 +272,8 @@ def create_video(img_id, img_src):
     now.
     """
     shutil.copyfile(f"src/videos/{img_src}", f"build/videos/{img_id}.mp4")
-    return f"videos/{img_id}.mp4"
+    shutil.copyfile(f"src/videos/{img_src.rstrip('.mp4')}_nosound.mp4", f"build/videos/{img_id}_nosound.mp4")
+    return (f"videos/{img_id}.mp4", f"videos/{img_id}_nosound.mp4")
 
 
 def make_gallery(templates, input_sections, gallery_name):
@@ -287,7 +288,8 @@ def make_gallery(templates, input_sections, gallery_name):
     # load all templates
     gallery_template = templates[f"gallery.html"]
     section_template = templates["gallery_section.html"]
-    card_template = templates["image_card.html"]
+    image_card_template = templates["image_card.html"]
+    video_card_template = templates["video_card.html"]
 
     # loop over sections
     # modals are saved in one block, regardless of their section
@@ -314,18 +316,29 @@ def make_gallery(templates, input_sections, gallery_name):
             if obj_type == "image":
                 obj_src_orig = create_image(obj_id, obj_src)
                 obj_src_thumb = create_thumbnail(obj_id, obj_src)
+                cards += template_replace(
+                    image_card_template,
+                    {
+                        "IMG_CAPTION": obj_cap,
+                        "IMG_SRC": obj_src_thumb,
+                        "IMG_TYPE": obj_type,
+                        "ORIG_SRC": obj_src_orig,
+                    },
+                )
             else:
-                obj_src_orig = create_video(obj_id, obj_src)
+                obj_src_orig, obj_src_orig_nosound = create_video(obj_id, obj_src)
                 obj_src_thumb = create_video_thumbnail(obj_id, obj_src)
-            cards += template_replace(
-                card_template,
-                {
-                    "IMG_CAPTION": obj_cap,
-                    "IMG_SRC": obj_src_thumb,
-                    "IMG_TYPE": obj_type,
-                    "ORIG_SRC": obj_src_orig,
-                },
-            )
+                cards += template_replace(
+                    video_card_template,
+                    {
+                        "IMG_CAPTION": obj_cap,
+                        "IMG_SRC": obj_src_thumb,
+                        "IMG_TYPE": obj_type,
+                        "ORIG_SRC": obj_src_orig,
+                        "ORIG_SRC_NOSOUND": obj_src_orig_nosound,
+                    },
+                )
+
         if obj_type != "video":
             sections += template_replace(
                 section_template, {"SECTION_TITLE": title, "SECTION_ID": "sec" + str(sid),

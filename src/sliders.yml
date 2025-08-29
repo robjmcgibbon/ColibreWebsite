@@ -34,7 +34,7 @@ Individual galaxies:
     - "126314"
     - "424"
     - "601"
-    - "5080"
+    #- "5080" Boring
   Orientation:
     - Face on
     - Edge on

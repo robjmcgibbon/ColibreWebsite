@@ -182,6 +182,8 @@ def generate_publication_list():
                     file.write(f', <a href="{paper[3]}" class="active text-decoration-none">arXiv</a></p></li>\n')
 
             file.write('</ol>\n')
+        file.write('<br>\n')
+        file.write('<br>\n')
 
 if __name__ == '__main__':
     generate_publication_list()

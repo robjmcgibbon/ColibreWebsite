@@ -21,6 +21,7 @@ sliders.html:
 
 simulations.html:
   title: Simulations
+  sidebar: simulations
 
 papers.html:
   title: Publications

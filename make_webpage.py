@@ -265,15 +265,18 @@ def create_video_thumbnail(img_id, img_src):
     return f"videos/{img_id}_200.png"
 
 
-def create_video(img_id, img_src):
+def create_video(img_id, img_src, img_src_nosound):
     """
     Copy the given video file from src/images/ to build/.
     We could maybe do some conversions if necessary, but that is too complex for
     now.
     """
     shutil.copyfile(f"src/videos/{img_src}", f"build/videos/{img_id}.mp4")
-    shutil.copyfile(f"src/videos/{img_src.rstrip('.mp4')}_nosound.mp4", f"build/videos/{img_id}_nosound.mp4")
-    return (f"videos/{img_id}.mp4", f"videos/{img_id}_nosound.mp4")
+
+    if img_src_nosound:
+        shutil.copyfile(f"src/videos/{img_src_nosound}", f"build/videos/{img_id}_nosound.mp4")
+        return (f"videos/{img_id}.mp4", f"videos/{img_id}_nosound.mp4")
+    return f"videos/{img_id}.mp4", ""
 
 
 def make_gallery(templates, input_sections, gallery_name):
@@ -298,7 +301,7 @@ def make_gallery(templates, input_sections, gallery_name):
         # cards are grouped per section
         cards = ""
         # loop over this section's images/videos
-        for id, (obj_src, obj_cap) in enumerate(objects.items()):
+        for id, (obj_src, value) in enumerate(objects.items()):
             err_msg = f'Gallery object {obj_src} does not exist'
             assert os.path.exists(f'src/{gallery_name}/{obj_src}'), err_msg
             # generate a unique name for this image/video
@@ -309,8 +312,11 @@ def make_gallery(templates, input_sections, gallery_name):
             # distinguish between images and videos
             if obj_src.endswith('.mp4'):
                 obj_type = 'video'
+                obj_cap = value["desc"]
+                obj_src_nosound = value.get("name_nosound", "")
             elif obj_src.endswith('.png') or obj_src.endswith('.jpg'):
                 obj_type = 'image'
+                obj_cap = value
             else:
                 raise NotImplementedError(f'Unable to determine obj_type of {obj_src}')
             if obj_type == "image":
@@ -326,7 +332,7 @@ def make_gallery(templates, input_sections, gallery_name):
                     },
                 )
             else:
-                obj_src_orig, obj_src_orig_nosound = create_video(obj_id, obj_src)
+                obj_src_orig, obj_src_orig_nosound = create_video(obj_id, obj_src, obj_src_nosound)
                 obj_src_thumb = create_video_thumbnail(obj_id, obj_src)
                 cards += template_replace(
                     video_card_template,
@@ -338,7 +344,6 @@ def make_gallery(templates, input_sections, gallery_name):
                         "ORIG_SRC_NOSOUND": obj_src_orig_nosound,
                     },
                 )
-
         if obj_type != "video":
             sections += template_replace(
                 section_template, {"SECTION_TITLE": title, "SECTION_ID": "sec" + str(sid),

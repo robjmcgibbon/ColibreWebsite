@@ -22,6 +22,7 @@
         <h5 class="modal-title"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="helptext mt-1 mb-0 download-link"></div>
       <div class="modal-body">
       </div>
     </div>
@@ -47,15 +48,22 @@ $('#videoModal').on('show.bs.modal', function (event) {
   var link = $(event.relatedTarget);
   var type = link.data('type');
   var src = link.data('src');
+  var src_nosound = link.data('srcnosound')
   var caption = link.data('caption');
   var modal = $(this);
   modal.find('.modal-title').html(caption);
   modal.find('.modal-body').html("<video width=\"100%\" height=\"auto\" controls><source src=\"" + src + "\" type=\"video/mp4\">Your browser does not support the video tag.</video>");
+  if (src_nosound != "") {
+    modal.find('.download-link').html('Download the version of this video <a href="' + src_nosound + '" target="_blank" style="color:#00008B;">without sonification</a>');
+  } else {
+    modal.find('.download-link').html("");
+  }
 });
 
 $('#videoModal').on('hide.bs.modal', function () {
 var modal = $(this);
 modal.find('.modal-body').html('');
+modal.find('.download-link').html('');
 });
 
 </script>

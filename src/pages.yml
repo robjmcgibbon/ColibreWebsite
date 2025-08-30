@@ -1,6 +1,10 @@
 index.html:
   title: ""
 
+sliders.html:
+  title: Sliders
+  sidebar: sliders
+
 images.html:
   title: Images
   # TODO: Move this to the template?
@@ -14,10 +18,6 @@ videos.html:
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
   sidebar: videos
-
-sliders.html:
-  title: Image sliders
-  sidebar: sliders
 
 simulations.html:
   title: Simulations

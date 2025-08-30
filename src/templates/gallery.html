@@ -54,7 +54,7 @@ $('#videoModal').on('show.bs.modal', function (event) {
   modal.find('.modal-title').html(caption);
   modal.find('.modal-body').html("<video width=\"100%\" height=\"auto\" controls><source src=\"" + src + "\" type=\"video/mp4\">Your browser does not support the video tag.</video>");
   if (src_nosound != "") {
-    modal.find('.download-link').html('<a href="' + src_nosound + '" target="_blank">Video without sonification</a>');
+    modal.find('.download-link').html('Download the version of this video <a href="' + src_nosound + '" target="_blank" style="color:#00008B;">without sonification</a>');
   } else {
     modal.find('.download-link').html("");
   }

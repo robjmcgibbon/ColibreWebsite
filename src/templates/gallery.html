@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="css/gallery.css">
 
+
 <h1>%GALLERY_NAME% Gallery</h1>
 <div class="modal fade" id="imageModal" aria-hidden="true" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -29,6 +30,8 @@
   </div>
 </div>
 
+%PAGE_DESCRIPTION%
+
 %IMG_SECTIONS%
 
 <script type="text/javascript">
@@ -54,7 +57,7 @@ $('#videoModal').on('show.bs.modal', function (event) {
   modal.find('.modal-title').html(caption);
   modal.find('.modal-body').html("<video width=\"100%\" height=\"auto\" controls><source src=\"" + src + "\" type=\"video/mp4\">Your browser does not support the video tag.</video>");
   if (src_nosound != "") {
-    modal.find('.download-link').html('Download the version of this video <a href="' + src_nosound + '" target="_blank" style="color:#00008B;">without sonification</a>');
+    modal.find('.download-link').html('Play a version of this video <a href="' + src_nosound + '" target="_blank" style="color:#00008B;">without sonification</a>');
   } else {
     modal.find('.download-link').html("");
   }

@@ -65,6 +65,8 @@ def make_sidebar(sections):
 
     links = ""
     for i, section in enumerate(sections):
+        if section == 'page_description':
+            continue
         links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section}</a></li>\n'
 
     return template_replace(sidebar, {"LINK_LIST": links})
@@ -298,6 +300,8 @@ def make_gallery(templates, input_sections, gallery_name):
     # modals are saved in one block, regardless of their section
     sections = ""
     for sid, (title, objects) in enumerate(input_sections.items()):
+        if title == 'page_description':
+            continue
         # cards are grouped per section
         cards = ""
         # loop over this section's images/videos
@@ -359,7 +363,7 @@ def make_gallery(templates, input_sections, gallery_name):
     # save the html
     with open(f"src/pages/{gallery_name}.html", "w") as ofile:
         nice_name = {'images': 'Image', 'videos': 'Video'}[gallery_name]
-        ofile.write(template_replace(gallery_template, {"IMG_SECTIONS": sections, "GALLERY_NAME": nice_name}))
+        ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": nice_name}))
 
 
 def make_sliders(templates, input_sections):

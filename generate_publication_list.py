@@ -79,7 +79,7 @@ def generate_publication_list():
     intro_papers = [
         (
             'The COLIBRE project: cosmological hydrodynamical simulations of galaxy formation and evolution',
-            'Joop Schaye, Evgenii Chaikin, Matthieu Schaller, Sylvia Ploeckinger, Filip Huško, Rob McGibbon, James Trayford, Alejandro Benítez-Llambay, Camila Correa, Carlos Frenk, Alexander Richings, Victor Forouhar Moreno, Yannick Bahé,Josh Borrow, Anna Durrant, Andrea Gebek, John Helly, Adrian Jenkins, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
+            'Joop Schaye, Evgenii Chaikin, Matthieu Schaller, Sylvia Ploeckinger, Filip Huško, Rob McGibbon, James Trayford, Alejandro Benítez-Llambay, Camila Correa, Carlos Frenk, Alexander Richings, Victor Forouhar Moreno, Yannick Bahé, Josh Borrow, Anna Durrant, Andrea Gebek, John Helly, Adrian Jenkins, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
             None,
             None,
             'In prep',

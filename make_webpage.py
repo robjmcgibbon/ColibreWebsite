@@ -5,9 +5,7 @@ import os
 import shutil
 import subprocess
 import yaml
-import jsmin
 import rcssmin
-import json
 
 import generate_publication_list
 
@@ -211,16 +209,19 @@ def clean_build(keep_sliders=False, keep_images=False, keep_videos=False):
     if keep_sliders:
         run_process("mv tmp_slider_images build/slider_images")
         run_process("mv tmp_hires_slider_images build/hires_slider_images")
+        print('Using sliders from previous build')
     else:
         run_process("mkdir build/slider_images build/hires_slider_images")
 
     if keep_images:
         run_process("mv tmp_images build/images")
+        print('Using images from previous build')
     else:
         run_process("mkdir build/images")
 
     if keep_videos:
         run_process("mv tmp_videos build/videos")
+        print('Using videos from previous build')
     else:
         run_process("mkdir build/videos")
 

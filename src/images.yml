@@ -1,3 +1,5 @@
+page_description: '<p style="text-align: center;">Click on the images to view a larger version<p>'
+
 Large-scale structure:
   cubes.png: The cubic COLIBRE boxes, which have side lengths ranging from 25 to 400 comoving Mpc. Colour shows total surface density (in 5 Mpc thick faces) at redshift z = 0. The available resolution (m5, m6, m7) are indicated. This is Fig. 1 of <a href='https://arxiv.org/abs/2508.21126v1' class='active text-decoration-none'>Schaye et al. (2025)</a>.
   L25m5_main.png: Visual impression of the dynamic range in the high-resolution COLIBRE simulation L025m5 at redshift z = 0.1. The top left panel shows a projection of the entire simulation with the colour encoding baryon surface density. The other panels zoom into different regions and show the stellar light in HST colours accounting for attenuation by dust. This is Fig. 3 of <a href='https://arxiv.org/abs/2508.21126v1' class='active text-decoration-none'>Schaye et al. (2025)</a>.

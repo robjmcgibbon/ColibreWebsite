@@ -1,4 +1,3 @@
-jsmin 
 pyyaml
 rcssmin
 requests

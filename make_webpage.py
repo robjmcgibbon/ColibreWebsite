@@ -119,10 +119,6 @@ def make_page(page, pages, templates):
         },
     )
 
-    # make slimmer
-    # TODO: htmlmin is broken
-    # page_out = htmlmin.minify(page_out, remove_comments=True, remove_empty_space=True)
-
     # create the page
     with open(f"build/{os.path.basename(page)}", "w") as ofile:
         ofile.write(page_out)

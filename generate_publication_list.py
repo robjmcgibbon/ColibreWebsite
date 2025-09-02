@@ -99,6 +99,8 @@ def format_paper_data(result):
 
 def generate_publication_list():
 
+    # Hard code the introduction papers as we want the full list of names
+    # TODO: Update when papers are published
     intro_papers = [
         (
             'The COLIBRE project: cosmological hydrodynamical simulations of galaxy formation and evolution',

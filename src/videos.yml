@@ -1,4 +1,3 @@
-# TODO: The link to the explainer video is a very fragile hack
 page_description: '<p>
 Below are two sets of videos showing the evolution of two different 
 galaxies in the L012m5 simulation from redshift z = 5.5 to z = 0. 
@@ -17,6 +16,8 @@ video</a> to understand more.
 
 The videos are still being improved and more will be added, so please keep an eye on this page.
 </p>'
+
+# NOTE: The page_description above assumes that the explainer video is part of section 3
 
 "Galaxy 1, present-day stellar mass 10<sup>10.8</sup> M<sub>⊙</sub>":
   barred_starlight_newmix.mp4:

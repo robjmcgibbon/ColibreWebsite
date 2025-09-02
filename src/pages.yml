@@ -10,14 +10,12 @@ interactive.html:
 
 videos.html:
   title: Videos
-  # TODO: Move this to the template?
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
   sidebar: videos
 
 images.html:
   title: Images
-  # TODO: Move this to the template?
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
   sidebar: images

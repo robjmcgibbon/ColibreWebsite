@@ -5,12 +5,8 @@ sliders.html:
   title: Sliders
   sidebar: sliders
 
-images.html:
-  title: Images
-  # TODO: Move this to the template?
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: images
+interactive.html:
+  title: Interactive maps
 
 videos.html:
   title: Videos
@@ -18,6 +14,13 @@ videos.html:
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
   sidebar: videos
+
+images.html:
+  title: Images
+  # TODO: Move this to the template?
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: images
 
 simulations.html:
   title: Simulations

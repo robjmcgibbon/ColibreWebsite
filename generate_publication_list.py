@@ -80,9 +80,9 @@ def generate_publication_list():
         (
             'The COLIBRE project: cosmological hydrodynamical simulations of galaxy formation and evolution',
             'Joop Schaye, Evgenii Chaikin, Matthieu Schaller, Sylvia Ploeckinger, Filip Huško, Rob McGibbon, James Trayford, Alejandro Benítez-Llambay, Camila Correa, Carlos Frenk, Alexander Richings, Victor Forouhar Moreno, Yannick Bahé, Josh Borrow, Anna Durrant, Andrea Gebek, John Helly, Adrian Jenkins, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
-            None,
-            None,
-            'In prep',
+            "https://ui.adsabs.harvard.edu/abs/2025arXiv250821126S",
+            "https://arxiv.org/abs/2508.21126",
+            'arxiv',
             2025,
         ),
         (
@@ -95,7 +95,7 @@ def generate_publication_list():
         ),
     ]
 
-    # TODO: Full author lists, update when papers are published
+    # TODO: Update when papers are published
     method_papers = [
         (
             'A thermal-kinetic subgrid model for supernova feedback in simulations of galaxy formation',

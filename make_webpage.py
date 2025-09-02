@@ -135,6 +135,7 @@ def copy_assets():
     Copy all contents of src/assets/ into build/, regardless of the file type
     or name.
     """
+    # TODO: Why are we not just copying everything?
     for asset in sorted(glob.glob("src/assets/*")):
         if os.path.isdir(asset):
             continue
@@ -145,6 +146,8 @@ def copy_assets():
         shutil.copyfile(asset, f"build/assets/favicons/{os.path.basename(asset)}")
     for asset in sorted(glob.glob("src/assets/index/*")):
         shutil.copyfile(asset, f"build/assets/index/{os.path.basename(asset)}")
+    for asset in sorted(glob.glob("src/assets/interactive/*")):
+        shutil.copyfile(asset, f"build/assets/interactive/{os.path.basename(asset)}")
 
 
 def copy_slider_images():
@@ -206,7 +209,7 @@ def clean_build(keep_sliders=False):
 
     cmd = f"rm -rf build/*"
     run_process(cmd)
-    cmd = f"mkdir -p build/assets build/assets/team build/assets/index build/assets/favicons"
+    cmd = f"mkdir -p build/assets build/assets/team build/assets/index build/assets/favicons build/assets/interactive"
     run_process(cmd)
     cmd = f"mkdir -p build/css build/images build/slider_images build/videos"
     run_process(cmd)

@@ -37,9 +37,6 @@ The domain colibre-simulations.org was bought for 10 years in Aug 2025 (from Nam
 
 ## TODO
 Run `grep -r TODO *`
-- Create clean version of these repo once all images/videos have been placed elsewhere
-- Add (Thermal < > Hybrid) slider icon to indicate which is which
-- Don't copy the video files each time make_webpage is run
 
 ### Nice-to-have
 - Mobile support

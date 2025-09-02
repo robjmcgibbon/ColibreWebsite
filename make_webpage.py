@@ -135,20 +135,7 @@ def copy_assets():
     Copy all contents of src/assets/ into build/, regardless of the file type
     or name.
     """
-    # TODO: Why are we not just copying everything?
-    for asset in sorted(glob.glob("src/assets/*")):
-        if os.path.isdir(asset):
-            continue
-        shutil.copyfile(asset, f"build/assets/{os.path.basename(asset)}")
-    for asset in sorted(glob.glob("src/assets/team/*")):
-        shutil.copyfile(asset, f"build/assets/team/{os.path.basename(asset)}")
-    for asset in sorted(glob.glob("src/assets/favicons/*")):
-        shutil.copyfile(asset, f"build/assets/favicons/{os.path.basename(asset)}")
-    for asset in sorted(glob.glob("src/assets/index/*")):
-        shutil.copyfile(asset, f"build/assets/index/{os.path.basename(asset)}")
-    for asset in sorted(glob.glob("src/assets/interactive/*")):
-        shutil.copyfile(asset, f"build/assets/interactive/{os.path.basename(asset)}")
-
+    shutil.copytree('src/assets', 'build/assets')
 
 def copy_slider_images():
     """
@@ -174,6 +161,10 @@ def copy_styles():
     """
     Copy all contents of src/css/ into build/, and minify it along the way.
     """
+
+    cmd = f"mkdir build/css"
+    run_process(cmd)
+
     for css in sorted(glob.glob("src/css/*.css")):
         with open(css, "r") as ifile, open(
             f"build/css/{os.path.basename(css)}", "w"
@@ -195,102 +186,117 @@ def run_process(command, return_output=False):
         raise RuntimeError(f'Error running command "{command}"!')
 
 
-def clean_build(keep_sliders=False):
+def clean_build(keep_sliders=False, keep_images=False, keep_videos=False):
     """
     Clean up a previous build.
     """
     if keep_sliders and os.path.exists('build/slider_images'):
-        cmd = f"mv build/slider_images tmp_slider_images"
-        run_process(cmd)
-        cmd = f"mv build/hires_slider_images tmp_hires_slider_images"
-        run_process(cmd)
+        run_process("mv build/slider_images tmp_slider_images")
+        run_process("mv build/hires_slider_images tmp_hires_slider_images")
     else:
         keep_sliders = False
 
-    cmd = f"rm -rf build/*"
-    run_process(cmd)
-    cmd = f"mkdir -p build/assets build/assets/team build/assets/index build/assets/favicons build/assets/interactive"
-    run_process(cmd)
-    cmd = f"mkdir -p build/css build/images build/slider_images build/videos"
-    run_process(cmd)
+    if keep_images and os.path.exists('build/images'):
+        run_process("mv build/images tmp_images")
+    else:
+        keep_images = False
+
+    if keep_videos and os.path.exists('build/videos'):
+        run_process("mv build/videos tmp_videos")
+    else:
+        keep_videos = False
+
+    run_process("rm -rf build; mkdir build")
 
     if keep_sliders:
-        cmd = f"rm -r build/slider_images; mv tmp_slider_images build/slider_images"
-        run_process(cmd)
-        cmd = f"mv tmp_hires_slider_images build/hires_slider_images"
-        run_process(cmd)
+        run_process("mv tmp_slider_images build/slider_images")
+        run_process("mv tmp_hires_slider_images build/hires_slider_images")
+    else:
+        run_process("mkdir build/slider_images build/hires_slider_images")
 
-    return keep_sliders
+    if keep_images:
+        run_process("mv tmp_images build/images")
+    else:
+        run_process("mkdir build/images")
+
+    if keep_videos:
+        run_process("mv tmp_videos build/videos")
+    else:
+        run_process("mkdir build/videos")
+
+    return keep_sliders, keep_images, keep_videos
 
 
 
-def create_thumbnail(img_id, img_src):
+def create_thumbnail(img_id, img_src, create_media):
     """
     Create a thumbnail for the given image file.
     """
     cmd = f'convert src/images/{img_src} -resize 200x200 -gravity center -background none -extent 200x200 build/images/{img_id}_200.png'
-
-    run_process(cmd)
+    if create_media:
+        run_process(cmd)
     return f"images/{img_id}_200.png"
 
 
-def create_image(img_id, img_src):
+def create_image(img_id, img_src, create_media):
     """
     Copy the given image from src/images/ to build/, and resize if it is larger
     than 800x800 pixels.
     """
-    cmd = f"cp src/images/{img_src} build/images/{img_id}_full.png"
-    run_process(cmd)
-    cmd = f"convert src/images/{img_src} -resize 768x800\\> build/images/{img_id}_800.png"
-    run_process(cmd)
+    if create_media:
+        cmd = f"cp src/images/{img_src} build/images/{img_id}_full.png"
+        run_process(cmd)
+        cmd = f"convert src/images/{img_src} -resize 768x800\\> build/images/{img_id}_800.png"
+        run_process(cmd)
     return f"images/{img_id}_800.png"
 
 
-def create_video_thumbnail(img_id, img_src):
+def create_video_thumbnail(img_id, img_src, create_media):
     """
     Create a thumbnail for the given video file.
     """
-    # Extract the frame 10 seconds from the end of the video
-    cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{img_src} -vf scale=200:-1 -frames:v 1 build/videos/{img_id}_200.png"
-    run_process(cmd)
-    # get the dimensions of the first frame (width is fixed, but height is variable)
-    cmd = f"identify build/videos/{img_id}_200.png"
-    output = run_process(cmd, return_output=True)
-    dim = output.split()[2].split("x")
-    w = int(dim[0])
-    h = int(dim[1])
-    if not w == 200:
-        raise RuntimeError(f"Wrong thumbnail width: {w}x{h}!")
-    # now draw a circle and arrow (poor man's play icon) on top of it
-    cmd = f'mogrify -gravity Center -draw "fill none stroke rgba(255,255,255,0.5) stroke-linecap round stroke-width 2 circle {w//2},{h//2} {w//2},{h//2+20}" -draw "fill rgba(255,255,255,0.5) stroke-linecap round path \'M {w//2-5},{h//2-10} L {w//2-5},{h//2+10} L {w//2+10},{h//2} Z\'" build/videos/{img_id}_200.png'
-    run_process(cmd)
-    #Additionally crop images
-    cmd = f"mogrify -gravity center -extent 200x100 build/videos/{img_id}_200.png"
-    run_process(cmd)
+    if create_media:
+        # Extract the frame 10 seconds from the end of the video
+        cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{img_src} -vf scale=200:-1 -frames:v 1 build/videos/{img_id}_200.png"
+        run_process(cmd)
+        # get the dimensions of the first frame (width is fixed, but height is variable)
+        cmd = f"identify build/videos/{img_id}_200.png"
+        output = run_process(cmd, return_output=True)
+        dim = output.split()[2].split("x")
+        w = int(dim[0])
+        h = int(dim[1])
+        if not w == 200:
+            raise RuntimeError(f"Wrong thumbnail width: {w}x{h}!")
+        # now draw a circle and arrow (poor man's play icon) on top of it
+        cmd = f'mogrify -gravity Center -draw "fill none stroke rgba(255,255,255,0.5) stroke-linecap round stroke-width 2 circle {w//2},{h//2} {w//2},{h//2+20}" -draw "fill rgba(255,255,255,0.5) stroke-linecap round path \'M {w//2-5},{h//2-10} L {w//2-5},{h//2+10} L {w//2+10},{h//2} Z\'" build/videos/{img_id}_200.png'
+        run_process(cmd)
+        #Additionally crop images
+        cmd = f"mogrify -gravity center -extent 200x100 build/videos/{img_id}_200.png"
+        run_process(cmd)
     return f"videos/{img_id}_200.png"
 
 
-def create_video(img_id, img_src, img_src_nosound):
+def create_video(img_id, img_src, img_src_nosound, create_media):
     """
     Copy the given video file from src/images/ to build/.
     We could maybe do some conversions if necessary, but that is too complex for
     now.
     """
-    shutil.copyfile(f"src/videos/{img_src}", f"build/videos/{img_id}.mp4")
+    if create_media:
+        shutil.copyfile(f"src/videos/{img_src}", f"build/videos/{img_id}.mp4")
 
     if img_src_nosound:
-        shutil.copyfile(f"src/videos/{img_src_nosound}", f"build/videos/{img_id}_nosound.mp4")
+        if create_media:
+            shutil.copyfile(f"src/videos/{img_src_nosound}", f"build/videos/{img_id}_nosound.mp4")
         return (f"videos/{img_id}.mp4", f"videos/{img_id}_nosound.mp4")
     return f"videos/{img_id}.mp4", ""
 
 
-def make_gallery(templates, input_sections, gallery_name):
+def make_gallery(templates, input_sections, gallery_name, create_media):
     """
-    Create the gallery from the given image sections dictionary.
+    Create the gallery from the given gallery sections dictionary.
 
-    The dictionary should have the following structure:
-      {"SECTION HEADING": {"img.png": "Caption", "video.mp4": "Caption},
-       "SECTION HEADING": {"img.png": "Caption"}}
+    If create_media=False then skip copying the images/videos across 
     """
 
     # load all templates
@@ -326,9 +332,11 @@ def make_gallery(templates, input_sections, gallery_name):
                 obj_cap = value
             else:
                 raise NotImplementedError(f'Unable to determine obj_type of {obj_src}')
+
             if obj_type == "image":
-                obj_src_orig = create_image(obj_id, obj_src)
-                obj_src_thumb = create_thumbnail(obj_id, obj_src)
+                obj_src_orig = create_image(obj_id, obj_src, create_media)
+                obj_src_thumb = create_thumbnail(obj_id, obj_src, create_media)
+
                 cards += template_replace(
                     image_card_template,
                     {
@@ -339,8 +347,9 @@ def make_gallery(templates, input_sections, gallery_name):
                     },
                 )
             else:
-                obj_src_orig, obj_src_orig_nosound = create_video(obj_id, obj_src, obj_src_nosound)
-                obj_src_thumb = create_video_thumbnail(obj_id, obj_src)
+                obj_src_orig, obj_src_orig_nosound = create_video(obj_id, obj_src, obj_src_nosound, create_media)
+                obj_src_thumb = create_video_thumbnail(obj_id, obj_src, create_media)
+
                 cards += template_replace(
                     video_card_template,
                     {
@@ -523,11 +532,17 @@ if __name__ == "__main__":
     Main script body. Takes no input arguments.
     """
 
-    # Whether to regenerate slider_images if they already exist
+    # Whether to regenerate media files if they already exist
     keep_sliders = True
+    keep_images = True
+    keep_videos = True
 
     # Clean up any existing build, create new build directories
-    keep_sliders = clean_build(keep_sliders=keep_sliders)
+    keep_sliders, keep_images, keep_videos = clean_build(
+        keep_sliders=keep_sliders,
+        keep_images=keep_images,
+        keep_videos=keep_videos,
+    )
 
     # Load the html templates
     templates = load_templates()
@@ -535,12 +550,12 @@ if __name__ == "__main__":
     # Generate the images gallery
     with open("src/images.yml", "r") as handle:
         images = yaml.safe_load(handle)
-    make_gallery(templates, images, 'images')
+    make_gallery(templates, images, 'images', not keep_images)
 
     # Generate the video gallery
     with open("src/videos.yml", "r") as handle:
         videos = yaml.safe_load(handle)
-    make_gallery(templates, videos, 'videos')
+    make_gallery(templates, videos, 'videos', not keep_videos)
 
     # Create the sliders
     with open("src/sliders.yml", "r") as handle:

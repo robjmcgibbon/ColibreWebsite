@@ -88,6 +88,8 @@ AGN feedback model comparison:
   Simulation:
     - L100m6
     - L200m7
+    # TODO: Add z=0 data for L25m5h
+    - L25m5
   Redshift:
     - "0"
     - "0.5"

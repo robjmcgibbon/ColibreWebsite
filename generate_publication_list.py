@@ -113,9 +113,9 @@ def generate_publication_list():
         (
             'COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase',
             'Evgenii Chaikin, Joop Schaye, Matthieu Schaller, Sylvia Ploeckinger, Yannick Bahé, Alejandro Benítez-Llambay, Camila Correa, Victor Forouhar Moreno, Carlos Frenk, Filip Huško, Roi Kugel, Rob McGibbon, Alexander Richings, James Trayford, Josh Borrow, Rob Crain, John Helly, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
-            None,
-            None,
-            'In prep',
+            "https://ui.adsabs.harvard.edu/abs/2025arXiv250904067C/abstract",
+            "https://arxiv.org/abs/2509.04067",
+            'arxiv',
             2025,
         ),
     ]
@@ -155,6 +155,14 @@ def generate_publication_list():
             2025,
         ),
         (
+            'A hybrid active galactic nucleus feedback model with spinning black holes, winds and jets',
+            'Filip Huško, Cedric Lacey, Joop Schaye, Matthieu Schaller, Evgenii Chaikin, Sylvia Ploeckinger, Alejandro Benítez Llambay, Alexander Richings, James Trayford',
+            None,
+            'https://arxiv.org/abs/2509.05179',
+            'arxiv',
+            2025,
+        ),
+        (
             'A subgrid model for chemical enrichment in cosmological simulations',
             'Camila Correa et al.',
             None,
@@ -170,21 +178,13 @@ def generate_publication_list():
             'In prep',
             2025,
         ),
-        (
-            'A hybrid active galactic nucleus feedback model with spinning black holes, winds and jets',
-            'Filip Huško et al.',
-            None,
-            None,
-            'In prep',
-            2025,
-        ),
     ]
 
     # Identifier of the COLIBRE ADS library
     library = 'CrGcRqtAS2Gq6fSro-5F2A'
     # TODO: Enable querying of analysis papers
     # analysis_papers = query_ads_library(library)
-    analysis_papers = intro_papers
+    analysis_papers = intro_papers + method_papers[4:5]
 
     # Write basic html file, which will be formatter with make_webpage.py
     with open('src/pages/papers.html', 'w') as file:

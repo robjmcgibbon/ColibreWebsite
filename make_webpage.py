@@ -529,10 +529,11 @@ if __name__ == "__main__":
     Main script body. Takes no input arguments.
     """
 
-    # Whether to regenerate media files if they already exist
+    # Skip build steps to allow for a quick website build
     keep_sliders = True
     keep_images = True
     keep_videos = True
+    skip_ads_query = False
 
     # Clean up any existing build, create new build directories
     keep_sliders, keep_images, keep_videos = clean_build(
@@ -560,7 +561,9 @@ if __name__ == "__main__":
     make_sliders(templates, sliders)
 
     # Generate a list of publications
-    generate_publication_list.generate_publication_list()
+    if skip_ads_query:
+        print('Not querying ADS for analysis papers')
+    generate_publication_list.generate_publication_list(skip_query=skip_ads_query)
 
     # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:

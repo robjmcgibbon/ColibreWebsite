@@ -97,7 +97,7 @@ def format_paper_data(result):
     return sorted(analysis_papers, key=lambda d: d[3])
 
 
-def generate_publication_list():
+def generate_publication_list(skip_query=False):
 
     # Hard code the introduction papers as we want the full list of names
     # TODO: Update when papers are published
@@ -182,7 +182,10 @@ def generate_publication_list():
 
     # Identifier of the COLIBRE ADS library
     library = 'B_qtPm4pTKePLPVL4qKRSg'
-    analysis_papers = query_ads_library(library)
+    if skip_query:
+        analysis_papers = intro_papers
+    else:
+        analysis_papers = query_ads_library(library)
 
     # Write basic html file, which will be formatter with make_webpage.py
     with open('src/pages/papers.html', 'w') as file:

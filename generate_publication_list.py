@@ -54,7 +54,7 @@ def format_paper_data(result):
     '''
 
     # Generate author list
-    if len(result['author']) < 20:
+    if len(result['author']) < 10:
         author = ''
         for a in result['author']:
             last, first = a.split(', ')
@@ -181,10 +181,8 @@ def generate_publication_list():
     ]
 
     # Identifier of the COLIBRE ADS library
-    library = 'CrGcRqtAS2Gq6fSro-5F2A'
-    # TODO: Enable querying of analysis papers
-    # analysis_papers = query_ads_library(library)
-    analysis_papers = intro_papers + method_papers[4:5]
+    library = 'B_qtPm4pTKePLPVL4qKRSg'
+    analysis_papers = query_ads_library(library)
 
     # Write basic html file, which will be formatter with make_webpage.py
     with open('src/pages/papers.html', 'w') as file:

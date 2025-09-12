@@ -157,7 +157,7 @@ def generate_publication_list(skip_query=False):
         (
             'A hybrid active galactic nucleus feedback model with spinning black holes, winds and jets',
             'Filip Huško, Cedric Lacey, Joop Schaye, Matthieu Schaller, Evgenii Chaikin, Sylvia Ploeckinger, Alejandro Benítez Llambay, Alexander Richings, James Trayford',
-            None,
+            'https://ui.adsabs.harvard.edu/abs/2025arXiv250905179H',
             'https://arxiv.org/abs/2509.05179',
             'arxiv',
             2025,

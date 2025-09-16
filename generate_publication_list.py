@@ -53,8 +53,8 @@ def format_paper_data(result):
     we want to display on the webpage.
     '''
 
-    # Generate author list
-    if len(result['author']) < 10:
+    # Generate author list, truncate if we have too many authors
+    if len(result['author']) < 25:
         author = ''
         for a in result['author']:
             last, first = a.split(', ')

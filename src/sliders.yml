@@ -57,7 +57,7 @@ Box slice property comparison:
   Simulation:
     - L400m7
     - L200m6
-    - L25m5
+    - L025m5
   Redshift:
     - "0"
     - "0.5"
@@ -86,9 +86,9 @@ AGN feedback model comparison:
     - X-ray (ROSAT)
     - Compton y
   Simulation:
-    - L100m6
     - L200m7
-    - L25m5
+    - L100m6
+    - L025m5
   Redshift:
     - "0"
     - "0.5"

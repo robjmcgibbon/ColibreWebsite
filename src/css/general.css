@@ -158,3 +158,9 @@ body::before { /* delete all except the color line if we don't want the image */
 .navbar-toggler:active {
   border-color: white;
 }
+
+@media (max-width: 991px) {
+  .container-not-to-show-in-mobile-version {
+    display: none !important;
+  }
+}

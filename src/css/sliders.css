@@ -60,6 +60,13 @@
 
 .img-comp-img img {
   display:block;
+  height: 800px;
+  width: 800px;
+}
+
+.img-comp-overlay img {
+   height: 800px;
+   width: 800px;
 }
 
 .img-comp-slider {
@@ -96,4 +103,24 @@
 
 .controls-spacer {
     height: calc(2rem + 3rem + 2rem); /* Approximate height of h2 + p + margins */
+}
+
+@media (max-width: 991px) {
+
+    .img-comp-container {
+      position: relative;
+      height: 400px;
+      width: 400px;
+    }
+
+   .img-comp-img img {
+     display:block;
+      height: 400px;
+      width: 400px;
+   }
+
+   .img-comp-overlay img {
+     height: 400px;
+     width: 400px;
+   }
 }

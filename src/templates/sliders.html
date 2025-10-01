@@ -78,7 +78,28 @@ function compare() {
     }
 
     function compareImages(img) {
-        let slider, clicked = 0, w = img.offsetWidth, h = img.offsetHeight;
+        let slider, clicked = 0;
+        let currentRatio = 0.5;
+
+        function getCurrentDimensions() {
+            return {
+                w: img.parentElement.offsetWidth,
+                h: img.parentElement.offsetHeight
+            };
+        }
+
+        // Function to update slider position based on current ratio
+        function updateSliderPosition() {
+            const { w, h } = getCurrentDimensions();
+            const currentPosition = currentRatio * w;
+
+            img.style.width = currentPosition + "px";
+            slider.style.left = currentPosition - (slider.offsetWidth / 2) + "px";
+            whiteBar.style.left = currentPosition + "px";
+            slider.style.top = (h * 0.85 - slider.offsetHeight / 2) + "px";
+        }
+
+        const { w, h } = getCurrentDimensions();
         img.style.width = (w / 2) + "px";
 
         slider = document.createElement("DIV");
@@ -89,10 +110,10 @@ function compare() {
         whiteBar.setAttribute("class", "img-comp-white-bar");
         img.parentElement.insertBefore(whiteBar, img);
 
-        slider.style.top = (h * 0.85 - slider.offsetHeight / 2) + "px";
-        slider.style.left = (w / 2 - slider.offsetWidth / 2) + "px";
-        whiteBar.style.left = (w / 2 - 1) + "px";
+        // Set initial position
+        updateSliderPosition();
 
+        window.addEventListener("resize", updateSliderPosition);
         slider.addEventListener("mousedown", slideReadyDesktop);
         slider.addEventListener("touchstart", slideReadyMobile, { passive: false });
 
@@ -120,9 +141,14 @@ function compare() {
 
         function slideMove(e) {
             if (clicked === 0) return;
+
+            const { w } = getCurrentDimensions();
             let pos = getCursorPos(e);
             if (pos < 0) pos = 0;
             if (pos > w) pos = w;
+
+            currentRatio = pos / w;
+
             slide(pos);
         }
 
@@ -136,7 +162,7 @@ function compare() {
 
         function slide(x) {
             img.style.width = x + "px";
-            slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+            slider.style.left = x - (slider.offsetWidth / 2) + "px";
             whiteBar.style.left = x + "px";
         }
     }

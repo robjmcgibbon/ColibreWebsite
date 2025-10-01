@@ -81,7 +81,6 @@ function compare() {
         let slider, clicked = 0;
         let currentRatio = 0.5;
 
-        // Function to get current dimensions
         function getCurrentDimensions() {
             return {
                 w: img.parentElement.offsetWidth,
@@ -100,7 +99,6 @@ function compare() {
             slider.style.top = (h * 0.85 - slider.offsetHeight / 2) + "px";
         }
 
-        // Initialize
         const { w, h } = getCurrentDimensions();
         img.style.width = (w / 2) + "px";
 
@@ -115,9 +113,7 @@ function compare() {
         // Set initial position
         updateSliderPosition();
 
-        // Update on window resize
         window.addEventListener("resize", updateSliderPosition);
-
         slider.addEventListener("mousedown", slideReadyDesktop);
         slider.addEventListener("touchstart", slideReadyMobile, { passive: false });
 
@@ -151,7 +147,6 @@ function compare() {
             if (pos < 0) pos = 0;
             if (pos > w) pos = w;
 
-            // Store position as ratio for responsive behavior
             currentRatio = pos / w;
 
             slide(pos);

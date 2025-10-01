@@ -60,15 +60,13 @@
 
 .img-comp-img img {
   display:block;
-  height: 800px; /*should be the same height as the images*/
-  /* Ensure this has a defined width, or it will collapse */
-  width: 800px; /* Set a fixed width for the image viewer */
+  height: 800px;
+  width: 800px;
 }
 
 .img-comp-overlay img {
-   height: 800px; /*should be the same height as the images*/
-   /* Ensure this has a defined width, or it will collapse */
-   width: 800px; /* Set a fixed width for the image viewer */
+   height: 800px;
+   width: 800px;
 }
 
 .img-comp-slider {

@@ -161,6 +161,6 @@ body::before { /* delete all except the color line if we don't want the image */
 
 @media (max-width: 991px) {
   .container-not-to-show-in-mobile-version {
-    display: none !important;
+    display: none;
   }
 }

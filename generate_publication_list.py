@@ -165,7 +165,7 @@ def generate_publication_list(skip_query=False):
         (
             'Non-explosive pre-supernova feedback in the COLIBRE model of galaxy formation',
             'Alejandro Benítez-Llambay, Sylvia Ploeckinger, Joop Schaye, Alexander Richings, Evgenii Chaikin, Matthieu Schaller, James Trayford, Carlos Frenk, Filip Huško, Camila Correa',
-            None,
+            'https://ui.adsabs.harvard.edu/abs/2025arXiv250925309B/abstract',
             'https://arxiv.org/abs/2509.25309',
             'arxiv',
             2025,

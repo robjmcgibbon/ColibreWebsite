@@ -37,6 +37,7 @@ The domain colibre-simulations.org was bought for 10 years in Aug 2025 (from Nam
 
 ## TODO
 Run `grep -r TODO *`
+- Move css to the `<head>` of each page
 
 ### Nice-to-have
 - Mobile support

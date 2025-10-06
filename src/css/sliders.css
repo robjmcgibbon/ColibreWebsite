@@ -123,4 +123,8 @@
      height: 400px;
      width: 400px;
    }
+
+   .responsive-text-container {
+    width: 400px;
+  }
 }

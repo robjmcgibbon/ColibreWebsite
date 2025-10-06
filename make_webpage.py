@@ -88,8 +88,8 @@ def make_page(page, pages, templates):
 
     # check if we have a page-specific header
     extra_header = ""
-    if "style" in pages[page]:
-        for script in pages[page]["style"]:
+    if "css" in pages[page]:
+        for script in pages[page]["css"]:
             extra_header += template_replace(style_template, {"STYLE_SRC": script})
     if "prescripts" in pages[page]:
         for script in pages[page]["prescripts"]:

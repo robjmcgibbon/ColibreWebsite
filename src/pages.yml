@@ -1,28 +1,40 @@
 index.html:
   title: ""
+  css:
+    - css/index.css
 
 sliders.html:
   title: Sliders
   sidebar: sliders
+  css:
+    - css/sliders.css
 
 interactive.html:
   title: Interactive maps
+  css:
+    - css/interactive.css
 
 videos.html:
   title: Videos
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
   sidebar: videos
+  css:
+    - css/gallery.css
 
 images.html:
   title: Images
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
   sidebar: images
+  css:
+    - css/gallery.css
 
 simulations.html:
   title: Simulations
   sidebar: simulations
+  css:
+    - css/simulations.css
 
 papers.html:
   title: Publications
@@ -30,4 +42,5 @@ papers.html:
 
 team.html:
   title: Team
-
+  css:
+    - css/team.css

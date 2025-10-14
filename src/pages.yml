@@ -2,6 +2,7 @@ index.html:
   title: ""
   css:
     - css/index.css
+  description: "The COLIBRE suite of hydrodynamical simulations model the formation and evolution of galaxies in representative volumes starting from cosmological initial conditions."
 
 sliders.html:
   title: Sliders
@@ -35,6 +36,7 @@ simulations.html:
   sidebar: simulations
   css:
     - css/simulations.css
+  description: "Tables showing the simulations within the COLIBRE suite"
 
 papers.html:
   title: Publications

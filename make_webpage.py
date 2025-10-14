@@ -80,6 +80,7 @@ def make_page(page, pages, templates):
     template = templates["page.html"]
     style_template = templates["style.html"]
     script_template = templates["script.html"]
+    description_template = templates["description.html"]
 
     with open(f"src/pages/{page}", "r") as pfile:
         page_contents = pfile.read()
@@ -94,6 +95,8 @@ def make_page(page, pages, templates):
     if "prescripts" in pages[page]:
         for script in pages[page]["prescripts"]:
             extra_header += template_replace(script_template, {"SCRIPT_SRC": script})
+    if "description" in pages[page]:
+        extra_header += template_replace(description_template, {"DESCRIPTION": pages[page]['description']})
     page_out = template_replace(page_out, {"EXTRA_HEADER": extra_header})
 
     title = "The COLIBRE project"

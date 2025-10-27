@@ -1,0 +1,71 @@
+Name                                                   Affiliation                          Latitude    Longitude
+"Joop Schaye"                                          "Leiden University"                  52.16       4.48
+"Evgenii Chaikin"                                      "Leiden University"                  52.160106   4.482135
+"Victor Forouhar"                                      "Leiden University"                  52.160106   4.482135
+"Filip Husko"                                          "Leiden University"                  52.160106   4.482135
+"Matthieu Schaller"                                    "Leiden University"                  52.160106   4.482135
+"Piyush Sharda"                                        "Leiden University"                  52.160106   4.482135
+"Aniruddh Herle"                                       "Leiden University"                  52.160106   4.482135
+"Casper Vedder"                                        "Leiden University"                  52.160106   4.482135
+"David Navarro Gironés"                                "Leiden University"                  52.160106   4.482135
+"Quinten van Zegveld"                                  "Leiden University"                  52.160106   4.482135
+"Marloes van Heukelum"                                 "Utrecht University"                 52.0883     5.1725
+"Alejandra Aguirre"                                    "Durham University"                  54.768634   -1.572089
+"Diego Dado"                                           "Durham University"                  54.768634   -1.572089
+"Cedric Lacey"                                         "Durham University"                  54.768634   -1.572089
+"Shengdong Lu"                                         "Durham University"                  54.768634   -1.572089
+"Kyle Oman"                                            "Durham University"                  54.768634   -1.572089
+"Isabel Santos Santos"                                 "Durham University"                  54.768634   -1.572089
+"Kai Wang"                                             "Durham University"                  54.768634   -1.572089
+"Yuchan Wang"                                          "Durham University"                  54.768634   -1.572089
+"Aofie Curran"                                         "University of Hull"                 53.773703   -0.368078
+"Elliot Howatson"                                      "University of Hull"                 53.773703   -0.368078
+"Alex Richings"                                        "University of Hull"                 53.773703   -0.368078
+"Oliver Thompson"                                      "University of Hull"                 53.773703   -0.368078
+"Alejandro Benitez-Llambay"                            "University of Milan"                45.456      9.19
+"Titouan Lazeyras"                                     "University of Milan"                45.456      9.19
+"Davide Tornotti"                                      "University of Milan"                45.456      9.19
+"Francesco Turini"                                     "University of Milan"                45.456      9.19
+"Yannick Bahe"                                         "University of Nottingham"           52.939      -1.197
+"James Rice"                                           "University of Nottingham"           52.939      -1.197
+"Connor Bottrell"                                      "University of Western Australia"    -31.98118   115.81991
+"Angel Chandro Gomez"                                  "University of Western Australia"    -31.98118   115.81991
+"Matthew Frosst"                                       "University of Western Australia"    -31.98118   115.81991
+"Kate Harborne"                                        "University of Western Australia"    -31.98118   115.81991
+"Claudia Lagos"                                        "University of Western Australia"    -31.98118   115.81991
+"Aaron Ludlow"                                         "University of Western Australia"    -31.98118   115.81991
+"Danail Obreschkow"                                    "University of Western Australia"    -31.98118   115.81991
+"Chris Power"                                          "University of Western Australia"    -31.98118   115.81991
+"Laura Serrano Rodriguez"                              "University of Western Australia"    -31.98118   115.81991
+"Nicole Thomas"                                        "University of Western Australia"    -31.98118   115.81991
+"Ruby Wright"                                          "University of Western Australia"    -31.98118   115.81991
+"Nikolaos Andreadis"                                   "Ghent University"                   51.041      3.723
+"Maarten Baes"                                         "Ghent University"                   51.041      3.723
+"Andrea Gebek"                                         "Ghent University"                   51.041      3.723
+"James McGregor"                                       "Australian National University"     -35.2764    149.1205
+"Emily Wisnioski"                                      "Australian National University"     -35.2764    149.1205
+"Trevor Mendel"                                        "Australian National University"     -35.2764    149.1205
+"Aswin Payyoor Vijayan"                                "University of Sussex"               50.859167   -0.084667
+"Will Roper"                                           "University of Sussex"               50.859167   -0.084667
+"Max Baker"                                            "Cardiff University"                 51.486627   -3.178864
+"Jonathan Davies"                                      "Liverpool John Moores University"   53.403      -2.97
+"Feihong He"                                           "Shanghai Jiao Tong University"      31.200891   121.428395
+"Katy Proctor"                                         "Stockholm University"               59.3592     18.055
+"Mathieu Perron-Cormier"                               "Queen's University"                 44.22       -76.49
+"Oleh Ryzhov"                                          "Adam Mickiewicz University"         52.409538   16.931992
+"Till Sawala"                                          "University of Helsinki"             60.175648   24.95355
+"Sylvia Ploeckinger"                                   "University of Vienna"               48.2078     16.3558
+"Moa Huppenkothen"                                     "University of Vienna"               48.2078     16.3558
+"Teymoor Saifollahi"                                   "University of Strasbourg"           48.582755   7.764422
+"Yamila Daniela Burrafato"                             "University of Buenos Aires"         -34.54139   -58.44306
+"Scott Kay"                                            "University of Manchester"           53.46685    -2.233884
+"Francine Marleau"                                     "University of Innsbruck"            47.258944   11.383664
+"Marcin Semczuk"                                       "University of Barcelona"            41.3853     2.1583
+"Luisa Lucie-Smith"                                    "University of Hamburg"              53.5668     9.9837
+"José Benavides"                                       "UC Riverside"                       33.964257   -117.339786
+"Yunpeng Jin"                                          "Zhejiang University"                30.296667   120.073333
+"Qinglin Ma"                                           "Tsinghua University"                40.00229    116.320989
+"Daniela Galárraga-Espinosa"                           "IPMU, University of Tokyo"          35.867      139.973
+"Daniel Miller"                                        "PUCV"                               -33.04497   -71.60665
+"Marcin Glowacki"                                      "University of Edinburgh"            55.944515   -3.189241
+"Maximilian Zemsch"                                    "University of Oxford"               51.757      -1.2545

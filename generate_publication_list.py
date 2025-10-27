@@ -151,7 +151,7 @@ def generate_publication_list(skip_query=False):
             'Sylvia Ploeckinger, Alexander Richings, Joop Schaye, James Trayford, Matthieu Schaller, Evgenii Chaikin',
             f'https://ui.adsabs.harvard.edu/abs/2025arXiv250615773P',
             f'https://arxiv.org/abs/2506.15773',
-            'arxiv',
+            'MNRAS',
             2025,
         ),
         (

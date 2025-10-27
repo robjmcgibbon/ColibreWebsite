@@ -1,6 +1,6 @@
 Individual galaxies:
   dirname: galaxies
-  description: "z = 0 galaxies from the L025m5 simulation"
+  description: "z = 0 galaxies from the L025m5 simulations"
   show_Left_Right: Property
   buttons:
     - GalaxyID
@@ -20,21 +20,23 @@ Individual galaxies:
     - Stellar age
     - Stellar metallicity
   GalaxyID:
-    - "4645"
-    - "48133"
-    - "104"
-    #- "979"  Misorientated
-    - "1744"
-    - "4506"
-    - "9634"
-    - "19674"
-    - "20195"
-    - "28757"
-    - "53114"
-    - "126314"
-    - "424"
-    - "601"
-    #- "5080" Boring
+    # L25m5 Thermal
+    - "4705"
+    - "47804"
+    - "105"
+    # - "974"   # Misaligned
+    - "1721"
+    - "918"
+    - "9617"
+    - "19826"
+    - "19994"
+    - "28935"
+    - "126952"
+    - "428"
+    - "659"
+    - "53330"
+    # L25m5 Hybrid
+    # - "98"
   Orientation:
     - Face on
     - Edge on

@@ -8,6 +8,7 @@ import yaml
 import rcssmin
 
 import generate_publication_list
+import generate_user_map
 
 
 def load_templates():
@@ -567,6 +568,9 @@ if __name__ == "__main__":
     if skip_ads_query:
         print('Not querying ADS for analysis papers')
     generate_publication_list.generate_publication_list(skip_query=skip_ads_query)
+
+    # Generate the map of colibre users
+    generate_user_map.generate_user_map()
 
     # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:

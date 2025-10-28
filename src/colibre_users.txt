@@ -69,3 +69,5 @@ Name                                                   Affiliation              
 "Daniel Miller"                                        "PUCV"                               -33.04497   -71.60665
 "Marcin Glowacki"                                      "University of Edinburgh"            55.944515   -3.189241
 "Maximilian Zemsch"                                    "University of Oxford"               51.757      -1.2545
+"Luigi Giaquinto"                                      "University of Naples"               40.845      14.257
+"Bruno Celiz"                                          "National University of Córdoba"     -31.435     -64.18

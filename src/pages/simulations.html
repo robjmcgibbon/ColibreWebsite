@@ -262,6 +262,16 @@ The table below shows all the COLIBRE cosmological simulations run with hybrid (
     For each hydrodynamic simulation, there is a corresponding DMO simulation that uses the same initial phases and the same total number of particles.
     To create the initial conditions for the DMO simulation, baryonic particles from the corresponding hydrodynamic run were converted into CDM particles.
 </p>
+
+<h2 id="sec3">Mass functions</h2>
+<p>
+The interactive plot below shows cumulative galaxy and stellar mass functions. The lower limit on the horizontal axis correponds to 100m<sub>g</sub> for that run.
+</p>
+
+<div class="plot-container">
+    <iframe src="assets/simulations/mass_functions.html"></iframe>
+</div>
+
 <br>
 <br>
 
@@ -272,7 +282,7 @@ The table below shows all the COLIBRE cosmological simulations run with hybrid (
         // Get all buttons belonging to the same group as the one clicked and remove 'active' class
         const buttons = clickedButton.parentElement.querySelectorAll(".sort-button");
         buttons.forEach(btn => btn.classList.remove("active"));
-        
+
         // Set the clicked button to active
         clickedButton.classList.add("active");
 
@@ -349,7 +359,7 @@ The table below shows all the COLIBRE cosmological simulations run with hybrid (
         if (defaultButtonThermal) {
             defaultButtonThermal.click();
         }
-        
+
         // Trigger the default sort for the Hybrid table
         const defaultButtonHybrid = document.getElementById("sortByResolutionHybrid");
         if (defaultButtonHybrid) {

@@ -8,6 +8,7 @@ import yaml
 import rcssmin
 
 import generate_publication_list
+import generate_mass_functions
 import generate_user_map
 
 
@@ -571,6 +572,9 @@ if __name__ == "__main__":
 
     # Generate the map of colibre users
     generate_user_map.generate_user_map()
+
+    # Generate the simulation mass functions
+    generate_mass_functions.generate_mass_functions()
 
     # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:

@@ -73,3 +73,5 @@ Name                                                   Affiliation              
 "Bruno Celiz"                                          "National University of Córdoba"             -31.435     -64.18
 "Saad Mehmood"                                         "Western Sydney University"                  -33.816     151.00
 "Aditya Manuwal"                                       "Universidad Nacional Autónoma de México"    19.3328     -99.187
+"Go Ogiya"                                             "Zhejiang University"                        30.3087     120.0865
+"Nisha Grewal"                                         "Newcastle University"                       54.9792     -1.6147

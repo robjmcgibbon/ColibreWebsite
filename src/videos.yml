@@ -44,12 +44,15 @@ The videos are still being improved and more will be added, so please keep an ey
   barred_twoprop_newmix.mp4:
     desc: "Stellar light, gas density (galaxy-scale)"
     name_nosound: barred_twoprop_newmix_nosound.mp4
+  barred_star_v_metal_large_newmix.mp4:
+    desc: "Stellar light, Gas metallicity (large-scale)"
+    name_nosound: barred_star_v_metal_large_newmix_nosound.mp4
+  barred_star_v_metal_newmix.mp4:
+    desc: "Stellar light, Gas metallicity (galaxy-scale)"
+    name_nosound: barred_star_v_metal_newmix_nosound.mp4
   barred_T_newmix.mp4:
     desc: "Gas temperature"
     name_nosound: barred_T_newmix_nosound.mp4
-  barred_Z_newmix.mp4:
-    desc: "Gas metallicity"
-    name_nosound: barred_Z_newmix_nosound.mp4
   barred_gas_newmix.mp4:
     desc: "Gas density"
     name_nosound: barred_gas_newmix_nosound.mp4
@@ -80,12 +83,15 @@ The videos are still being improved and more will be added, so please keep an ey
   merger_twoprop_newmix.mp4:
     desc: "Stellar light, gas density (galaxy-scale)"
     name_nosound: merger_twoprop_newmix_nosound.mp4
+  merger_star_v_metal_large_newmix.mp4:
+    desc: "Stellar light, Gas metallicity (large-scale)"
+    name_nosound: merger_star_v_metal_large_newmix_nosound.mp4
+  merger_star_v_metal_newmix.mp4:
+    desc: "Stellar light, Gas metallicity (galaxy-scale)"
+    name_nosound: merger_star_v_metal_newmix_nosound.mp4
   merger_T_newmix.mp4:
     desc: "Gas temperature"
     name_nosound: merger_T_newmix_nosound.mp4
-  merger_Z_newmix.mp4:
-    desc: "Gas metallicity"
-    name_nosound: merger_Z_newmix_nosound.mp4
   merger_gas_newmix.mp4:
     desc: "Gas density"
     name_nosound: merger_gas_newmix_nosound.mp4

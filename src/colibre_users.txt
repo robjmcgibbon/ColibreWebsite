@@ -63,7 +63,6 @@ Name                                                   Affiliation              
 "Marcin Semczuk"                                       "University of Barcelona"                    41.3853     2.1583
 "Luisa Lucie-Smith"                                    "University of Hamburg"                      53.5668     9.9837
 "José Benavides"                                       "UC Riverside"                               33.964257   -117.339786
-"Yunpeng Jin"                                          "Zhejiang University"                        30.296667   120.073333
 "Qinglin Ma"                                           "Tsinghua University"                        40.00229    116.320989
 "Daniela Galárraga-Espinosa"                           "IPMU, University of Tokyo"                  35.867      139.973
 "Daniel Miller"                                        "PUCV"                                       -33.04497   -71.60665
@@ -74,4 +73,5 @@ Name                                                   Affiliation              
 "Saad Mehmood"                                         "Western Sydney University"                  -33.816     151.00
 "Aditya Manuwal"                                       "Universidad Nacional Autónoma de México"    19.3328     -99.187
 "Go Ogiya"                                             "Zhejiang University"                        30.3087     120.0865
+"Yunpeng Jin"                                          "Zhejiang University"                        30.296667   120.073333
 "Nisha Grewal"                                         "Newcastle University"                       54.9792     -1.6147

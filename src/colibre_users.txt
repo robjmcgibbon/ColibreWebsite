@@ -75,3 +75,10 @@ Name                                                   Affiliation              
 "Go Ogiya"                                             "Zhejiang University"                        30.3087     120.0865
 "Yunpeng Jin"                                          "Zhejiang University"                        30.296667   120.073333
 "Nisha Grewal"                                         "Newcastle University"                       54.9792     -1.6147
+"Anna Durrant"                                         "Liverpool John Moores University"           53.403      -2.97
+"Giacomo Queirolo"                                     "University of Montpellier"                  43.6158     3.8721
+"Jinning Liang"                                        "Peking University"                          39.9869     116.3059
+"Seona Lee"                                            "University of Western Australia"            -31.98118   115.81991
+"Manvi Chauhan"                                        "University of Hull"                         53.773703   -0.368078
+"Benjamin Silva Mella"                                 "PUC"                                        -33.4413     -70.6406
+"Miguel Vargas"                                        "Universidad Nacional Autónoma de México"    19.3328     -99.187

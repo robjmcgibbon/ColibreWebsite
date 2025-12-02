@@ -212,6 +212,7 @@ def generate_publication_list(skip_query=False):
             file.write('</ol>\n')
         file.write('<br>\n')
         file.write('<br>\n')
+        file.write('<div class="footertext">Publications are subject to their respective publisher or preprint licenses</div>')
 
 if __name__ == '__main__':
     generate_publication_list()

@@ -9,6 +9,7 @@ Name                                                   Affiliation              
 "Casper Vedder"                                        "Leiden University"                          52.160106   4.482135
 "David Navarro Gironés"                                "Leiden University"                          52.160106   4.482135
 "Quinten van Zegveld"                                  "Leiden University"                          52.160106   4.482135
+"Marcel van Daalen"                                    "Leiden University"                          52.160106   4.482135
 "Marloes van Heukelum"                                 "Utrecht University"                         52.0883     5.1725
 "Alejandra Aguirre"                                    "Durham University"                          54.768634   -1.572089
 "Diego Dado"                                           "Durham University"                          54.768634   -1.572089
@@ -18,6 +19,8 @@ Name                                                   Affiliation              
 "Isabel Santos Santos"                                 "Durham University"                          54.768634   -1.572089
 "Kai Wang"                                             "Durham University"                          54.768634   -1.572089
 "Yuchan Wang"                                          "Durham University"                          54.768634   -1.572089
+"Jake Howard"                                          "Durham University"                          54.768634   -1.572089
+"Zefeng Li"                                            "Durham University"                          54.768634   -1.572089
 "Aofie Curran"                                         "University of Hull"                         53.773703   -0.368078
 "Elliot Howatson"                                      "University of Hull"                         53.773703   -0.368078
 "Alex Richings"                                        "University of Hull"                         53.773703   -0.368078

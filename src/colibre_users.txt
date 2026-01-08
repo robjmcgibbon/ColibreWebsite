@@ -10,6 +10,7 @@ Name                                                   Affiliation              
 "David Navarro Gironés"                                "Leiden University"                          52.160106   4.482135
 "Quinten van Zegveld"                                  "Leiden University"                          52.160106   4.482135
 "Marcel van Daalen"                                    "Leiden University"                          52.160106   4.482135
+"George-Luca Iconaru"                                  "Leiden University"                          52.160106   4.482135
 "Marloes van Heukelum"                                 "Utrecht University"                         52.0883     5.1725
 "Alejandra Aguirre"                                    "Durham University"                          54.768634   -1.572089
 "Diego Dado"                                           "Durham University"                          54.768634   -1.572089
@@ -21,6 +22,7 @@ Name                                                   Affiliation              
 "Yuchan Wang"                                          "Durham University"                          54.768634   -1.572089
 "Jake Howard"                                          "Durham University"                          54.768634   -1.572089
 "Zefeng Li"                                            "Durham University"                          54.768634   -1.572089
+"Xu Zhao"                                              "Durham University"                          54.768634   -1.572089
 "Aofie Curran"                                         "University of Hull"                         53.773703   -0.368078
 "Elliot Howatson"                                      "University of Hull"                         53.773703   -0.368078
 "Alex Richings"                                        "University of Hull"                         53.773703   -0.368078
@@ -53,6 +55,8 @@ Name                                                   Affiliation              
 "Max Baker"                                            "Cardiff University"                         51.486627   -3.178864
 "Jonathan Davies"                                      "Liverpool John Moores University"           53.403      -2.97
 "Feihong He"                                           "Shanghai Jiao Tong University"              31.200891   121.428395
+"Songting Li"                                          "Shanghai Jiao Tong University"              31.200891   121.428395
+"Jiangkun Shi "                                        "Shanghai Jiao Tong University"              31.200891   121.428395
 "Katy Proctor"                                         "Stockholm University"                       59.3592     18.055
 "Mathieu Perron-Cormier"                               "Queen's University"                         44.22       -76.49
 "Oleh Ryzhov"                                          "Adam Mickiewicz University"                 52.409538   16.931992
@@ -87,3 +91,4 @@ Name                                                   Affiliation              
 "Miguel Vargas"                                        "Universidad Nacional Autónoma de México"    19.3328     -99.187
 "Hao Fu"                                               "Fudan University"                           31.2974     121.5036
 "Seunghwan Lim"                                        "University of Cambridge"                    52.2054     0.1132
+"Samuel Lange"                                         "Chinese University of Hong Kong"            22.4196     114.2068

@@ -71,7 +71,7 @@ def format_paper_data(result):
             arxiv_identifier = identifier.replace('arXiv:', '')
     if arxiv_identifier == '':
         print(f'Arxiv link not found for: {result["identifier"][0]}')
-        exit()
+        raise KeyError
 
     # Shorter name for journal
     journal = {

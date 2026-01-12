@@ -1,9 +1,11 @@
 #! /usr/bin/python3
 
+import argparse
 import glob
 import os
 import shutil
 import subprocess
+
 import yaml
 import rcssmin
 
@@ -534,10 +536,18 @@ if __name__ == "__main__":
     Main script body. Takes no input arguments.
     """
 
-    # Skip build steps to allow for a quick website build
-    keep_sliders = True
-    keep_images = True
-    keep_videos = True
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--update',
+        action='store_true',
+        help='Update papers and team map',
+    )
+    args = parser.parse_args()
+
+    # # Skip build steps to allow for a quick website build
+    keep_sliders = False
+    keep_images = False
+    keep_videos = False
     skip_ads_query = False
 
     # Clean up any existing build, create new build directories
@@ -550,20 +560,24 @@ if __name__ == "__main__":
     # Load the html templates
     templates = load_templates()
 
-    # Generate the images gallery
-    with open("src/images.yml", "r") as handle:
-        images = yaml.safe_load(handle)
-    make_gallery(templates, images, 'images', not keep_images)
+    if not args.update:
+        # Generate the images gallery
+        with open("src/images.yml", "r") as handle:
+            images = yaml.safe_load(handle)
+        make_gallery(templates, images, 'images', not keep_images)
 
-    # Generate the video gallery
-    with open("src/videos.yml", "r") as handle:
-        videos = yaml.safe_load(handle)
-    make_gallery(templates, videos, 'videos', not keep_videos)
+        # Generate the video gallery
+        with open("src/videos.yml", "r") as handle:
+            videos = yaml.safe_load(handle)
+        make_gallery(templates, videos, 'videos', not keep_videos)
 
-    # Create the sliders
-    with open("src/sliders.yml", "r") as handle:
-        sliders = yaml.safe_load(handle)
-    make_sliders(templates, sliders)
+        # Create the sliders
+        with open("src/sliders.yml", "r") as handle:
+            sliders = yaml.safe_load(handle)
+        make_sliders(templates, sliders)
+
+        # Generate the simulation mass functions
+        generate_mass_functions.generate_mass_functions()
 
     # Generate a list of publications
     if skip_ads_query:
@@ -573,17 +587,16 @@ if __name__ == "__main__":
     # Generate the map of colibre users
     generate_user_map.generate_user_map()
 
-    # Generate the simulation mass functions
-    generate_mass_functions.generate_mass_functions()
-
     # Now generate all the pages.
     with open("src/pages.yml", "r") as handle:
         pages = yaml.safe_load(handle)
+    if args.update:
+        pages = ['papers.html']
     for page in pages:
         make_page(page, pages, templates)
 
     # Copy the assets.
     copy_assets()
     copy_styles()
-    if not keep_sliders:
+    if (not keep_sliders) and (not args.update):
         copy_slider_images()

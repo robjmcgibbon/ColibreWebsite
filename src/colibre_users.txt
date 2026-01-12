@@ -32,6 +32,7 @@ Name                                                   Affiliation              
 "Davide Tornotti"                                      "University of Milan"                        45.456      9.19
 "Francesco Turini"                                     "University of Milan"                        45.456      9.19
 "Yannick Bahe"                                         "University of Nottingham"                   52.939      -1.197
+"Adela Fernandez"                                      "University of Nottingham"                   52.939      -1.197
 "James Rice"                                           "University of Nottingham"                   52.939      -1.197
 "Connor Bottrell"                                      "University of Western Australia"            -31.98118   115.81991
 "Angel Chandro Gomez"                                  "University of Western Australia"            -31.98118   115.81991

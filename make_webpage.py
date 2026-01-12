@@ -543,16 +543,20 @@ if __name__ == "__main__":
     parser.add_argument(
         '--update',
         action='store_true',
-        help='Update papers and team map',
+        help='Generate papers and team map',
     )
     args = parser.parse_args()
     if args.update:
+        clean_build(keep_sliders=False, keep_images=False, keep_videos=False)
+        # Update papers
         generate_publication_list.generate_publication_list(skip_query=False)
         with open("src/pages.yml", "r") as handle:
             pages = yaml.safe_load(handle)
         for page in ['papers.html']:
             make_page(page, pages, templates)
+        # Update map
         generate_user_map.generate_user_map()
+        copy_assets()
         exit()
 
     # Whether to skip build steps to allow for a quick website build

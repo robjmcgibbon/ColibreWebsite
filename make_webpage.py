@@ -560,9 +560,9 @@ if __name__ == "__main__":
         exit()
 
     # Whether to skip build steps to allow for a quick website build
-    keep_sliders = False
-    keep_images = False
-    keep_videos = False
+    keep_sliders = True
+    keep_images = True
+    keep_videos = True
     skip_ads_query = False
 
     # Clean up any existing build, create new build directories

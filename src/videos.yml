@@ -1,102 +1,20 @@
-page_description: '<p>
-Below are two sets of videos showing the evolution of two different 
-galaxies in the L012m5 simulation from redshift z = 5.5 to z = 0. 
-Galaxies 1 and 2 have present-day stellar masses of 10<sup>10.8</sup> M<sub>⊙</sub> and 10<sup>10.5</sup> M<sub>⊙</sub>, respectively. 
-Towards the end of the simulation these two galaxies are interacting with each other. 
-Different videos show different properties (stellar light with dust attenuation, various gas properties, dark matter density).
+# Key should be the title of the videoname of file
+# name (of file within videos directory) is required
+# desc is optional
 
-<br><br>
+"Individual galaxy":
+  name: barred_starlight_newmix.mp4
+  desc: 'The evolution of a galaxy in the L012m5 simulation from redshift z = 5.5 to z = 0. The galaxy has a present-day stellar masses of 10<sup>10.8</sup> M<sub>⊙</sub>. For another galaxy, more properties, and videos without sonification, see <a href="videos_galaxy.html" class="active text-decoration-none">the gallery here.</a>'
 
-The COLIBRE videos include sonification using <a href="https://joss.theoj.org/papers/10.21105/joss.07875" class="active text-decoration-none">STRAUSS</a> to augment what is seen.
-Sound is used to express the black hole accretion rate, the star formation and the energy outflow rate of galaxies as they evolve.
-These use rhythmic, musical and textural representations, respectively, to distinguish them. Watch the (accessible) <a href="#sec3" class="active text-decoration-none">explainer 
-video</a> to understand more.
+"Box slice":
+  desc: 'Sound in stereo. See <a href="videos_box.html" class="active text-decoration-none">this gallery</a> for more videos.'
+  name: box_slice.mp4
 
-<br><br>
+"Cluster":
+  name: cluster.mp4
 
-The videos are still being improved and more will be added, so please keep an eye on this page.
-</p>'
+"Sonification explanation":
+  name: sonification_explainer.mp4
+  desc: 'The COLIBRE videos include sonification using <a href="https://joss.theoj.org/papers/10.21105/joss.07875" class="active text-decoration-none">STRAUSS</a> to augment what is seen. Sound is used to express the black hole accretion rate, the star formation and the energy outflow rate of galaxies as they evolve. These use rhythmic, musical and textural representations, respectively, to distinguish them. Watch the (accessible) explainer video below to understand more.'
 
-# NOTE: The page_description above assumes that the explainer video is part of section 3
-
-"Galaxy 1, present-day stellar mass 10<sup>10.8</sup> M<sub>⊙</sub>":
-  barred_starlight_newmix.mp4:
-    desc: "Stellar light with inset showing larger scales"
-    name_nosound: barred_starlight_newmix_nosound.mp4
-  barred_gallery_newmix.mp4:
-    desc: "Stellar light, three different projections"
-    name_nosound: barred_gallery_newmix_nosound.mp4
-  barred_twoprop_dust_v_int_newmix.mp4:
-    desc: "Stellar light (dust attenuated), stellar light (intrinsic)"
-    name_nosound: barred_twoprop_dust_v_int_newmix_nosound.mp4
-  barred_multirow_newmix.mp4:
-    desc: "Stellar light, gas density, HI density, dark matter density, H_2 density, dust density (x100)"
-    name_nosound: barred_multirow_newmix_nosound.mp4
-  barred_zoomcomp_newmix.mp4:
-    desc: "Stellar light, gas density, dark matter density (large scale)"
-    name_nosound: barred_zoomcomp_newmix_nosound.mp4
-  barred_zoomcomp_small_newmix.mp4:
-    desc: "Stellar light, gas density, dark matter density (galaxy scale)"
-    name_nosound: barred_zoomcomp_small_newmix_nosound.mp4
-  barred_twoprop_large_newmix.mp4:
-    desc: "Stellar light, gas density (large-scale)"
-    name_nosound: barred_twoprop_large_newmix_nosound.mp4
-  barred_twoprop_newmix.mp4:
-    desc: "Stellar light, gas density (galaxy-scale)"
-    name_nosound: barred_twoprop_newmix_nosound.mp4
-  barred_star_v_metal_large_newmix.mp4:
-    desc: "Stellar light, Gas metallicity (large-scale)"
-    name_nosound: barred_star_v_metal_large_newmix_nosound.mp4
-  barred_star_v_metal_newmix.mp4:
-    desc: "Stellar light, Gas metallicity (galaxy-scale)"
-    name_nosound: barred_star_v_metal_newmix_nosound.mp4
-  barred_T_newmix.mp4:
-    desc: "Gas temperature"
-    name_nosound: barred_T_newmix_nosound.mp4
-  barred_gas_newmix.mp4:
-    desc: "Gas density"
-    name_nosound: barred_gas_newmix_nosound.mp4
-
-
-"Galaxy 2, present-day stellar mass 10<sup>10.5</sup> M<sub>⊙</sub>":
-  merger_starlight_newmix.mp4:
-    desc: "Stellar light with inset showing larger scales"
-    name_nosound: merger_starlight_newmix_nosound.mp4
-  merger_gallery_newmix.mp4:
-    desc: "Stellar light, three different projections"
-    name_nosound: merger_gallery_newmix_nosound.mp4
-  merger_twoprop_dust_v_int_newmix.mp4:
-    desc: "Stellar light (dust attenuated), stellar light (intrinsic)"
-    name_nosound: merger_twoprop_dust_v_int_newmix_nosound.mp4
-  merger_multirow_newmix.mp4:
-    desc: "Stellar light, gas density, HI density, dark matter density, H_2 density, dust density (x100)"
-    name_nosound: merger_multirow_newmix_nosound.mp4
-  merger_zoomcomp_newmix.mp4:
-    desc: "Stellar light, gas density, dark matter density (large scale)"
-    name_nosound: merger_zoomcomp_newmix_nosound.mp4
-  merger_zoomcomp_small_newmix.mp4:
-    desc: "Stellar light, gas density, dark matter density (galaxy scale)"
-    name_nosound: merger_zoomcomp_small_newmix_nosound.mp4
-  merger_twoprop_large_newmix.mp4:
-    desc: "Stellar light, gas density (large-scale)"
-    name_nosound: merger_twoprop_large_newmix_nosound.mp4
-  merger_twoprop_newmix.mp4:
-    desc: "Stellar light, gas density (galaxy-scale)"
-    name_nosound: merger_twoprop_newmix_nosound.mp4
-  merger_star_v_metal_large_newmix.mp4:
-    desc: "Stellar light, Gas metallicity (large-scale)"
-    name_nosound: merger_star_v_metal_large_newmix_nosound.mp4
-  merger_star_v_metal_newmix.mp4:
-    desc: "Stellar light, Gas metallicity (galaxy-scale)"
-    name_nosound: merger_star_v_metal_newmix_nosound.mp4
-  merger_T_newmix.mp4:
-    desc: "Gas temperature"
-    name_nosound: merger_T_newmix_nosound.mp4
-  merger_gas_newmix.mp4:
-    desc: "Gas density"
-    name_nosound: merger_gas_newmix_nosound.mp4
-
-"Sonification explanation": 
-  sonification_explainer.mp4:
-    desc: "Explanation of the sounds present in the sonified videos."
 

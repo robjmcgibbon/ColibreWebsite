@@ -6,6 +6,8 @@ __pycache__
 src/pages/papers.html
 src/pages/images.html
 src/pages/videos.html
+src/pages/videos_galaxy.html
+src/pages/videos_box.html
 src/pages/sliders.html
 
 # Token for querying ADS
@@ -15,6 +17,8 @@ ADS_token
 src/slider_images/*
 src/images/*
 src/videos/*
+src/videos_galaxy/*
+src/videos_box/*
 src/assets/team/user_map.html
 src/assets/simulations/mass_functions.html
 slider_images.zip

@@ -1,0 +1,15 @@
+page_description: '<p>
+Below are videos showing the evolution of the L050m6 simulation.
+One set shows a simulation with the thermal AGN model, another
+shows the hybrid AGN model. All show a 10cMpc slice.
+Different videos show different properties.
+Sonification is stereo, so headphones are recommended.
+</p>'
+
+"Thermal AGN feedback":
+  thermal_temperature.mp4:
+    desc: "Evolution of the temperature through the slice"
+
+"Hybrid AGN feedback":
+  hybrid_temperature.mp4:
+    desc: "Evolution of the temperature through the slice"

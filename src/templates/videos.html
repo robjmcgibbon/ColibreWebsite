@@ -1,0 +1,20 @@
+<h1>Video Gallery</h1>
+
+%VIDEOS%
+
+<script>
+    // Get all video elements on the page
+    const allVideos = document.querySelectorAll('video');
+
+    allVideos.forEach(video => {
+        video.addEventListener('play', function() {
+            // When this video plays, loop through all videos
+            allVideos.forEach(otherVideo => {
+                // If it's a different video and it's not paused, pause it
+                if (otherVideo !== video) {
+                    otherVideo.pause();
+                }
+            });
+        });
+    });
+</script>

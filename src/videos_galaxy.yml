@@ -1,0 +1,85 @@
+page_description: '<p>
+Below are two sets of videos showing the evolution of two different 
+galaxies in the L012m5 simulation from redshift z = 5.5 to z = 0. 
+Galaxies 1 and 2 have present-day stellar masses of 10<sup>10.8</sup> M<sub>⊙</sub> and 10<sup>10.5</sup> M<sub>⊙</sub>, respectively. 
+Towards the end of the simulation these two galaxies are interacting with each other. 
+Different videos show different properties (stellar light with dust attenuation, various gas properties, dark matter density).
+</p>'
+
+"Galaxy 1, present-day stellar mass 10<sup>10.8</sup> M<sub>⊙</sub>":
+  barred_starlight_newmix.mp4:
+    desc: "Stellar light with inset showing larger scales"
+    name_nosound: barred_starlight_newmix_nosound.mp4
+  barred_gallery_newmix.mp4:
+    desc: "Stellar light, three different projections"
+    name_nosound: barred_gallery_newmix_nosound.mp4
+  barred_twoprop_dust_v_int_newmix.mp4:
+    desc: "Stellar light (dust attenuated), stellar light (intrinsic)"
+    name_nosound: barred_twoprop_dust_v_int_newmix_nosound.mp4
+  barred_multirow_newmix.mp4:
+    desc: "Stellar light, gas density, HI density, dark matter density, H_2 density, dust density (x100)"
+    name_nosound: barred_multirow_newmix_nosound.mp4
+  barred_zoomcomp_newmix.mp4:
+    desc: "Stellar light, gas density, dark matter density (large scale)"
+    name_nosound: barred_zoomcomp_newmix_nosound.mp4
+  barred_zoomcomp_small_newmix.mp4:
+    desc: "Stellar light, gas density, dark matter density (galaxy scale)"
+    name_nosound: barred_zoomcomp_small_newmix_nosound.mp4
+  barred_twoprop_large_newmix.mp4:
+    desc: "Stellar light, gas density (large-scale)"
+    name_nosound: barred_twoprop_large_newmix_nosound.mp4
+  barred_twoprop_newmix.mp4:
+    desc: "Stellar light, gas density (galaxy-scale)"
+    name_nosound: barred_twoprop_newmix_nosound.mp4
+  barred_star_v_metal_large_newmix.mp4:
+    desc: "Stellar light, Gas metallicity (large-scale)"
+    name_nosound: barred_star_v_metal_large_newmix_nosound.mp4
+  barred_star_v_metal_newmix.mp4:
+    desc: "Stellar light, Gas metallicity (galaxy-scale)"
+    name_nosound: barred_star_v_metal_newmix_nosound.mp4
+  barred_T_newmix.mp4:
+    desc: "Gas temperature"
+    name_nosound: barred_T_newmix_nosound.mp4
+  barred_gas_newmix.mp4:
+    desc: "Gas density"
+    name_nosound: barred_gas_newmix_nosound.mp4
+
+"Galaxy 2, present-day stellar mass 10<sup>10.5</sup> M<sub>⊙</sub>":
+  merger_starlight_newmix.mp4:
+    desc: "Stellar light with inset showing larger scales"
+    name_nosound: merger_starlight_newmix_nosound.mp4
+  merger_gallery_newmix.mp4:
+    desc: "Stellar light, three different projections"
+    name_nosound: merger_gallery_newmix_nosound.mp4
+  merger_twoprop_dust_v_int_newmix.mp4:
+    desc: "Stellar light (dust attenuated), stellar light (intrinsic)"
+    name_nosound: merger_twoprop_dust_v_int_newmix_nosound.mp4
+  merger_multirow_newmix.mp4:
+    desc: "Stellar light, gas density, HI density, dark matter density, H_2 density, dust density (x100)"
+    name_nosound: merger_multirow_newmix_nosound.mp4
+  merger_zoomcomp_newmix.mp4:
+    desc: "Stellar light, gas density, dark matter density (large scale)"
+    name_nosound: merger_zoomcomp_newmix_nosound.mp4
+  merger_zoomcomp_small_newmix.mp4:
+    desc: "Stellar light, gas density, dark matter density (galaxy scale)"
+    name_nosound: merger_zoomcomp_small_newmix_nosound.mp4
+  merger_twoprop_large_newmix.mp4:
+    desc: "Stellar light, gas density (large-scale)"
+    name_nosound: merger_twoprop_large_newmix_nosound.mp4
+  merger_twoprop_newmix.mp4:
+    desc: "Stellar light, gas density (galaxy-scale)"
+    name_nosound: merger_twoprop_newmix_nosound.mp4
+  merger_star_v_metal_large_newmix.mp4:
+    desc: "Stellar light, Gas metallicity (large-scale)"
+    name_nosound: merger_star_v_metal_large_newmix_nosound.mp4
+  merger_star_v_metal_newmix.mp4:
+    desc: "Stellar light, Gas metallicity (galaxy-scale)"
+    name_nosound: merger_star_v_metal_newmix_nosound.mp4
+  merger_T_newmix.mp4:
+    desc: "Gas temperature"
+    name_nosound: merger_T_newmix_nosound.mp4
+  merger_gas_newmix.mp4:
+    desc: "Gas density"
+    name_nosound: merger_gas_newmix_nosound.mp4
+
+

@@ -259,7 +259,7 @@ def create_image(img_id, img_src, create_media):
     return f"images/{img_id}_800.png"
 
 
-def create_video_thumbnail(img_id, img_src, gallery_name, create_media):
+def create_video_gallery_thumbnail(img_id, img_src, gallery_name, create_media):
     """
     Create a thumbnail for the given video file.
     """
@@ -283,6 +283,15 @@ def create_video_thumbnail(img_id, img_src, gallery_name, create_media):
         run_process(cmd)
     return f"{gallery_name}/{img_id}_200.png"
 
+def create_video_thumbnail(video_id, video_src, create_media):
+    """
+    Create a thumbnail for the given video file.
+    """
+    if create_media:
+        # Extract the frame 10 seconds from the end of the video
+        cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{video_src} -frames:v 1 build/videos/thumbnail_{video_id}.png"
+        run_process(cmd)
+    return f"videos/thumbnail_{video_id}.png"
 
 def create_video(video_id, video_src, video_src_nosound, gallery_name, create_media):
     """
@@ -307,6 +316,10 @@ def make_video_page(templates, videos, create_media):
     If create_media=False then skip copying the videos across.
     """
 
+    # copy the videos
+    if create_media:
+        shutil.copytree('src/videos', 'build/videos')
+
     # load all templates
     page_template = templates[f"videos.html"]
     video_template = templates["video_single.html"]
@@ -319,10 +332,13 @@ def make_video_page(templates, videos, create_media):
         err_msg = f'{video_info["name"]} not found in src/videos'
         assert os.path.exists(f'src/videos/{video_info["name"]}'), err_msg
 
+        video_thumbnail = create_video_thumbnail(sid, video_info['name'], create_media)
+
         videos_html += template_replace(
             video_template,
             {
                 "VIDEO_DESCRIPTION": video_info.get('desc', ''),
+                "VIDEO_THUMBNAIL": video_thumbnail,
                 "VIDEO_TITLE": video_title,
                 "VIDEO_ID": str(sid),
                 "VIDEO_SRC": f"videos/{video_info['name']}",
@@ -332,9 +348,6 @@ def make_video_page(templates, videos, create_media):
     # save the html
     with open(f"src/pages/videos.html", "w") as ofile:
         ofile.write(template_replace(page_template, {"VIDEOS": videos_html}))
-
-    if create_media:
-        shutil.copytree('src/videos', 'build/videos')
 
 
 def make_gallery(templates, input_sections, gallery_name, create_media):
@@ -393,7 +406,7 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
                 )
             else:
                 obj_src_orig, obj_src_orig_nosound = create_video(obj_id, obj_src, obj_src_nosound, gallery_name, create_media)
-                obj_src_thumb = create_video_thumbnail(obj_id, obj_src, gallery_name, create_media)
+                obj_src_thumb = create_video_gallery_thumbnail(obj_id, obj_src, gallery_name, create_media)
 
                 cards += template_replace(
                     video_card_template,

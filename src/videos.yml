@@ -4,7 +4,7 @@
 
 "Individual galaxy":
   name: barred_starlight_newmix.mp4
-  desc: 'The evolution of a galaxy in the L012m5 simulation from redshift z = 5.5 to z = 0. The galaxy has a present-day stellar masses of 10<sup>10.8</sup> M<sub>⊙</sub>. For another galaxy, more properties, and videos without sonification, see <a href="videos_galaxy.html" class="active text-decoration-none">the gallery here.</a>'
+  desc: 'The evolution of a galaxy in the L012m5 simulation from redshift z = 5.5 to z = 0. The galaxy has a present-day stellar masses of 10<sup>10.8</sup> M<sub>⊙</sub>. For another galaxy, more properties, and videos without sonification, see <a href="videos_galaxy_barred.html" class="active text-decoration-none">the galaxy one video gallery</a> or <a href="videos_galaxy_merger.html" class="active text-decoration-none">the galaxy two video gallery.</a>'
 
 "Box slice":
   desc: 'Sound in stereo. See <a href="videos_box.html" class="active text-decoration-none">this gallery</a> for more videos.'

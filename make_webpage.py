@@ -435,7 +435,8 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
         nice_name = {
             'images': 'Image',
             'videos': 'Video',
-            'videos_galaxy': 'Galaxy Video',
+            'videos_galaxy_barred': 'Galaxy 1 Video',
+            'videos_galaxy_merger': 'Galaxy 2 Video',
             'videos_box': ' Box Slice Video',
         }[gallery_name]
         ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": nice_name}))
@@ -620,7 +621,7 @@ if __name__ == "__main__":
         exit()
 
     # List of the galleries we have
-    video_galleries = ['videos_galaxy', 'videos_box']
+    video_galleries = ['videos_galaxy_barred', 'videos_galaxy_merger', 'videos_box']
 
     # Whether to skip build steps to allow for a quick website build
     keep_sliders = True

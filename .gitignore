@@ -6,7 +6,8 @@ __pycache__
 src/pages/papers.html
 src/pages/images.html
 src/pages/videos.html
-src/pages/videos_galaxy.html
+src/pages/videos_galaxy_merger.html
+src/pages/videos_galaxy_barred.html
 src/pages/videos_box.html
 src/pages/sliders.html
 
@@ -17,7 +18,8 @@ ADS_token
 src/slider_images/*
 src/images/*
 src/videos/*
-src/videos_galaxy/*
+src/videos_galaxy_merger/*
+src/videos_galaxy_barred/*
 src/videos_box/*
 src/assets/team/user_map.html
 src/assets/simulations/mass_functions.html

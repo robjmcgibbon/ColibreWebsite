@@ -45,11 +45,19 @@ team.html:
 
 ############### Pages not in sidebar
 
-videos_galaxy.html:
+videos_galaxy_barred.html:
   title: ""
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_galaxy
+  sidebar: videos_galaxy_barred
+  css:
+    - css/gallery.css
+
+videos_galaxy_merger.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_galaxy_merger
   css:
     - css/gallery.css
 

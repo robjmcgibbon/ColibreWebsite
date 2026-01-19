@@ -5,7 +5,7 @@ index.html:
   description: "The COLIBRE suite of hydrodynamical simulations model the formation and evolution of galaxies in representative volumes starting from cosmological initial conditions."
 
 sliders.html:
-  title: Sliders
+  title: Interactive sliders
   sidebar: sliders
   css:
     - css/sliders.css

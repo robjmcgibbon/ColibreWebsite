@@ -64,6 +64,7 @@ Name                                                   Affiliation              
 "Till Sawala"                                          "University of Helsinki"                     60.175648   24.95355
 "Sylvia Ploeckinger"                                   "University of Vienna"                       48.2078     16.3558
 "Moa Huppenkothen"                                     "University of Vienna"                       48.2078     16.3558
+"Christian Maier"                                      "University of Vienna"                       48.2078     16.3558
 "Teymoor Saifollahi"                                   "University of Strasbourg"                   48.582755   7.764422
 "Yamila Daniela Burrafato"                             "University of Buenos Aires"                 -34.54139   -58.44306
 "Scott Kay"                                            "University of Manchester"                   53.46685    -2.233884

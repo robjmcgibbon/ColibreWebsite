@@ -377,13 +377,11 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
     image_card_template = templates["image_card.html"]
     video_card_template = templates["video_card.html"]
 
-    # TODO: Check for duplicates in videos, including overlaps with no sounds
-
     # loop over sections
     # modals are saved in one block, regardless of their section
     sections = ""
     for sid, (title, objects) in enumerate(input_sections.items()):
-        if title == 'page_description':
+        if title in ['page_description', 'title']:
             continue
         # cards are grouped per section
         cards = ""
@@ -450,21 +448,7 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
 
     # save the html
     with open(f"src/pages/{gallery_name}.html", "w") as ofile:
-        # TODO: Put this in the yaml file
-        nice_name = {
-            'images': 'Image',
-            'videos': 'Video',
-            'videos_galaxy_barred': 'Galaxy 1 Video',
-            'videos_galaxy_merger': 'Galaxy 2 Video',
-            'videos_box': ' Box Slice Video',
-            'videos_cluster_thermal_large': ' Cluster Video',
-            'videos_cluster_thermal_small': ' Cluster Video',
-            'videos_cluster_hybrid_large': ' Cluster Video',
-            'videos_cluster_hybrid_small': ' Cluster Video',
-            'videos_cluster_compareAGN_large': ' Cluster Video',
-            'videos_cluster_compareAGN_small': ' Cluster Video',
-        }[gallery_name]
-        ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": nice_name}))
+        ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": input_sections['title']}))
 
 
 def make_sliders(templates, input_sections):
@@ -645,24 +629,17 @@ if __name__ == "__main__":
         copy_assets()
         exit()
 
-    # List of the galleries we have
-    video_galleries = [
-        'videos_galaxy_barred',
-        'videos_galaxy_merger',
-        'videos_box',
-        'videos_cluster_thermal_large',
-        'videos_cluster_thermal_small',
-        'videos_cluster_hybrid_large',
-        'videos_cluster_hybrid_small',
-        'videos_cluster_compareAGN_large',
-        'videos_cluster_compareAGN_small',
-    ]
-
     # Whether to skip build steps to allow for a quick website build
     keep_sliders = True
     keep_images = True
     keep_videos = True
     skip_ads_query = False
+
+    # List of the galleries we have
+    video_galleries = [
+        os.path.basename(filepath).replace('.yml', '')
+        for filepath in glob.glob('src/videos_*.yml')
+    ]
 
     # Clean up any existing build, create new build directories
     keep_sliders, keep_images, keep_videos = clean_build(

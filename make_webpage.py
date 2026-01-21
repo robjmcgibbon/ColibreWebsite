@@ -203,8 +203,9 @@ def clean_build(keep_sliders=False, keep_images=False, keep_videos=False, video_
 
     if keep_videos and os.path.exists('build/videos'):
         run_process("mv build/videos tmp_videos")
-        for video_gallery in video_galleries:
-            run_process(f"mv build/{video_gallery} tmp_{video_gallery}")
+        # TODO: This can go?
+        # for video_gallery in video_galleries:
+            # run_process(f"mv build/{video_gallery} tmp_{video_gallery}")
     else:
         keep_videos = False
 
@@ -225,8 +226,9 @@ def clean_build(keep_sliders=False, keep_images=False, keep_videos=False, video_
 
     if keep_videos:
         run_process("mv tmp_videos build/videos")
-        for video_gallery in video_galleries:
-            run_process(f"mv tmp_{video_gallery} build/{video_gallery}")
+        # TODO: This can go?
+        # for video_gallery in video_galleries:
+            # run_process(f"mv tmp_{video_gallery} build/{video_gallery}")
         print('Using videos from previous build')
     else:
         for video_gallery in video_galleries:
@@ -259,16 +261,17 @@ def create_image(img_id, img_src, create_media):
     return f"images/{img_id}_800.png"
 
 
-def create_video_gallery_thumbnail(img_id, img_src, gallery_name, create_media):
+def create_video_gallery_thumbnail(video_src, gallery_name, create_media):
     """
     Create a thumbnail for the given video file.
     """
+    video_name = video_src.replace('.mp4', '')
     if create_media:
         # Extract the frame 10 seconds from the end of the video
-        cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/{gallery_name}/{img_src} -vf scale=200:-1 -frames:v 1 build/{gallery_name}/{img_id}_200.png"
+        cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{gallery_name}/{video_src} -vf scale=200:-1 -frames:v 1 build/videos/{gallery_name}/{video_name}_200.png"
         run_process(cmd)
         # get the dimensions of the first frame (width is fixed, but height is variable)
-        cmd = f"identify build/{gallery_name}/{img_id}_200.png"
+        cmd = f"identify build/videos/{gallery_name}/{video_name}_200.png"
         output = run_process(cmd, return_output=True)
         dim = output.split()[2].split("x")
         w = int(dim[0])
@@ -276,37 +279,38 @@ def create_video_gallery_thumbnail(img_id, img_src, gallery_name, create_media):
         if not w == 200:
             raise RuntimeError(f"Wrong thumbnail width: {w}x{h}!")
         # now draw a circle and arrow (poor man's play icon) on top of it
-        cmd = f'mogrify -gravity Center -draw "fill none stroke rgba(255,255,255,0.5) stroke-linecap round stroke-width 2 circle {w//2},{h//2} {w//2},{h//2+20}" -draw "fill rgba(255,255,255,0.5) stroke-linecap round path \'M {w//2-5},{h//2-10} L {w//2-5},{h//2+10} L {w//2+10},{h//2} Z\'" build/{gallery_name}/{img_id}_200.png'
+        cmd = f'mogrify -gravity Center -draw "fill none stroke rgba(255,255,255,0.5) stroke-linecap round stroke-width 2 circle {w//2},{h//2} {w//2},{h//2+20}" -draw "fill rgba(255,255,255,0.5) stroke-linecap round path \'M {w//2-5},{h//2-10} L {w//2-5},{h//2+10} L {w//2+10},{h//2} Z\'" build/videos/{gallery_name}/{video_name}_200.png'
         run_process(cmd)
         #Additionally crop images
-        cmd = f"mogrify -gravity center -extent 200x100 build/{gallery_name}/{img_id}_200.png"
+        cmd = f"mogrify -gravity center -extent 200x100 build/videos/{gallery_name}/{video_name}_200.png"
         run_process(cmd)
-    return f"{gallery_name}/{img_id}_200.png"
+    return f"videos/{gallery_name}/{video_name}_200.png"
 
-def create_video_thumbnail(video_id, video_src, create_media):
+def create_video_thumbnail(video_src, create_media):
     """
     Create a thumbnail for the given video file.
     """
+    video_name = video_src.replace('.mp4', '')
     if create_media:
         # Extract the frame 10 seconds from the end of the video
-        cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{video_src} -frames:v 1 build/videos/thumbnail_{video_id}.png"
+        cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{video_src} -frames:v 1 build/videos/thumbnail_{video_name}.png"
         run_process(cmd)
-    return f"videos/thumbnail_{video_id}.png"
+    return f"videos/thumbnail_{video_name}.png"
 
-def create_video(video_id, video_src, video_src_nosound, gallery_name, create_media):
+def create_video(video_src, video_src_nosound, gallery_name, create_media):
     """
     Copy the given video file from src/images/ to build/.
     We could maybe do some conversions if necessary, but that is too complex for
     now.
     """
     if create_media:
-        shutil.copyfile(f"src/{gallery_name}/{video_src}", f"build/{gallery_name}/{video_id}.mp4")
+        shutil.copyfile(f"src/videos/{gallery_name}/{video_src}", f"build/videos/{gallery_name}/{video_src}")
 
     if video_src_nosound:
         if create_media:
-            shutil.copyfile(f"src/{gallery_name}/{video_src_nosound}", f"build/{gallery_name}/{video_id}_nosound.mp4")
-        return (f"{gallery_name}/{video_id}.mp4", f"{gallery_name}/{video_id}_nosound.mp4")
-    return f"{gallery_name}/{video_id}.mp4", ""
+            shutil.copyfile(f"src/videos/{gallery_name}/{video_src_nosound}", f"build/videos/{gallery_name}/{video_src_nosound}")
+        return (f"videos/{gallery_name}/{video_src}", f"videos/{gallery_name}/{video_src_nosound}")
+    return f"videos/{gallery_name}/{video_src}", ""
 
 
 def make_video_page(templates, videos, create_media):
@@ -324,6 +328,9 @@ def make_video_page(templates, videos, create_media):
     page_template = templates[f"videos.html"]
     video_template = templates["video_single.html"]
 
+    # Check we don't have duplicate videos
+    assert len(videos.keys()) == len(set(videos.keys()))
+
     # loop over videos
     videos_html = ""
     for sid, (video_title, video_info) in enumerate(videos.items()):
@@ -332,7 +339,7 @@ def make_video_page(templates, videos, create_media):
         err_msg = f'{video_info["name"]} not found in src/videos'
         assert os.path.exists(f'src/videos/{video_info["name"]}'), err_msg
 
-        video_thumbnail = create_video_thumbnail(sid, video_info['name'], create_media)
+        video_thumbnail = create_video_thumbnail(video_info['name'], create_media)
 
         videos_html += template_replace(
             video_template,
@@ -363,6 +370,8 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
     image_card_template = templates["image_card.html"]
     video_card_template = templates["video_card.html"]
 
+    # TODO: Check for duplicates in videos, including overlaps with no sounds
+
     # loop over sections
     # modals are saved in one block, regardless of their section
     sections = ""
@@ -373,8 +382,6 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
         cards = ""
         # loop over this section's images/videos
         for id, (obj_src, value) in enumerate(objects.items()):
-            err_msg = f'Gallery object {gallery_name}/{obj_src} does not exist'
-            assert os.path.exists(f'src/{gallery_name}/{obj_src}'), err_msg
             # generate a unique name for this image/video
             # this name will be used for thumbnail and image/video file names
             # it will also be used to identify the corresponding modal and
@@ -385,9 +392,13 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
                 obj_type = 'video'
                 obj_cap = value["desc"]
                 obj_src_nosound = value.get("name_nosound", "")
+                err_msg = f'Gallery object videos/{gallery_name}/{obj_src} does not exist'
+                assert os.path.exists(f'src/videos/{gallery_name}/{obj_src}'), err_msg
             elif obj_src.endswith('.png') or obj_src.endswith('.jpg'):
                 obj_type = 'image'
                 obj_cap = value
+                err_msg = f'Gallery object {gallery_name}/{obj_src} does not exist'
+                assert os.path.exists(f'src/{gallery_name}/{obj_src}'), err_msg
             else:
                 raise NotImplementedError(f'Unable to determine obj_type of {obj_src}')
 
@@ -405,8 +416,8 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
                     },
                 )
             else:
-                obj_src_orig, obj_src_orig_nosound = create_video(obj_id, obj_src, obj_src_nosound, gallery_name, create_media)
-                obj_src_thumb = create_video_gallery_thumbnail(obj_id, obj_src, gallery_name, create_media)
+                obj_src_orig, obj_src_orig_nosound = create_video(obj_src, obj_src_nosound, gallery_name, create_media)
+                obj_src_thumb = create_video_gallery_thumbnail(obj_src, gallery_name, create_media)
 
                 cards += template_replace(
                     video_card_template,
@@ -432,12 +443,22 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
 
     # save the html
     with open(f"src/pages/{gallery_name}.html", "w") as ofile:
+        # TODO: Put this in the yaml file
         nice_name = {
             'images': 'Image',
             'videos': 'Video',
             'videos_galaxy_barred': 'Galaxy 1 Video',
             'videos_galaxy_merger': 'Galaxy 2 Video',
             'videos_box': ' Box Slice Video',
+            'videos_cluster_densities': ' Cluster Video',
+            'videos_cluster_entropies': ' Cluster Video',
+            'videos_cluster_metal_masses': ' Cluster Video',
+            'videos_cluster_radial_velocities': ' Cluster Video',
+            'videos_cluster_stellar_light': ' Cluster Video',
+            'videos_cluster_stellar_light_no_dust': ' Cluster Video',
+            'videos_cluster_temperatures': ' Cluster Video',
+            'videos_cluster_velocity_divergences': ' Cluster Video',
+            'videos_cluster_xray': ' Cluster Video',
         }[gallery_name]
         ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": nice_name}))
 
@@ -621,19 +642,35 @@ if __name__ == "__main__":
         exit()
 
     # List of the galleries we have
-    video_galleries = ['videos_galaxy_barred', 'videos_galaxy_merger', 'videos_box']
+    video_galleries = [
+        'videos_galaxy_barred',
+        'videos_galaxy_merger',
+        'videos_box',
+        'videos_cluster_densities',
+        'videos_cluster_entropies',
+        'videos_cluster_metal_masses',
+        'videos_cluster_radial_velocities',
+        'videos_cluster_stellar_light',
+        'videos_cluster_stellar_light_no_dust',
+        'videos_cluster_temperatures',
+        'videos_cluster_velocity_divergences',
+        'videos_cluster_xray',
+    ]
 
     # Whether to skip build steps to allow for a quick website build
     keep_sliders = True
     keep_images = True
     keep_videos = True
-    skip_ads_query = False
+    # keep_videos = False
+    # skip_ads_query = False
+    skip_ads_query = True
 
     # Clean up any existing build, create new build directories
     keep_sliders, keep_images, keep_videos = clean_build(
         keep_sliders=keep_sliders,
         keep_images=keep_images,
         keep_videos=keep_videos,
+        # TODO: This can go?
         video_galleries=video_galleries,
     )
 

@@ -3,13 +3,26 @@ Below are videos showing the evolution of the L050m6 simulation.
 One set shows a simulation with the thermal AGN model, another
 shows the hybrid AGN model. All show a 10cMpc slice.
 Different videos show different properties.
-Sonification is stereo, so headphones are recommended.
 </p>'
+# TODO: Update to sonified videos
+# Sonification is stereo, so headphones are recommended.
 
 "Thermal AGN feedback":
-  thermal_temperature.mp4:
+  video_Thermal_non_equilibrium_log_temperature_low.mp4:
     desc: "Evolution of the temperature through the slice"
+  video_Thermal_non_equilibrium_gas_mass_low.mp4:
+    desc: "Evolution of the gas density through the slice"
+  video_Thermal_non_equilibrium_metallicity_low.mp4:
+    desc: "Evolution of the gas metallicity through the slice"
+  video_Thermal_non_equilibrium_stellar_mass_low.mp4:
+    desc: "Evolution of the stellar density through the slice"
 
 "Hybrid AGN feedback":
-  hybrid_temperature.mp4:
+  video_Hybrid_log_temperature_low.mp4:
     desc: "Evolution of the temperature through the slice"
+  video_Hybrid_gas_mass_low.mp4:
+    desc: "Evolution of the gas density through the slice"
+  video_Hybrid_metallicity_low.mp4:
+    desc: "Evolution of the gas metallicity through the slice"
+  video_Hybrid_stellar_mass_low.mp4:
+    desc: "Evolution of the stellar density through the slice"

@@ -1,0 +1,24 @@
+page_description: '<p>
+Below are videos showing the evolution of the stellar light within the 
+largest cluster in the L050m6 simulation. This object has a present-day
+virial mass of 10<sup>14.2</sup> M<sub>⊙</sub> and the central
+galaxy has a stellar mass of 10<sup>11.6</sup> M<sub>⊙</sub>.
+</p>'
+
+"Thermal AGN feedback":
+  HST_thermal_large.mp4:
+    desc: "Evolution of stellar light on large scales"
+  HST_thermal_small.mp4:
+    desc: "Evolution of stellar light on small scales"
+
+"Hybrid AGN feedback":
+  HST_hybrid_large.mp4:
+    desc: "Evolution of stellar light on large scales"
+  HST_hybrid_small.mp4:
+    desc: "Evolution of stellar light on small scales"
+
+"AGN feedback comparison":
+  HST_large_combined.mp4:
+    desc: "Evolution of stellar light on large scales"
+  HST_small_combined.mp4:
+    desc: "Evolution of stellar light on small scales"

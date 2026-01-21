@@ -1,0 +1,34 @@
+page_description: '<p>
+Below are videos showing the evolution of the unattenated (no dust extinction)
+stellar light within the 
+largest cluster in the L050m6 simulation. This object has a present-day
+virial mass of 10<sup>14.2</sup> M<sub>⊙</sub> and the central
+galaxy has a stellar mass of 10<sup>11.6</sup> M<sub>⊙</sub>.
+</p>'
+
+"Thermal AGN feedback":
+  HST_no_dust_stellar_light_thermal_large.mp4:
+    desc: "Evolution of stellar light on large scales alongside stellar light"
+  HST_no_dust_stellar_light_thermal_small.mp4:
+    desc: "Evolution of stellar light on small scales alongside stellar light"
+  HST_no_dust_thermal_large.mp4:
+    desc: "Evolution of stellar light on large scales"
+  HST_no_dust_thermal_small.mp4:
+    desc: "Evolution of stellar light on small scales"
+
+"Hybrid AGN feedback":
+  HST_no_dust_stellar_light_hybrid_large.mp4:
+    desc: "Evolution of stellar light on large scales alongside stellar light"
+  HST_no_dust_stellar_light_hybrid_small.mp4:
+    desc: "Evolution of stellar light on small scales alongside stellar light"
+  HST_no_dust_hybrid_large.mp4:
+    desc: "Evolution of stellar light on large scales"
+  HST_no_dust_hybrid_small.mp4:
+    desc: "Evolution of stellar light on small scales"
+
+"AGN feedback comparison":
+  HST_no_dust_large_combined.mp4:
+    desc: "Evolution of stellar light on large scales"
+  HST_no_dust_small_combined.mp4:
+    desc: "Evolution of stellar light on small scales"
+

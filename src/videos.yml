@@ -4,14 +4,34 @@
 
 "Individual galaxy":
   name: barred_starlight_newmix.mp4
-  desc: 'The evolution of a galaxy in the L012m5 simulation from redshift z = 5.5 to z = 0. The galaxy has a present-day stellar masses of 10<sup>10.8</sup> M<sub>⊙</sub>. For another galaxy, more properties, and videos without sonification, see <a href="videos_galaxy_barred.html" class="active text-decoration-none">the galaxy one video gallery</a> or <a href="videos_galaxy_merger.html" class="active text-decoration-none">the galaxy two video gallery.</a>'
+  desc: 'The evolution of a galaxy in the L012m5 simulation from redshift z = 5.5 to z = 0. The galaxy has a present-day stellar mass of 10<sup>10.8</sup> M<sub>⊙</sub>, a star formation rate of 1.6 M<sub>⊙</sub>/yr, and a black hole of mass 10<sup>8.2</sup> M<sub>⊙</sub>. For another galaxy, more properties, and videos without sonification, see <a href="videos_galaxy_barred.html" class="active text-decoration-none">the video gallery for galaxy 1</a> or <a href="videos_galaxy_merger.html" class="active text-decoration-none">the video gallery for galaxy 2</a>. The top left scale bar indicates a length of 10 physical kiloparsec (pkpc), which is about 32.6 thousand lightyears.'
+
+"Cluster of galaxies":
+  desc: 'The evolution of the largest cluster in the L050m6 simulation from redshift z = 10 to z = 0. This object has a present-day virial mass of 10<sup>14.2</sup> M<sub>⊙</sub>. The central galaxy has a stellar mass of 10<sup>11.6</sup> M<sub>⊙</sub> and a supermassive black hole with a mass of 10<sup>9.6</sup> M<sub>⊙</sub>. The left panel shows stellar light, the right shows gas density. The scale bar indicates a length of 500 physical kiloparsec (pkpc), which is about 1.6 million lightyears. Videos are also available for the following properties:
+  <a href="videos_cluster_densities.html" class="active text-decoration-none">Gas density</a>,
+  <a href="videos_cluster_entropies.html" class="active text-decoration-none">Gas entropy</a>,
+  <a href="videos_cluster_metal_masses.html" class="active text-decoration-none">Gas metallicity</a>,
+  <a href="videos_cluster_radial_velocities.html" class="active text-decoration-none">Radial velocities</a>,
+  <a href="videos_cluster_temperatures.html" class="active text-decoration-none">Gas temperature</a>,
+  <a href="videos_cluster_stellar_light.html" class="active text-decoration-none">Stellar light</a>,
+  <a href="videos_cluster_stellar_light_no_dust.html" class="active text-decoration-none">Unattenuated stellar light</a>,
+  <a href="videos_cluster_velocity_divergences.html" class="active text-decoration-none">Velocity divergence</a>,
+  and <a href="videos_cluster_xray.html" class="active text-decoration-none">X-rays</a>.
+  '
+
+  # <li><a href="videos_cluster_densities.html" class="active text-decoration-none">Gas density</a>,
+  # <li><a href="videos_cluster_entropies.html" class="active text-decoration-none">Gas entropy</a>,
+  # <li><a href="videos_cluster_metal_masses.html" class="active text-decoration-none">Gas metallicity</a>,
+  # <li><a href="videos_cluster_radial_velocities.html" class="active text-decoration-none">Radial velocities</a>,
+  # <li><a href="videos_cluster_temperatures.html" class="active text-decoration-none">Gas temperature</a>,
+  # <li><a href="videos_cluster_velocity_divergences.html" class="active text-decoration-none">Velocity divergence</a>,
+  # <li><a href="videos_cluster_xray.html" class="active text-decoration-none">X-rays</a>,
+  # </ul>
+  name: densities_stellar_light_thermal_large.mp4
 
 "Box slice":
-  desc: 'Sound in stereo. See <a href="videos_box.html" class="active text-decoration-none">this gallery</a> for more videos.'
+  desc: 'The evolution the gas density from redshift z = 17.5 to z = 0 of a 10 comoving megaparsec (cMpc) thick slice through the L050m6 simulation, which is 50 cMpc on a side (1 cMpc is about 3.3/(1+z) million lightyears). The sonification for this video is in stereo, which sound in the left (right) speaker coming from the left (right) side of the side. See <a href="videos_box.html" class="active text-decoration-none">this gallery</a> for the evolution of more properties in this box slice.'
   name: box_slice.mp4
-
-"Cluster":
-  name: cluster.mp4
 
 "Sonification explanation":
   name: sonification_explainer.mp4

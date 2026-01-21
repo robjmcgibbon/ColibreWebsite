@@ -1,0 +1,32 @@
+page_description: '<p>
+Below are videos showing the evolution of the radial velocity within the 
+largest cluster in the L050m6 simulation. This object has a present-day
+virial mass of 10<sup>14.2</sup> M<sub>⊙</sub> and the central
+galaxy has a stellar mass of 10<sup>11.6</sup> M<sub>⊙</sub>.
+</p>'
+
+"Thermal AGN feedback":
+  radial_velocities_stellar_light_thermal_large.mp4:
+    desc: "Evolution of radial velocity on large scales alongside stellar light"
+  radial_velocities_stellar_light_thermal_small.mp4:
+    desc: "Evolution of radial velocity on small scales alongside stellar light"
+  radial_velocities_thermal_large.mp4:
+    desc: "Evolution of radial velocity on large scales"
+  radial_velocities_thermal_small.mp4:
+    desc: "Evolution of radial velocity on small scales"
+
+"Hybrid AGN feedback":
+  radial_velocities_stellar_light_hybrid_large.mp4:
+    desc: "Evolution of radial velocity on large scales alongside stellar light"
+  radial_velocities_stellar_light_hybrid_small.mp4:
+    desc: "Evolution of radial velocity on small scales alongside stellar light"
+  radial_velocities_hybrid_large.mp4:
+    desc: "Evolution of radial velocity on large scales"
+  radial_velocities_hybrid_small.mp4:
+    desc: "Evolution of radial velocity on small scales"
+
+"AGN feedback comparison":
+  radial_velocities_large_combined.mp4:
+    desc: "Evolution of radial velocity on large scales"
+  radial_velocities_small_combined.mp4:
+    desc: "Evolution of radial velocity on small scales"

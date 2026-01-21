@@ -69,3 +69,75 @@ videos_box.html:
   css:
     - css/gallery.css
 
+videos_cluster_densities.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_densities
+  css:
+    - css/gallery.css
+
+videos_cluster_entropies.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_entropies
+  css:
+    - css/gallery.css
+
+videos_cluster_metal_masses.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_metal_masses
+  css:
+    - css/gallery.css
+
+videos_cluster_radial_velocities.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_radial_velocities
+  css:
+    - css/gallery.css
+
+videos_cluster_temperatures.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_temperatures
+  css:
+    - css/gallery.css
+
+videos_cluster_velocity_divergences.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_velocity_divergences
+  css:
+    - css/gallery.css
+
+videos_cluster_xray.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_xray
+  css:
+    - css/gallery.css
+
+videos_cluster_stellar_light.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_stellar_light
+  css:
+    - css/gallery.css
+
+videos_cluster_stellar_light_no_dust.html:
+  title: ""
+  prescripts:
+   - https://code.jquery.com/jquery-3.6.0.min.js
+  sidebar: videos_cluster_stellar_light_no_dust
+  css:
+    - css/gallery.css
+

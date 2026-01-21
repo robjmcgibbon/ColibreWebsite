@@ -1,10 +1,11 @@
 page_description: '<p>
-Below are videos showing the evolution of a galaxy with present-day stellar mass 10<sup>10.5</sup> M<sub>⊙</sub>
-in the L012m5 simulation from redshift z = 5.5 to z = 0.
+Below are videos showing the evolution of a galaxy in the L012m5 simulation from redshift z = 5.5 to z = 0.
+It has present-day stellar mass 10<sup>10.5</sup> M<sub>⊙</sub>, a star formation rate of 1.5 M<sub>⊙</sub>/yr, 
+and a black hole of mass 10<sup>7.8</sup> M<sub>⊙</sub>.
 Different videos show different properties (stellar light with dust attenuation, various gas properties, dark matter density).
 </p>'
 
-"Galaxy scale":
+"Galaxy-scale view":
   merger_starlight_newmix.mp4:
     desc: "Stellar light with inset showing larger scales"
     name_nosound: merger_starlight_newmix_nosound.mp4
@@ -24,7 +25,7 @@ Different videos show different properties (stellar light with dust attenuation,
     desc: "Stellar light, gas density (galaxy-scale)"
     name_nosound: merger_twoprop_newmix_nosound.mp4
 
-"Large scale":
+"Large-scale view":
   merger_zoomcomp_newmix.mp4:
     desc: "Stellar light, gas density, dark matter density (large scale)"
     name_nosound: merger_zoomcomp_newmix_nosound.mp4

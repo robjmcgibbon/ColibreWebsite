@@ -1,0 +1,30 @@
+page_description: "<p>
+Below are videos showing the evolution of the 
+largest cluster of galaxies in the L050m6 (thermal AGN feedback) and L050m6h (hybrid AGN feedback) simulations. This object has a present-day
+virial mass of 10<sup>14.2</sup> M<sub>⊙</sub>. The central
+galaxy has a stellar mass of 10<sup>11.6</sup> M<sub>⊙</sub> and a supermassive black hole with a mass of 10<sup>9.6</sup> M<sub>⊙</sub>.
+The scale bar indicates a length of 500 physical kiloparsec (pkpc),
+which is about 1.6 million lightyears. Videos are also available
+on a smaller scale <a href='videos_cluster_compareAGN_small.html' class='active text-decoration-none'>at this gallery</a>.
+</p>"
+
+"Evolution of properties":
+  densities_large_combined.mp4:
+    desc: "Evolution of gas density on large scales"
+  entropies_large_combined.mp4:
+    desc: "Evolution of gas entropy on large scales"
+  HST_no_dust_large_combined.mp4:
+    desc: "Evolution of unattenuated stellar light on large scales"
+  HST_large_combined.mp4:
+    desc: "Evolution of stellar light on large scales"
+  metal_masses_large_combined.mp4:
+    desc: "Evolution of gas metallicity on large scales"
+  radial_velocities_large_combined.mp4:
+    desc: "Evolution of gas radial velocity on large scales"
+  temperatures_large_combined.mp4:
+    desc: "Evolution of gas temperature on large scales"
+  velocity_divergences_large_combined.mp4:
+    desc: "Evolution of gas velocity divergence on large scales"
+  X_rays_large_combined.mp4:
+    desc: "Evolution of X-rays on large scales"
+

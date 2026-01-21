@@ -13,3 +13,8 @@
   justify-content: flex-start; /* align top */
 }
 
+/* Allows <a> links in the caption to be clicked */
+.card-text a {
+    position: relative;
+    z-index: 2;
+}

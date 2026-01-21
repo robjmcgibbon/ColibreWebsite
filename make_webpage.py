@@ -203,9 +203,6 @@ def clean_build(keep_sliders=False, keep_images=False, keep_videos=False, video_
 
     if keep_videos and os.path.exists('build/videos'):
         run_process("mv build/videos tmp_videos")
-        # TODO: This can go?
-        # for video_gallery in video_galleries:
-            # run_process(f"mv build/{video_gallery} tmp_{video_gallery}")
     else:
         keep_videos = False
 
@@ -226,13 +223,11 @@ def clean_build(keep_sliders=False, keep_images=False, keep_videos=False, video_
 
     if keep_videos:
         run_process("mv tmp_videos build/videos")
-        # TODO: This can go?
-        # for video_gallery in video_galleries:
-            # run_process(f"mv tmp_{video_gallery} build/{video_gallery}")
         print('Using videos from previous build')
     else:
+        run_process("mkdir build/videos")
         for video_gallery in video_galleries:
-            run_process(f"mkdir build/{video_gallery}")
+            run_process(f"mkdir build/videos/{video_gallery}")
 
     return keep_sliders, keep_images, keep_videos
 
@@ -322,7 +317,8 @@ def make_video_page(templates, videos, create_media):
 
     # copy the videos
     if create_media:
-        shutil.copytree('src/videos', 'build/videos')
+        for filepath in glob.glob('src/videos/*.mp4'):
+            shutil.copy2(filepath, f'build/videos/{os.path.basename(filepath)}')
 
     # load all templates
     page_template = templates[f"videos.html"]
@@ -334,6 +330,9 @@ def make_video_page(templates, videos, create_media):
     # loop over videos
     videos_html = ""
     for sid, (video_title, video_info) in enumerate(videos.items()):
+
+        if video_title == 'page_description':
+            continue
 
         # Check the video exists
         err_msg = f'{video_info["name"]} not found in src/videos'
@@ -354,7 +353,15 @@ def make_video_page(templates, videos, create_media):
 
     # save the html
     with open(f"src/pages/videos.html", "w") as ofile:
-        ofile.write(template_replace(page_template, {"VIDEOS": videos_html}))
+        ofile.write(
+            template_replace(
+                page_template, 
+                {
+                    "VIDEOS": videos_html,
+                    "PAGE_DESCRIPTION": videos.get('page_description', ''),
+                }
+            )
+        )
 
 
 def make_gallery(templates, input_sections, gallery_name, create_media):
@@ -450,15 +457,12 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
             'videos_galaxy_barred': 'Galaxy 1 Video',
             'videos_galaxy_merger': 'Galaxy 2 Video',
             'videos_box': ' Box Slice Video',
-            'videos_cluster_densities': ' Cluster Video',
-            'videos_cluster_entropies': ' Cluster Video',
-            'videos_cluster_metal_masses': ' Cluster Video',
-            'videos_cluster_radial_velocities': ' Cluster Video',
-            'videos_cluster_stellar_light': ' Cluster Video',
-            'videos_cluster_stellar_light_no_dust': ' Cluster Video',
-            'videos_cluster_temperatures': ' Cluster Video',
-            'videos_cluster_velocity_divergences': ' Cluster Video',
-            'videos_cluster_xray': ' Cluster Video',
+            'videos_cluster_thermal_large': ' Cluster Video',
+            'videos_cluster_thermal_small': ' Cluster Video',
+            'videos_cluster_hybrid_large': ' Cluster Video',
+            'videos_cluster_hybrid_small': ' Cluster Video',
+            'videos_cluster_compareAGN_large': ' Cluster Video',
+            'videos_cluster_compareAGN_small': ' Cluster Video',
         }[gallery_name]
         ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": nice_name}))
 
@@ -646,31 +650,25 @@ if __name__ == "__main__":
         'videos_galaxy_barred',
         'videos_galaxy_merger',
         'videos_box',
-        'videos_cluster_densities',
-        'videos_cluster_entropies',
-        'videos_cluster_metal_masses',
-        'videos_cluster_radial_velocities',
-        'videos_cluster_stellar_light',
-        'videos_cluster_stellar_light_no_dust',
-        'videos_cluster_temperatures',
-        'videos_cluster_velocity_divergences',
-        'videos_cluster_xray',
+        'videos_cluster_thermal_large',
+        'videos_cluster_thermal_small',
+        'videos_cluster_hybrid_large',
+        'videos_cluster_hybrid_small',
+        'videos_cluster_compareAGN_large',
+        'videos_cluster_compareAGN_small',
     ]
 
     # Whether to skip build steps to allow for a quick website build
     keep_sliders = True
     keep_images = True
     keep_videos = True
-    # keep_videos = False
-    # skip_ads_query = False
-    skip_ads_query = True
+    skip_ads_query = False
 
     # Clean up any existing build, create new build directories
     keep_sliders, keep_images, keep_videos = clean_build(
         keep_sliders=keep_sliders,
         keep_images=keep_images,
         keep_videos=keep_videos,
-        # TODO: This can go?
         video_galleries=video_galleries,
     )
 

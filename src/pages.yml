@@ -43,7 +43,7 @@ team.html:
   css:
     - css/team.css
 
-############### Pages not in sidebar
+############### Pages not in the navbar (title set to "")
 
 videos_galaxy_barred.html:
   title: ""
@@ -69,75 +69,49 @@ videos_box.html:
   css:
     - css/gallery.css
 
-videos_cluster_densities.html:
+videos_cluster_thermal_large.html:
   title: ""
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_densities
+  sidebar: videos_cluster_thermal_large
   css:
     - css/gallery.css
 
-videos_cluster_entropies.html:
+videos_cluster_thermal_small.html:
   title: ""
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_entropies
+  sidebar: videos_cluster_thermal_small
   css:
     - css/gallery.css
 
-videos_cluster_metal_masses.html:
+videos_cluster_hybrid_large.html:
   title: ""
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_metal_masses
+  sidebar: videos_cluster_hybrid_large
   css:
     - css/gallery.css
 
-videos_cluster_radial_velocities.html:
+videos_cluster_hybrid_small.html:
   title: ""
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_radial_velocities
+  sidebar: videos_cluster_hybrid_small
   css:
     - css/gallery.css
 
-videos_cluster_temperatures.html:
+videos_cluster_compareAGN_large.html:
   title: ""
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_temperatures
   css:
     - css/gallery.css
 
-videos_cluster_velocity_divergences.html:
+videos_cluster_compareAGN_small.html:
   title: ""
   prescripts:
    - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_velocity_divergences
-  css:
-    - css/gallery.css
-
-videos_cluster_xray.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_xray
-  css:
-    - css/gallery.css
-
-videos_cluster_stellar_light.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_stellar_light
-  css:
-    - css/gallery.css
-
-videos_cluster_stellar_light_no_dust.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_stellar_light_no_dust
   css:
     - css/gallery.css
 

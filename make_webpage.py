@@ -66,7 +66,7 @@ def make_sidebar(sections):
 
     links = ""
     for i, section in enumerate(sections):
-        if section == 'page_description':
+        if section in ['page_description', 'title']:
             continue
         links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section}</a></li>\n'
 

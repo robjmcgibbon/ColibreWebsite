@@ -55,6 +55,8 @@ Name                                                   Affiliation              
 "Will Roper"                                           "University of Sussex"                       50.859167   -0.084667
 "Max Baker"                                            "Cardiff University"                         51.486627   -3.178864
 "Jonathan Davies"                                      "Liverpool John Moores University"           53.403      -2.97
+"Anna Durrant"                                         "Liverpool John Moores University"           53.403      -2.97
+"Ian McCarthy"                                         "Liverpool John Moores University"           53.403      -2.97
 "Feihong He"                                           "Shanghai Jiao Tong University"              31.200891   121.428395
 "Songting Li"                                          "Shanghai Jiao Tong University"              31.200891   121.428395
 "Jiangkun Shi "                                        "Shanghai Jiao Tong University"              31.200891   121.428395
@@ -84,7 +86,6 @@ Name                                                   Affiliation              
 "Go Ogiya"                                             "Zhejiang University"                        30.3087     120.0865
 "Yunpeng Jin"                                          "Zhejiang University"                        30.296667   120.073333
 "Nisha Grewal"                                         "Newcastle University"                       54.9792     -1.6147
-"Anna Durrant"                                         "Liverpool John Moores University"           53.403      -2.97
 "Giacomo Queirolo"                                     "University of Montpellier"                  43.6158     3.8721
 "Jinning Liang"                                        "Peking University"                          39.9869     116.3059
 "Haonan Zheng"                                         "Peking University"                          39.9869     116.3059

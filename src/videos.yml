@@ -25,7 +25,7 @@ and <a href='#sec4' class='active text-decoration-none'>an explanation of the so
 
 "Box slice":
   name: video_Thermal_non_equilibrium_metallicity.mp4
-  desc: "The evolution of the gas metallicity from redshift z = 17.5 to z = 0 of a 10 comoving megaparsec (cMpc) thick slice through the L050m6 simulation, which is 50 cMpc on a side (1 cMpc is about 3.3/(1+z) million lightyears). The sonification for this video is in stereo, with sound in the left (right) speaker coming from the left (right) side of the slice. See <a href='videos_box.html' class='active text-decoration-none'>this gallery</a> for the evolution of more properties in this box slice with both thermal and hybrid AGN feedback."
+  desc: "The evolution of the gas metallicity from redshift z = 17.5 to z = 0 of a 10 comoving megaparsec (cMpc) thick slice through the L050m6 simulation, which is 50 cMpc on a side (1 cMpc is about 3.3/(1+z) million lightyears). Z/Zsun is the abundance of elements heavier than helium, which are all formed in stars, relative to their abundance in the solar atmosphere. The sonification for this video is in stereo, with sound in the left (right) speaker coming from the left (right) side of the slice. See <a href='videos_box.html' class='active text-decoration-none'>this gallery</a> for the evolution of more properties in this box slice with both thermal and hybrid AGN feedback."
 
 "Sonification explanation":
   name: sonification_explainer.mp4

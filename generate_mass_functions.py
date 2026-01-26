@@ -51,7 +51,7 @@
 import pandas as pd
 import glob, os
 from bokeh.io import output_file, save
-from bokeh.models import ColumnDataSource, Select, CustomJS, Div, HoverTool
+from bokeh.models import ColumnDataSource, Select, CustomJS, Div, HoverTool, CustomJSTickFormatter
 from bokeh.plotting import figure
 from bokeh.layouts import column, row
 
@@ -100,6 +100,28 @@ def generate_mass_functions():
     p.yaxis.axis_label_text_font_size = font_size
     p.yaxis.major_label_text_font_size = font_size
     p.yaxis.axis_label_text_font_style = 'bold'
+
+    # Format ticks
+    compact_formatter = CustomJSTickFormatter(code="""
+        if (tick === 0) return "0";
+
+        // Calculate exponent and coefficient
+        const exp = Math.floor(Math.log10(tick));
+        const coeff = Math.round(tick / Math.pow(10, exp));
+
+        // Unicode superscript map
+        const superscripts = {
+            '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', 
+            '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻'
+        };
+
+        const expStr = String(exp).split('').map(c => superscripts[c] || c).join('');
+
+        // Returns format like "1x10⁵" with no spaces
+        return coeff + "x10" + expStr;
+    """)
+    p.xaxis.formatter = compact_formatter
+    p.yaxis.formatter = compact_formatter
 
     ### Widgets (set title="" so the Div label is the only label rendered)
     prop_select = Select(title="", value=prop_default, options=property_options)
@@ -159,6 +181,13 @@ def generate_mass_functions():
             // fallback
             xaxis.axis_label = "Undefined";
             yaxis.axis_label = "Undefined";
+        }
+
+        // Limit the number of ticks
+        if (sim.value === 'L400m7' && z.value === '8' && prop.value === 'Stellar mass') {
+            xaxis.ticker.desired_num_ticks = 3;
+        } else {
+            xaxis.ticker.desired_num_ticks = 6;
         }
 
         // Propagate changes

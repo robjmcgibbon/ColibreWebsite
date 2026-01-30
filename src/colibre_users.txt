@@ -96,3 +96,4 @@ Name                                                   Affiliation              
 "Hao Fu"                                               "Fudan University"                           31.2974     121.5036
 "Seunghwan Lim"                                        "University of Cambridge"                    52.2054     0.1132
 "Samuel Lange"                                         "Chinese University of Hong Kong"            22.4196     114.2068
+"Hangci Du"                                            "National Astronomical Observatory of China" 40.0038     116.3850

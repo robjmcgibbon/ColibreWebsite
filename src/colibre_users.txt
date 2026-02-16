@@ -99,3 +99,5 @@ Name                                                   Affiliation              
 "Samuel Lange"                                         "Chinese University of Hong Kong"            22.4196     114.2068
 "Hangci Du"                                            "National Astronomical Observatory of China" 40.0038     116.3850
 "Antonios Katsianis"                                   "Sun Yat-sen University"                     23.0965     113.2989
+"Lucie Scharré"                                        "École Polytechnique Fédérale de Lausanne"   46.5191     6.5668
+"Steven Cunnington"                                    "University of Portsmouth"                   50.7953     -1.0939

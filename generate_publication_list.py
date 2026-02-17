@@ -143,8 +143,8 @@ def generate_publication_list(skip_query=False):
             'James Trayford, Joop Schaye, Camila Correa, Sylvia Ploeckinger, Alexander Richings, Evgenii Chaikin, Matthieu Schaller, Alejandro Benítez-Llambay, Carlos Frenk, Filip Huško',
             f'https://ui.adsabs.harvard.edu/abs/2025arXiv250513056T',
             f'https://arxiv.org/abs/2505.13056',
-            'arxiv',
-            2025,
+            'MNRAS',
+            2026,
         ),
         (
             'Hybrid-chimes: A model for radiative cooling and the abundances of ions and molecules in simulations of galaxy formation',

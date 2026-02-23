@@ -167,8 +167,8 @@ def generate_publication_list(skip_query=False):
             'Alejandro Benítez-Llambay, Sylvia Ploeckinger, Joop Schaye, Alexander Richings, Evgenii Chaikin, Matthieu Schaller, James Trayford, Carlos Frenk, Filip Huško, Camila Correa',
             'https://ui.adsabs.harvard.edu/abs/2025arXiv250925309B/abstract',
             'https://arxiv.org/abs/2509.25309',
-            'arxiv',
-            2025,
+            'MNRAS',
+            2026,
         ),
         (
             'A subgrid model for chemical enrichment in cosmological simulations',

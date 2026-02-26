@@ -107,8 +107,8 @@ def generate_publication_list(skip_query=False):
             'Joop Schaye, Evgenii Chaikin, Matthieu Schaller, Sylvia Ploeckinger, Filip Huško, Rob McGibbon, James Trayford, Alejandro Benítez-Llambay, Camila Correa, Carlos Frenk, Alexander Richings, Victor Forouhar Moreno, Yannick Bahé, Josh Borrow, Anna Durrant, Andrea Gebek, John Helly, Adrian Jenkins, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
             "https://ui.adsabs.harvard.edu/abs/2025arXiv250821126S",
             "https://arxiv.org/abs/2508.21126",
-            'arxiv',
-            2025,
+            'MNRAS',
+            2026,
         ),
         (
             'COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase',

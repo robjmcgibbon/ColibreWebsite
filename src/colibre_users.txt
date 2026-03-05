@@ -103,3 +103,4 @@ Name                                                   Affiliation              
 "Lucie Scharré"                                        "École Polytechnique Fédérale de Lausanne"   46.5191     6.5668
 "Steven Cunnington"                                    "University of Portsmouth"                   50.7953     -1.0939
 "Robin Joshi"                                          "University of Sydney"                       -33.888     151.1868
+"Xiaoyuan Zhang "                                      "MPE Garching"                               48.2610     11.6715

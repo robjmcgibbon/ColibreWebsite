@@ -175,8 +175,8 @@ def generate_publication_list(skip_query=False):
             'Camila Correa et al.',
             None,
             None,
-            'In prep',
-            2025,
+            'Submitted',
+            2026,
         ),
     ]
 

@@ -82,6 +82,7 @@ Name                                                   Affiliation              
 "Maximilian Zemsch"                                    "University of Oxford"                       51.757      -1.2545
 "Luigi Giaquinto"                                      "University of Naples"                       40.845      14.257
 "Bruno Celiz"                                          "National University of Córdoba"             -31.435     -64.18
+"Pablo Lopez"                                          "National University of Córdoba"             -31.435     -64.18
 "Saad Mehmood"                                         "Western Sydney University"                  -33.816     151.00
 "Aditya Manuwal"                                       "Universidad Nacional Autónoma de México"    19.3328     -99.187
 "Go Ogiya"                                             "Westlake University"                        30.133900   120.07960
@@ -103,4 +104,5 @@ Name                                                   Affiliation              
 "Lucie Scharré"                                        "École Polytechnique Fédérale de Lausanne"   46.5191     6.5668
 "Steven Cunnington"                                    "University of Portsmouth"                   50.7953     -1.0939
 "Robin Joshi"                                          "University of Sydney"                       -33.888     151.1868
-"Xiaoyuan Zhang "                                      "MPE Garching"                               48.2610     11.6715
+"Xiaoyuan Zhang"                                       "MPE Garching"                               48.2610     11.6715
+"Eduárd Illés"                                         "University of Groningen"                    53.2193     6.5628

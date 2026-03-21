@@ -106,3 +106,5 @@ Name                                                   Affiliation              
 "Robin Joshi"                                          "University of Sydney"                       -33.888     151.1868
 "Xiaoyuan Zhang"                                       "MPE Garching"                               48.2610     11.6715
 "Eduárd Illés"                                         "University of Groningen"                    53.2193     6.5628
+"Themiya Nanayakkara"                                  "Swinburne University of Technology"         -37.8226    145.0377
+"Osmer Suarez"                                         "Universidad Nacional Andrés Bello"          -33.4514    -70.6670

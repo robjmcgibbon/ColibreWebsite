@@ -34,7 +34,9 @@ The website is hosted at the STRW. All the files from the `build` directory shou
 
 The interactive maps consist of a large number of png files. They are stored on the STRW system at `/net/hypernova/data2`, and there are soft links in the web directory which point to this location.
 
-The domain colibre-simulations.org was bought for 10 years in Aug 2025 (from NameCheap by Joop). Cloudflare (set up on Rob's account) is used to redirect all requests to this page to colibre.strw.leidenuniv.nl. Google analytics is used (set up on Rob's account)
+The domain colibre-simulations.org was bought for 10 years in Aug 2025 (from NameCheap by Joop). Cloudflare (set up on Rob's account) is used to redirect all requests to this page to colibre.strw.leidenuniv.nl. Google analytics is used (set up on Rob's account, Evgenii & James are admins).
+
+The colibre simulations youtube account was set up in Mar 2026 by Rob. Evgenii & James are admins.
 
 ## TODO
 Run `grep -r TODO *`

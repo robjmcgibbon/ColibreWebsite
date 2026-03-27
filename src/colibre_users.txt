@@ -60,7 +60,8 @@ Name                                                   Affiliation              
 "Ian McCarthy"                                         "Liverpool John Moores University"           53.403      -2.97
 "Feihong He"                                           "Shanghai Jiao Tong University"              31.200891   121.428395
 "Songting Li"                                          "Shanghai Jiao Tong University"              31.200891   121.428395
-"Jiangkun Shi "                                        "Shanghai Jiao Tong University"              31.200891   121.428395
+"Jiangkun Shi"                                         "Shanghai Jiao Tong University"              31.200891   121.428395
+"Lijing Zhang"                                         "Shanghai Jiao Tong University"              31.200891   121.428395
 "Katy Proctor"                                         "Stockholm University"                       59.3592     18.055
 "Mathieu Perron-Cormier"                               "Queen's University"                         44.22       -76.49
 "Oleh Ryzhov"                                          "Adam Mickiewicz University"                 52.409538   16.931992

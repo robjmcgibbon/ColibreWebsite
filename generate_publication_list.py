@@ -100,7 +100,6 @@ def format_paper_data(result):
 def generate_publication_list(skip_query=False):
 
     # Hard code the introduction papers as we want the full list of names
-    # TODO: Update when papers are published
     intro_papers = [
         (
             'The COLIBRE project: cosmological hydrodynamical simulations of galaxy formation and evolution',
@@ -115,12 +114,11 @@ def generate_publication_list(skip_query=False):
             'Evgenii Chaikin, Joop Schaye, Matthieu Schaller, Sylvia Ploeckinger, Yannick Bahé, Alejandro Benítez-Llambay, Camila Correa, Victor Forouhar Moreno, Carlos Frenk, Filip Huško, Roi Kugel, Rob McGibbon, Alexander Richings, James Trayford, Josh Borrow, Rob Crain, John Helly, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
             "https://ui.adsabs.harvard.edu/abs/2025arXiv250904067C/abstract",
             "https://arxiv.org/abs/2509.04067",
-            'arxiv',
-            2025,
+            'MNRAS',
+            2026,
         ),
     ]
 
-    # TODO: Update when papers are published
     method_papers = [
         (
             'A thermal-kinetic subgrid model for supernova feedback in simulations of galaxy formation',
@@ -139,14 +137,6 @@ def generate_publication_list(skip_query=False):
             2024,
         ),
         (
-            'Modelling the evolution and influence of dust in cosmological simulations that include the cold phase of the interstellar medium',
-            'James Trayford, Joop Schaye, Camila Correa, Sylvia Ploeckinger, Alexander Richings, Evgenii Chaikin, Matthieu Schaller, Alejandro Benítez-Llambay, Carlos Frenk, Filip Huško',
-            f'https://ui.adsabs.harvard.edu/abs/2025arXiv250513056T',
-            f'https://arxiv.org/abs/2505.13056',
-            'MNRAS',
-            2026,
-        ),
-        (
             'Hybrid-chimes: A model for radiative cooling and the abundances of ions and molecules in simulations of galaxy formation',
             'Sylvia Ploeckinger, Alexander Richings, Joop Schaye, James Trayford, Matthieu Schaller, Evgenii Chaikin',
             f'https://ui.adsabs.harvard.edu/abs/2025arXiv250615773P',
@@ -155,12 +145,20 @@ def generate_publication_list(skip_query=False):
             2025,
         ),
         (
+            'Modelling the evolution and influence of dust in cosmological simulations that include the cold phase of the interstellar medium',
+            'James Trayford, Joop Schaye, Camila Correa, Sylvia Ploeckinger, Alexander Richings, Evgenii Chaikin, Matthieu Schaller, Alejandro Benítez-Llambay, Carlos Frenk, Filip Huško',
+            f'https://ui.adsabs.harvard.edu/abs/2025arXiv250513056T',
+            f'https://arxiv.org/abs/2505.13056',
+            'MNRAS',
+            2026,
+        ),
+        (
             'A hybrid active galactic nucleus feedback model with spinning black holes, winds and jets',
             'Filip Huško, Cedric Lacey, Joop Schaye, Matthieu Schaller, Evgenii Chaikin, Sylvia Ploeckinger, Alejandro Benítez-Llambay, Alexander Richings, James Trayford',
             'https://ui.adsabs.harvard.edu/abs/2025arXiv250905179H',
             'https://arxiv.org/abs/2509.05179',
-            'arxiv',
-            2025,
+            'MNRAS',
+            2026,
         ),
         (
             'Non-explosive pre-supernova feedback in the COLIBRE model of galaxy formation',
@@ -172,10 +170,10 @@ def generate_publication_list(skip_query=False):
         ),
         (
             'A subgrid model for chemical enrichment in cosmological simulations',
-            'Camila Correa et al.',
-            None,
-            None,
-            'Submitted',
+            'Camila Correa, Joop Schaye, Matthieu Schaller, James Trayford, Evgenii Chaikin, Alejandro Benítez-Llambay, Carlos Frenk, Sylvia Ploeckinger, Alexander Richings',
+            'https://ui.adsabs.harvard.edu/abs/2026arXiv260400980C/abstract',
+            'https://arxiv.org/abs/2604.00980',
+            'MNRAS',
             2026,
         ),
     ]

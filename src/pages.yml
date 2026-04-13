@@ -11,7 +11,7 @@ sliders.html:
     - css/sliders.css
 
 interactive.html:
-  title: Interactive maps
+  title: Sonified maps
   css:
     - css/interactive.css
 

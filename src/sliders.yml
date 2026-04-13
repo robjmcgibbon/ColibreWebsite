@@ -3,7 +3,7 @@ Individual galaxies:
   description: "z = 0 galaxies from the L025m5 simulations"
   show_Left_Right: Property
   buttons:
-    - GalaxyID
+    - TrackID
     - Orientation
   Property:
     - HST bands
@@ -19,7 +19,7 @@ Individual galaxies:
     - Stellar density
     - Stellar age
     - Stellar metallicity
-  GalaxyID:
+  TrackID:
     # L25m5 Thermal
     - "4705"
     - "47804"

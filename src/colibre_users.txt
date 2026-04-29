@@ -25,7 +25,6 @@ Name                                                   Affiliation              
 "Zefeng Li"                                            "Durham University"                          54.768634   -1.572089
 "Xu Zhao"                                              "Durham University"                          54.768634   -1.572089
 "Owen Jessop"                                          "Durham University"                          54.768634   -1.572089
-"Aofie Curran"                                         "University of Hull"                         53.773703   -0.368078
 "Elliot Howatson"                                      "University of Hull"                         53.773703   -0.368078
 "Alex Richings"                                        "University of Hull"                         53.773703   -0.368078
 "Oliver Thompson"                                      "University of Hull"                         53.773703   -0.368078

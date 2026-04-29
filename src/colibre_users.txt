@@ -113,3 +113,5 @@ Name                                                   Affiliation              
 "Osmer Suarez"                                         "Universidad Nacional Andrés Bello"          -33.4514    -70.6670
 "Riccardo Seppi"                                       "University of Geneva"                       46.1994     6.1451
 "Antonio La Marca"                                     "ESA"                                        52.21894    4.41976
+"Paurush Punyasheel"                                   "University of Hertfordshire"                51.7615     -0.2481
+"Zihan Zhang"                                          "Nanjing University"                         32.0571     118.778

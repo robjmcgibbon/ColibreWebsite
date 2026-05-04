@@ -188,7 +188,7 @@ def generate_publication_list(skip_query=False):
     # Write basic html file, which will be formatter with make_webpage.py
     with open('src/pages/papers.html', 'w') as file:
         file.write('<h1>COLIBRE Publications</h1>\n')
-        file.write('This page contains a list of publications submitted to arXiv which make use of the COLIBRE simulations. The papers are listed in chronological order based on when they were uploaded to arXiv. Please let us know if we have missed your paper!\n\n')
+        file.write('This page contains a list of publications submitted to arXiv which make use of the COLIBRE simulations. The analysis papers are listed in chronological order based on when they were uploaded to arXiv. Please let us know if we have missed your paper!\n\n')
 
         for i_section, (section_header, papers) in enumerate([
                 ('Reference papers', intro_papers),

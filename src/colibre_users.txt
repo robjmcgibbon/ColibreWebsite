@@ -115,3 +115,4 @@ Name                                                   Affiliation              
 "Antonio La Marca"                                     "ESA"                                        52.21894    4.41976
 "Paurush Punyasheel"                                   "University of Hertfordshire"                51.7615     -0.2481
 "Zihan Zhang"                                          "Nanjing University"                         32.0571     118.778
+"Bitao Wang"                                           "Hunan University"                           28.1784     112.944

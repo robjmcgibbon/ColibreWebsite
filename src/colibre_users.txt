@@ -93,6 +93,7 @@ Name                                                   Affiliation              
 "Giacomo Queirolo"                                     "University of Montpellier"                  43.6158     3.8721
 "Jinning Liang"                                        "Peking University"                          39.9869     116.3059
 "Haonan Zheng"                                         "Peking University"                          39.9869     116.3059
+"Jianyuan Luo"                                         "Peking University"                          39.9869     116.3059
 "Seona Lee"                                            "University of Western Australia"            -31.98118   115.81991
 "Manvi Chauhan"                                        "University of Hull"                         53.773703   -0.368078
 "Benjamin Silva Mella"                                 "PUC"                                        -33.4413     -70.6406
@@ -114,5 +115,6 @@ Name                                                   Affiliation              
 "Riccardo Seppi"                                       "University of Geneva"                       46.1994     6.1451
 "Antonio La Marca"                                     "ESA"                                        52.21894    4.41976
 "Paurush Punyasheel"                                   "University of Hertfordshire"                51.7615     -0.2481
-"Zihan Zhang"                                          "Nanjing University"                         32.0571     118.778
 "Bitao Wang"                                           "Hunan University"                           28.1784     112.944
+"Zihan Zhang"                                          "Nanjing University"                         32.0571     118.778
+"Qiaoyang Hao"                                         "Nanjing University"                         32.0571     118.778

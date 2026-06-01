@@ -137,6 +137,10 @@ def copy_assets():
     """
     shutil.copytree('src/assets', 'build/assets')
 
+def copy_paper_data():
+    if os.path.exists('src/paper_data'):
+        shutil.copytree('src/paper_data', 'build/paper_data')
+
 def copy_slider_images():
     """
     Copy the src/slider_images/ into build/. We create compressed versions (for the
@@ -627,6 +631,7 @@ if __name__ == "__main__":
         # Update map
         generate_user_map.generate_user_map()
         copy_assets()
+        copy_paper_data()
         exit()
 
     # Whether to skip build steps to allow for a quick website build
@@ -689,6 +694,7 @@ if __name__ == "__main__":
 
     # Copy the assets.
     copy_assets()
+    copy_paper_data()
     copy_styles()
     if not keep_sliders:
         copy_slider_images()

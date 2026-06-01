@@ -1,3 +1,4 @@
+import os
 import requests
 import html
 from urllib.parse import urlencode
@@ -205,7 +206,19 @@ def generate_publication_list(skip_query=False):
                 if paper[2] is not None:
                     file.write(f', <a href="{paper[2]}" class="active text-decoration-none">ADS</a>')
                 if paper[3] is not None:
-                    file.write(f', <a href="{paper[3]}" class="active text-decoration-none">arXiv</a></p></li>\n')
+                    file.write(f', <a href="{paper[3]}" class="active text-decoration-none">arXiv</a>')
+                # To add a "Download plot data" link for a paper, place a
+                # .yml or .yaml file in src/paper_data/ named after the paper's
+                # arXiv ID (e.g. src/paper_data/2509.07960.yaml).
+                arxiv_id = paper[3].split('/')[-1]
+                data_file = None
+                for ext in ['.yml', '.yaml']:
+                    if os.path.exists(f'src/paper_data/{arxiv_id}{ext}'):
+                        data_file = f'paper_data/{arxiv_id}{ext}'
+                        break
+                if data_file is not None:
+                    file.write(f', <a href="{data_file}" class="active text-decoration-none">Download plot data</a>')
+                file.write('</p></li>\n')
 
             file.write('</ol>\n')
         file.write('<br>\n')

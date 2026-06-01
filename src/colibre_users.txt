@@ -35,6 +35,7 @@ Name                                                   Affiliation              
 "Yannick Bahe"                                         "University of Nottingham"                   52.939      -1.197
 "Adela Fernandez"                                      "University of Nottingham"                   52.939      -1.197
 "James Rice"                                           "University of Nottingham"                   52.939      -1.197
+"Garreth Martin"                                       "University of Nottingham"                   52.939      -1.197
 "Connor Bottrell"                                      "University of Western Australia"            -31.98118   115.81991
 "Angel Chandro Gomez"                                  "University of Western Australia"            -31.98118   115.81991
 "Matthew Frosst"                                       "University of Western Australia"            -31.98118   115.81991

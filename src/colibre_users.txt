@@ -78,6 +78,7 @@ Name                                                   Affiliation              
 "Luisa Lucie-Smith"                                    "University of Hamburg"                      53.5668     9.9837
 "José Benavides"                                       "UC Riverside"                               33.964257   -117.339786
 "Qinglin Ma"                                           "Tsinghua University"                        40.00229    116.320989
+"Yuqian Gui"                                           "Tsinghua University"                        40.00229    116.320989
 "Daniela Galárraga-Espinosa"                           "IPMU, University of Tokyo"                  35.867      139.973
 "Daniel Miller"                                        "PUCV"                                       -33.04497   -71.60665
 "Marcin Glowacki"                                      "University of Edinburgh"                    55.944515   -3.189241
@@ -95,6 +96,7 @@ Name                                                   Affiliation              
 "Jinning Liang"                                        "Peking University"                          39.9869     116.3059
 "Haonan Zheng"                                         "Peking University"                          39.9869     116.3059
 "Jianyuan Luo"                                         "Peking University"                          39.9869     116.3059
+"Guangze Sun"                                          "Peking University"                          39.9869     116.3059
 "Seona Lee"                                            "University of Western Australia"            -31.98118   115.81991
 "Manvi Chauhan"                                        "University of Hull"                         53.773703   -0.368078
 "Benjamin Silva Mella"                                 "PUC"                                        -33.4413     -70.6406

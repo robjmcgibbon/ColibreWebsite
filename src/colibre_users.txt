@@ -18,7 +18,6 @@ Name                                                   Affiliation              
 "Cedric Lacey"                                         "Durham University"                          54.768634   -1.572089
 "Shengdong Lu"                                         "Durham University"                          54.768634   -1.572089
 "Kyle Oman"                                            "Durham University"                          54.768634   -1.572089
-"Isabel Santos Santos"                                 "Durham University"                          54.768634   -1.572089
 "Kai Wang"                                             "Durham University"                          54.768634   -1.572089
 "Yuchan Wang"                                          "Durham University"                          54.768634   -1.572089
 "Jake Howard"                                          "Durham University"                          54.768634   -1.572089
@@ -123,3 +122,5 @@ Name                                                   Affiliation              
 "Zihan Zhang"                                          "Nanjing University"                         32.0571     118.778
 "Qiaoyang Hao"                                         "Nanjing University"                         32.0571     118.778
 "Jinmou Song"                                          "Xiamen University"                          24.4373     118.0979
+"Isabel Santos Santos"                                 "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115
+"Sergey Khoperskov "                                   "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115

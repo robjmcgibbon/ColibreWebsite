@@ -37,6 +37,10 @@ simulations.html:
 papers.html:
   title: Publications
   sidebar: publications
+  # Scripts needed to render math in paper titles
+  prescripts:
+    - assets/mathjax_config.js
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
 
 team.html:
   title: Team

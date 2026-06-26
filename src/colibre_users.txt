@@ -125,4 +125,5 @@ Name                                                   Affiliation              
 "Qiaoyang Hao"                                         "Nanjing University"                         32.0571     118.778
 "Jinmou Song"                                          "Xiamen University"                          24.4373     118.0979
 "Isabel Santos Santos"                                 "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115
-"Sergey Khoperskov "                                   "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115
+"Sergey Khoperskov"                                    "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115
+"Diego Pallero"                                        "Federico Santa María Technical University"  -33.036     -71.5951

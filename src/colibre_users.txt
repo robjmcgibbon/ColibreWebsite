@@ -94,6 +94,7 @@ Name                                                   Affiliation              
 "Yunpeng Jin"                                          "Westlake University"                        30.133900   120.07960
 "Kai Zhu"                                              "Westlake University"                        30.133900   120.07960
 "Nisha Grewal"                                         "Newcastle University"                       54.9792     -1.6147
+"Elliot Scott"                                         "Newcastle University"                       54.9792     -1.6147
 "Giacomo Queirolo"                                     "University of Montpellier"                  43.6158     3.8721
 "Jinning Liang"                                        "Peking University"                          39.9869     116.3059
 "Haonan Zheng"                                         "Peking University"                          39.9869     116.3059
@@ -127,3 +128,4 @@ Name                                                   Affiliation              
 "Isabel Santos Santos"                                 "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115
 "Sergey Khoperskov"                                    "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115
 "Diego Pallero"                                        "Federico Santa María Technical University"  -33.036     -71.5951
+"Abhner Almeida"                                       "University of São Paulo"                    -23.542     -46.6229

@@ -1,5 +1,7 @@
 set -e
 
+# For running on STRW
+
 cd /home/mcgibbon/Documents/ColibreWebsite
 git pull > cron_job.out 2>&1
 /home/mcgibbon/Documents/flamingo_website/venv/bin/python make_webpage.py --update >> cron_job.out

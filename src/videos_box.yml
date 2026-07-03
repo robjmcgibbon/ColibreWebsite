@@ -1,10 +1,4 @@
 title: 'Box Slice'
-page_description: '<p>
-Below are videos showing the evolution of the L050m6 simulation.
-One set shows a simulation with the thermal AGN model, another
-shows the hybrid AGN model. All show a 10cMpc slice.
-Different videos show different properties.
-</p>'
 
 page_description: "Below are videos showing the evolution of various properties from redshift z = 17.5 to z = 0 of a 10 comoving megaparsec (cMpc) thick slice through the L050m6 simulations, which are 50 cMpc on a side (1 cMpc is about 3.3/(1+z) million lightyears). The sonification for this video is in stereo, with sound in the left (right) speaker coming from the left (right) side of the slice. One set shows a simulation with the thermal AGN model, another shows the hybrid AGN model."
 

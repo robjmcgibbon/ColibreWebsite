@@ -3,7 +3,7 @@
 This repo contains the website of the COLIBRE project. It was based on the website for the FLAMINGO project, but has been significantly edited.
 
 ### Requirements
-- A small number of python packages are required, which can be found in `requirements.txt`.
+- A small number of python packages are required, which can be found in `pyproject.toml`.
 - `ImageMagick` and `ffmpeg` are required for image/video conversion.
 - A zipped version of the required media files can be found at `/cosma8/data/dp004/dc-mcgi1/COLIBRE/website`. **If you add new image/video files to the website then make sure to update the zipped versions.**
 

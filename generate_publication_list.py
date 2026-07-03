@@ -94,9 +94,6 @@ def format_paper_data(result):
         result['year'],
     )
 
-    # Sort based on arxiv identifier
-    return sorted(analysis_papers, key=lambda d: d[3])
-
 
 def generate_publication_list(skip_query=False):
 

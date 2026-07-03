@@ -40,17 +40,38 @@ def template_replace(input_string, substitutes):
     return output_string
 
 
-def make_navbar(pages, templates):
+def make_navbar(pages, templates, gallery_links=None):
     """
     Create the navigation bar with the given pages.
+
+    gallery_links is an optional ordered list of {"href", "name"} dicts. When
+    given, the "videos.html" nav item becomes a dropdown: the "Videos" label
+    still links to the main videos page, and the menu adds a "Featured videos"
+    entry plus one entry per gallery.
     """
     navlink = templates["navlink.html"]
+    navdropdown = templates["navdropdown.html"]
     navbar = templates["navbar.html"]
 
     links = ""
     for page in pages:
         # skip pages with no name
-        if not pages[page]["title"] == "":
+        if pages[page]["title"] == "":
+            continue
+
+        if page == "videos.html" and gallery_links:
+            items = f'<li><a class="dropdown-item" href="{page}">Featured videos</a></li>\n'
+            items += '<li><hr class="dropdown-divider"></li>\n'
+            for link in gallery_links:
+                items += (
+                    f'<li><a class="dropdown-item" href="{link["href"]}">'
+                    f'{link["name"]}</a></li>\n'
+                )
+            links += template_replace(
+                navdropdown,
+                {"HREF": page, "NAME": pages[page]["title"], "DROPDOWN_ITEMS": items},
+            )
+        else:
             links += template_replace(
                 navlink, {"HREF": page, "NAME": pages[page]["title"]}
             )
@@ -80,7 +101,7 @@ def make_sidebar(sections, extra_links=None):
     return template_replace(sidebar, {"LINK_LIST": links})
 
 
-def make_page(page, pages, templates):
+def make_page(page, pages, templates, gallery_links=None):
     """
     Create the page with the given name.
 
@@ -126,7 +147,7 @@ def make_page(page, pages, templates):
         page_out,
         {
             "PAGE_TITLE": title,
-            "NAVBAR": make_navbar(pages, templates),
+            "NAVBAR": make_navbar(pages, templates, gallery_links),
             "PAGE_CONTENTS": page_contents,
             "SIDEBAR": sidebar,
         },
@@ -718,6 +739,14 @@ if __name__ == "__main__":
         videos = yaml.safe_load(handle)
     make_video_page(templates, videos, not keep_videos, featured_galleries)
 
+    # the same featured galleries drive the navbar "Videos" dropdown
+    featured_gallery_links = []
+    for gallery_name in featured_galleries:
+        with open(f"src/{gallery_name}.yml", "r") as handle:
+            featured_gallery_links.append(
+                {"href": f"{gallery_name}.html", "name": yaml.safe_load(handle)["title"]}
+            )
+
     # Generate the video galleries
     for gallery_name in video_galleries:
         with open(f"src/{gallery_name}.yml", "r") as handle:
@@ -744,7 +773,7 @@ if __name__ == "__main__":
     with open("src/pages.yml", "r") as handle:
         pages = yaml.safe_load(handle)
     for page in pages:
-        make_page(page, pages, templates)
+        make_page(page, pages, templates, featured_gallery_links)
 
     # Copy the assets.
     copy_assets()

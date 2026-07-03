@@ -58,9 +58,13 @@ def make_navbar(pages, templates):
     return template_replace(navbar, {"LINK_LIST": links})
 
 
-def make_sidebar(sections):
+def make_sidebar(sections, extra_links=None):
     """
     Create the sidebar with the given sections.
+
+    extra_links is an optional {anchor: label} mapping of additional entries
+    (e.g. {"galleries": "More video galleries"}) appended after the sections;
+    these link to a page anchor id directly rather than a "#sec{i}" section.
     """
     sidebar = templates["sidebar.html"]
 
@@ -69,6 +73,9 @@ def make_sidebar(sections):
         if section in ['page_description', 'title']:
             continue
         links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section}</a></li>\n'
+
+    for anchor, label in (extra_links or {}).items():
+        links += f'      <li class="nav-item"><a class="nav-link" href="#{anchor}">{label}</a></li>\n'
 
     return template_replace(sidebar, {"LINK_LIST": links})
 
@@ -112,7 +119,7 @@ def make_page(page, pages, templates):
     if "sidebar" in pages[page]:
         with open(f'src/{pages[page]["sidebar"]}.yml') as f:
             sections = yaml.safe_load(f)
-        sidebar = make_sidebar(list(sections.keys()))
+        sidebar = make_sidebar(list(sections.keys()), pages[page].get("sidebar_extra"))
 
     # now add the actual page contents
     page_out = template_replace(
@@ -312,11 +319,14 @@ def create_video(video_src, video_src_nosound, gallery_name, create_media):
     return f"videos/{gallery_name}/{video_src}", ""
 
 
-def make_video_page(templates, videos, create_media):
+def make_video_page(templates, videos, create_media, featured_galleries):
     """
     Create the videos page.
 
     If create_media=False then skip copying the videos across.
+
+    featured_galleries is an ordered list of gallery names (e.g. "videos_box")
+    to surface as a grid of clickable thumbnail cards at the bottom of the page.
     """
 
     # copy the videos
@@ -355,24 +365,54 @@ def make_video_page(templates, videos, create_media):
             },
         )
 
+    # build the "more video galleries" grid of thumbnail cards
+    gallery_card_template = templates["gallery_card.html"]
+    gallery_grid_template = templates["gallery_grid.html"]
+    gallery_cards = ""
+    for gallery_name in featured_galleries:
+        with open(f"src/{gallery_name}.yml", "r") as handle:
+            gallery = yaml.safe_load(handle)
+        # use the first video of the first content section as the card thumbnail
+        gallery_thumbnail = ""
+        for key, section in gallery.items():
+            if key in ('page_description', 'title'):
+                continue
+            first_video = next(iter(section)).replace('.mp4', '')
+            gallery_thumbnail = f"videos/{gallery_name}/{first_video}_200.png"
+            break
+        gallery_cards += template_replace(
+            gallery_card_template,
+            {
+                "GALLERY_HREF": f"{gallery_name}.html",
+                "GALLERY_THUMBNAIL": gallery_thumbnail,
+                "GALLERY_TITLE": gallery['title'],
+            },
+        )
+    gallery_grid = template_replace(gallery_grid_template, {"GALLERY_CARDS": gallery_cards})
+
     # save the html
     with open(f"src/pages/videos.html", "w") as ofile:
         ofile.write(
             template_replace(
-                page_template, 
+                page_template,
                 {
                     "VIDEOS": videos_html,
                     "PAGE_DESCRIPTION": videos.get('page_description', ''),
+                    "GALLERY_GRID": gallery_grid,
                 }
             )
         )
 
 
-def make_gallery(templates, input_sections, gallery_name, create_media):
+def make_gallery(templates, input_sections, gallery_name, create_media, is_video_gallery=False):
     """
     Create the gallery from the given gallery sections dictionary.
 
-    If create_media=False then skip copying the images/videos across 
+    If create_media=False then skip copying the images/videos across.
+
+    For video galleries the yml "title" holds the plain object name (e.g.
+    "Galaxy 1"); "Video" is inserted here so the heading reads
+    "Galaxy 1 Video Gallery" while cards/menus can reuse the plain title.
     """
 
     # load all templates
@@ -450,9 +490,14 @@ def make_gallery(templates, input_sections, gallery_name, create_media):
                                     "IMG_CARDS": cards}
         )
 
+    # build the heading name ("<title> Gallery"), inserting "Video" for video galleries
+    gallery_heading = input_sections['title']
+    if is_video_gallery:
+        gallery_heading += ' Video'
+
     # save the html
     with open(f"src/pages/{gallery_name}.html", "w") as ofile:
-        ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": input_sections['title']}))
+        ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": gallery_heading}))
 
 
 def make_sliders(templates, input_sections):
@@ -660,15 +705,24 @@ if __name__ == "__main__":
     make_gallery(templates, images, 'images', not keep_images)
 
     # Generate the main video page
+    # featured_galleries are surfaced as a thumbnail-card grid on the video page
+    featured_galleries = [
+        'videos_galaxy_barred',
+        'videos_galaxy_merger',
+        'videos_box',
+        'videos_cluster_thermal_large',
+        'videos_cluster_hybrid_large',
+        'videos_cluster_compareAGN_large',
+    ]
     with open(f"src/videos.yml", "r") as handle:
         videos = yaml.safe_load(handle)
-    make_video_page(templates, videos, not keep_videos)
+    make_video_page(templates, videos, not keep_videos, featured_galleries)
 
     # Generate the video galleries
     for gallery_name in video_galleries:
         with open(f"src/{gallery_name}.yml", "r") as handle:
             videos = yaml.safe_load(handle)
-        make_gallery(templates, videos, gallery_name, not keep_videos)
+        make_gallery(templates, videos, gallery_name, not keep_videos, is_video_gallery=True)
 
     # Create the sliders
     with open("src/sliders.yml", "r") as handle:

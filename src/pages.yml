@@ -18,6 +18,8 @@ interactive.html:
 videos.html:
   title: Videos
   sidebar: videos
+  sidebar_extra:
+    galleries: More video galleries
 
 images.html:
   title: Images

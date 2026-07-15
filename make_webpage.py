@@ -2,6 +2,7 @@
 
 import argparse
 import glob
+import json
 import os
 import shutil
 import subprocess
@@ -40,17 +41,11 @@ def template_replace(input_string, substitutes):
     return output_string
 
 
-def make_navbar(pages, templates, gallery_links=None):
+def make_navbar(pages, templates):
     """
     Create the navigation bar with the given pages.
-
-    gallery_links is an optional ordered list of {"href", "name"} dicts. When
-    given, the "videos.html" nav item becomes a dropdown: the "Videos" label
-    still links to the main videos page, and the menu adds a "Featured videos"
-    entry plus one entry per gallery.
     """
     navlink = templates["navlink.html"]
-    navdropdown = templates["navdropdown.html"]
     navbar = templates["navbar.html"]
 
     links = ""
@@ -59,33 +54,16 @@ def make_navbar(pages, templates, gallery_links=None):
         if pages[page]["title"] == "":
             continue
 
-        if page == "videos.html" and gallery_links:
-            items = f'<li><a class="dropdown-item" href="{page}">Featured videos</a></li>\n'
-            items += '<li><hr class="dropdown-divider"></li>\n'
-            for link in gallery_links:
-                items += (
-                    f'<li><a class="dropdown-item" href="{link["href"]}">'
-                    f'{link["name"]}</a></li>\n'
-                )
-            links += template_replace(
-                navdropdown,
-                {"HREF": page, "NAME": pages[page]["title"], "DROPDOWN_ITEMS": items},
-            )
-        else:
-            links += template_replace(
-                navlink, {"HREF": page, "NAME": pages[page]["title"]}
-            )
+        links += template_replace(
+            navlink, {"HREF": page, "NAME": pages[page]["title"]}
+        )
 
     return template_replace(navbar, {"LINK_LIST": links})
 
 
-def make_sidebar(sections, extra_links=None):
+def make_sidebar(sections):
     """
     Create the sidebar with the given sections.
-
-    extra_links is an optional {anchor: label} mapping of additional entries
-    (e.g. {"galleries": "More video galleries"}) appended after the sections;
-    these link to a page anchor id directly rather than a "#sec{i}" section.
     """
     sidebar = templates["sidebar.html"]
 
@@ -95,13 +73,10 @@ def make_sidebar(sections, extra_links=None):
             continue
         links += f'      <li class="nav-item"><a class="nav-link" href="#sec{i}">{section}</a></li>\n'
 
-    for anchor, label in (extra_links or {}).items():
-        links += f'      <li class="nav-item"><a class="nav-link" href="#{anchor}">{label}</a></li>\n'
-
     return template_replace(sidebar, {"LINK_LIST": links})
 
 
-def make_page(page, pages, templates, gallery_links=None):
+def make_page(page, pages, templates):
     """
     Create the page with the given name.
 
@@ -140,14 +115,14 @@ def make_page(page, pages, templates, gallery_links=None):
     if "sidebar" in pages[page]:
         with open(f'src/{pages[page]["sidebar"]}.yml') as f:
             sections = yaml.safe_load(f)
-        sidebar = make_sidebar(list(sections.keys()), pages[page].get("sidebar_extra"))
+        sidebar = make_sidebar(list(sections.keys()))
 
     # now add the actual page contents
     page_out = template_replace(
         page_out,
         {
             "PAGE_TITLE": title,
-            "NAVBAR": make_navbar(pages, templates, gallery_links),
+            "NAVBAR": make_navbar(pages, templates),
             "PAGE_CONTENTS": page_contents,
             "SIDEBAR": sidebar,
         },
@@ -218,7 +193,7 @@ def run_process(command, return_output=False):
         raise RuntimeError(f'Error running command "{command}"!')
 
 
-def clean_build(keep_sliders=False, keep_images=False, keep_videos=False, video_galleries=[]):
+def clean_build(keep_sliders=False, keep_images=False, keep_videos=False):
     """
     Clean up a previous build.
     """
@@ -257,9 +232,8 @@ def clean_build(keep_sliders=False, keep_images=False, keep_videos=False, video_
         run_process("mv tmp_videos build/videos")
         print('Using videos from previous build')
     else:
+        # Subdirectories are created lazily by copy_video_file/make_video_poster.
         run_process("mkdir build/videos")
-        for video_gallery in video_galleries:
-            run_process(f"mkdir build/videos/{video_gallery}")
 
     return keep_sliders, keep_images, keep_videos
 
@@ -288,159 +262,270 @@ def create_image(img_id, img_src, create_media):
     return f"images/{img_id}_800.png"
 
 
-def create_video_gallery_thumbnail(video_src, gallery_name, create_media):
+def copy_video_file(dirname, filename, create_media, required=True):
     """
-    Create a thumbnail for the given video file.
+    Copy a video file from src/videos/[dirname/]filename to the equivalent
+    location under build/.
     """
-    video_name = video_src.replace('.mp4', '')
+    src_dir = f"src/videos/{dirname}" if dirname else "src/videos"
+    build_dir = f"build/videos/{dirname}" if dirname else "build/videos"
+    src_path = f"{src_dir}/{filename}"
+    exists = os.path.exists(src_path)
+    if required:
+        assert exists, f"{src_path} is used by the videos page but does not exist"
+    elif not exists:
+        return ""
     if create_media:
-        # Extract the frame 10 seconds from the end of the video
-        cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{gallery_name}/{video_src} -vf scale=200:-1 -frames:v 1 build/videos/{gallery_name}/{video_name}_200.png"
-        run_process(cmd)
-        # get the dimensions of the first frame (width is fixed, but height is variable)
-        cmd = f"identify build/videos/{gallery_name}/{video_name}_200.png"
-        output = run_process(cmd, return_output=True)
-        dim = output.split()[2].split("x")
-        w = int(dim[0])
-        h = int(dim[1])
-        if not w == 200:
-            raise RuntimeError(f"Wrong thumbnail width: {w}x{h}!")
-        # now draw a circle and arrow (poor man's play icon) on top of it
-        cmd = f'mogrify -gravity Center -draw "fill none stroke rgba(255,255,255,0.5) stroke-linecap round stroke-width 2 circle {w//2},{h//2} {w//2},{h//2+20}" -draw "fill rgba(255,255,255,0.5) stroke-linecap round path \'M {w//2-5},{h//2-10} L {w//2-5},{h//2+10} L {w//2+10},{h//2} Z\'" build/videos/{gallery_name}/{video_name}_200.png'
-        run_process(cmd)
-        #Additionally crop images
-        cmd = f"mogrify -gravity center -extent 200x100 build/videos/{gallery_name}/{video_name}_200.png"
-        run_process(cmd)
-    return f"videos/{gallery_name}/{video_name}_200.png"
+        os.makedirs(build_dir, exist_ok=True)
+        shutil.copyfile(src_path, f"{build_dir}/{filename}")
+    return f"videos/{dirname}/{filename}" if dirname else f"videos/{filename}"
 
-def create_video_thumbnail(video_src, create_media):
+
+def make_video_poster(dirname, filename, create_media):
     """
-    Create a thumbnail for the given video file.
+    Create a poster thumbnail (a plain frame grab, for use as a <video poster>)
+    for the given video file, taken 10 seconds from the end.
     """
-    video_name = video_src.replace('.mp4', '')
+    video_name = filename.replace('.mp4', '')
+    src_dir = f"src/videos/{dirname}" if dirname else "src/videos"
+    build_dir = f"build/videos/{dirname}" if dirname else "build/videos"
+    poster_name = f"{video_name}_poster.png"
     if create_media:
-        # Extract the frame 10 seconds from the end of the video
-        cmd = f"ffmpeg -hide_banner -loglevel error -sseof -10 -i src/videos/{video_src} -frames:v 1 build/videos/thumbnail_{video_name}.png"
+        os.makedirs(build_dir, exist_ok=True)
+        cmd = f"ffmpeg -hide_banner -loglevel error -y -sseof -10 -i {src_dir}/{filename} -frames:v 1 {build_dir}/{poster_name}"
         run_process(cmd)
-    return f"videos/thumbnail_{video_name}.png"
+    return f"videos/{dirname}/{poster_name}" if dirname else f"videos/{poster_name}"
 
-def create_video(video_src, video_src_nosound, gallery_name, create_media):
+
+def option_is_valid(option, chosen_keys):
     """
-    Copy the given video file from src/images/ to build/.
-    We could maybe do some conversions if necessary, but that is too complex for
-    now.
+    Return whether `option` (one entry from an axis's "options" list) is
+    compatible with `chosen_keys` (axis_name -> chosen key, for whichever
+    earlier axes have a value so far). An option may restrict itself against
+    an earlier axis by naming that axis as one of its own keys, mapping to
+    the list of that axis's allowed keys; omitting an axis name means "valid
+    for all values of that axis".
     """
-    if create_media:
-        shutil.copyfile(f"src/videos/{gallery_name}/{video_src}", f"build/videos/{gallery_name}/{video_src}")
+    for axis_name, chosen_key in chosen_keys.items():
+        # Only axes actually present in chosen_keys are checked here - a
+        # restriction against an axis that was skipped (see
+        # iter_axis_combinations) has no value to compare against, so it's
+        # never evaluated and can't fail this option.
+        if axis_name in option and chosen_key not in option[axis_name]:
+            return False
+    return True
 
-    if video_src_nosound:
-        if create_media:
-            shutil.copyfile(f"src/videos/{gallery_name}/{video_src_nosound}", f"build/videos/{gallery_name}/{video_src_nosound}")
-        return (f"videos/{gallery_name}/{video_src}", f"videos/{gallery_name}/{video_src_nosound}")
-    return f"videos/{gallery_name}/{video_src}", ""
 
-
-def make_video_page(templates, videos, create_media, featured_galleries):
+def iter_axis_combinations(data, axis_names):
     """
-    Create the videos page.
-
-    If create_media=False then skip copying the videos across.
-
-    featured_galleries is an ordered list of gallery names (e.g. "videos_box")
-    to surface as a grid of clickable thumbnail cards at the bottom of the page.
+    Yield every valid combination of axis options, as a dict of
+    axis_name -> option, for the given ordered axis_names. Not every axis is
+    guaranteed to be a key - some may be left out (see below). E.g. for
+    axis_names = ["model", "property"], one yielded combination might be
+    {"model": {"key": "thermal", "label": "Thermal AGN feedback"},
+     "property": {"key": "densities", "label": "Gas density"}}.
     """
+    def helper(remaining, chosen_options, chosen_keys):
+        if not remaining:
+            yield dict(chosen_options)
+            return
+        axis_name, rest = remaining[0], remaining[1:]
+        # Axes are decided left to right: only options valid given the axes
+        # already chosen (chosen_keys) are considered for this one.
+        valid_options = [
+            opt for opt in data[axis_name]["options"]
+            if option_is_valid(opt, chosen_keys)
+        ]
+        if not valid_options:
+            # Skip this axis entirely rather than pruning the branch - it's
+            # left out of chosen_options/chosen_keys, not forced to any
+            # value. E.g. under cluster's model=comparison, neither of
+            # "alongside"'s options is valid, so "alongside" is skipped -
+            # and since it never enters chosen_keys, any later axis's
+            # restriction against "alongside" would never be evaluated for
+            # this branch (see option_is_valid).
+            yield from helper(rest, chosen_options, chosen_keys)
+            return
+        for opt in valid_options:
+            yield from helper(
+                rest,
+                {**chosen_options, axis_name: opt},
+                {**chosen_keys, axis_name: opt["key"]},
+            )
 
-    # copy the videos
-    if create_media:
-        for filepath in glob.glob('src/videos/*.mp4'):
-            shutil.copy2(filepath, f'build/videos/{os.path.basename(filepath)}')
+    yield from helper(axis_names, {}, {})
 
-    # load all templates
-    page_template = templates[f"videos.html"]
+
+def render_video_section(templates, section_id, section_key, title, description,
+                          controls_html, initial_src, initial_poster, initial_nosound):
+    """
+    Render one interactive video section.(title, description, controls, video)
+    """
+    section_template = templates["video_section.html"]
+    return template_replace(
+        section_template,
+        {
+            "SECTION_ID": str(section_id),
+            "SECTION_KEY": section_key,
+            "SECTION_TITLE": title,
+            "DESCRIPTION": description,
+            "CONTROLS": controls_html,
+            "INITIAL_SRC": initial_src,
+            "INITIAL_POSTER": initial_poster,
+            "INITIAL_NOSOUND": initial_nosound,
+        },
+    )
+
+
+def make_video_section(templates, data, section_key, section_title, section_id, create_media):
+    """
+    Build one interactive video selector section (cluster/box/galaxy), fully
+    driven by `data`. Returns (html, cfg), where cfg is the
+    JSON-serializable per-section config embedded for the generic JS engine
+    in videos.html (which re-runs the same combination logic client-side).
+
+    The last axis in data["axes"] must be "property": it becomes the
+    filename; every other axis becomes a nested directory level, using that
+    axis's own option key as the directory name. A "_nosound" sibling file is
+    checked for but is not itself an axis. It's not user-selectable,
+    just an optional secondary download link.
+    """
+    axis_names = data["axes"]
+    assert axis_names[-1] == "property", f"{section_key}: last axis must be 'property'"
+
+    lookup = {}
+    for combo in iter_axis_combinations(data, axis_names):
+        assert "property" in combo, f"{section_key}: no valid property for {combo}"
+        dirname = "/".join(
+            [section_key] + [opt["key"] for name, opt in combo.items() if name != "property"]
+        )
+        base_name = combo["property"]["key"]
+        src = copy_video_file(dirname, f"{base_name}.mp4", create_media)
+        poster = make_video_poster(dirname, f"{base_name}.mp4", create_media)
+        nosound = copy_video_file(dirname, f"{base_name}_nosound.mp4", create_media, required=False)
+        key = "|".join(opt["key"] for name, opt in combo.items())
+        lookup[key] = {"src": src, "poster": poster, "nosound": nosound}
+
+    # Build the control skeletons - "property" is always a dropdown (it has
+    # the most options, and is always the most specific axis); every other
+    # axis is a row of pill buttons. The actual buttons/options are rendered
+    # by the JS engine on page load, from the same "options" data below.
+    # "control_order" (optional) lets a section display its controls in a
+    # different order than "axes" requires for restriction/directory/lookup
+    # purposes - it's purely a visual reordering of the same axis names.
+    control_template = templates["video_axis_control.html"]
+    controls = ""
+    for axis_name in data.get("control_order", axis_names):
+        control_type = "dropdown" if axis_name == "property" else "pills"
+        inner = "<select></select>" if control_type == "dropdown" else '<div class="pill-group"></div>'
+        controls += template_replace(
+            control_template,
+            {
+                "SECTION_KEY": section_key,
+                "AXIS": axis_name,
+                "LABEL": data[axis_name]["label"],
+                "CONTROL_TYPE": control_type,
+                "CONTROL_INNER": inner,
+            },
+        )
+
+    default_state = data["default"]
+    initial = lookup["|".join(default_state[a] for a in axis_names)]
+
+    description_axis = data.get("description_axis")
+    if description_axis:
+        description = next(
+            opt["description"] for opt in data[description_axis]["options"]
+            if opt["key"] == default_state[description_axis]
+        )
+    else:
+        description = data.get("description", "")
+
+    html = render_video_section(
+        templates, section_id, section_key, section_title, description,
+        controls, initial["src"], initial["poster"], initial["nosound"],
+    )
+
+    cfg = {
+        "axes": axis_names,
+        "options": {name: data[name]["options"] for name in axis_names},
+        "state": dict(default_state),
+        "lookup": lookup,
+        "descriptionAxis": description_axis,
+    }
+    return html, cfg
+
+
+def make_single_video_section(templates, section_id, title, video_info, create_media):
+    """
+    Build a plain, non-interactive single-video section (used for the
+    standalone Sonification explanation video).
+    """
     video_template = templates["video_single.html"]
+    filename = video_info["name"]
+    src = copy_video_file("", filename, create_media)
+    poster = make_video_poster("", filename, create_media)
+    return template_replace(
+        video_template,
+        {
+            "VIDEO_DESCRIPTION": video_info.get("desc", ""),
+            "VIDEO_THUMBNAIL": poster,
+            "VIDEO_TITLE": title,
+            "VIDEO_ID": str(section_id),
+            "VIDEO_SRC": src,
+        },
+    )
 
-    # Check we don't have duplicate videos
-    assert len(videos.keys()) == len(set(videos.keys()))
 
-    # loop over videos
-    videos_html = ""
-    for sid, (video_title, video_info) in enumerate(videos.items()):
+def make_video_page(templates, videos_top, create_media):
+    """
+    Create the videos page: an interactive selector for each section whose
+    entry in videos_top (src/videos.yml) has a "data" key (naming the yml
+    file under src/ that defines it, and a "key" for its short section id),
+    plus a standalone single-video section for any entry with a "name" key
+    instead (e.g. the Sonification explanation).
+    """
+    page_template = templates["videos.html"]
 
-        if video_title == 'page_description':
+    sections_html = ""
+    all_cfg = {}
+    for sid, (key, value) in enumerate(videos_top.items()):
+        if key == "page_description":
             continue
+        if "data" in value:
+            with open(f"src/{value['data']}", "r") as handle:
+                section_data = yaml.safe_load(handle)
+            section_key = value["key"]
+            html, cfg = make_video_section(templates, section_data, section_key, key, sid, create_media)
+            all_cfg[section_key] = cfg
+        else:
+            html = make_single_video_section(templates, sid, key, value, create_media)
+        sections_html += html
 
-        # Check the video exists
-        err_msg = f'{video_info["name"]} not found in src/videos'
-        assert os.path.exists(f'src/videos/{video_info["name"]}'), err_msg
-
-        video_thumbnail = create_video_thumbnail(video_info['name'], create_media)
-
-        videos_html += template_replace(
-            video_template,
-            {
-                "VIDEO_DESCRIPTION": video_info.get('desc', ''),
-                "VIDEO_THUMBNAIL": video_thumbnail,
-                "VIDEO_TITLE": video_title,
-                "VIDEO_ID": str(sid),
-                "VIDEO_SRC": f"videos/{video_info['name']}",
-            },
-        )
-
-    # build the "more video galleries" grid of thumbnail cards
-    gallery_card_template = templates["gallery_card.html"]
-    gallery_grid_template = templates["gallery_grid.html"]
-    gallery_cards = ""
-    for gallery_name in featured_galleries:
-        with open(f"src/{gallery_name}.yml", "r") as handle:
-            gallery = yaml.safe_load(handle)
-        # use the first video of the first content section as the card thumbnail
-        gallery_thumbnail = ""
-        for key, section in gallery.items():
-            if key in ('page_description', 'title'):
-                continue
-            first_video = next(iter(section)).replace('.mp4', '')
-            gallery_thumbnail = f"videos/{gallery_name}/{first_video}_200.png"
-            break
-        gallery_cards += template_replace(
-            gallery_card_template,
-            {
-                "GALLERY_HREF": f"{gallery_name}.html",
-                "GALLERY_THUMBNAIL": gallery_thumbnail,
-                "GALLERY_TITLE": gallery['title'],
-            },
-        )
-    gallery_grid = template_replace(gallery_grid_template, {"GALLERY_CARDS": gallery_cards})
-
-    # save the html
-    with open(f"src/pages/videos.html", "w") as ofile:
+    with open("src/pages/videos.html", "w") as ofile:
         ofile.write(
             template_replace(
                 page_template,
                 {
-                    "VIDEOS": videos_html,
-                    "PAGE_DESCRIPTION": videos.get('page_description', ''),
-                    "GALLERY_GRID": gallery_grid,
-                }
+                    "SECTIONS": sections_html,
+                    "PAGE_DESCRIPTION": videos_top.get("page_description", ""),
+                    "VIDEO_SECTIONS_JSON": json.dumps(all_cfg),
+                },
             )
         )
 
 
-def make_gallery(templates, input_sections, gallery_name, create_media, is_video_gallery=False):
+def make_gallery(templates, input_sections, gallery_name, create_media):
     """
-    Create the gallery from the given gallery sections dictionary.
+    Create the image gallery from the given gallery sections dictionary.
 
-    If create_media=False then skip copying the images/videos across.
-
-    For video galleries the yml "title" holds the plain object name (e.g.
-    "Galaxy 1"); "Video" is inserted here so the heading reads
-    "Galaxy 1 Video Gallery" while cards/menus can reuse the plain title.
+    If create_media=False then skip copying the images across.
     """
 
     # load all templates
     gallery_template = templates[f"gallery.html"]
     section_template = templates["gallery_section.html"]
     image_card_template = templates["image_card.html"]
-    video_card_template = templates["video_card.html"]
 
     # loop over sections
     # modals are saved in one block, regardless of their section
@@ -450,75 +535,38 @@ def make_gallery(templates, input_sections, gallery_name, create_media, is_video
             continue
         # cards are grouped per section
         cards = ""
-        # loop over this section's images/videos
+        # loop over this section's images
         for id, (obj_src, value) in enumerate(objects.items()):
-            # generate a unique name for this image/video
-            # this name will be used for thumbnail and image/video file names
+            # generate a unique name for this image
+            # this name will be used for thumbnail and image file names
             # it will also be used to identify the corresponding modal and
             # should therefore be unique
             obj_id = f"SEC{sid}IMG{id}"
-            # distinguish between images and videos
-            if obj_src.endswith('.mp4'):
-                obj_type = 'video'
-                obj_cap = value["desc"]
-                obj_src_nosound = value.get("name_nosound", "")
-                err_msg = f'Gallery object videos/{gallery_name}/{obj_src} does not exist'
-                assert os.path.exists(f'src/videos/{gallery_name}/{obj_src}'), err_msg
-            elif obj_src.endswith('.png') or obj_src.endswith('.jpg'):
-                obj_type = 'image'
-                obj_cap = value
-                err_msg = f'Gallery object {gallery_name}/{obj_src} does not exist'
-                assert os.path.exists(f'src/{gallery_name}/{obj_src}'), err_msg
-            else:
-                raise NotImplementedError(f'Unable to determine obj_type of {obj_src}')
+            obj_type = 'image'
+            obj_cap = value
+            err_msg = f'Gallery object {gallery_name}/{obj_src} does not exist'
+            assert os.path.exists(f'src/{gallery_name}/{obj_src}'), err_msg
 
-            if obj_type == "image":
-                obj_src_orig = create_image(obj_id, obj_src, create_media)
-                obj_src_thumb = create_thumbnail(obj_id, obj_src, create_media)
+            obj_src_orig = create_image(obj_id, obj_src, create_media)
+            obj_src_thumb = create_thumbnail(obj_id, obj_src, create_media)
 
-                cards += template_replace(
-                    image_card_template,
-                    {
-                        "IMG_CAPTION": obj_cap,
-                        "IMG_SRC": obj_src_thumb,
-                        "IMG_TYPE": obj_type,
-                        "ORIG_SRC": obj_src_orig,
-                    },
-                )
-            else:
-                obj_src_orig, obj_src_orig_nosound = create_video(obj_src, obj_src_nosound, gallery_name, create_media)
-                obj_src_thumb = create_video_gallery_thumbnail(obj_src, gallery_name, create_media)
-
-                cards += template_replace(
-                    video_card_template,
-                    {
-                        "IMG_CAPTION": obj_cap,
-                        "IMG_SRC": obj_src_thumb,
-                        "IMG_TYPE": obj_type,
-                        "ORIG_SRC": obj_src_orig,
-                        "ORIG_SRC_NOSOUND": obj_src_orig_nosound,
-                    },
-                )
-        if obj_type != "video":
-            sections += template_replace(
-                section_template, {"SECTION_TITLE": title, "SECTION_ID": "sec" + str(sid),
-                                    "IMG_CARDS": cards}
+            cards += template_replace(
+                image_card_template,
+                {
+                    "IMG_CAPTION": obj_cap,
+                    "IMG_SRC": obj_src_thumb,
+                    "IMG_TYPE": obj_type,
+                    "ORIG_SRC": obj_src_orig,
+                },
+            )
+        sections += template_replace(
+            section_template, {"SECTION_TITLE": title, "SECTION_ID": "sec" + str(sid),
+                                "IMG_CARDS": cards}
         )
-        else:
-            sections += template_replace(
-                section_template, {"SECTION_TITLE": title, "SECTION_ID": "sec" + str(sid) + 
-                                   "\" style=\"padding-top: 86px; margin-top: -76px;",
-                                    "IMG_CARDS": cards}
-        )
-
-    # build the heading name ("<title> Gallery"), inserting "Video" for video galleries
-    gallery_heading = input_sections['title']
-    if is_video_gallery:
-        gallery_heading += ' Video'
 
     # save the html
     with open(f"src/pages/{gallery_name}.html", "w") as ofile:
-        ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": gallery_heading}))
+        ofile.write(template_replace(gallery_template, {"PAGE_DESCRIPTION": input_sections.get('page_description', ''), "IMG_SECTIONS": sections, "GALLERY_NAME": input_sections['title']}))
 
 
 def make_sliders(templates, input_sections):
@@ -706,52 +754,22 @@ if __name__ == "__main__":
     keep_videos = True
     skip_ads_query = False
 
-    # List of the galleries we have
-    video_galleries = [
-        os.path.basename(filepath).replace('.yml', '')
-        for filepath in glob.glob('src/videos_*.yml')
-    ]
-
     # Clean up any existing build, create new build directories
     keep_sliders, keep_images, keep_videos = clean_build(
         keep_sliders=keep_sliders,
         keep_images=keep_images,
         keep_videos=keep_videos,
-        video_galleries=video_galleries,
     )
 
-    # Generate the images gallery
+    # Generate the image gallery
     with open("src/images.yml", "r") as handle:
         images = yaml.safe_load(handle)
     make_gallery(templates, images, 'images', not keep_images)
 
-    # Generate the main video page
-    # featured_galleries are surfaced as a thumbnail-card grid on the video page
-    featured_galleries = [
-        'videos_galaxy_barred',
-        'videos_galaxy_merger',
-        'videos_box',
-        'videos_cluster_thermal_large',
-        'videos_cluster_hybrid_large',
-        'videos_cluster_compareAGN_large',
-    ]
-    with open(f"src/videos.yml", "r") as handle:
-        videos = yaml.safe_load(handle)
-    make_video_page(templates, videos, not keep_videos, featured_galleries)
-
-    # the same featured galleries drive the navbar "Videos" dropdown
-    featured_gallery_links = []
-    for gallery_name in featured_galleries:
-        with open(f"src/{gallery_name}.yml", "r") as handle:
-            featured_gallery_links.append(
-                {"href": f"{gallery_name}.html", "name": yaml.safe_load(handle)["title"]}
-            )
-
-    # Generate the video galleries
-    for gallery_name in video_galleries:
-        with open(f"src/{gallery_name}.yml", "r") as handle:
-            videos = yaml.safe_load(handle)
-        make_gallery(templates, videos, gallery_name, not keep_videos, is_video_gallery=True)
+    # Generate the video page
+    with open("src/videos.yml", "r") as handle:
+        videos_config = yaml.safe_load(handle)
+    make_video_page(templates, videos_config, not keep_videos)
 
     # Create the sliders
     with open("src/sliders.yml", "r") as handle:
@@ -773,7 +791,7 @@ if __name__ == "__main__":
     with open("src/pages.yml", "r") as handle:
         pages = yaml.safe_load(handle)
     for page in pages:
-        make_page(page, pages, templates, featured_gallery_links)
+        make_page(page, pages, templates)
 
     # Copy the assets.
     copy_assets()

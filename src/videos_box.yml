@@ -1,31 +1,32 @@
-title: 'Box Slice'
+# Interactive video selector data for the "Box slice" section of videos.html.
+# See videos_cluster.yml for the full schema explanation.
 
-page_description: "Below are videos showing the evolution of various properties from redshift z = 17.5 to z = 0 of a 10 comoving megaparsec (cMpc) thick slice through the L050m6 simulations, which are 50 cMpc on a side (1 cMpc is about 3.3/(1+z) million lightyears). The sonification for this video is in stereo, with sound in the left (right) speaker coming from the left (right) side of the slice. One set shows a simulation with the thermal AGN model, another shows the hybrid AGN model."
+axes: [model, property]
 
-"Thermal AGN feedback":
-  video_Thermal_non_equilibrium_log_temperature.mp4:
-    desc: "Evolution of the temperature through the slice"
-    name_nosound: video_Thermal_non_equilibrium_log_temperature_nosound.mp4
-  video_Thermal_non_equilibrium_gas_mass.mp4:
-    desc: "Evolution of the gas density through the slice"
-    name_nosound: video_Thermal_non_equilibrium_gas_mass_nosound.mp4
-  video_Thermal_non_equilibrium_metallicity.mp4:
-    desc: "Evolution of the gas metallicity through the slice"
-    name_nosound: video_Thermal_non_equilibrium_metallicity_nosound.mp4
-  video_Thermal_non_equilibrium_stellar_mass.mp4:
-    desc: "Evolution of the stellar density through the slice"
-    name_nosound: video_Thermal_non_equilibrium_stellar_mass_nosound.mp4
+description: "Below are videos showing the evolution of various properties from
+  redshift z = 17.5 to z = 0 of a 10 comoving megaparsec (cMpc) thick slice through
+  the L050m6 simulations, which are 50 cMpc on a side (1 cMpc is about 3.3/(1+z)
+  million lightyears). The sonification for this video is in stereo, with sound in
+  the left (right) speaker coming from the left (right) side of the slice."
 
-"Hybrid AGN feedback":
-  video_Hybrid_log_temperature.mp4:
-    desc: "Evolution of the temperature through the slice"
-    name_nosound: video_Hybrid_log_temperature_nosound.mp4
-  video_Hybrid_gas_mass.mp4:
-    desc: "Evolution of the gas density through the slice"
-    name_nosound: video_Hybrid_gas_mass_nosound.mp4
-  video_Hybrid_metallicity.mp4:
-    desc: "Evolution of the gas metallicity through the slice"
-    name_nosound: video_Hybrid_metallicity_nosound.mp4
-  video_Hybrid_stellar_mass.mp4:
-    desc: "Evolution of the stellar density through the slice"
-    name_nosound: video_Hybrid_stellar_mass_nosound.mp4
+default: {model: thermal, property: metallicity}
+
+model:
+  label: "Model"
+  options:
+    - key: thermal
+      label: "Thermal AGN feedback"
+    - key: hybrid
+      label: "Hybrid AGN feedback"
+
+property:
+  label: "Property"
+  options:
+    - key: log_temperature
+      label: "Temperature"
+    - key: gas_mass
+      label: "Gas density"
+    - key: metallicity
+      label: "Gas metallicity"
+    - key: stellar_mass
+      label: "Stellar density"

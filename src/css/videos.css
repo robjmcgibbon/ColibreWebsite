@@ -1,0 +1,94 @@
+/* One interactive video section (cluster/box/galaxy) - title/description
+   stay left-aligned (the default); the controls/video/downloads below are
+   explicitly centered instead. */
+.video-section {
+  margin: 0 auto 3rem auto;
+}
+
+/* Row of axis controls (pill groups + property dropdown) above the video */
+.video-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.video-control h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Button row for a single non-property axis */
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.pill-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background-color: #fff;
+  color: #333;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.pill-btn:hover {
+  background-color: #f5f5f5;
+}
+
+/* Currently selected value for that axis */
+.pill-btn.selected {
+  background-color: #2683e0;
+  border-color: #2683e0;
+  color: #fff;
+}
+
+/* Property dropdown */
+.video-control select {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+/* Letterboxes the video so it never distorts/stretches to fill the width.
+   display:block + width:fit-content + margin:auto centers it regardless of
+   the parent's text-align (inline-block wouldn't center via margin:auto). */
+.video-player-wrap {
+  background-color: black;
+  display: block;
+  max-width: 100%;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.video-player-wrap video {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+}
+
+.video-download {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+/* Secondary "download without sonification" link */
+.video-download-nosound {
+  margin-left: 3rem;
+}

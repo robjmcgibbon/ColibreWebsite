@@ -1,0 +1,20 @@
+<div class="video-section">
+    <h2 id="sec%SECTION_ID%">%SECTION_TITLE%</h2>
+    <p id="%SECTION_KEY%-description">%DESCRIPTION%</p>
+
+    <div class="video-controls" id="controls-%SECTION_KEY%">
+        %CONTROLS%
+    </div>
+
+    <div class="video-player-wrap">
+        <video id="%SECTION_KEY%-video" controls poster="%INITIAL_POSTER%">
+            <source id="%SECTION_KEY%-source" src="%INITIAL_SRC%" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <p class="video-download">
+        <a id="%SECTION_KEY%-download" href="%INITIAL_SRC%" download>Download this video</a>
+        <a class="video-download-nosound" id="%SECTION_KEY%-download-nosound" href="%INITIAL_NOSOUND%" download>Download without sonification</a>
+    </p>
+</div>

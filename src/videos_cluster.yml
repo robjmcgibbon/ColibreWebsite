@@ -1,0 +1,83 @@
+# Interactive video selector data for the "Cluster of galaxies" section of
+# videos.html.
+# - "axes" declares the ordered axes; every axis but the last ("property")
+#   becomes a nested directory level (videos/cluster/{model}/{scale}/{alongside}/).
+# - "control_order" declares the order the axes are actually displayed on
+#   the webpage. It is purely visual, everything underneath uses the "axes" order
+# - An option may restrict itself against any EARLIER axis by naming that axis
+#   as a key, mapping to the list of that axis's allowed keys. Omitting an
+#   axis name means "valid for all its values". E.g. "HST" (Stellar light) is
+#   restricted to model: [comparison] - it only exists as a standalone
+#   property under the AGN model comparison, not alongside the other models.
+#   "alongside"'s options are both restricted to model in [thermal, hybrid] -
+#   under model=comparison this axis has zero valid options, so it's skipped
+#   entirely (no directory level, and it stops constraining any later axis
+#   for that branch).
+# - "property" is the filename (e.g. densities.mp4); a "_nosound" sibling file
+#   is checked for but is not an axis (no longer user-selectable).
+
+axes: [model, scale, alongside, property]
+control_order: [model, scale, property, alongside]
+
+description: "The videos below show the evolution of the largest cluster of
+  galaxies in the L050m6 (thermal AGN feedback) and L050m6h (hybrid AGN feedback)
+  simulations. This object has a present-day virial mass of 10<sup>14.2</sup>
+  M<sub>&#9737;</sub>. The central galaxy has a stellar mass of 10<sup>11.6</sup>
+  M<sub>&#9737;</sub> and a supermassive black hole with a mass of 10<sup>9.6</sup>
+  M<sub>&#9737;</sub>. On small-scale views the scale bar indicates a length of 100
+  physical kiloparsec (pkpc), about 300 thousand lightyears; on large-scale views
+  it indicates 500 pkpc, about 1.6 million lightyears. Choose a model, scale, and
+  property below to explore the available videos."
+
+default: {model: thermal, scale: large, alongside: "yes", property: densities}
+
+model:
+  label: "Model"
+  options:
+    - key: thermal
+      label: "Thermal AGN feedback"
+    - key: hybrid
+      label: "Hybrid AGN feedback"
+    - key: comparison
+      label: "AGN model comparison"
+
+scale:
+  label: "Scale"
+  options:
+    - key: small
+      label: "Small"
+    - key: large
+      label: "Large"
+
+alongside:
+  label: "Alongside stellar light"
+  options:
+    - key: "no"
+      label: "No"
+      model: [thermal, hybrid]
+    - key: "yes"
+      label: "Yes"
+      model: [thermal, hybrid]
+
+property:
+  label: "Property"
+  options:
+    - key: densities
+      label: "Gas density"
+    - key: entropies
+      label: "Gas entropy"
+    - key: HST_no_dust
+      label: "Unattenuated stellar light"
+    - key: HST
+      label: "Stellar light"
+      model: ["comparison"]
+    - key: metal_masses
+      label: "Gas metallicity"
+    - key: radial_velocities
+      label: "Gas radial velocity"
+    - key: temperatures
+      label: "Gas temperature"
+    - key: velocity_divergences
+      label: "Gas velocity divergence"
+    - key: X_rays
+      label: "X-rays"

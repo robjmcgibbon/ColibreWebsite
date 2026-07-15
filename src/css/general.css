@@ -150,35 +150,6 @@ body::before { /* delete all except the color line if we don't want the image */
   transition: background-color 0.2s;
 }
 
-/* Videos dropdown: on desktop open on hover/focus so the "Videos" link
-   itself stays a normal clickable link to the main videos page. */
-@media (min-width: 992px) {
-  .navbar-nav .nav-item.dropdown:hover > .dropdown-menu,
-  .navbar-nav .nav-item.dropdown:focus-within > .dropdown-menu {
-    display: block;
-  }
-}
-
-/* Collapsed (mobile) navbar: show the dropdown items inline and indented
-   rather than as an absolutely-positioned menu. */
-@media (max-width: 991.98px) {
-  .navbar-nav .nav-item.dropdown > .dropdown-menu {
-    display: block;
-    border: 0;
-    background: transparent;
-    padding-left: 1rem;
-    margin: 0;
-  }
-  .navbar-nav .nav-item.dropdown > .dropdown-menu .dropdown-item,
-  .navbar-nav .nav-item.dropdown > .dropdown-menu .dropdown-item:focus {
-    color: rgba(255, 255, 255, 0.85);
-    background: transparent;
-  }
-  .navbar-nav .nav-item.dropdown > .dropdown-menu .dropdown-item:hover {
-    color: #fff;
-  }
-}
-
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }

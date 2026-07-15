@@ -1,0 +1,67 @@
+# Interactive video selector data for the "Individual galaxy" section of
+# videos.html. See videos_cluster.yml for the full schema explanation.
+#
+# description_axis means the section's description paragraph is swapped based 
+# on that axis's value (here, which galaxy) rather than being static.
+
+axes: [galaxy, scale, property]
+
+description_axis: galaxy
+
+default: {galaxy: barred, scale: galaxy_scale, property: starlight}
+
+galaxy:
+  label: "Galaxy"
+  options:
+    - key: barred
+      label: "Galaxy 1"
+      description: "The videos below show the evolution of a galaxy in the
+        L012m5 simulation from redshift z = 5.5 to z = 0. It has present-day
+        stellar mass 10<sup>10.8</sup> M<sub>&#9737;</sub>, a star formation
+        rate of 1.6 M<sub>&#9737;</sub>/yr, and a black hole of mass
+        10<sup>8.2</sup> M<sub>&#9737;</sub>. Stellar light videos include the
+        effect of dust attenuation."
+    - key: merger
+      label: "Galaxy 2"
+      description: "The videos below show the evolution of a galaxy in the
+        L012m5 simulation from redshift z = 5.5 to z = 0. It has present-day
+        stellar mass 10<sup>10.5</sup> M<sub>&#9737;</sub>, a star formation
+        rate of 1.5 M<sub>&#9737;</sub>/yr, and a black hole of mass
+        10<sup>7.8</sup> M<sub>&#9737;</sub>. Stellar light videos include the
+        effect of dust attenuation."
+
+scale:
+  label: "Scale"
+  options:
+    - key: galaxy_scale
+      label: "Galaxy-scale"
+    - key: large_scale
+      label: "Large-scale"
+
+property:
+  label: "Property"
+  options:
+    - key: starlight
+      label: "Stellar light"
+      scale: [galaxy_scale]
+    - key: gallery
+      label: "Three projections"
+      scale: [galaxy_scale]
+    - key: twoprop_dust_v_int
+      label: "Rest-frame vs Observed"
+      scale: [galaxy_scale]
+    - key: multirow
+      label: "Multiple properties"
+      scale: [galaxy_scale]
+    - key: zoomcomp
+      label: "Stellar light, gas, dark matter"
+    - key: twoprop
+      label: "Stellar light, gas density"
+    - key: star_v_metal
+      label: "Stellar light, gas metallicity"
+    - key: temperature
+      label: "Gas temperature"
+      scale: [large_scale]
+    - key: gas
+      label: "Gas density"
+      scale: [large_scale]

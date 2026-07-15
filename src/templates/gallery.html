@@ -13,20 +13,6 @@
   </div>
 </div>
 
-<div class="modal fade" id="videoModal" aria-hidden="true" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="helptext mt-1 mb-0 download-link"></div>
-      <div class="modal-body">
-      </div>
-    </div>
-  </div>
-</div>
-
 %PAGE_DESCRIPTION%
 
 %IMG_SECTIONS%
@@ -43,27 +29,4 @@ $('#imageModal').on('show.bs.modal', function (event) {
   modal.find('.modal-body').html("<a href=\"" + fullsrc + "\" target=\"_blank\" \
     rel=\"noopener noreferrer\"><img src=\"" + src + "\" /></a>");
 });
-
-$('#videoModal').on('show.bs.modal', function (event) {
-  var link = $(event.relatedTarget);
-  var type = link.data('type');
-  var src = link.data('src');
-  var src_nosound = link.data('srcnosound')
-  var caption = link.data('caption');
-  var modal = $(this);
-  modal.find('.modal-title').html(caption);
-  modal.find('.modal-body').html("<video width=\"100%\" height=\"auto\" controls><source src=\"" + src + "\" type=\"video/mp4\">Your browser does not support the video tag.</video>");
-  if (src_nosound != "") {
-    modal.find('.download-link').html('Play a version of this video <a href="' + src_nosound + '" target="_blank" style="color:#00008B;">without sonification</a>');
-  } else {
-    modal.find('.download-link').html("");
-  }
-});
-
-$('#videoModal').on('hide.bs.modal', function () {
-var modal = $(this);
-modal.find('.modal-body').html('');
-modal.find('.download-link').html('');
-});
-
 </script>

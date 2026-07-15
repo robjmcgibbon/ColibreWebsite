@@ -4,23 +4,124 @@
 %PAGE_DESCRIPTION%
 </p>
 
-%VIDEOS%
-
-%GALLERY_GRID%
+%SECTIONS%
 
 <script>
-    // Get all video elements on the page
-    const allVideos = document.querySelectorAll('video');
+// Per-section config built by make_video_section() in make_webpage.py:
+// {axes, options, state, lookup, descriptionAxis} for each section key.
+const videoSections = %VIDEO_SECTIONS_JSON%;
 
-    allVideos.forEach(video => {
-        video.addEventListener('play', function() {
-            // When this video plays, loop through all videos
-            allVideos.forEach(otherVideo => {
-                // If it's a different video and it's not paused, pause it
-                if (otherVideo !== video) {
-                    otherVideo.pause();
-                }
+// Mirrors iter_axis_combinations()/option_is_valid() in make_webpage.py: an
+// option may restrict itself against an earlier axis by naming that axis as
+// one of its own keys, mapping to the list of that axis's allowed keys.
+// Omitting an axis name means "valid for all its values".
+function optionIsValid(option, chosenKeys) {
+    for (const axisName in chosenKeys) {
+        if (axisName in option && !option[axisName].includes(chosenKeys[axisName])) {
+            return false;
+        }
+    }
+    return true;
+}
+
+// Called by the onchange/onclick handlers wired up below when the user
+// picks a new value for one axis.
+function setVideoAxis(sectionKey, axisName, value) {
+    videoSections[sectionKey].state[axisName] = value;
+    renderVideoSection(sectionKey);
+}
+
+// Rebuilds one section's controls and video for its current state. Called
+// once per section on page load, and again after every axis change.
+function renderVideoSection(sectionKey) {
+    const cfg = videoSections[sectionKey];
+    const chosenKeys = {};
+    const activeAxisValues = [];
+
+    // Walk the axes in order, same as iter_axis_combinations() in Python:
+    // each axis's valid options depend only on the axes already chosen.
+    cfg.axes.forEach(axisName => {
+        const validOptions = cfg.options[axisName].filter(opt => optionIsValid(opt, chosenKeys));
+        const container = document.getElementById(`control-${sectionKey}-${axisName}`);
+
+        if (validOptions.length === 0) {
+            // This axis doesn't apply to the current combination at all (e.g.
+            // cluster's "alongside" under model=comparison) - hide it, and
+            // don't let it constrain any axis after it.
+            container.style.display = 'none';
+            return;
+        }
+        container.style.display = '';
+
+        if (!validOptions.some(opt => opt.key === cfg.state[axisName])) {
+            cfg.state[axisName] = validOptions[0].key;
+        }
+        const selectedKey = cfg.state[axisName];
+        chosenKeys[axisName] = selectedKey;
+        activeAxisValues.push(selectedKey);
+
+        // Rebuild the control's actual options/buttons and click/change handlers.
+        if (container.dataset.controlType === 'dropdown') {
+            const select = container.querySelector('select');
+            select.innerHTML = validOptions.map(opt =>
+                `<option value="${opt.key}"${opt.key === selectedKey ? ' selected' : ''}>${opt.label}</option>`
+            ).join('');
+            select.onchange = () => setVideoAxis(sectionKey, axisName, select.value);
+        } else {
+            const group = container.querySelector('.pill-group');
+            group.innerHTML = validOptions.map(opt =>
+                `<button type="button" class="pill-btn${opt.key === selectedKey ? ' selected' : ''}" data-value="${opt.key}">${opt.label}</button>`
+            ).join('');
+            group.querySelectorAll('.pill-btn').forEach(btn => {
+                btn.onclick = () => setVideoAxis(sectionKey, axisName, btn.dataset.value);
             });
+        }
+
+        if (cfg.descriptionAxis === axisName) {
+            const selectedOption = validOptions.find(opt => opt.key === selectedKey);
+            document.getElementById(`${sectionKey}-description`).innerHTML = selectedOption.description;
+        }
+    });
+
+    // Look up the video for the current combination, using only the active
+    // (visible) axes' values - matches the key format used by the Python
+    // build side (make_video_section()).
+    const entry = cfg.lookup[activeAxisValues.join('|')];
+
+    // Only touch the <video> if the combination actually changed, so
+    // playback isn't interrupted by re-rendering the same state.
+    const video = document.getElementById(`${sectionKey}-video`);
+    const source = document.getElementById(`${sectionKey}-source`);
+    if (source.getAttribute('src') !== entry.src) {
+        video.pause();
+        source.setAttribute('src', entry.src);
+        video.setAttribute('poster', entry.poster);
+        video.load();
+    }
+
+    document.getElementById(`${sectionKey}-download`).setAttribute('href', entry.src);
+
+    // The "_nosound" sibling isn't always present (e.g. cluster's
+    // "comparison" model) - hide the link when there isn't one.
+    const nosoundLink = document.getElementById(`${sectionKey}-download-nosound`);
+    if (entry.nosound) {
+        nosoundLink.style.display = '';
+        nosoundLink.setAttribute('href', entry.nosound);
+    } else {
+        nosoundLink.style.display = 'none';
+    }
+}
+
+// Initial render for every section on page load.
+Object.keys(videoSections).forEach(renderVideoSection);
+
+// Only let one video play at a time across the whole page.
+const allVideos = document.querySelectorAll('video');
+allVideos.forEach(video => {
+    video.addEventListener('play', function() {
+        allVideos.forEach(otherVideo => {
+            if (otherVideo !== video) otherVideo.pause();
         });
     });
+});
 </script>

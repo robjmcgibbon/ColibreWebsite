@@ -18,8 +18,8 @@ interactive.html:
 videos.html:
   title: Videos
   sidebar: videos
-  sidebar_extra:
-    galleries: More video galleries
+  css:
+    - css/videos.css
 
 images.html:
   title: Images
@@ -48,76 +48,4 @@ team.html:
   title: Team
   css:
     - css/team.css
-
-############### Pages not in the navbar (title set to "")
-
-videos_galaxy_barred.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_galaxy_barred
-  css:
-    - css/gallery.css
-
-videos_galaxy_merger.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_galaxy_merger
-  css:
-    - css/gallery.css
-
-videos_box.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_box
-  css:
-    - css/gallery.css
-
-videos_cluster_thermal_large.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_thermal_large
-  css:
-    - css/gallery.css
-
-videos_cluster_thermal_small.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_thermal_small
-  css:
-    - css/gallery.css
-
-videos_cluster_hybrid_large.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_hybrid_large
-  css:
-    - css/gallery.css
-
-videos_cluster_hybrid_small.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  sidebar: videos_cluster_hybrid_small
-  css:
-    - css/gallery.css
-
-videos_cluster_compareAGN_large.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  css:
-    - css/gallery.css
-
-videos_cluster_compareAGN_small.html:
-  title: ""
-  prescripts:
-   - https://code.jquery.com/jquery-3.6.0.min.js
-  css:
-    - css/gallery.css
 

@@ -2,7 +2,7 @@
    stay left-aligned (the default); the controls/video/downloads below are
    explicitly centered instead. */
 .video-section {
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 1.5rem auto;
 }
 
 /* Row of axis controls (pill groups + property dropdown) above the video */
@@ -17,6 +17,12 @@
   border-radius: 8px;
   background-color: #fdfdfd;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Each axis's own box (label + its pill-group/select) stays centered,
+   independent of .video-section's left-aligned title/description. */
+.video-control {
+  text-align: center;
 }
 
 .video-control h3 {

@@ -93,10 +93,19 @@ function renderVideoSection(sectionKey) {
     const video = document.getElementById(`${sectionKey}-video`);
     const source = document.getElementById(`${sectionKey}-source`);
     if (source.getAttribute('src') !== entry.src) {
-        video.pause();
-        source.setAttribute('src', entry.src);
-        video.setAttribute('poster', entry.poster);
-        video.load();
+        // Preload the poster before swapping - video.load() resets the
+        // element to having no frame/poster/metadata, during which it falls
+        // back to a tiny default size. Waiting until the poster is already
+        // cached means that reset is bridged instantly instead of flashing
+        // a collapsed box while the poster downloads over the network.
+        const preload = new Image();
+        preload.onload = preload.onerror = () => {
+            video.pause();
+            source.setAttribute('src', entry.src);
+            video.setAttribute('poster', entry.poster);
+            video.load();
+        };
+        preload.src = entry.poster;
     }
 
     document.getElementById(`${sectionKey}-download`).setAttribute('href', entry.src);

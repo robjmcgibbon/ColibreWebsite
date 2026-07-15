@@ -283,16 +283,21 @@ def copy_video_file(dirname, filename, create_media, required=True):
 
 def make_video_poster(dirname, filename, create_media):
     """
-    Create a poster thumbnail (a plain frame grab, for use as a <video poster>)
-    for the given video file, taken 10 seconds from the end.
+    Create a poster thumbnail (a JPEG frame grab, downscaled to at most 960px
+    wide, for use as a <video poster>) for the given video file, taken 10
+    seconds from the end. Downscaled + JPEG rather than a full-resolution PNG
+    since the poster is fetched over the network on every axis change
     """
     video_name = filename.replace('.mp4', '')
     src_dir = f"src/videos/{dirname}" if dirname else "src/videos"
     build_dir = f"build/videos/{dirname}" if dirname else "build/videos"
-    poster_name = f"{video_name}_poster.png"
+    poster_name = f"{video_name}_poster.jpg"
     if create_media:
         os.makedirs(build_dir, exist_ok=True)
-        cmd = f"ffmpeg -hide_banner -loglevel error -y -sseof -10 -i {src_dir}/{filename} -frames:v 1 {build_dir}/{poster_name}"
+        cmd = (
+            f"ffmpeg -hide_banner -loglevel error -y -sseof -10 -i {src_dir}/{filename} "
+            f"-frames:v 1 -vf \"scale='min(960,iw)':-2\" -q:v 7 {build_dir}/{poster_name}"
+        )
         run_process(cmd)
     return f"videos/{dirname}/{poster_name}" if dirname else f"videos/{poster_name}"
 

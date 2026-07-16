@@ -46,26 +46,6 @@ body::before { /* delete all except the color line if we don't want the image */
   color: #645656;
 }
 
-.overlaycontainer {
-  /*width: 400px;
-  height: 500px;*/
-  display: inline-block;
-  margin: 0 auto;
-  position: relative;
-}
-
-.logooverlay {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 1001;
-}
-
-.list-group-item.active {
-  background-color: #986196;
-  border-color: #645656;
-}
-
 .helptext {
   text-align: center !important;
   color: #986196;

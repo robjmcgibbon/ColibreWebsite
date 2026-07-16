@@ -374,19 +374,17 @@ The interactive plot below shows cumulative galaxy and stellar mass functions. T
         }
     }
 
-    // On window load, apply the default sort to BOTH tables.
-    window.onload = function() {
-        // Trigger the default sort for the Thermal table
-        const defaultButtonThermal = document.getElementById("sortByResolutionThermal");
-        if (defaultButtonThermal) {
-            defaultButtonThermal.click();
-        }
+    // Apply the default sort to BOTH tables immediately.
+    // (No need to wait for window.onload -- that also waits on the mass_functions.html
+    // iframe to finish loading, which delayed the sort noticeably.)
+    const defaultButtonThermal = document.getElementById("sortByResolutionThermal");
+    if (defaultButtonThermal) {
+        defaultButtonThermal.click();
+    }
 
-        // Trigger the default sort for the Hybrid table
-        const defaultButtonHybrid = document.getElementById("sortByResolutionHybrid");
-        if (defaultButtonHybrid) {
-            defaultButtonHybrid.click();
-        }
-    };
+    const defaultButtonHybrid = document.getElementById("sortByResolutionHybrid");
+    if (defaultButtonHybrid) {
+        defaultButtonHybrid.click();
+    }
 </script>
 

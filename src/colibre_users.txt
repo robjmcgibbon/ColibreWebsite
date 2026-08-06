@@ -132,3 +132,4 @@ Name                                                   Affiliation              
 "Diego Pallero"                                        "Federico Santa María Technical University"  -33.036     -71.5951
 "Abhner Almeida"                                       "University of São Paulo"                    -23.542     -46.6229
 "Mahsa Kohandel"                                       "Scuola Normale Superiore di Pisa"           43.7195     10.40025
+"Pratyush Kumar Das"                                   "University of Queensland"                   -27.497     153.0130

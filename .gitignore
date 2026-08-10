@@ -13,6 +13,9 @@ src/pages/sliders.html
 # Token for querying ADS
 ADS_token
 
+# Cache for generating publication page
+arxiv_id_cache.yml
+
 # Media files
 src/slider_images/*
 src/images/*

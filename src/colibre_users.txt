@@ -50,6 +50,7 @@ Name                                                   Affiliation              
 "Nikolaos Andreadis"                                   "Ghent University"                           51.041      3.723
 "Maarten Baes"                                         "Ghent University"                           51.041      3.723
 "Andrea Gebek"                                         "Ghent University"                           51.041      3.723
+"Eric Muires"                                          "Ghent University"                           51.041      3.723
 "James McGregor"                                       "Australian National University"             -35.2764    149.1205
 "Emily Wisnioski"                                      "Australian National University"             -35.2764    149.1205
 "Trevor Mendel"                                        "Australian National University"             -35.2764    149.1205

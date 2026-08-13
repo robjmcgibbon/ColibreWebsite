@@ -31,6 +31,7 @@ Name                                                   Affiliation              
 "Titouan Lazeyras"                                     "University of Milan"                        45.456      9.19
 "Davide Tornotti"                                      "University of Milan"                        45.456      9.19
 "Francesco Turini"                                     "University of Milan"                        45.456      9.19
+"Amedeo Motta"                                         "University of Milan"                        45.456      9.19
 "Yannick Bahe"                                         "University of Nottingham"                   52.939      -1.197
 "Adela Fernandez"                                      "University of Nottingham"                   52.939      -1.197
 "James Rice"                                           "University of Nottingham"                   52.939      -1.197
@@ -79,6 +80,7 @@ Name                                                   Affiliation              
 "Scott Kay"                                            "University of Manchester"                   53.46685    -2.233884
 "Francine Marleau"                                     "University of Innsbruck"                    47.258944   11.383664
 "Marcin Semczuk"                                       "University of Barcelona"                    41.3853     2.1583
+"David Izquierdo Villalba"                             "University of Barcelona"                    41.3853     2.1583
 "Luisa Lucie-Smith"                                    "University of Hamburg"                      53.5668     9.9837
 "José Benavides"                                       "UC Riverside"                               33.964257   -117.339786
 "Qinglin Ma"                                           "Tsinghua University"                        40.00229    116.320989

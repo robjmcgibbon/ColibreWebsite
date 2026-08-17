@@ -69,6 +69,25 @@
    width: 800px;
 }
 
+/* A slider can show videos instead of images, e.g. of a rotating galaxy. Both
+   are always present, and we show whichever the dropdowns have selected */
+.img-comp-img video {
+  display: none;
+  height: 800px;
+  width: 800px;
+  background-color: black;
+}
+
+/* The show-video class is toggled by the javascript whenever the selection
+   changes, swapping which of the two is displayed */
+.img-comp-container.show-video .img-comp-img img {
+  display: none;
+}
+
+.img-comp-container.show-video .img-comp-img video {
+  display: block;
+}
+
 .img-comp-slider {
   position: absolute;
   z-index: 9;
@@ -120,6 +139,11 @@
    }
 
    .img-comp-overlay img {
+     height: 400px;
+     width: 400px;
+   }
+
+   .img-comp-img video {
      height: 400px;
      width: 400px;
    }

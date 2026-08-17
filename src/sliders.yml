@@ -4,7 +4,7 @@ Individual galaxies:
   show_Left_Right: Property
   buttons:
     - TrackID
-    - Orientation
+    - View
   Property:
     - HST bands
     - SDSS bands
@@ -24,7 +24,6 @@ Individual galaxies:
     - "4705"
     - "47804"
     - "105"
-    # - "974"   # Misaligned
     - "1721"
     - "918"
     - "9617"
@@ -35,9 +34,10 @@ Individual galaxies:
     - "428"
     - "659"
     - "53330"
-    # L25m5 Hybrid
-    # - "98"
-  Orientation:
+  video_options:
+    - Rotating
+  View:
+    - Rotating
     - Face on
     - Edge on
 

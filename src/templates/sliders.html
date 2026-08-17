@@ -42,6 +42,115 @@ function setType4(sliderId, selectElement) {
     updateImage(sliderId);
 }
 
+// One frame at the 16 fps of the slider videos
+const MAX_VIDEO_DRIFT = 0.0625;
+
+// Counts how many times each slider has been asked to load a pair of videos,
+// so that a pair which is still loading when the user makes another selection
+// can be discarded
+const videoLoads = {};
+
+function getSliderElements(sliderId) {
+    const container = document.getElementById(sliderId);
+    return {
+        container,
+        leftImg: container.querySelector('.img-comp-overlay img'),
+        rightImg: container.querySelector('.img-comp-img:first-child img'),
+        leftVideo: container.querySelector('.img-comp-overlay video'),
+        rightVideo: container.querySelector('.img-comp-img:first-child video'),
+    };
+}
+
+// Whether the dropdowns of this slider currently select videos, rather than images
+function showingVideo(sliderId) {
+    const { type0, type1, type2, type3, type4, videoTypes } = state[sliderId];
+    return [type0, type1, type2, type3, type4].some(type => videoTypes.includes(type));
+}
+
+// Give a video the image which is already on screen as its poster, so that
+// switching from an image to a video does not flash black while it loads
+function setPoster(video, src) {
+    if (src) {
+        video.setAttribute('poster', src);
+    } else {
+        video.removeAttribute('poster');
+    }
+}
+
+function loadVideos(sliderId, leftSrc, rightSrc) {
+    const { leftVideo, rightVideo } = getSliderElements(sliderId);
+
+    videoLoads[sliderId] = (videoLoads[sliderId] || 0) + 1;
+    const load = videoLoads[sliderId];
+
+    if (leftVideo.getAttribute('src') !== leftSrc) {
+        leftVideo.setAttribute('src', leftSrc);
+        leftVideo.load();
+    }
+    if (rightVideo.getAttribute('src') !== rightSrc) {
+        rightVideo.setAttribute('src', rightSrc);
+        rightVideo.load();
+    }
+
+    // Only start playing once both videos are ready, so that they begin on the
+    // same frame
+    const ready = video => new Promise(resolve => {
+        if (video.readyState >= 3) {
+            resolve();
+        } else {
+            video.addEventListener('canplay', resolve, { once: true });
+        }
+    });
+    Promise.all([ready(leftVideo), ready(rightVideo)]).then(() => {
+        if (videoLoads[sliderId] === load) {
+            playVideos(sliderId);
+        }
+    });
+}
+
+function playVideos(sliderId) {
+    const { leftVideo, rightVideo } = getSliderElements(sliderId);
+
+    leftVideo.currentTime = 0;
+    rightVideo.currentTime = 0;
+    // Playing is rejected if the browser refuses to play videos automatically,
+    // or if the user selects a new video while this one is still loading
+    Promise.all([leftVideo.play(), rightVideo.play()]).catch(() => {});
+}
+
+// Browsers make no attempt to keep two videos in sync, so we check on every
+// frame of the left video and correct the right one whenever it has drifted
+function syncVideos(sliderId) {
+    const { leftVideo, rightVideo } = getSliderElements(sliderId);
+
+    const drift = Math.abs(rightVideo.currentTime - leftVideo.currentTime);
+    if (!leftVideo.paused && !rightVideo.seeking && drift > MAX_VIDEO_DRIFT) {
+        rightVideo.currentTime = leftVideo.currentTime;
+    }
+
+    if (leftVideo.requestVideoFrameCallback) {
+        leftVideo.requestVideoFrameCallback(() => syncVideos(sliderId));
+    } else {
+        setTimeout(() => syncVideos(sliderId), 250);
+    }
+}
+
+function initVideos(sliderId) {
+    if (state[sliderId].videoTypes.length === 0) return;
+
+    const { leftVideo } = getSliderElements(sliderId);
+
+    // The videos do not use the loop attribute, since the two of them would
+    // then wrap around independently
+    leftVideo.addEventListener('ended', () => playVideos(sliderId));
+
+    syncVideos(sliderId);
+
+    if (showingVideo(sliderId)) {
+        updateImage(sliderId);
+    }
+}
+
 function updateImage(sliderId) {
     // Construct paths
     const { imageDirectory, leftType, rightType, type0, type1, type2, type3, type4 } = state[sliderId];
@@ -50,19 +159,34 @@ function updateImage(sliderId) {
     const rightPath = `slider_images/${imageDirectory}/R${rightType}${type0}${type1}${type2}${type3}${type4}`;
 
     // Update images
-    const container = document.getElementById(sliderId);
-    const leftImg = container.querySelector('.img-comp-overlay img');
-    const rightImg = container.querySelector('.img-comp-img:first-child img');
+    const { container, leftImg, rightImg, leftVideo, rightVideo } = getSliderElements(sliderId);
+    const showVideo = showingVideo(sliderId);
+    const wasShowingVideo = container.classList.contains('show-video');
 
-    leftImg.src = `${leftPath}.jpg`;
-    rightImg.src = `${rightPath}.jpg`;
+    if (showVideo) {
+        // We only have an image to use as a poster when the user is switching
+        // to a video from an image of the same galaxy
+        setPoster(leftVideo, wasShowingVideo ? '' : leftImg.getAttribute('src'));
+        setPoster(rightVideo, wasShowingVideo ? '' : rightImg.getAttribute('src'));
+        loadVideos(sliderId, `${leftPath}.mp4`, `${rightPath}.mp4`);
+    } else {
+        leftVideo.pause();
+        rightVideo.pause();
+        leftImg.src = `${leftPath}.jpg`;
+        rightImg.src = `${rightPath}.jpg`;
+    }
+    container.classList.toggle('show-video', showVideo);
 
     // Update download links
     const leftLink = document.getElementById(`hires_left${sliderId.replace("slider", "")}`);
     const rightLink = document.getElementById(`hires_right${sliderId.replace("slider", "")}`);
 
-    leftLink.href = `hires_${leftPath}.png`;
-    rightLink.href = `hires_${rightPath}.png`;
+    const extension = showVideo ? 'mp4' : 'png';
+    const mediaType = showVideo ? 'video' : 'image';
+    leftLink.href = `hires_${leftPath}.${extension}`;
+    rightLink.href = `hires_${rightPath}.${extension}`;
+    leftLink.innerHTML = `Download<br>left ${mediaType}`;
+    rightLink.innerHTML = `Download<br>right ${mediaType}`;
 }
 
 
@@ -163,6 +287,18 @@ function compare() {
     }
 }
 
+// Browsers restore the previous value of a dropdown when the page is
+// refreshed, which would leave them disagreeing with the media being shown,
+// since the state above is always created with the default values
+function resetButtons() {
+    document.querySelectorAll('.controls-container select').forEach(select => {
+        const defaultOption = select.querySelector('option[selected]');
+        if (defaultOption) select.value = defaultOption.value;
+    });
+}
+
 compare();
+resetButtons();
+Object.keys(state).forEach(initVideos);
 </script>
 

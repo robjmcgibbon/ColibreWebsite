@@ -43,5 +43,4 @@ Run `grep -r TODO *`
 ### Nice-to-have
 - Mobile support
 - Don't reload the header each time we click to a different page
-- Sliders buttons should reset when page is refreshed
 

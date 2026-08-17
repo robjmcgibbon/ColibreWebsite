@@ -149,17 +149,33 @@ def copy_slider_images():
     Copy the src/slider_images/ into build/. We create compressed versions (for the
     sliders themselves, so they can load quickly), but we also copy across the full
     versions (as we have a download link for them).
+
+    Sliders can contain videos (png/mp4 files are used for the still/rotating
+    views of a galaxy), which are compressed to the same size as the images.
     """
-    # Compress slider images
+    # Compress slider media
     for dirname in os.listdir("src/slider_images"):
         os.makedirs(f"build/slider_images/{dirname}", exist_ok=True)
-    for input_image in sorted(glob.glob("src/slider_images/*/*")):
-        output_image = input_image.replace('src', 'build', 1).replace('.png', '.jpg')
-        cmd = f'convert "{input_image}" -resize 800x800 -gravity center -background white -extent 800x800 -quality 90 "{output_image}"'
-        print(f'Compressing {output_image}')
+    for input_file in sorted(glob.glob("src/slider_images/*/*")):
+        if input_file.endswith('.mp4'):
+            output_file = input_file.replace('src', 'build', 1)
+            # +faststart lets playback begin before the whole file has arrived,
+            # -an since the videos have no audio. The bitrate is capped (over a
+            # two second window) so that the videos of the densest fields do
+            # not become much larger than the rest
+            cmd = (
+                f'ffmpeg -hide_banner -loglevel error -y -i "{input_file}" '
+                f'-vf scale=800:800 -c:v libx264 -crf 26 -preset slow '
+                f'-maxrate 800k -bufsize 1600k '
+                f'-pix_fmt yuv420p -movflags +faststart -an "{output_file}"'
+            )
+        else:
+            output_file = input_file.replace('src', 'build', 1).replace('.png', '.jpg')
+            cmd = f'convert "{input_file}" -resize 800x800 -gravity center -background white -extent 800x800 -quality 90 "{output_file}"'
+        print(f'Compressing {output_file}')
         run_process(cmd)
 
-    # Copy the full size images
+    # Copy the full size media
     for asset in sorted(glob.glob("src/slider_images/*")):
         shutil.copytree(asset, f"build/hires_slider_images/{os.path.basename(asset)}")
 
@@ -604,9 +620,16 @@ def make_sliders(templates, input_sections):
         # Initialise a list of all images that the sliders require
         all_images = []
 
+        # Options which show a video rather than an image, e.g. a rotating galaxy
+        video_options = section_info.get('video_options', [])
+
         buttons = ""
         left_img_path = f"slider_images/{section_info['dirname']}/L"
         right_img_path = f"slider_images/{section_info['dirname']}/R"
+        # The default option may be a video, but the <img> elements still need
+        # the path of an image, so we track that separately
+        left_still_path = left_img_path
+        right_still_path = right_img_path
 
         # "show_left_right" detemines which values will show on left/right
         if section_info["show_Left_Right"]:
@@ -628,6 +651,7 @@ def make_sliders(templates, input_sections):
                 },
             )
             left_img_path += left_type
+            left_still_path += left_type
             # Adding button for right image
             button_values = ""
             img_type = section_info[section_info["show_Left_Right"]][0]
@@ -648,6 +672,7 @@ def make_sliders(templates, input_sections):
                 },
             )
             right_img_path += right_type
+            right_still_path += right_type
         else:
             left_type = ''
             right_type = ''
@@ -664,9 +689,21 @@ def make_sliders(templates, input_sections):
             left_img_path += '_' + img_type.replace(" ", "_")
             right_img_path += '_' + img_type.replace(" ", "_")
             other_types.append(img_type.replace(" ", "_"))
+            # If this button defaults to a video then use its first image
+            # option for the still image paths
+            still_type = img_type
+            if still_type in video_options:
+                still_type = next(
+                    opt for opt in section_info[button_title] if opt not in video_options
+                )
+            left_still_path += '_' + still_type.replace(" ", "_")
+            right_still_path += '_' + still_type.replace(" ", "_")
             button_values += button_option(img_type, selected=True, underscore=True)
             for img_type in section_info[button_title][1:]:
                 button_values += button_option(img_type, underscore=True)
+                # Video options are checked separately, below
+                if img_type in video_options:
+                    continue
                 for image_name in prev_all_images:
                     all_images.append(f'{image_name}_{img_type.replace(" ", "_")}')
             buttons += template_replace(
@@ -679,6 +716,47 @@ def make_sliders(templates, input_sections):
                 },
             )
 
+        # The default path is only a video if one of the buttons defaults to a
+        # video option, otherwise the videos are loaded when a user selects one
+        default_is_video = any(
+            section_info[button_title][0] in video_options
+            for button_title in section_info['buttons']
+        )
+
+        # Build a list of all the videos that the sliders require. We cannot
+        # reuse all_images, since that only contains combinations where every
+        # button is set to a non-default option, and so it would miss any video
+        # option which is the default
+        all_videos = []
+        if video_options:
+            if section_info["show_Left_Right"]:
+                video_names = [
+                    f'{side}{img_type.replace(" ", "_")}'
+                    for side in ('L', 'R')
+                    for img_type in section_info[section_info["show_Left_Right"]]
+                ]
+            else:
+                video_names = ['L', 'R']
+            # For each button, use its video options if it has any, and all of
+            # its options otherwise
+            found_video_button = False
+            for button_title in section_info['buttons']:
+                button_types = [
+                    opt for opt in section_info[button_title] if opt in video_options
+                ]
+                if button_types:
+                    found_video_button = True
+                else:
+                    button_types = section_info[button_title]
+                video_names = [
+                    f'{video_name}_{img_type.replace(" ", "_")}'
+                    for video_name in video_names
+                    for img_type in button_types
+                ]
+            err_msg = f'video_options of section "{section_title}" are not used by any button'
+            assert found_video_button, err_msg
+            all_videos = video_names
+
         # Add this section
         sections += template_replace(
             section_template,
@@ -687,8 +765,16 @@ def make_sliders(templates, input_sections):
                 "DESCRIPTION": section_info['description'],
                 "SLIDER_ID": str(i_section),
                 "BUTTONS": buttons,
-                "INITIAL_LEFT_IMG": left_img_path,
-                "INITIAL_RIGHT_IMG": right_img_path,
+                # Only the media that is initially shown is given a src, so
+                # that the browser does not download the media that is hidden
+                "CONTAINER_CLASS": " show-video" if default_is_video else "",
+                "INITIAL_LEFT_IMG": "" if default_is_video else f'src="{left_still_path}.jpg"',
+                "INITIAL_RIGHT_IMG": "" if default_is_video else f'src="{right_still_path}.jpg"',
+                "INITIAL_LEFT_VIDEO": f'src="{left_img_path}.mp4"' if default_is_video else "",
+                "INITIAL_RIGHT_VIDEO": f'src="{right_img_path}.mp4"' if default_is_video else "",
+                "INITIAL_LEFT_DOWNLOAD": f"hires_{left_img_path}.mp4" if default_is_video else f"hires_{left_still_path}.png",
+                "INITIAL_RIGHT_DOWNLOAD": f"hires_{right_img_path}.mp4" if default_is_video else f"hires_{right_still_path}.png",
+                "DOWNLOAD_TYPE": "video" if default_is_video else "image",
             },
         )
 
@@ -700,12 +786,20 @@ def make_sliders(templates, input_sections):
         for i_type in range(5):
             img_type = "_" + other_types[i_type] if i_type < len(other_types) else ""
             state += f", type{i_type}: '{img_type}'"
+        # The javascript shows a video whenever one of the types is in videoTypes
+        video_types = ", ".join(f"'_{opt.replace(' ', '_')}'" for opt in video_options)
+        state += f", videoTypes: [{video_types}]"
         state += " },\n"
 
         # Loop through all possible images and assert that they exist
         for image_name in all_images:
             image_path = f'src/slider_images/{section_info["dirname"]}/{image_name}.png'
             assert os.path.exists(image_path), f'{image_path} is used by sliders, but does not exist'
+
+        # Loop through all possible videos and assert that they exist
+        for video_name in all_videos:
+            video_path = f'src/slider_images/{section_info["dirname"]}/{video_name}.mp4'
+            assert os.path.exists(video_path), f'{video_path} is used by sliders, but does not exist'
 
     state += "};"
 

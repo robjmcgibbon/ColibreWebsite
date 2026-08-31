@@ -77,8 +77,11 @@ def generate_user_map():
         sizing_mode="scale_width",
         aspect_ratio=1.9,
     )
-    tile_provider = xyz.CartoDB.Voyager
-    tile_provider = xyz.CartoDB.VoyagerNoLabels
+    # CARTO require an API key for their basemaps (free, see README).
+    # Without a valid key the tiles are silently watermarked 'API KEY REQUIRED'.
+    tile_provider = xyz.CartoDB.VoyagerNoLabels.copy()
+    with open('CARTO_key', 'r') as file:
+        tile_provider['url'] += '?key=' + file.read().strip()
     p.add_tile(tile_provider)
 
     heart_path = extract_svg_path("src/assets/logo.svg")

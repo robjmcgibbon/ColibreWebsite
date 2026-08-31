@@ -13,6 +13,9 @@ src/pages/sliders.html
 # Token for querying ADS
 ADS_token
 
+# Key for the CARTO basemap used by the user map
+CARTO_key
+
 # Cache for generating publication page
 arxiv_id_cache.yml
 

@@ -32,6 +32,7 @@ Name                                                   Affiliation              
 "Davide Tornotti"                                      "University of Milan"                        45.456      9.19
 "Francesco Turini"                                     "University of Milan"                        45.456      9.19
 "Amedeo Motta"                                         "University of Milan"                        45.456      9.19
+"Michele Fulghieri"                                    "University of Milan"                        45.456      9.19
 "Yannick Bahe"                                         "University of Nottingham"                   52.939      -1.197
 "Adela Fernandez"                                      "University of Nottingham"                   52.939      -1.197
 "James Rice"                                           "University of Nottingham"                   52.939      -1.197

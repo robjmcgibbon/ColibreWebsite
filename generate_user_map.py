@@ -84,12 +84,12 @@ def generate_user_map():
         tile_provider['url'] += '?key=' + file.read().strip()
     p.add_tile(tile_provider)
 
-    heart_path = extract_svg_path("src/assets/logo.svg")
+    logo_path = extract_svg_path("src/assets/logo.svg")
 
-    heart_marker = CustomJS(
+    logo_marker = CustomJS(
         code=f"""
         export default (args, obj, {{ctx, i, r, visuals}}) => {{
-            const path = new Path2D("{heart_path}")
+            const path = new Path2D("{logo_path}")
 
             // --- IMPORTANT ---
             // Find the viewBox="x y w h" in your "drawing.svg" file
@@ -136,8 +136,8 @@ def generate_user_map():
         fill_alpha=0.8,
         fill_color="black",
         source=source,
-        marker="@heart",
-        defs={"@heart": heart_marker},
+        marker="@logo",
+        defs={"@logo": logo_marker},
     )
 
     # Add information for hover
@@ -148,6 +148,10 @@ def generate_user_map():
         </div>
     """)
     p.add_tools(hover)
+
+    # Remove the default grid lines
+    p.xgrid.grid_line_color = None
+    p.ygrid.grid_line_color = None
 
     # Activate wheel zoom
     for tool in p.tools:

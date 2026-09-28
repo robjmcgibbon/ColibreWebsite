@@ -80,6 +80,7 @@ Name                                                   Affiliation              
 "Yamila Daniela Burrafato"                             "University of Buenos Aires"                 -34.54139   -58.44306
 "Scott Kay"                                            "University of Manchester"                   53.46685    -2.233884
 "Francine Marleau"                                     "University of Innsbruck"                    47.258944   11.383664
+"Jonas Kruger"                                         "University of Innsbruck"                    47.258944   11.383664
 "Marcin Semczuk"                                       "University of Barcelona"                    41.3853     2.1583
 "David Izquierdo Villalba"                             "University of Barcelona"                    41.3853     2.1583
 "Luisa Lucie-Smith"                                    "University of Hamburg"                      53.5668     9.9837
@@ -140,3 +141,4 @@ Name                                                   Affiliation              
 "Mahsa Kohandel"                                       "Scuola Normale Superiore di Pisa"           43.7195     10.40025
 "Pratyush Kumar Das"                                   "University of Queensland"                   -27.497     153.0130
 "Jiamu Huang"                                          "UC Santa Barbara"                           34.4138     -119.849
+"Snigdha Bhattacharjee"                                "Université de Lyon"                         45.7504     4.837992

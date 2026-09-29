@@ -5,6 +5,8 @@
 # # Setting vmin as 100x initial gas mass
 # for run, run_name, vmin in [
 #         ('L0025N0752/Thermal', 'L025m5', 2.3e7),
+#         ('L0050N1504/Thermal', 'L050m5', 2.3e7),
+#         ('L0100N3008/Thermal', 'L100m5', 2.3e7),
 #         ('L0200N3008/Thermal', 'L200m6', 1.8e8),
 #         ('L0400N3008/Thermal', 'L400m7', 1.5e9),
 #     ]:
@@ -14,6 +16,12 @@
 #             (64, '3'),
 #             (26, '8'),
 #         ]:
+#         # TODO: Remove when these runs have progressed further
+#         if (run == 'L0050N1504/Thermal') and (snap == 127):
+#             continue
+#         if (run == 'L0100N3008/Thermal') and (snap >= 92):
+#             continue
+#
 #         base_dir= '/cosma8/data/dp004/colibre/Runs'
 #         filename = f'{base_dir}/{run}/SOAP-HBT/halo_properties_{snap:04}.hdf5'
 #         soap = sw.load(filename)
@@ -51,34 +59,36 @@
 import pandas as pd
 import glob, os
 from bokeh.io import output_file, save
-from bokeh.models import ColumnDataSource, Select, CustomJS, Div, HoverTool, CustomJSTickFormatter
+from bokeh.models import ColumnDataSource, Select, CustomJS, Div, HoverTool, CustomJSTickFormatter, Label, Node
 from bokeh.plotting import figure
 from bokeh.layouts import column, row
 
 def generate_mass_functions():
     ### Load the data
+    # Not every run has every redshift (e.g. runs still in progress), missing
+    # combinations are shown as "not yet available" on the plot.
+    property_options = ['Halo mass', 'Stellar mass']
+    redshift_options = ['0', '1', '3', '8']
+    simulation_options = ['L025m5', 'L050m5', 'L100m5', 'L200m6', 'L400m7']
     data = {}
-    for run_name in ['L025m5', 'L200m6', 'L400m7']:
-        for z in ['0', '1', '3', '8']:
-            for prop_name in ['Stellar_mass', 'Halo_mass']: 
-                filename = f'{prop_name}_z{z}_{run_name}.txt'
-
-                df = pd.read_csv(f'src/assets/simulations/{filename}')
-                data[(prop_name.replace('_', ' '), z, run_name)] = df
+    for run_name in simulation_options:
+        for z in redshift_options:
+            for prop_name in property_options:
+                filename = f"src/assets/simulations/{prop_name.replace(' ', '_')}_z{z}_{run_name}.txt"
+                if os.path.exists(filename):
+                    data[(prop_name, z, run_name)] = pd.read_csv(filename)
 
     # Convert to JSON-friendly structure for JS
     js_data = {f"{p}_{z}_{s}": df.to_dict(orient="list") for (p, z, s), df in data.items()}
 
     ### Dropdown options
-    property_options = sorted({k[0] for k in data.keys()})
-    redshift_options = sorted({k[1] for k in data.keys()})
-    simulation_options = sorted({k[2] for k in data.keys()})
     prop_default = 'Stellar mass'
     z_default = '0'
     sim_default = 'L200m6'
 
     init_key = f"{prop_default}_{z_default}_{sim_default}"
-    source = ColumnDataSource(js_data[init_key])
+    init_missing = init_key not in js_data
+    source = ColumnDataSource(js_data.get(init_key, {"mass": [], "n_sub": []}))
 
     ### Styling parameters
     font_size = "20px"
@@ -91,7 +101,7 @@ def generate_mass_functions():
         tools="",
     )
     p.toolbar_location = None
-    p.line("mass", "n_sub", source=source, line_width=2)
+    line = p.line("mass", "n_sub", source=source, line_width=2)
     p.xaxis.axis_label = "Stellar mass [Msun]"
     p.xaxis.axis_label_text_font_size = font_size
     p.xaxis.major_label_text_font_size = font_size
@@ -100,6 +110,21 @@ def generate_mass_functions():
     p.yaxis.axis_label_text_font_size = font_size
     p.yaxis.major_label_text_font_size = font_size
     p.yaxis.axis_label_text_font_style = 'bold'
+
+    # Message shown when a run doesn't have data at the selected redshift.
+    # The line is hidden (rather than the data cleared) so the axes keep their
+    # range. The grid is also hidden so the message sits on a blank frame.
+    missing_label = Label(
+        x=Node.frame.center, y=Node.frame.center,
+        text=f"z={z_default} not yet available for {sim_default}",
+        text_align="center", text_baseline="middle",
+        text_font_size=font_size, text_font_style="bold",
+        visible=init_missing,
+    )
+    p.add_layout(missing_label)
+    line.visible = not init_missing
+    p.xgrid.visible = not init_missing
+    p.ygrid.visible = not init_missing
 
     # Format ticks
     compact_formatter = CustomJSTickFormatter(code="""
@@ -158,17 +183,30 @@ def generate_mass_functions():
             prop=prop_select,
             z=z_select,
             sim=sim_select,
+            line=line,
+            missing_label=missing_label,
+            xgrid=p.xgrid[0],
+            ygrid=p.ygrid[0],
             xaxis=p.xaxis[0],
             yaxis=p.yaxis[0],
         ),
         code="""
         const key = `${prop.value}_${z.value}_${sim.value}`;
         const new_data = all_data[key];
-        // Replace source data (Bokeh expects arrays)
-        source.data = {
-            mass: new_data['mass'],
-            n_sub: new_data['n_sub']
-        };
+        const missing = new_data === undefined;
+        line.visible = !missing;
+        xgrid.visible = !missing;
+        ygrid.visible = !missing;
+        missing_label.visible = missing;
+        if (missing) {
+            missing_label.text = `z=${z.value} not yet available for ${sim.value}`;
+        } else {
+            // Replace source data (Bokeh expects arrays)
+            source.data = {
+                mass: new_data['mass'],
+                n_sub: new_data['n_sub']
+            };
+        }
 
         // Update axis labels based on property
         if (prop.value === "Stellar mass") {

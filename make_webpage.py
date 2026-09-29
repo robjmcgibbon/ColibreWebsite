@@ -135,10 +135,13 @@ def make_page(page, pages, templates):
 
 def copy_assets():
     """
-    Copy all contents of src/assets/ into build/, regardless of the file type
-    or name.
+    Copy all contents of src/assets/ into build/, except the raw
+    mass function data files.
     """
-    shutil.copytree('src/assets', 'build/assets')
+    shutil.copytree(
+        'src/assets', 'build/assets',
+        ignore=shutil.ignore_patterns('Halo_mass_z*.txt', 'Stellar_mass_z*.txt'),
+    )
 
 def copy_paper_data():
     if os.path.exists('src/paper_data'):

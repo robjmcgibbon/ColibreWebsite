@@ -68,6 +68,7 @@ Name                                                   Affiliation              
 "Songting Li"                                          "Shanghai Jiao Tong University"              31.200891   121.428395
 "Jiangkun Shi"                                         "Shanghai Jiao Tong University"              31.200891   121.428395
 "Lijing Zhang"                                         "Shanghai Jiao Tong University"              31.200891   121.428395
+"Qimin Zhang"                                          "Shanghai Jiao Tong University"              31.200891   121.428395
 "Katy Proctor"                                         "Stockholm University"                       59.3592     18.055
 "Mathieu Perron-Cormier"                               "Queen's University"                         44.22       -76.49
 "Oleh Ryzhov"                                          "Adam Mickiewicz University"                 52.409538   16.931992
@@ -132,6 +133,7 @@ Name                                                   Affiliation              
 "Bitao Wang"                                           "Hunan University"                           28.1784     112.944
 "Zihan Zhang"                                          "Nanjing University"                         32.0571     118.778
 "Qiaoyang Hao"                                         "Nanjing University"                         32.0571     118.778
+"Jiantong Cui"                                         "Nanjing University"                         32.0571     118.778
 "Jinmou Song"                                          "Xiamen University"                          24.4373     118.0979
 "Isabel Santos Santos"                                 "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115
 "Sergey Khoperskov"                                    "Leibniz Institute for Astrophysics Potsdam" 52.4041     13.10115
@@ -142,3 +144,4 @@ Name                                                   Affiliation              
 "Pratyush Kumar Das"                                   "University of Queensland"                   -27.497     153.0130
 "Jiamu Huang"                                          "UC Santa Barbara"                           34.4138     -119.849
 "Snigdha Bhattacharjee"                                "Université de Lyon"                         45.7504     4.837992
+"Alan Huang"                                           "Stony Brook University"                     40.9132     -73.1263

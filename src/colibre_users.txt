@@ -80,7 +80,7 @@ Name                                                   Affiliation              
 "Teymoor Saifollahi"                                   "University of Strasbourg"                   48.582755   7.764422
 "Yamila Daniela Burrafato"                             "University of Buenos Aires"                 -34.54139   -58.44306
 "Scott Kay"                                            "University of Manchester"                   53.46685    -2.233884
-"Francine Marleau"                                     "University of Innsbruck"                    47.258944   11.383664
+"Selin Sprenger"                                       "University of Innsbruck"                    47.258944   11.383664
 "Jonas Kruger"                                         "University of Innsbruck"                    47.258944   11.383664
 "Marcin Semczuk"                                       "University of Barcelona"                    41.3853     2.1583
 "David Izquierdo Villalba"                             "University of Barcelona"                    41.3853     2.1583

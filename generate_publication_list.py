@@ -11,6 +11,12 @@ from urllib.parse import urlencode
 # around when the paper gets accepted by a journal.
 ARXIV_ID_CACHE_PATH = 'arxiv_id_cache.yml'
 
+# Hard coded arxiv identifiers for papers whose ADS record is not linked
+# to their arxiv version. Maps ADS bibcode -> arxiv identifier.
+ARXIV_ID_OVERRIDES = {
+    '2026A&G....67.2.22T': '2604.09250',
+}
+
 
 def normalize_title(title):
     # Truncate to 122 characters, the maximum size of a PyYAML key
@@ -97,6 +103,24 @@ def query_ads_library(library):
     return sorted(papers, key=lambda d: d[3])
 
 
+def format_author_name(name):
+    '''
+    Converts an ADS author name ("Last, First") to "First Last".
+    Tries to handle other cases cleanly.
+    '''
+    parts = name.split(', ')
+    # Titles are sometimes included as a suffix, e.g. 2026A&G....67.2.22T
+    if len(parts) == 3 and parts[2] == 'Dr':
+        parts = parts[:2]
+    # Collaborations are listed without a comma, e.g. "Euclid Collaboration"
+    if len(parts) == 1:
+        return name
+    if len(parts) != 2:
+        print(f'Unusual author name format: {name}', file=sys.stderr)
+    last, first, suffixes = parts[0], parts[1], parts[2:]
+    return ' '.join([first, last] + suffixes)
+
+
 def format_paper_data(result, arxiv_id_cache):
     '''
     Takes in the ADS OpenAPI response and extracts the information
@@ -105,14 +129,9 @@ def format_paper_data(result, arxiv_id_cache):
 
     # Generate author list, truncate if we have too many authors
     if len(result['author']) < 25:
-        author = ''
-        for a in result['author']:
-            last, first = a.split(', ')
-            author += first + ' ' + last + ', '
-        author = author[:-2] # Remove trailing ', '
+        author = ', '.join(format_author_name(a) for a in result['author'])
     else:
-        last, first = result['author'][0].split(', ')
-        author = first + ' ' + last + ' et al.'
+        author = format_author_name(result['author'][0]) + ' et al.'
 
     title = result['title'][0]
     normalized_title = normalize_title(title)
@@ -122,6 +141,9 @@ def format_paper_data(result, arxiv_id_cache):
     for identifier in result['identifier']:
         if 'arXiv:' in identifier:
             arxiv_identifier = identifier.replace('arXiv:', '')
+        if identifier in ARXIV_ID_OVERRIDES:
+            arxiv_identifier = ARXIV_ID_OVERRIDES[identifier]
+            break
     if arxiv_identifier == '':
         # The arxiv identifier can be temporarily removed from a paper's ADS
         # record around when it gets accepted by a journal, before ADS
@@ -148,7 +170,9 @@ def format_paper_data(result, arxiv_id_cache):
 
     # Save parsed data
     return (
-        html.escape(title), # Escape troublesome characters
+        # ADS titles can already contain HTML entities (e.g. &gt;), so unescape
+        # first to avoid double escaping, which breaks MathJax rendering
+        html.escape(html.unescape(title)),
         author,
         f'https://ui.adsabs.harvard.edu/abs/{result["identifier"][0]}',
         f'https://arxiv.org/abs/{arxiv_identifier}',
@@ -238,25 +262,31 @@ def generate_publication_list(skip_query=False):
         ),
     ]
 
-    # Identifier of the COLIBRE ADS library
-    library = 'B_qtPm4pTKePLPVL4qKRSg'
+    # Identifiers of the COLIBRE ADS libraries
+    analysis_library = 'B_qtPm4pTKePLPVL4qKRSg'
+    community_library = 'oD5U8ToNQ7OAtQh1awqohA'
     if skip_query:
         analysis_papers = intro_papers
+        community_papers = intro_papers
     else:
-        analysis_papers = query_ads_library(library)
+        analysis_papers = query_ads_library(analysis_library)
+        community_papers = query_ads_library(community_library)
 
     # Write basic html file, which will be formatter with make_webpage.py
     with open('src/pages/papers.html', 'w') as file:
         file.write('<h1>COLIBRE Publications</h1>\n')
         file.write('This page contains a list of publications submitted to arXiv which make use of the COLIBRE simulations. The analysis papers are listed in chronological order based on when they were uploaded to arXiv. Please let us know if we have missed your paper!\n\n')
 
-        for i_section, (section_header, papers) in enumerate([
-                ('Reference papers', intro_papers),
-                ('Papers introducing methods developed for COLIBRE', method_papers),
-                ('Analysis papers', analysis_papers),
+        # The final element of each tuple is the number of the first paper in the
+        # section. The community papers continue the numbering of the analysis papers.
+        for i_section, (section_header, papers, start) in enumerate([
+                ('Reference papers', intro_papers, 1),
+                ('Papers introducing methods developed for COLIBRE', method_papers, 1),
+                ('COLIBRE collaboration analysis papers', analysis_papers, 1),
+                ('Community papers showing COLIBRE results (incomplete)', community_papers, len(analysis_papers) + 1),
             ]):
             file.write(f'<h2 id="sec{i_section}">{section_header}</h2>\n')
-            file.write('<ol>\n')
+            file.write(f'<ol start="{start}">\n')
 
             for paper in papers:
                 file.write(f'<li><p><h5>{paper[0]}</h5>\n')

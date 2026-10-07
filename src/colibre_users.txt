@@ -125,6 +125,7 @@ Name                                                   Affiliation              
 "Sowmya Parthasarathy"                                 "University of Groningen"                    53.2193     6.5628
 "Abigail Tumborang"                                    "University of Groningen"                    53.2193     6.5628
 "Itzel Franco"                                         "University of Groningen"                    53.2193     6.5628
+"Bram Alferink"                                        "University of Groningen"                    53.2193     6.5628
 "Themiya Nanayakkara"                                  "Swinburne University of Technology"         -37.8226    145.0377
 "Osmer Suarez"                                         "Universidad Nacional Andrés Bello"          -33.4514    -70.6670
 "Riccardo Seppi"                                       "University of Geneva"                       46.1994     6.1451
@@ -145,3 +146,4 @@ Name                                                   Affiliation              
 "Jiamu Huang"                                          "UC Santa Barbara"                           34.4138     -119.849
 "Snigdha Bhattacharjee"                                "Université de Lyon"                         45.7504     4.837992
 "Alan Huang"                                           "Stony Brook University"                     40.9132     -73.1263
+"Gauri Kotiwale"                                       "ISTA"                                       48.3097     16.25896

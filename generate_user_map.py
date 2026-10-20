@@ -79,9 +79,13 @@ def generate_user_map():
     )
     # CARTO require an API key for their basemaps (free, see README).
     # Without a valid key the tiles are silently watermarked 'API KEY REQUIRED'.
-    tile_provider = xyz.CartoDB.VoyagerNoLabels.copy()
     with open('CARTO_key', 'r') as file:
-        tile_provider['url'] += '?key=' + file.read().strip()
+        carto_key = file.read().strip()
+    tile_provider = xyz.CartoDB.VoyagerNoLabels.copy()
+    if '{apikey}' in tile_provider['url']:
+        tile_provider['apikey'] = carto_key
+    else:
+        tile_provider['url'] += '?key=' + carto_key
     p.add_tile(tile_provider)
 
     logo_path = extract_svg_path("src/assets/logo.svg")

@@ -149,3 +149,5 @@ Name                                                   Affiliation              
 "Snigdha Bhattacharjee"                                "Université de Lyon"                         45.7504     4.837992
 "Alan Huang"                                           "Stony Brook University"                     40.9132     -73.1263
 "Gauri Kotiwale"                                       "ISTA"                                       48.3097     16.25896
+"Simon Foreman"                                        "Arizona State University"                   33.4231     -111.928
+"Federica Solito"                                      "University of Alberta"                      53.5232     -113.525

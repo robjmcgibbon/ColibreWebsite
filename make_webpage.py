@@ -854,7 +854,7 @@ if __name__ == "__main__":
     keep_sliders = True
     keep_images = True
     keep_videos = True
-    skip_ads_query = False
+    skip_scix_query = False
 
     # Clean up any existing build, create new build directories
     keep_sliders, keep_images, keep_videos = clean_build(
@@ -879,9 +879,9 @@ if __name__ == "__main__":
     make_sliders(templates, sliders)
 
     # Generate a list of publications
-    if skip_ads_query:
+    if skip_scix_query:
         print('Not querying ADS for analysis papers')
-    generate_publication_list.generate_publication_list(skip_query=skip_ads_query)
+    generate_publication_list.generate_publication_list(skip_query=skip_scix_query)
 
     # Generate the map of colibre users
     generate_user_map.generate_user_map()

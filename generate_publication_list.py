@@ -174,7 +174,7 @@ def format_paper_data(result, arxiv_id_cache):
         # first to avoid double escaping, which breaks MathJax rendering
         html.escape(html.unescape(title)),
         author,
-        f'https://ui.adsabs.harvard.edu/abs/{result["identifier"][0]}',
+        f'https://scixplorer.org/abs/{result["identifier"][0]}',
         f'https://arxiv.org/abs/{arxiv_identifier}',
         journal,
         result['year'],
@@ -188,7 +188,7 @@ def generate_publication_list(skip_query=False):
         (
             'The COLIBRE project: cosmological hydrodynamical simulations of galaxy formation and evolution',
             'Joop Schaye, Evgenii Chaikin, Matthieu Schaller, Sylvia Ploeckinger, Filip Huško, Rob McGibbon, James Trayford, Alejandro Benítez-Llambay, Camila Correa, Carlos Frenk, Alexander Richings, Victor Forouhar Moreno, Yannick Bahé, Josh Borrow, Anna Durrant, Andrea Gebek, John Helly, Adrian Jenkins, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
-            "https://ui.adsabs.harvard.edu/abs/2025arXiv250821126S",
+            "https://scixplorer.org/abs/2025arXiv250821126S",
             "https://arxiv.org/abs/2508.21126",
             'MNRAS',
             2026,
@@ -196,7 +196,7 @@ def generate_publication_list(skip_query=False):
         (
             'COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase',
             'Evgenii Chaikin, Joop Schaye, Matthieu Schaller, Sylvia Ploeckinger, Yannick Bahé, Alejandro Benítez-Llambay, Camila Correa, Victor Forouhar Moreno, Carlos Frenk, Filip Huško, Roi Kugel, Rob McGibbon, Alexander Richings, James Trayford, Josh Borrow, Rob Crain, John Helly, Cedric Lacey, Aaron Ludlow, Folkert Nobels',
-            "https://ui.adsabs.harvard.edu/abs/2025arXiv250904067C/abstract",
+            "https://scixplorer.org/abs/2025arXiv250904067C",
             "https://arxiv.org/abs/2509.04067",
             'MNRAS',
             2026,
@@ -207,7 +207,7 @@ def generate_publication_list(skip_query=False):
         (
             'A thermal-kinetic subgrid model for supernova feedback in simulations of galaxy formation',
             'Evgenii Chaikin, Joop Schaye, Matthieu Schaller, Alejandro Benítez-Llambay, Folkert Nobels, Sylvia Ploeckinger',
-            f'https://ui.adsabs.harvard.edu/abs/2023MNRAS.523.3709C',
+            f'https://scixplorer.org/abs/2023MNRAS.523.3709C',
             f'https://arxiv.org/abs/2211.04619',
             'MNRAS',
             2023,
@@ -215,7 +215,7 @@ def generate_publication_list(skip_query=False):
         (
             'Tests of subgrid models for star formation using simulations of isolated disc galaxies',
             'Folkert Nobels, Joop Schaye, Matthieu Schaller, Sylvia Ploeckinger, Evgenii Chaikin, and Alexander Richings', 
-            f'https://ui.adsabs.harvard.edu/abs/2024MNRAS.532.3299N',
+            f'https://scixplorer.org/abs/2024MNRAS.532.3299N',
             f'https://arxiv.org/abs/2309.13750',
             'MNRAS',
             2024,
@@ -223,7 +223,7 @@ def generate_publication_list(skip_query=False):
         (
             'Hybrid-chimes: A model for radiative cooling and the abundances of ions and molecules in simulations of galaxy formation',
             'Sylvia Ploeckinger, Alexander Richings, Joop Schaye, James Trayford, Matthieu Schaller, Evgenii Chaikin',
-            f'https://ui.adsabs.harvard.edu/abs/2025arXiv250615773P',
+            f'https://scixplorer.org/abs/2025arXiv250615773P',
             f'https://arxiv.org/abs/2506.15773',
             'MNRAS',
             2025,
@@ -231,7 +231,7 @@ def generate_publication_list(skip_query=False):
         (
             'Modelling the evolution and influence of dust in cosmological simulations that include the cold phase of the interstellar medium',
             'James Trayford, Joop Schaye, Camila Correa, Sylvia Ploeckinger, Alexander Richings, Evgenii Chaikin, Matthieu Schaller, Alejandro Benítez-Llambay, Carlos Frenk, Filip Huško',
-            f'https://ui.adsabs.harvard.edu/abs/2025arXiv250513056T',
+            f'https://scixplorer.org/abs/2025arXiv250513056T',
             f'https://arxiv.org/abs/2505.13056',
             'MNRAS',
             2026,
@@ -239,7 +239,7 @@ def generate_publication_list(skip_query=False):
         (
             'A hybrid active galactic nucleus feedback model with spinning black holes, winds and jets',
             'Filip Huško, Cedric Lacey, Joop Schaye, Matthieu Schaller, Evgenii Chaikin, Sylvia Ploeckinger, Alejandro Benítez-Llambay, Alexander Richings, James Trayford',
-            'https://ui.adsabs.harvard.edu/abs/2025arXiv250905179H',
+            'https://scixplorer.org/abs/2025arXiv250905179H',
             'https://arxiv.org/abs/2509.05179',
             'MNRAS',
             2026,
@@ -247,7 +247,7 @@ def generate_publication_list(skip_query=False):
         (
             'Non-explosive pre-supernova feedback in the COLIBRE model of galaxy formation',
             'Alejandro Benítez-Llambay, Sylvia Ploeckinger, Joop Schaye, Alexander Richings, Evgenii Chaikin, Matthieu Schaller, James Trayford, Carlos Frenk, Filip Huško, Camila Correa',
-            'https://ui.adsabs.harvard.edu/abs/2025arXiv250925309B/abstract',
+            'https://scixplorer.org/abs/2025arXiv250925309B',
             'https://arxiv.org/abs/2509.25309',
             'MNRAS',
             2026,
@@ -255,7 +255,7 @@ def generate_publication_list(skip_query=False):
         (
             'A subgrid model for chemical enrichment in cosmological simulations',
             'Camila Correa, Joop Schaye, Matthieu Schaller, James Trayford, Evgenii Chaikin, Alejandro Benítez-Llambay, Carlos Frenk, Sylvia Ploeckinger, Alexander Richings',
-            'https://ui.adsabs.harvard.edu/abs/2026arXiv260400980C/abstract',
+            'https://scixplorer.org/abs/2026arXiv260400980C',
             'https://arxiv.org/abs/2604.00980',
             'MNRAS',
             2026,
@@ -292,7 +292,7 @@ def generate_publication_list(skip_query=False):
                 file.write(f'<li><p><h5>{paper[0]}</h5>\n')
                 file.write(f'<i>{paper[1]}</i><br>\n')
                 file.write(f'{paper[4]} ({paper[5]})')
-                file.write(f', <a href="{paper[2]}" class="active text-decoration-none">ADS</a>')
+                file.write(f', <a href="{paper[2]}" class="active text-decoration-none">SciX</a>')
                 if paper[3] != 'https://arxiv.org/abs/99999':
                     file.write(f', <a href="{paper[3]}" class="active text-decoration-none">arXiv</a>')
                 # To add a "Download plot data" link for a paper, place a

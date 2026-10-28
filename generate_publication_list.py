@@ -153,7 +153,7 @@ def format_paper_data(result, arxiv_id_cache):
             arxiv_identifier = arxiv_id_cache[normalized_title]
             print(f'Arxiv link not found for: {result["identifier"][0]}, using cached id {arxiv_identifier}', file=sys.stderr)
         else:
-            print(f'Arxiv link not found for: {result["identifier"][0]}, no cached id available', file=sys.stderr)
+            print(f'Arxiv link not found for: {result["identifier"][0]}, no cached id available (cache key: {normalized_title})', file=sys.stderr)
             arxiv_identifier = '99999'
     else:
         arxiv_id_cache[normalized_title] = arxiv_identifier

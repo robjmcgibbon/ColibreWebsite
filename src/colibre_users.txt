@@ -152,3 +152,4 @@ Name                                                   Affiliation              
 "Simon Foreman"                                        "Arizona State University"                   33.4231     -111.928
 "Federica Solito"                                      "University of Alberta"                      53.5232     -113.525
 "Nushkia Chamba"                                       "Chalmers University"                        57.6893     11.97376
+"Haotian Chen"                                         "Eindhoven University of Technology"         51.4476     5.487227

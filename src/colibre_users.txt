@@ -94,6 +94,7 @@ Name                                                   Affiliation              
 "Marcin Glowacki"                                      "University of Edinburgh"                    55.944515   -3.189241
 "Maximilian Zemsch"                                    "University of Oxford"                       51.757      -1.2545
 "Tariq Yasin"                                          "University of Oxford"                       51.757      -1.2545
+"Bohan Yue"                                            "University of Oxford"                       51.757      -1.2545
 "Luigi Giaquinto"                                      "University of Naples"                       40.845      14.257
 "Bruno Celiz"                                          "National University of Córdoba"             -31.435     -64.18
 "Pablo Lopez"                                          "National University of Córdoba"             -31.435     -64.18

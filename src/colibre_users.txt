@@ -53,8 +53,8 @@ Name                                                   Affiliation              
 "Ruby Wright"                                          "University of Western Australia"            -31.98118   115.81991
 "Nikolaos Andreadis"                                   "Ghent University"                           51.041      3.723
 "Maarten Baes"                                         "Ghent University"                           51.041      3.723
-"Andrea Gebek"                                         "Ghent University"                           51.041      3.723
 "Eric Muires"                                          "Ghent University"                           51.041      3.723
+"Andrea Gebek"                                         "University of Bath"                         51.378      -2.32666
 "James McGregor"                                       "Australian National University"             -35.2764    149.1205
 "Emily Wisnioski"                                      "Australian National University"             -35.2764    149.1205
 "Trevor Mendel"                                        "Australian National University"             -35.2764    149.1205

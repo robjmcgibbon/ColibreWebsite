@@ -4,9 +4,12 @@
 #
 # # Setting vmin as 100x initial gas mass
 # for run, run_name, vmin in [
+#         ('L0012N0376/Thermal', 'L012m5', 2.3e7),
 #         ('L0025N0752/Thermal', 'L025m5', 2.3e7),
 #         ('L0050N1504/Thermal', 'L050m5', 2.3e7),
 #         ('L0100N3008/Thermal', 'L100m5', 2.3e7),
+#         ('L0050N0752/Thermal', 'L050m6', 1.8e8),
+#         ('L0100N1504/Thermal', 'L100m6', 1.8e8),
 #         ('L0200N3008/Thermal', 'L200m6', 1.8e8),
 #         ('L0400N3008/Thermal', 'L400m7', 1.5e9),
 #     ]:
@@ -54,6 +57,7 @@
 #                 comments='',
 #                 delimiter=',',
 #             )
+# exit()
 ##########
 
 import pandas as pd
@@ -69,7 +73,7 @@ def generate_mass_functions():
     # combinations are shown as "not yet available" on the plot.
     property_options = ['Halo mass', 'Stellar mass']
     redshift_options = ['0', '1', '3', '8']
-    simulation_options = ['L025m5', 'L050m5', 'L100m5', 'L200m6', 'L400m7']
+    simulation_options = ['L012m5', 'L025m5', 'L050m5', 'L100m5', 'L050m6', 'L100m6', 'L200m6', 'L400m7']
     data = {}
     for run_name in simulation_options:
         for z in redshift_options:

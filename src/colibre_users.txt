@@ -75,6 +75,7 @@ Name                                                   Affiliation              
 "Mathieu Perron-Cormier"                               "Queen's University"                         44.22       -76.49
 "Oleh Ryzhov"                                          "Adam Mickiewicz University"                 52.409538   16.931992
 "Till Sawala"                                          "University of Helsinki"                     60.175648   24.95355
+"Jenni Häkkinen"                                       "University of Helsinki"                     60.175648   24.95355
 "Sylvia Ploeckinger"                                   "University of Vienna"                       48.2078     16.3558
 "Moa Huppenkothen"                                     "University of Vienna"                       48.2078     16.3558
 "Christian Maier"                                      "University of Vienna"                       48.2078     16.3558
@@ -157,3 +158,4 @@ Name                                                   Affiliation              
 "Federica Solito"                                      "University of Alberta"                      53.5232     -113.525
 "Nushkia Chamba"                                       "Chalmers University"                        57.6893     11.97376
 "Haotian Chen"                                         "Eindhoven University of Technology"         51.4476     5.487227
+"Xiaoxuan Chen"                                        "USTC"                                       31.8218     117.2801
